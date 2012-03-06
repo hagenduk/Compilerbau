@@ -25,7 +25,6 @@
 %token COLON COMMA SEMICOLON
 %token BRACE_OPEN BRACE_CLOSE
 %token END_OF_FILE
-%token SHIFT_LEFT SHIFT_RIGHT
 %token KOMMENTAR
 %token ID
 %token NUM
@@ -35,6 +34,7 @@
 %token LOGICAL_OR LOGICAL_NOT LOGICAL_AND 
 %token EQ NE LS LSEQ GTEQ GT
 %token PLUS MINUS MUL DIV MOD
+%token SHIFT_LEFT SHIFT_RIGHT
 %token NOT UNARY_MINUS UNARY_PLUS
 %token BRACKET_OPEN BRACKET_CLOSE PARA_OPEN PARA_CLOSE */
 
@@ -43,6 +43,7 @@
 %left LOGICAL_AND                       /* The logical AND operator '&&'. */
 %left EQ NE                                     /* Equality '==' and inequality '!=' comparison operators. */
 %left LS LSEQ GTEQ GT           /* Comparing operators for less '<', less or equal '<=', greater or equal '>=' and greater '>'. */
+%left SHIFT_LEFT SHIFT_RIGHT    /* Shift left and shift right Operator (what ever this is O_o perhaps) bitwise shift*/
 %left PLUS MINUS                        /* Arithmetic operations: addition '+' and subtraction '-'. */
 %left MUL DIV MOD          /* Arithmetic operations (higher precedence than addition and subtraction): multiplication '*',
                                                          * division '-' and remainder (modulo) '%'. */
