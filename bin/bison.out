@@ -2,6 +2,9 @@ Terminals unused in grammar
 
    COLON
    END_OF_FILE
+   SHIFT_LEFT
+   SHIFT_RIGHT
+   KOMMENTAR
    UNARY_PLUS
 
 
@@ -115,80 +118,83 @@ SEMICOLON (267) 4 6 26 27 30 31 32 37
 BRACE_OPEN (268) 15 33
 BRACE_CLOSE (269) 15 33
 END_OF_FILE (270)
-ID (271) 14 54 59 60 63
-NUM (272) 58
-ASSIGN (273) 38
-LOGICAL_OR (274) 39
-LOGICAL_AND (275) 40
-NE (276) 43
-EQ (277) 42
-GT (278) 47
-GTEQ (279) 46
-LSEQ (280) 45
-LS (281) 44
-MINUS (282) 49 53
-PLUS (283) 48
-MOD (284) 52
-DIV (285) 51
-MUL (286) 50
-LOGICAL_NOT (287) 41
-UNARY_PLUS (288)
-UNARY_MINUS (289)
-PARA_CLOSE (290) 16 34 35 36 37 55 56
-PARA_OPEN (291) 19 34 35 36 37 55 60 63
-BRACKET_CLOSE (292) 13 54
-BRACKET_OPEN (293) 13 54
+SHIFT_LEFT (271)
+SHIFT_RIGHT (272)
+KOMMENTAR (273)
+ID (274) 14 54 59 60 63
+NUM (275) 58
+ASSIGN (276) 38
+LOGICAL_OR (277) 39
+LOGICAL_AND (278) 40
+NE (279) 43
+EQ (280) 42
+GT (281) 47
+GTEQ (282) 46
+LSEQ (283) 45
+LS (284) 44
+MINUS (285) 49 53
+PLUS (286) 48
+MOD (287) 52
+DIV (288) 51
+MUL (289) 50
+LOGICAL_NOT (290) 41
+UNARY_PLUS (291)
+UNARY_MINUS (292)
+PARA_CLOSE (293) 16 34 35 36 37 55 56
+PARA_OPEN (294) 19 34 35 36 37 55 60 63
+BRACKET_CLOSE (295) 13 54
+BRACKET_OPEN (296) 13 54
 
 
 Nonterminals, with rules where they appear
 
-$accept (39)
+$accept (42)
     on left: 0
-program (40)
+program (43)
     on left: 1, on right: 0
-program_element_list (41)
+program_element_list (44)
     on left: 2 3, on right: 1 2
-program_element (42)
+program_element (45)
     on left: 4 5 6, on right: 2 3
-type (43)
+type (46)
     on left: 7 8, on right: 10 15 22
-declaration (44)
+declaration (47)
     on left: 9 10, on right: 4 9 26
-declaration_element (45)
+declaration_element (48)
     on left: 11 12, on right: 9 10
-identifier_declaration (46)
+identifier_declaration (49)
     on left: 13 14, on right: 11 13 19 22
-function_definition (47)
+function_definition (50)
     on left: 15, on right: 5
-function_header (48)
+function_header (51)
     on left: 16, on right: 12 15
-function_prefix (49)
+function_prefix (52)
     on left: 17 18, on right: 16
-function_signature (50)
+function_signature (53)
     on left: 19, on right: 17 21
-function_signature_parameters (51)
+function_signature_parameters (54)
     on left: 20 21, on right: 18 20
-function_parameter_element (52)
+function_parameter_element (55)
     on left: 22, on right: 20 21
-stmt_list (53)
+stmt_list (56)
     on left: 23 24, on right: 15 24 33
-stmt (54)
+stmt (57)
     on left: 25 26 27 28 29 30 31 32, on right: 24 34 35 36 37
-stmt_block (55)
+stmt_block (58)
     on left: 33, on right: 25
-stmt_conditional (56)
+stmt_conditional (59)
     on left: 34 35, on right: 28
-stmt_loop (57)
+stmt_loop (60)
     on left: 36 37, on right: 29
-expression (58)
+expression (61)
     on left: 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55
     56 57, on right: 13 27 30 34 35 36 37 38 39 40 41 42 43 44 45 46
     47 48 49 50 51 52 53 55 62 63
-primary (59)
+primary (62)
     on left: 58 59, on right: 54 57
-function_call (60)
+function_call (63)
     on left: 60 61, on right: 56
-function_call_parameters (61)
+function_call_parameters (64)
     on left: 62 63, on right: 61 62
 
 
