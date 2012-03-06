@@ -54,6 +54,8 @@ while { return WHILE; }
 \* { return MUL; }
 \/ { return DIV; }
 % { return MOD; }
+\<< { return SHIFT_LEFT; }
+\>> { return SHIFT_RIGHT; }
 
 \{ { return BRACE_OPEN; }
 \} { return BRACE_CLOSE; }
@@ -64,7 +66,7 @@ while { return WHILE; }
 
 {identifier} { return ID; }
 {number} { return NUM; }
-{kommentar}
+{kommentar} 
 
 							
 <<EOF>>		{ return 0; }
