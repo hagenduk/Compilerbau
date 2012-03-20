@@ -1,18 +1,17 @@
-Terminals unused in grammar
+Terminale, die in Grammatik unbenutzt sind
 
    COLON
    END_OF_FILE
-   KOMMENTAR
    SHIFT_LEFT
    SHIFT_RIGHT
    NOT
    UNARY_PLUS
 
 
-State 116 conflicts: 1 shift/reduce
+Zustand 116 Konflikte: 1 Schiebe/Reduziere
 
 
-Grammar
+Grammatik
 
     0 $accept: program $end
 
@@ -51,7 +50,7 @@ Grammar
 
    22 function_parameter_element: type identifier_declaration
 
-   23 stmt_list: /* empty */
+   23 stmt_list: /* leer */
    24          | stmt_list stmt
 
    25 stmt: stmt_block
@@ -102,7 +101,7 @@ Grammar
    63                         | ID PARA_OPEN expression
 
 
-Terminals, with rules where they appear
+Terminale und die Regeln, in denen sie verwendet werden
 
 $end (0) 0
 error (256)
@@ -119,139 +118,88 @@ SEMICOLON (267) 4 6 26 27 30 31 32 37
 BRACE_OPEN (268) 15 33
 BRACE_CLOSE (269) 15 33
 END_OF_FILE (270)
-KOMMENTAR (271)
-ID (272) 14 54 59 60 63
-NUM (273) 58
-ASSIGN (274) 38
-LOGICAL_OR (275) 39
-LOGICAL_NOT (276) 41
-LOGICAL_AND (277) 40
-SHIFT_LEFT (278)
-SHIFT_RIGHT (279)
-EQ (280) 42
-NE (281) 43
-LS (282) 44
-LSEQ (283) 45
-GTEQ (284) 46
-GT (285) 47
-PLUS (286) 48
-MINUS (287) 49 53
-MUL (288) 50
-DIV (289) 51
-MOD (290) 52
-NOT (291)
-UNARY_MINUS (292)
-UNARY_PLUS (293)
-BRACKET_OPEN (294) 13 54
-BRACKET_CLOSE (295) 13 54
-PARA_OPEN (296) 19 34 35 36 37 55 60 63
-PARA_CLOSE (297) 16 34 35 36 37 55 56
+ID (271) 14 54 59 60 63
+NUM (272) 58
+ASSIGN (273) 38
+LOGICAL_OR (274) 39
+LOGICAL_NOT (275) 41
+LOGICAL_AND (276) 40
+SHIFT_LEFT (277)
+SHIFT_RIGHT (278)
+EQ (279) 42
+NE (280) 43
+LS (281) 44
+LSEQ (282) 45
+GTEQ (283) 46
+GT (284) 47
+PLUS (285) 48
+MINUS (286) 49 53
+MUL (287) 50
+DIV (288) 51
+MOD (289) 52
+NOT (290)
+UNARY_MINUS (291)
+UNARY_PLUS (292)
+BRACKET_OPEN (293) 13 54
+BRACKET_CLOSE (294) 13 54
+PARA_OPEN (295) 19 34 35 36 37 55 60 63
+PARA_CLOSE (296) 16 34 35 36 37 55 56
 
 
-Nonterminals, with rules where they appear
+Nicht-Terminal und die Regeln, in denen sie verwendet werden
 
-$accept (43)
-<<<<<<< HEAD
+$accept (42)
     auf der linken Seite: 0
-program (44)
+program (43)
     auf der linken Seite: 1, auf der rechten Seite: 0
-program_element_list (45)
+program_element_list (44)
     auf der linken Seite: 2 3, auf der rechten Seite: 1 2
-program_element (46)
+program_element (45)
     auf der linken Seite: 4 5 6, auf der rechten Seite: 2 3
-type (47)
+type (46)
     auf der linken Seite: 7 8, auf der rechten Seite: 10 15 22
-declaration (48)
+declaration (47)
     auf der linken Seite: 9 10, auf der rechten Seite: 4 9 26
-declaration_element (49)
+declaration_element (48)
     auf der linken Seite: 11 12, auf der rechten Seite: 9 10
-identifier_declaration (50)
+identifier_declaration (49)
     auf der linken Seite: 13 14, auf der rechten Seite: 11 13 19 22
-function_definition (51)
+function_definition (50)
     auf der linken Seite: 15, auf der rechten Seite: 5
-function_header (52)
+function_header (51)
     auf der linken Seite: 16, auf der rechten Seite: 12 15
-function_prefix (53)
+function_prefix (52)
     auf der linken Seite: 17 18, auf der rechten Seite: 16
-function_signature (54)
+function_signature (53)
     auf der linken Seite: 19, auf der rechten Seite: 17 21
-function_signature_parameters (55)
+function_signature_parameters (54)
     auf der linken Seite: 20 21, auf der rechten Seite: 18 20
-function_parameter_element (56)
+function_parameter_element (55)
     auf der linken Seite: 22, auf der rechten Seite: 20 21
-stmt_list (57)
+stmt_list (56)
     auf der linken Seite: 23 24, auf der rechten Seite: 15 24 33
-stmt (58)
+stmt (57)
     auf der linken Seite: 25 26 27 28 29 30 31 32, auf der rechten Seite:
     24 34 35 36 37
-stmt_block (59)
+stmt_block (58)
     auf der linken Seite: 33, auf der rechten Seite: 25
-stmt_conditional (60)
+stmt_conditional (59)
     auf der linken Seite: 34 35, auf der rechten Seite: 28
-stmt_loop (61)
+stmt_loop (60)
     auf der linken Seite: 36 37, auf der rechten Seite: 29
-expression (62)
+expression (61)
     auf der linken Seite: 38 39 40 41 42 43 44 45 46 47 48 49 50 51
     52 53 54 55 56 57, auf der rechten Seite: 13 27 30 34 35 36 37
     38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 55 62 63
-primary (63)
+primary (62)
     auf der linken Seite: 58 59, auf der rechten Seite: 54 57
-function_call (64)
+function_call (63)
     auf der linken Seite: 60 61, auf der rechten Seite: 56
-function_call_parameters (65)
+function_call_parameters (64)
     auf der linken Seite: 62 63, auf der rechten Seite: 61 62
-=======
-    on left: 0
-program (44)
-    on left: 1, on right: 0
-program_element_list (45)
-    on left: 2 3, on right: 1 2
-program_element (46)
-    on left: 4 5 6, on right: 2 3
-type (47)
-    on left: 7 8, on right: 10 15 22
-declaration (48)
-    on left: 9 10, on right: 4 9 26
-declaration_element (49)
-    on left: 11 12, on right: 9 10
-identifier_declaration (50)
-    on left: 13 14, on right: 11 13 19 22
-function_definition (51)
-    on left: 15, on right: 5
-function_header (52)
-    on left: 16, on right: 12 15
-function_prefix (53)
-    on left: 17 18, on right: 16
-function_signature (54)
-    on left: 19, on right: 17 21
-function_signature_parameters (55)
-    on left: 20 21, on right: 18 20
-function_parameter_element (56)
-    on left: 22, on right: 20 21
-stmt_list (57)
-    on left: 23 24, on right: 15 24 33
-stmt (58)
-    on left: 25 26 27 28 29 30 31 32, on right: 24 34 35 36 37
-stmt_block (59)
-    on left: 33, on right: 25
-stmt_conditional (60)
-    on left: 34 35, on right: 28
-stmt_loop (61)
-    on left: 36 37, on right: 29
-expression (62)
-    on left: 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55
-    56 57, on right: 13 27 30 34 35 36 37 38 39 40 41 42 43 44 45 46
-    47 48 49 50 51 52 53 55 62 63
-primary (63)
-    on left: 58 59, on right: 54 57
-function_call (64)
-    on left: 60 61, on right: 56
-function_call_parameters (65)
-    on left: 62 63, on right: 61 62
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-state 0
+Zustand 0
 
     0 $accept: . program $end
     1 program: . program_element_list
@@ -266,47 +214,47 @@ state 0
    10            | . type declaration_element
    15 function_definition: . type function_header BRACE_OPEN stmt_list BRACE_CLOSE
 
-    INT        shift, and go to state 1
-    VOID       shift, and go to state 2
-    SEMICOLON  shift, and go to state 3
+    INT        schiebe und gehe zu Zustand 1 über
+    VOID       schiebe und gehe zu Zustand 2 über
+    SEMICOLON  schiebe und gehe zu Zustand 3 über
 
-    program               go to state 4
-    program_element_list  go to state 5
-    program_element       go to state 6
-    type                  go to state 7
-    declaration           go to state 8
-    function_definition   go to state 9
+    program               gehe zu Zustand 4 über
+    program_element_list  gehe zu Zustand 5 über
+    program_element       gehe zu Zustand 6 über
+    type                  gehe zu Zustand 7 über
+    declaration           gehe zu Zustand 8 über
+    function_definition   gehe zu Zustand 9 über
 
 
-state 1
+Zustand 1
 
     7 type: INT .
 
-    $default  reduce using rule 7 (type)
+    $default  reduziere mit Regel 7 (type)
 
 
-state 2
+Zustand 2
 
     8 type: VOID .
 
-    $default  reduce using rule 8 (type)
+    $default  reduziere mit Regel 8 (type)
 
 
-state 3
+Zustand 3
 
     6 program_element: SEMICOLON .
 
-    $default  reduce using rule 6 (program_element)
+    $default  reduziere mit Regel 6 (program_element)
 
 
-state 4
+Zustand 4
 
     0 $accept: program . $end
 
-    $end  shift, and go to state 10
+    $end  schiebe und gehe zu Zustand 10 über
 
 
-state 5
+Zustand 5
 
     1 program: program_element_list .  [$end]
     2 program_element_list: program_element_list . program_element
@@ -319,26 +267,26 @@ state 5
    10            | . type declaration_element
    15 function_definition: . type function_header BRACE_OPEN stmt_list BRACE_CLOSE
 
-    INT        shift, and go to state 1
-    VOID       shift, and go to state 2
-    SEMICOLON  shift, and go to state 3
+    INT        schiebe und gehe zu Zustand 1 über
+    VOID       schiebe und gehe zu Zustand 2 über
+    SEMICOLON  schiebe und gehe zu Zustand 3 über
 
-    $default  reduce using rule 1 (program)
+    $default  reduziere mit Regel 1 (program)
 
-    program_element      go to state 11
-    type                 go to state 7
-    declaration          go to state 8
-    function_definition  go to state 9
+    program_element      gehe zu Zustand 11 über
+    type                 gehe zu Zustand 7 über
+    declaration          gehe zu Zustand 8 über
+    function_definition  gehe zu Zustand 9 über
 
 
-state 6
+Zustand 6
 
     3 program_element_list: program_element .
 
-    $default  reduce using rule 3 (program_element_list)
+    $default  reduziere mit Regel 3 (program_element_list)
 
 
-state 7
+Zustand 7
 
    10 declaration: type . declaration_element
    11 declaration_element: . identifier_declaration
@@ -353,95 +301,90 @@ state 7
    20 function_signature_parameters: . function_signature_parameters COMMA function_parameter_element
    21                              | . function_signature function_parameter_element
 
-    ID  shift, and go to state 12
+    ID  schiebe und gehe zu Zustand 12 über
 
-    declaration_element            go to state 13
-    identifier_declaration         go to state 14
-    function_header                go to state 15
-    function_prefix                go to state 16
-    function_signature             go to state 17
-    function_signature_parameters  go to state 18
+    declaration_element            gehe zu Zustand 13 über
+    identifier_declaration         gehe zu Zustand 14 über
+    function_header                gehe zu Zustand 15 über
+    function_prefix                gehe zu Zustand 16 über
+    function_signature             gehe zu Zustand 17 über
+    function_signature_parameters  gehe zu Zustand 18 über
 
 
-state 8
+Zustand 8
 
     4 program_element: declaration . SEMICOLON
     9 declaration: declaration . COMMA declaration_element
 
-    COMMA      shift, and go to state 19
-    SEMICOLON  shift, and go to state 20
+    COMMA      schiebe und gehe zu Zustand 19 über
+    SEMICOLON  schiebe und gehe zu Zustand 20 über
 
 
-state 9
+Zustand 9
 
     5 program_element: function_definition .
 
-    $default  reduce using rule 5 (program_element)
+    $default  reduziere mit Regel 5 (program_element)
 
 
-state 10
+Zustand 10
 
     0 $accept: program $end .
 
-    $default  accept
+    $default  annehmen
 
 
-state 11
+Zustand 11
 
     2 program_element_list: program_element_list program_element .
 
-    $default  reduce using rule 2 (program_element_list)
+    $default  reduziere mit Regel 2 (program_element_list)
 
 
-state 12
+Zustand 12
 
    14 identifier_declaration: ID .
 
-    $default  reduce using rule 14 (identifier_declaration)
+    $default  reduziere mit Regel 14 (identifier_declaration)
 
 
-state 13
+Zustand 13
 
    10 declaration: type declaration_element .
 
-    $default  reduce using rule 10 (declaration)
+    $default  reduziere mit Regel 10 (declaration)
 
 
-state 14
+Zustand 14
 
    11 declaration_element: identifier_declaration .  [COMMA, SEMICOLON]
    13 identifier_declaration: identifier_declaration . BRACKET_OPEN expression BRACKET_CLOSE
    19 function_signature: identifier_declaration . PARA_OPEN
 
-<<<<<<< HEAD
     BRACKET_OPEN  schiebe und gehe zu Zustand 21 über
     PARA_OPEN     schiebe und gehe zu Zustand 22 über
-=======
-    BRACKET_OPEN  shift, and go to state 21
-    PARA_OPEN     shift, and go to state 22
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    $default  reduce using rule 11 (declaration_element)
+    $default  reduziere mit Regel 11 (declaration_element)
 
 
-state 15
+Zustand 15
 
    12 declaration_element: function_header .  [COMMA, SEMICOLON]
    15 function_definition: type function_header . BRACE_OPEN stmt_list BRACE_CLOSE
 
-    BRACE_OPEN  shift, and go to state 23
+    BRACE_OPEN  schiebe und gehe zu Zustand 23 über
 
-    $default  reduce using rule 12 (declaration_element)
+    $default  reduziere mit Regel 12 (declaration_element)
 
 
-state 16
+Zustand 16
 
    16 function_header: function_prefix . PARA_CLOSE
 
-    PARA_CLOSE  shift, and go to state 24
+    PARA_CLOSE  schiebe und gehe zu Zustand 24 über
 
 
-state 17
+Zustand 17
 
     7 type: . INT
     8     | . VOID
@@ -449,26 +392,26 @@ state 17
    21 function_signature_parameters: function_signature . function_parameter_element
    22 function_parameter_element: . type identifier_declaration
 
-    INT   shift, and go to state 1
-    VOID  shift, and go to state 2
+    INT   schiebe und gehe zu Zustand 1 über
+    VOID  schiebe und gehe zu Zustand 2 über
 
-    $default  reduce using rule 17 (function_prefix)
+    $default  reduziere mit Regel 17 (function_prefix)
 
-    type                        go to state 25
-    function_parameter_element  go to state 26
+    type                        gehe zu Zustand 25 über
+    function_parameter_element  gehe zu Zustand 26 über
 
 
-state 18
+Zustand 18
 
    18 function_prefix: function_signature_parameters .  [PARA_CLOSE]
    20 function_signature_parameters: function_signature_parameters . COMMA function_parameter_element
 
-    COMMA  shift, and go to state 27
+    COMMA  schiebe und gehe zu Zustand 27 über
 
-    $default  reduce using rule 18 (function_prefix)
+    $default  reduziere mit Regel 18 (function_prefix)
 
 
-state 19
+Zustand 19
 
     9 declaration: declaration COMMA . declaration_element
    11 declaration_element: . identifier_declaration
@@ -482,28 +425,24 @@ state 19
    20 function_signature_parameters: . function_signature_parameters COMMA function_parameter_element
    21                              | . function_signature function_parameter_element
 
-    ID  shift, and go to state 12
+    ID  schiebe und gehe zu Zustand 12 über
 
-    declaration_element            go to state 28
-    identifier_declaration         go to state 14
-    function_header                go to state 29
-    function_prefix                go to state 16
-    function_signature             go to state 17
-    function_signature_parameters  go to state 18
+    declaration_element            gehe zu Zustand 28 über
+    identifier_declaration         gehe zu Zustand 14 über
+    function_header                gehe zu Zustand 29 über
+    function_prefix                gehe zu Zustand 16 über
+    function_signature             gehe zu Zustand 17 über
+    function_signature_parameters  gehe zu Zustand 18 über
 
 
-state 20
+Zustand 20
 
     4 program_element: declaration SEMICOLON .
 
-    $default  reduce using rule 4 (program_element)
+    $default  reduziere mit Regel 4 (program_element)
 
 
-<<<<<<< HEAD
 Zustand 21
-=======
-state 21
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
    13 identifier_declaration: identifier_declaration BRACKET_OPEN . expression BRACKET_CLOSE
    38 expression: . expression ASSIGN expression
@@ -533,21 +472,12 @@ state 21
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     ID           schiebe und gehe zu Zustand 30 über
     NUM          schiebe und gehe zu Zustand 31 über
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-<<<<<<< HEAD
     expression                gehe zu Zustand 35 über
     primary                   gehe zu Zustand 36 über
     function_call             gehe zu Zustand 37 über
@@ -559,115 +489,93 @@ Zustand 22
    19 function_signature: identifier_declaration PARA_OPEN .
 
     $default  reduziere mit Regel 19 (function_signature)
-=======
-    expression                go to state 35
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-state 22
-
-   19 function_signature: identifier_declaration PARA_OPEN .
-
-    $default  reduce using rule 19 (function_signature)
-
-
-state 23
+Zustand 23
 
    15 function_definition: type function_header BRACE_OPEN . stmt_list BRACE_CLOSE
    23 stmt_list: .
    24          | . stmt_list stmt
 
-    $default  reduce using rule 23 (stmt_list)
+    $default  reduziere mit Regel 23 (stmt_list)
 
-    stmt_list  go to state 39
+    stmt_list  gehe zu Zustand 39 über
 
 
-state 24
+Zustand 24
 
    16 function_header: function_prefix PARA_CLOSE .
 
-    $default  reduce using rule 16 (function_header)
+    $default  reduziere mit Regel 16 (function_header)
 
 
-state 25
+Zustand 25
 
    13 identifier_declaration: . identifier_declaration BRACKET_OPEN expression BRACKET_CLOSE
    14                       | . ID
    22 function_parameter_element: type . identifier_declaration
 
-    ID  shift, and go to state 12
+    ID  schiebe und gehe zu Zustand 12 über
 
-    identifier_declaration  go to state 40
+    identifier_declaration  gehe zu Zustand 40 über
 
 
-state 26
+Zustand 26
 
    21 function_signature_parameters: function_signature function_parameter_element .
 
-    $default  reduce using rule 21 (function_signature_parameters)
+    $default  reduziere mit Regel 21 (function_signature_parameters)
 
 
-state 27
+Zustand 27
 
     7 type: . INT
     8     | . VOID
    20 function_signature_parameters: function_signature_parameters COMMA . function_parameter_element
    22 function_parameter_element: . type identifier_declaration
 
-    INT   shift, and go to state 1
-    VOID  shift, and go to state 2
+    INT   schiebe und gehe zu Zustand 1 über
+    VOID  schiebe und gehe zu Zustand 2 über
 
-    type                        go to state 25
-    function_parameter_element  go to state 41
+    type                        gehe zu Zustand 25 über
+    function_parameter_element  gehe zu Zustand 41 über
 
 
-state 28
+Zustand 28
 
     9 declaration: declaration COMMA declaration_element .
 
-    $default  reduce using rule 9 (declaration)
+    $default  reduziere mit Regel 9 (declaration)
 
 
-state 29
+Zustand 29
 
    12 declaration_element: function_header .
 
-    $default  reduce using rule 12 (declaration_element)
+    $default  reduziere mit Regel 12 (declaration_element)
 
 
-state 30
+Zustand 30
 
    54 expression: ID . BRACKET_OPEN primary BRACKET_CLOSE
    59 primary: ID .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, EQ, NE, LS, LSEQ, GTEQ, GT, PLUS, MINUS, MUL, DIV, MOD, BRACKET_CLOSE, PARA_CLOSE]
    60 function_call: ID . PARA_OPEN
    63 function_call_parameters: ID . PARA_OPEN expression
 
-<<<<<<< HEAD
     BRACKET_OPEN  schiebe und gehe zu Zustand 42 über
     PARA_OPEN     schiebe und gehe zu Zustand 43 über
-=======
-    BRACKET_OPEN  shift, and go to state 42
-    PARA_OPEN     shift, and go to state 43
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    $default  reduce using rule 59 (primary)
+    $default  reduziere mit Regel 59 (primary)
 
 
-state 31
+Zustand 31
 
    58 primary: NUM .
 
-    $default  reduce using rule 58 (primary)
+    $default  reduziere mit Regel 58 (primary)
 
 
-<<<<<<< HEAD
 Zustand 32
-=======
-state 32
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -697,7 +605,6 @@ state 32
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     ID           schiebe und gehe zu Zustand 30 über
     NUM          schiebe und gehe zu Zustand 31 über
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
@@ -745,63 +652,14 @@ Zustand 33
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    expression                go to state 44
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 45 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 33
-
-   38 expression: . expression ASSIGN expression
-   39           | . expression LOGICAL_OR expression
-   40           | . expression LOGICAL_AND expression
-   41           | . LOGICAL_NOT expression
-   42           | . expression EQ expression
-   43           | . expression NE expression
-   44           | . expression LS expression
-   45           | . expression LSEQ expression
-   46           | . expression GTEQ expression
-   47           | . expression GT expression
-   48           | . expression PLUS expression
-   49           | . expression MINUS expression
-   50           | . expression MUL expression
-   51           | . expression DIV expression
-   52           | . expression MOD expression
-   53           | . MINUS expression
-   53           | MINUS . expression
-   54           | . ID BRACKET_OPEN primary BRACKET_CLOSE
-   55           | . PARA_OPEN expression PARA_CLOSE
-   56           | . function_call PARA_CLOSE
-   57           | . primary
-   58 primary: . NUM
-   59        | . ID
-   60 function_call: . ID PARA_OPEN
-   61              | . function_call_parameters
-   62 function_call_parameters: . function_call_parameters COMMA expression
-   63                         | . ID PARA_OPEN expression
-
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
-
-    expression                go to state 45
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
-
-
-state 34
+Zustand 34
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -831,27 +689,19 @@ state 34
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     ID           schiebe und gehe zu Zustand 30 über
     NUM          schiebe und gehe zu Zustand 31 über
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    expression                go to state 46
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 46 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 35
+Zustand 35
 
    13 identifier_declaration: identifier_declaration BRACKET_OPEN expression . BRACKET_CLOSE
    38 expression: expression . ASSIGN expression
@@ -869,7 +719,6 @@ state 35
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-<<<<<<< HEAD
     ASSIGN         schiebe und gehe zu Zustand 47 über
     LOGICAL_OR     schiebe und gehe zu Zustand 48 über
     LOGICAL_AND    schiebe und gehe zu Zustand 49 über
@@ -885,50 +734,33 @@ state 35
     DIV            schiebe und gehe zu Zustand 59 über
     MOD            schiebe und gehe zu Zustand 60 über
     BRACKET_CLOSE  schiebe und gehe zu Zustand 61 über
-=======
-    ASSIGN         shift, and go to state 47
-    LOGICAL_OR     shift, and go to state 48
-    LOGICAL_AND    shift, and go to state 49
-    EQ             shift, and go to state 50
-    NE             shift, and go to state 51
-    LS             shift, and go to state 52
-    LSEQ           shift, and go to state 53
-    GTEQ           shift, and go to state 54
-    GT             shift, and go to state 55
-    PLUS           shift, and go to state 56
-    MINUS          shift, and go to state 57
-    MUL            shift, and go to state 58
-    DIV            shift, and go to state 59
-    MOD            shift, and go to state 60
-    BRACKET_CLOSE  shift, and go to state 61
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-state 36
+Zustand 36
 
    57 expression: primary .
 
-    $default  reduce using rule 57 (expression)
+    $default  reduziere mit Regel 57 (expression)
 
 
-state 37
+Zustand 37
 
    56 expression: function_call . PARA_CLOSE
 
-    PARA_CLOSE  shift, and go to state 62
+    PARA_CLOSE  schiebe und gehe zu Zustand 62 über
 
 
-state 38
+Zustand 38
 
    61 function_call: function_call_parameters .  [PARA_CLOSE]
    62 function_call_parameters: function_call_parameters . COMMA expression
 
-    COMMA  shift, and go to state 63
+    COMMA  schiebe und gehe zu Zustand 63 über
 
-    $default  reduce using rule 61 (function_call)
+    $default  reduziere mit Regel 61 (function_call)
 
 
-state 39
+Zustand 39
 
     7 type: . INT
     8     | . VOID
@@ -976,7 +808,6 @@ state 39
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     DO           schiebe und gehe zu Zustand 64 über
     WHILE        schiebe und gehe zu Zustand 65 über
     IF           schiebe und gehe zu Zustand 66 über
@@ -991,57 +822,36 @@ state 39
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    DO           shift, and go to state 64
-    WHILE        shift, and go to state 65
-    IF           shift, and go to state 66
-    INT          shift, and go to state 1
-    VOID         shift, and go to state 2
-    RETURN       shift, and go to state 67
-    SEMICOLON    shift, and go to state 68
-    BRACE_OPEN   shift, and go to state 69
-    BRACE_CLOSE  shift, and go to state 70
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    type                      go to state 71
-    declaration               go to state 72
-    stmt                      go to state 73
-    stmt_block                go to state 74
-    stmt_conditional          go to state 75
-    stmt_loop                 go to state 76
-    expression                go to state 77
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    type                      gehe zu Zustand 71 über
+    declaration               gehe zu Zustand 72 über
+    stmt                      gehe zu Zustand 73 über
+    stmt_block                gehe zu Zustand 74 über
+    stmt_conditional          gehe zu Zustand 75 über
+    stmt_loop                 gehe zu Zustand 76 über
+    expression                gehe zu Zustand 77 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 40
+Zustand 40
 
    13 identifier_declaration: identifier_declaration . BRACKET_OPEN expression BRACKET_CLOSE
    22 function_parameter_element: type identifier_declaration .  [COMMA, PARA_CLOSE]
 
-<<<<<<< HEAD
     BRACKET_OPEN  schiebe und gehe zu Zustand 21 über
-=======
-    BRACKET_OPEN  shift, and go to state 21
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    $default  reduce using rule 22 (function_parameter_element)
+    $default  reduziere mit Regel 22 (function_parameter_element)
 
 
-state 41
+Zustand 41
 
    20 function_signature_parameters: function_signature_parameters COMMA function_parameter_element .
 
-    $default  reduce using rule 20 (function_signature_parameters)
+    $default  reduziere mit Regel 20 (function_signature_parameters)
 
 
-<<<<<<< HEAD
 Zustand 42
 
    54 expression: ID BRACKET_OPEN . primary BRACKET_CLOSE
@@ -1055,21 +865,6 @@ Zustand 42
 
 
 Zustand 43
-=======
-state 42
-
-   54 expression: ID BRACKET_OPEN . primary BRACKET_CLOSE
-   58 primary: . NUM
-   59        | . ID
-
-    ID   shift, and go to state 78
-    NUM  shift, and go to state 31
-
-    primary  go to state 79
-
-
-state 43
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1100,35 +895,21 @@ state 43
    63                         | . ID PARA_OPEN expression
    63                         | ID PARA_OPEN . expression
 
-<<<<<<< HEAD
     ID           schiebe und gehe zu Zustand 30 über
     NUM          schiebe und gehe zu Zustand 31 über
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    $default  reduce using rule 60 (function_call)
+    $default  reduziere mit Regel 60 (function_call)
 
-<<<<<<< HEAD
     expression                gehe zu Zustand 80 über
     primary                   gehe zu Zustand 36 über
     function_call             gehe zu Zustand 37 über
     function_call_parameters  gehe zu Zustand 38 über
-=======
-    expression                go to state 80
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
 
 
-state 44
+Zustand 44
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -1146,60 +927,6 @@ state 44
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    EQ     shift, and go to state 50
-    NE     shift, and go to state 51
-    LS     shift, and go to state 52
-    LSEQ   shift, and go to state 53
-    GTEQ   shift, and go to state 54
-    GT     shift, and go to state 55
-    PLUS   shift, and go to state 56
-    MINUS  shift, and go to state 57
-    MUL    shift, and go to state 58
-    DIV    shift, and go to state 59
-    MOD    shift, and go to state 60
-
-    $default  reduce using rule 41 (expression)
-
-    Conflict between rule 41 and token ASSIGN resolved as reduce (ASSIGN < LOGICAL_NOT).
-    Conflict between rule 41 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < LOGICAL_NOT).
-    Conflict between rule 41 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < LOGICAL_NOT).
-    Conflict between rule 41 and token EQ resolved as shift (LOGICAL_NOT < EQ).
-    Conflict between rule 41 and token NE resolved as shift (LOGICAL_NOT < NE).
-    Conflict between rule 41 and token LS resolved as shift (LOGICAL_NOT < LS).
-    Conflict between rule 41 and token LSEQ resolved as shift (LOGICAL_NOT < LSEQ).
-    Conflict between rule 41 and token GTEQ resolved as shift (LOGICAL_NOT < GTEQ).
-    Conflict between rule 41 and token GT resolved as shift (LOGICAL_NOT < GT).
-    Conflict between rule 41 and token PLUS resolved as shift (LOGICAL_NOT < PLUS).
-    Conflict between rule 41 and token MINUS resolved as shift (LOGICAL_NOT < MINUS).
-    Conflict between rule 41 and token MUL resolved as shift (LOGICAL_NOT < MUL).
-    Conflict between rule 41 and token DIV resolved as shift (LOGICAL_NOT < DIV).
-    Conflict between rule 41 and token MOD resolved as shift (LOGICAL_NOT < MOD).
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
-
-
-state 45
-
-   38 expression: expression . ASSIGN expression
-   39           | expression . LOGICAL_OR expression
-   40           | expression . LOGICAL_AND expression
-   41           | LOGICAL_NOT expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, BRACKET_CLOSE, PARA_CLOSE]
-   42           | expression . EQ expression
-   43           | expression . NE expression
-   44           | expression . LS expression
-   45           | expression . LSEQ expression
-   46           | expression . GTEQ expression
-   47           | expression . GT expression
-   48           | expression . PLUS expression
-   49           | expression . MINUS expression
-   50           | expression . MUL expression
-   51           | expression . DIV expression
-   52           | expression . MOD expression
-<<<<<<< HEAD
-=======
-   53           | MINUS expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, EQ, NE, LS, LSEQ, GTEQ, GT, PLUS, MINUS, MUL, DIV, MOD, BRACKET_CLOSE, PARA_CLOSE]
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
-
-<<<<<<< HEAD
     EQ     schiebe und gehe zu Zustand 50 über
     NE     schiebe und gehe zu Zustand 51 über
     LS     schiebe und gehe zu Zustand 52 über
@@ -1211,11 +938,7 @@ state 45
     MUL    schiebe und gehe zu Zustand 58 über
     DIV    schiebe und gehe zu Zustand 59 über
     MOD    schiebe und gehe zu Zustand 60 über
-=======
-    $default  reduce using rule 53 (expression)
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-<<<<<<< HEAD
     $default  reduziere mit Regel 41 (expression)
 
     Konflikt zwischen Regel 41 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < LOGICAL_NOT).
@@ -1232,25 +955,8 @@ state 45
     Konflikt zwischen Regel 41 and Token MUL wurde durch Schieben gelöst (LOGICAL_NOT < MUL).
     Konflikt zwischen Regel 41 and Token DIV wurde durch Schieben gelöst (LOGICAL_NOT < DIV).
     Konflikt zwischen Regel 41 and Token MOD wurde durch Schieben gelöst (LOGICAL_NOT < MOD).
-=======
-    Conflict between rule 53 and token ASSIGN resolved as reduce (ASSIGN < UNARY_MINUS).
-    Conflict between rule 53 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < UNARY_MINUS).
-    Conflict between rule 53 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < UNARY_MINUS).
-    Conflict between rule 53 and token EQ resolved as reduce (EQ < UNARY_MINUS).
-    Conflict between rule 53 and token NE resolved as reduce (NE < UNARY_MINUS).
-    Conflict between rule 53 and token LS resolved as reduce (LS < UNARY_MINUS).
-    Conflict between rule 53 and token LSEQ resolved as reduce (LSEQ < UNARY_MINUS).
-    Conflict between rule 53 and token GTEQ resolved as reduce (GTEQ < UNARY_MINUS).
-    Conflict between rule 53 and token GT resolved as reduce (GT < UNARY_MINUS).
-    Conflict between rule 53 and token PLUS resolved as reduce (PLUS < UNARY_MINUS).
-    Conflict between rule 53 and token MINUS resolved as reduce (MINUS < UNARY_MINUS).
-    Conflict between rule 53 and token MUL resolved as reduce (MUL < UNARY_MINUS).
-    Conflict between rule 53 and token DIV resolved as reduce (DIV < UNARY_MINUS).
-    Conflict between rule 53 and token MOD resolved as reduce (MOD < UNARY_MINUS).
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-<<<<<<< HEAD
 Zustand 45
 
    38 expression: expression . ASSIGN expression
@@ -1288,9 +994,6 @@ Zustand 45
 
 
 Zustand 46
-=======
-state 46
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -1308,7 +1011,6 @@ state 46
    52           | expression . MOD expression
    55           | PARA_OPEN expression . PARA_CLOSE
 
-<<<<<<< HEAD
     ASSIGN       schiebe und gehe zu Zustand 47 über
     LOGICAL_OR   schiebe und gehe zu Zustand 48 über
     LOGICAL_AND  schiebe und gehe zu Zustand 49 über
@@ -1324,26 +1026,9 @@ state 46
     DIV          schiebe und gehe zu Zustand 59 über
     MOD          schiebe und gehe zu Zustand 60 über
     PARA_CLOSE   schiebe und gehe zu Zustand 81 über
-=======
-    ASSIGN       shift, and go to state 47
-    LOGICAL_OR   shift, and go to state 48
-    LOGICAL_AND  shift, and go to state 49
-    EQ           shift, and go to state 50
-    NE           shift, and go to state 51
-    LS           shift, and go to state 52
-    LSEQ         shift, and go to state 53
-    GTEQ         shift, and go to state 54
-    GT           shift, and go to state 55
-    PLUS         shift, and go to state 56
-    MINUS        shift, and go to state 57
-    MUL          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MOD          shift, and go to state 60
-    PARA_CLOSE   shift, and go to state 81
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-state 47
+Zustand 47
 
    38 expression: . expression ASSIGN expression
    38           | expression ASSIGN . expression
@@ -1373,27 +1058,19 @@ state 47
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     ID           schiebe und gehe zu Zustand 30 über
     NUM          schiebe und gehe zu Zustand 31 über
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    expression                go to state 82
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 82 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 48
+Zustand 48
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1423,27 +1100,19 @@ state 48
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     ID           schiebe und gehe zu Zustand 30 über
     NUM          schiebe und gehe zu Zustand 31 über
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    expression                go to state 83
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 83 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 49
+Zustand 49
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1473,31 +1142,19 @@ state 49
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     ID           schiebe und gehe zu Zustand 30 über
     NUM          schiebe und gehe zu Zustand 31 über
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    expression                go to state 84
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 84 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-<<<<<<< HEAD
 Zustand 50
-=======
-state 50
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1527,7 +1184,6 @@ state 50
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     ID           schiebe und gehe zu Zustand 30 über
     NUM          schiebe und gehe zu Zustand 31 über
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
@@ -1575,67 +1231,14 @@ Zustand 51
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    expression                go to state 85
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 86 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-<<<<<<< HEAD
 Zustand 52
-=======
-state 51
-
-   38 expression: . expression ASSIGN expression
-   39           | . expression LOGICAL_OR expression
-   40           | . expression LOGICAL_AND expression
-   41           | . LOGICAL_NOT expression
-   42           | . expression EQ expression
-   43           | . expression NE expression
-   43           | expression NE . expression
-   44           | . expression LS expression
-   45           | . expression LSEQ expression
-   46           | . expression GTEQ expression
-   47           | . expression GT expression
-   48           | . expression PLUS expression
-   49           | . expression MINUS expression
-   50           | . expression MUL expression
-   51           | . expression DIV expression
-   52           | . expression MOD expression
-   53           | . MINUS expression
-   54           | . ID BRACKET_OPEN primary BRACKET_CLOSE
-   55           | . PARA_OPEN expression PARA_CLOSE
-   56           | . function_call PARA_CLOSE
-   57           | . primary
-   58 primary: . NUM
-   59        | . ID
-   60 function_call: . ID PARA_OPEN
-   61              | . function_call_parameters
-   62 function_call_parameters: . function_call_parameters COMMA expression
-   63                         | . ID PARA_OPEN expression
-
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
-
-    expression                go to state 86
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
-
-
-state 52
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1665,38 +1268,19 @@ state 52
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     ID           schiebe und gehe zu Zustand 30 über
     NUM          schiebe und gehe zu Zustand 31 über
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-<<<<<<< HEAD
     expression                gehe zu Zustand 87 über
     primary                   gehe zu Zustand 36 über
     function_call             gehe zu Zustand 37 über
     function_call_parameters  gehe zu Zustand 38 über
-=======
-    expression                go to state 87
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-<<<<<<< HEAD
 Zustand 53
-=======
-state 53
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1726,34 +1310,18 @@ state 53
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     ID           schiebe und gehe zu Zustand 30 über
     NUM          schiebe und gehe zu Zustand 31 über
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-<<<<<<< HEAD
     expression                gehe zu Zustand 88 über
     primary                   gehe zu Zustand 36 über
     function_call             gehe zu Zustand 37 über
     function_call_parameters  gehe zu Zustand 38 über
-=======
-    expression                go to state 88
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-<<<<<<< HEAD
 Zustand 54
 
    38 expression: . expression ASSIGN expression
@@ -1839,93 +1407,6 @@ Zustand 55
 
 
 Zustand 56
-=======
-state 54
-
-   38 expression: . expression ASSIGN expression
-   39           | . expression LOGICAL_OR expression
-   40           | . expression LOGICAL_AND expression
-   41           | . LOGICAL_NOT expression
-   42           | . expression EQ expression
-   43           | . expression NE expression
-   44           | . expression LS expression
-   45           | . expression LSEQ expression
-   46           | . expression GTEQ expression
-   46           | expression GTEQ . expression
-   47           | . expression GT expression
-   48           | . expression PLUS expression
-   49           | . expression MINUS expression
-   50           | . expression MUL expression
-   51           | . expression DIV expression
-   52           | . expression MOD expression
-   53           | . MINUS expression
-   54           | . ID BRACKET_OPEN primary BRACKET_CLOSE
-   55           | . PARA_OPEN expression PARA_CLOSE
-   56           | . function_call PARA_CLOSE
-   57           | . primary
-   58 primary: . NUM
-   59        | . ID
-   60 function_call: . ID PARA_OPEN
-   61              | . function_call_parameters
-   62 function_call_parameters: . function_call_parameters COMMA expression
-   63                         | . ID PARA_OPEN expression
-
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
-
-    expression                go to state 89
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
-
-
-state 55
-
-   38 expression: . expression ASSIGN expression
-   39           | . expression LOGICAL_OR expression
-   40           | . expression LOGICAL_AND expression
-   41           | . LOGICAL_NOT expression
-   42           | . expression EQ expression
-   43           | . expression NE expression
-   44           | . expression LS expression
-   45           | . expression LSEQ expression
-   46           | . expression GTEQ expression
-   47           | . expression GT expression
-   47           | expression GT . expression
-   48           | . expression PLUS expression
-   49           | . expression MINUS expression
-   50           | . expression MUL expression
-   51           | . expression DIV expression
-   52           | . expression MOD expression
-   53           | . MINUS expression
-   54           | . ID BRACKET_OPEN primary BRACKET_CLOSE
-   55           | . PARA_OPEN expression PARA_CLOSE
-   56           | . function_call PARA_CLOSE
-   57           | . primary
-   58 primary: . NUM
-   59        | . ID
-   60 function_call: . ID PARA_OPEN
-   61              | . function_call_parameters
-   62 function_call_parameters: . function_call_parameters COMMA expression
-   63                         | . ID PARA_OPEN expression
-
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
-
-    expression                go to state 90
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
-
-
-state 56
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1955,7 +1436,6 @@ state 56
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     ID           schiebe und gehe zu Zustand 30 über
     NUM          schiebe und gehe zu Zustand 31 über
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
@@ -2003,21 +1483,14 @@ Zustand 57
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    expression                go to state 91
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 92 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 57
+Zustand 58
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -2031,11 +1504,9 @@ state 57
    47           | . expression GT expression
    48           | . expression PLUS expression
    49           | . expression MINUS expression
-   49           | expression MINUS . expression
    50           | . expression MUL expression
    50           | expression MUL . expression
    51           | . expression DIV expression
-<<<<<<< HEAD
    52           | . expression MOD expression
    53           | . MINUS expression
    54           | . ID BRACKET_OPEN primary BRACKET_CLOSE
@@ -2078,8 +1549,6 @@ Zustand 59
    50           | . expression MUL expression
    51           | . expression DIV expression
    51           | expression DIV . expression
-=======
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
    52           | . expression MOD expression
    53           | . MINUS expression
    54           | . ID BRACKET_OPEN primary BRACKET_CLOSE
@@ -2093,27 +1562,19 @@ Zustand 59
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     ID           schiebe und gehe zu Zustand 30 über
     NUM          schiebe und gehe zu Zustand 31 über
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    expression                go to state 92
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 94 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 58
+Zustand 60
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -2143,125 +1604,33 @@ state 58
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     ID           schiebe und gehe zu Zustand 30 über
     NUM          schiebe und gehe zu Zustand 31 über
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    expression                go to state 93
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 95 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 59
-
-   38 expression: . expression ASSIGN expression
-   39           | . expression LOGICAL_OR expression
-   40           | . expression LOGICAL_AND expression
-   41           | . LOGICAL_NOT expression
-   42           | . expression EQ expression
-   43           | . expression NE expression
-   44           | . expression LS expression
-   45           | . expression LSEQ expression
-   46           | . expression GTEQ expression
-   47           | . expression GT expression
-   48           | . expression PLUS expression
-   49           | . expression MINUS expression
-   50           | . expression MUL expression
-   51           | . expression DIV expression
-   51           | expression DIV . expression
-   52           | . expression MOD expression
-   53           | . MINUS expression
-   54           | . ID BRACKET_OPEN primary BRACKET_CLOSE
-   55           | . PARA_OPEN expression PARA_CLOSE
-   56           | . function_call PARA_CLOSE
-   57           | . primary
-   58 primary: . NUM
-   59        | . ID
-   60 function_call: . ID PARA_OPEN
-   61              | . function_call_parameters
-   62 function_call_parameters: . function_call_parameters COMMA expression
-   63                         | . ID PARA_OPEN expression
-
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
-
-    expression                go to state 94
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
-
-
-state 60
-
-   38 expression: . expression ASSIGN expression
-   39           | . expression LOGICAL_OR expression
-   40           | . expression LOGICAL_AND expression
-   41           | . LOGICAL_NOT expression
-   42           | . expression EQ expression
-   43           | . expression NE expression
-   44           | . expression LS expression
-   45           | . expression LSEQ expression
-   46           | . expression GTEQ expression
-   47           | . expression GT expression
-   48           | . expression PLUS expression
-   49           | . expression MINUS expression
-   50           | . expression MUL expression
-   51           | . expression DIV expression
-   52           | . expression MOD expression
-   52           | expression MOD . expression
-   53           | . MINUS expression
-   54           | . ID BRACKET_OPEN primary BRACKET_CLOSE
-   55           | . PARA_OPEN expression PARA_CLOSE
-   56           | . function_call PARA_CLOSE
-   57           | . primary
-   58 primary: . NUM
-   59        | . ID
-   60 function_call: . ID PARA_OPEN
-   61              | . function_call_parameters
-   62 function_call_parameters: . function_call_parameters COMMA expression
-   63                         | . ID PARA_OPEN expression
-
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
-
-    expression                go to state 95
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
-
-
-state 61
+Zustand 61
 
    13 identifier_declaration: identifier_declaration BRACKET_OPEN expression BRACKET_CLOSE .
 
-    $default  reduce using rule 13 (identifier_declaration)
+    $default  reduziere mit Regel 13 (identifier_declaration)
 
 
-state 62
+Zustand 62
 
    56 expression: function_call PARA_CLOSE .
 
-    $default  reduce using rule 56 (expression)
+    $default  reduziere mit Regel 56 (expression)
 
 
-state 63
+Zustand 63
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -2291,27 +1660,19 @@ state 63
    62                         | function_call_parameters COMMA . expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     ID           schiebe und gehe zu Zustand 30 über
     NUM          schiebe und gehe zu Zustand 31 über
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    expression                go to state 96
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 96 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 64
+Zustand 64
 
     7 type: . INT
     8     | . VOID
@@ -2358,7 +1719,6 @@ state 64
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     DO           schiebe und gehe zu Zustand 64 über
     WHILE        schiebe und gehe zu Zustand 65 über
     IF           schiebe und gehe zu Zustand 66 über
@@ -2372,50 +1732,35 @@ state 64
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    DO           shift, and go to state 64
-    WHILE        shift, and go to state 65
-    IF           shift, and go to state 66
-    INT          shift, and go to state 1
-    VOID         shift, and go to state 2
-    RETURN       shift, and go to state 67
-    SEMICOLON    shift, and go to state 68
-    BRACE_OPEN   shift, and go to state 69
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    type                      go to state 71
-    declaration               go to state 72
-    stmt                      go to state 97
-    stmt_block                go to state 74
-    stmt_conditional          go to state 75
-    stmt_loop                 go to state 76
-    expression                go to state 77
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    type                      gehe zu Zustand 71 über
+    declaration               gehe zu Zustand 72 über
+    stmt                      gehe zu Zustand 97 über
+    stmt_block                gehe zu Zustand 74 über
+    stmt_conditional          gehe zu Zustand 75 über
+    stmt_loop                 gehe zu Zustand 76 über
+    expression                gehe zu Zustand 77 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 65
+Zustand 65
 
    36 stmt_loop: WHILE . PARA_OPEN expression PARA_CLOSE stmt
 
-    PARA_OPEN  shift, and go to state 98
+    PARA_OPEN  schiebe und gehe zu Zustand 98 über
 
 
-state 66
+Zustand 66
 
    34 stmt_conditional: IF . PARA_OPEN expression PARA_CLOSE stmt
    35                 | IF . PARA_OPEN expression PARA_CLOSE stmt ELSE stmt
 
-    PARA_OPEN  shift, and go to state 99
+    PARA_OPEN  schiebe und gehe zu Zustand 99 über
 
 
-state 67
+Zustand 67
 
    30 stmt: RETURN . expression SEMICOLON
    31     | RETURN . SEMICOLON
@@ -2446,54 +1791,45 @@ state 67
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     SEMICOLON    schiebe und gehe zu Zustand 100 über
     ID           schiebe und gehe zu Zustand 30 über
     NUM          schiebe und gehe zu Zustand 31 über
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    SEMICOLON    shift, and go to state 100
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    expression                go to state 101
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 101 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 68
+Zustand 68
 
    32 stmt: SEMICOLON .
 
-    $default  reduce using rule 32 (stmt)
+    $default  reduziere mit Regel 32 (stmt)
 
 
-state 69
+Zustand 69
 
    23 stmt_list: .
    24          | . stmt_list stmt
    33 stmt_block: BRACE_OPEN . stmt_list BRACE_CLOSE
 
-    $default  reduce using rule 23 (stmt_list)
+    $default  reduziere mit Regel 23 (stmt_list)
 
-    stmt_list  go to state 102
+    stmt_list  gehe zu Zustand 102 über
 
 
-state 70
+Zustand 70
 
    15 function_definition: type function_header BRACE_OPEN stmt_list BRACE_CLOSE .
 
-    $default  reduce using rule 15 (function_definition)
+    $default  reduziere mit Regel 15 (function_definition)
 
 
-state 71
+Zustand 71
 
    10 declaration: type . declaration_element
    11 declaration_element: . identifier_declaration
@@ -2507,54 +1843,54 @@ state 71
    20 function_signature_parameters: . function_signature_parameters COMMA function_parameter_element
    21                              | . function_signature function_parameter_element
 
-    ID  shift, and go to state 12
+    ID  schiebe und gehe zu Zustand 12 über
 
-    declaration_element            go to state 13
-    identifier_declaration         go to state 14
-    function_header                go to state 29
-    function_prefix                go to state 16
-    function_signature             go to state 17
-    function_signature_parameters  go to state 18
+    declaration_element            gehe zu Zustand 13 über
+    identifier_declaration         gehe zu Zustand 14 über
+    function_header                gehe zu Zustand 29 über
+    function_prefix                gehe zu Zustand 16 über
+    function_signature             gehe zu Zustand 17 über
+    function_signature_parameters  gehe zu Zustand 18 über
 
 
-state 72
+Zustand 72
 
     9 declaration: declaration . COMMA declaration_element
    26 stmt: declaration . SEMICOLON
 
-    COMMA      shift, and go to state 19
-    SEMICOLON  shift, and go to state 103
+    COMMA      schiebe und gehe zu Zustand 19 über
+    SEMICOLON  schiebe und gehe zu Zustand 103 über
 
 
-state 73
+Zustand 73
 
    24 stmt_list: stmt_list stmt .
 
-    $default  reduce using rule 24 (stmt_list)
+    $default  reduziere mit Regel 24 (stmt_list)
 
 
-state 74
+Zustand 74
 
    25 stmt: stmt_block .
 
-    $default  reduce using rule 25 (stmt)
+    $default  reduziere mit Regel 25 (stmt)
 
 
-state 75
+Zustand 75
 
    28 stmt: stmt_conditional .
 
-    $default  reduce using rule 28 (stmt)
+    $default  reduziere mit Regel 28 (stmt)
 
 
-state 76
+Zustand 76
 
    29 stmt: stmt_loop .
 
-    $default  reduce using rule 29 (stmt)
+    $default  reduziere mit Regel 29 (stmt)
 
 
-state 77
+Zustand 77
 
    27 stmt: expression . SEMICOLON
    38 expression: expression . ASSIGN expression
@@ -2572,7 +1908,6 @@ state 77
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-<<<<<<< HEAD
     SEMICOLON    schiebe und gehe zu Zustand 104 über
     ASSIGN       schiebe und gehe zu Zustand 47 über
     LOGICAL_OR   schiebe und gehe zu Zustand 48 über
@@ -2588,26 +1923,8 @@ state 77
     MUL          schiebe und gehe zu Zustand 58 über
     DIV          schiebe und gehe zu Zustand 59 über
     MOD          schiebe und gehe zu Zustand 60 über
-=======
-    SEMICOLON    shift, and go to state 104
-    ASSIGN       shift, and go to state 47
-    LOGICAL_OR   shift, and go to state 48
-    LOGICAL_AND  shift, and go to state 49
-    EQ           shift, and go to state 50
-    NE           shift, and go to state 51
-    LS           shift, and go to state 52
-    LSEQ         shift, and go to state 53
-    GTEQ         shift, and go to state 54
-    GT           shift, and go to state 55
-    PLUS         shift, and go to state 56
-    MINUS        shift, and go to state 57
-    MUL          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MOD          shift, and go to state 60
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-<<<<<<< HEAD
 Zustand 78
 
    59 primary: ID .
@@ -2623,23 +1940,6 @@ Zustand 79
 
 
 Zustand 80
-=======
-state 78
-
-   59 primary: ID .
-
-    $default  reduce using rule 59 (primary)
-
-
-state 79
-
-   54 expression: ID BRACKET_OPEN primary . BRACKET_CLOSE
-
-    BRACKET_CLOSE  shift, and go to state 105
-
-
-state 80
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -2657,7 +1957,6 @@ state 80
    52           | expression . MOD expression
    63 function_call_parameters: ID PARA_OPEN expression .  [COMMA, PARA_CLOSE]
 
-<<<<<<< HEAD
     ASSIGN       schiebe und gehe zu Zustand 47 über
     LOGICAL_OR   schiebe und gehe zu Zustand 48 über
     LOGICAL_AND  schiebe und gehe zu Zustand 49 über
@@ -2672,41 +1971,18 @@ state 80
     MUL          schiebe und gehe zu Zustand 58 über
     DIV          schiebe und gehe zu Zustand 59 über
     MOD          schiebe und gehe zu Zustand 60 über
-=======
-    ASSIGN       shift, and go to state 47
-    LOGICAL_OR   shift, and go to state 48
-    LOGICAL_AND  shift, and go to state 49
-    EQ           shift, and go to state 50
-    NE           shift, and go to state 51
-    LS           shift, and go to state 52
-    LSEQ         shift, and go to state 53
-    GTEQ         shift, and go to state 54
-    GT           shift, and go to state 55
-    PLUS         shift, and go to state 56
-    MINUS        shift, and go to state 57
-    MUL          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MOD          shift, and go to state 60
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-<<<<<<< HEAD
     $default  reduziere mit Regel 63 (function_call_parameters)
 
 
 Zustand 81
-=======
-    $default  reduce using rule 63 (function_call_parameters)
-
-
-state 81
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
    55 expression: PARA_OPEN expression PARA_CLOSE .
 
-    $default  reduce using rule 55 (expression)
+    $default  reduziere mit Regel 55 (expression)
 
 
-state 82
+Zustand 82
 
    38 expression: expression . ASSIGN expression
    38           | expression ASSIGN expression .  [COMMA, SEMICOLON, BRACKET_CLOSE, PARA_CLOSE]
@@ -2724,7 +2000,6 @@ state 82
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-<<<<<<< HEAD
     ASSIGN       schiebe und gehe zu Zustand 47 über
     LOGICAL_OR   schiebe und gehe zu Zustand 48 über
     LOGICAL_AND  schiebe und gehe zu Zustand 49 über
@@ -2739,26 +2014,9 @@ state 82
     MUL          schiebe und gehe zu Zustand 58 über
     DIV          schiebe und gehe zu Zustand 59 über
     MOD          schiebe und gehe zu Zustand 60 über
-=======
-    ASSIGN       shift, and go to state 47
-    LOGICAL_OR   shift, and go to state 48
-    LOGICAL_AND  shift, and go to state 49
-    EQ           shift, and go to state 50
-    NE           shift, and go to state 51
-    LS           shift, and go to state 52
-    LSEQ         shift, and go to state 53
-    GTEQ         shift, and go to state 54
-    GT           shift, and go to state 55
-    PLUS         shift, and go to state 56
-    MINUS        shift, and go to state 57
-    MUL          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MOD          shift, and go to state 60
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    $default  reduce using rule 38 (expression)
+    $default  reduziere mit Regel 38 (expression)
 
-<<<<<<< HEAD
     Konflikt zwischen Regel 38 and Token ASSIGN wurde durch Schieben gelöst (%right ASSIGN).
     Konflikt zwischen Regel 38 and Token LOGICAL_OR wurde durch Schieben gelöst (ASSIGN < LOGICAL_OR).
     Konflikt zwischen Regel 38 and Token LOGICAL_AND wurde durch Schieben gelöst (ASSIGN < LOGICAL_AND).
@@ -2773,25 +2031,9 @@ state 82
     Konflikt zwischen Regel 38 and Token MUL wurde durch Schieben gelöst (ASSIGN < MUL).
     Konflikt zwischen Regel 38 and Token DIV wurde durch Schieben gelöst (ASSIGN < DIV).
     Konflikt zwischen Regel 38 and Token MOD wurde durch Schieben gelöst (ASSIGN < MOD).
-=======
-    Conflict between rule 38 and token ASSIGN resolved as shift (%right ASSIGN).
-    Conflict between rule 38 and token LOGICAL_OR resolved as shift (ASSIGN < LOGICAL_OR).
-    Conflict between rule 38 and token LOGICAL_AND resolved as shift (ASSIGN < LOGICAL_AND).
-    Conflict between rule 38 and token EQ resolved as shift (ASSIGN < EQ).
-    Conflict between rule 38 and token NE resolved as shift (ASSIGN < NE).
-    Conflict between rule 38 and token LS resolved as shift (ASSIGN < LS).
-    Conflict between rule 38 and token LSEQ resolved as shift (ASSIGN < LSEQ).
-    Conflict between rule 38 and token GTEQ resolved as shift (ASSIGN < GTEQ).
-    Conflict between rule 38 and token GT resolved as shift (ASSIGN < GT).
-    Conflict between rule 38 and token PLUS resolved as shift (ASSIGN < PLUS).
-    Conflict between rule 38 and token MINUS resolved as shift (ASSIGN < MINUS).
-    Conflict between rule 38 and token MUL resolved as shift (ASSIGN < MUL).
-    Conflict between rule 38 and token DIV resolved as shift (ASSIGN < DIV).
-    Conflict between rule 38 and token MOD resolved as shift (ASSIGN < MOD).
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-state 83
+Zustand 83
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -2809,7 +2051,6 @@ state 83
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-<<<<<<< HEAD
     EQ     schiebe und gehe zu Zustand 50 über
     NE     schiebe und gehe zu Zustand 51 über
     LS     schiebe und gehe zu Zustand 52 über
@@ -2821,23 +2062,9 @@ state 83
     MUL    schiebe und gehe zu Zustand 58 über
     DIV    schiebe und gehe zu Zustand 59 über
     MOD    schiebe und gehe zu Zustand 60 über
-=======
-    EQ     shift, and go to state 50
-    NE     shift, and go to state 51
-    LS     shift, and go to state 52
-    LSEQ   shift, and go to state 53
-    GTEQ   shift, and go to state 54
-    GT     shift, and go to state 55
-    PLUS   shift, and go to state 56
-    MINUS  shift, and go to state 57
-    MUL    shift, and go to state 58
-    DIV    shift, and go to state 59
-    MOD    shift, and go to state 60
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    $default  reduce using rule 39 (expression)
+    $default  reduziere mit Regel 39 (expression)
 
-<<<<<<< HEAD
     Konflikt zwischen Regel 39 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < LOGICAL_OR).
     Konflikt zwischen Regel 39 and Token LOGICAL_OR wurde durch Reduzierung gelöst (%left LOGICAL_OR).
     Konflikt zwischen Regel 39 and Token LOGICAL_AND wurde durch Reduzierung gelöst (%left LOGICAL_AND).
@@ -2852,25 +2079,9 @@ state 83
     Konflikt zwischen Regel 39 and Token MUL wurde durch Schieben gelöst (LOGICAL_OR < MUL).
     Konflikt zwischen Regel 39 and Token DIV wurde durch Schieben gelöst (LOGICAL_OR < DIV).
     Konflikt zwischen Regel 39 and Token MOD wurde durch Schieben gelöst (LOGICAL_OR < MOD).
-=======
-    Conflict between rule 39 and token ASSIGN resolved as reduce (ASSIGN < LOGICAL_OR).
-    Conflict between rule 39 and token LOGICAL_OR resolved as reduce (%left LOGICAL_OR).
-    Conflict between rule 39 and token LOGICAL_AND resolved as reduce (%left LOGICAL_AND).
-    Conflict between rule 39 and token EQ resolved as shift (LOGICAL_OR < EQ).
-    Conflict between rule 39 and token NE resolved as shift (LOGICAL_OR < NE).
-    Conflict between rule 39 and token LS resolved as shift (LOGICAL_OR < LS).
-    Conflict between rule 39 and token LSEQ resolved as shift (LOGICAL_OR < LSEQ).
-    Conflict between rule 39 and token GTEQ resolved as shift (LOGICAL_OR < GTEQ).
-    Conflict between rule 39 and token GT resolved as shift (LOGICAL_OR < GT).
-    Conflict between rule 39 and token PLUS resolved as shift (LOGICAL_OR < PLUS).
-    Conflict between rule 39 and token MINUS resolved as shift (LOGICAL_OR < MINUS).
-    Conflict between rule 39 and token MUL resolved as shift (LOGICAL_OR < MUL).
-    Conflict between rule 39 and token DIV resolved as shift (LOGICAL_OR < DIV).
-    Conflict between rule 39 and token MOD resolved as shift (LOGICAL_OR < MOD).
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-state 84
+Zustand 84
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -2888,7 +2099,6 @@ state 84
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-<<<<<<< HEAD
     EQ     schiebe und gehe zu Zustand 50 über
     NE     schiebe und gehe zu Zustand 51 über
     LS     schiebe und gehe zu Zustand 52 über
@@ -2900,23 +2110,9 @@ state 84
     MUL    schiebe und gehe zu Zustand 58 über
     DIV    schiebe und gehe zu Zustand 59 über
     MOD    schiebe und gehe zu Zustand 60 über
-=======
-    EQ     shift, and go to state 50
-    NE     shift, and go to state 51
-    LS     shift, and go to state 52
-    LSEQ   shift, and go to state 53
-    GTEQ   shift, and go to state 54
-    GT     shift, and go to state 55
-    PLUS   shift, and go to state 56
-    MINUS  shift, and go to state 57
-    MUL    shift, and go to state 58
-    DIV    shift, and go to state 59
-    MOD    shift, and go to state 60
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    $default  reduce using rule 40 (expression)
+    $default  reduziere mit Regel 40 (expression)
 
-<<<<<<< HEAD
     Konflikt zwischen Regel 40 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < LOGICAL_AND).
     Konflikt zwischen Regel 40 and Token LOGICAL_OR wurde durch Reduzierung gelöst (%left LOGICAL_OR).
     Konflikt zwischen Regel 40 and Token LOGICAL_AND wurde durch Reduzierung gelöst (%left LOGICAL_AND).
@@ -2931,32 +2127,15 @@ state 84
     Konflikt zwischen Regel 40 and Token MUL wurde durch Schieben gelöst (LOGICAL_AND < MUL).
     Konflikt zwischen Regel 40 and Token DIV wurde durch Schieben gelöst (LOGICAL_AND < DIV).
     Konflikt zwischen Regel 40 and Token MOD wurde durch Schieben gelöst (LOGICAL_AND < MOD).
-=======
-    Conflict between rule 40 and token ASSIGN resolved as reduce (ASSIGN < LOGICAL_AND).
-    Conflict between rule 40 and token LOGICAL_OR resolved as reduce (%left LOGICAL_OR).
-    Conflict between rule 40 and token LOGICAL_AND resolved as reduce (%left LOGICAL_AND).
-    Conflict between rule 40 and token EQ resolved as shift (LOGICAL_AND < EQ).
-    Conflict between rule 40 and token NE resolved as shift (LOGICAL_AND < NE).
-    Conflict between rule 40 and token LS resolved as shift (LOGICAL_AND < LS).
-    Conflict between rule 40 and token LSEQ resolved as shift (LOGICAL_AND < LSEQ).
-    Conflict between rule 40 and token GTEQ resolved as shift (LOGICAL_AND < GTEQ).
-    Conflict between rule 40 and token GT resolved as shift (LOGICAL_AND < GT).
-    Conflict between rule 40 and token PLUS resolved as shift (LOGICAL_AND < PLUS).
-    Conflict between rule 40 and token MINUS resolved as shift (LOGICAL_AND < MINUS).
-    Conflict between rule 40 and token MUL resolved as shift (LOGICAL_AND < MUL).
-    Conflict between rule 40 and token DIV resolved as shift (LOGICAL_AND < DIV).
-    Conflict between rule 40 and token MOD resolved as shift (LOGICAL_AND < MOD).
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-state 85
+Zustand 85
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
    40           | expression . LOGICAL_AND expression
    42           | expression . EQ expression
    42           | expression EQ expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, EQ, NE, LS, LSEQ, GTEQ, GT, BRACKET_CLOSE, PARA_CLOSE]
-<<<<<<< HEAD
    43           | expression . NE expression
    44           | expression . LS expression
    45           | expression . LSEQ expression
@@ -2998,8 +2177,6 @@ Zustand 86
    39           | expression . LOGICAL_OR expression
    40           | expression . LOGICAL_AND expression
    42           | expression . EQ expression
-=======
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
    43           | expression . NE expression
    43           | expression NE expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, EQ, NE, LS, LSEQ, GTEQ, GT, BRACKET_CLOSE, PARA_CLOSE]
    44           | expression . LS expression
@@ -3012,27 +2189,14 @@ Zustand 86
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-<<<<<<< HEAD
     PLUS   schiebe und gehe zu Zustand 56 über
     MINUS  schiebe und gehe zu Zustand 57 über
     MUL    schiebe und gehe zu Zustand 58 über
     DIV    schiebe und gehe zu Zustand 59 über
     MOD    schiebe und gehe zu Zustand 60 über
-=======
-    PLUS   shift, and go to state 56
-    MINUS  shift, and go to state 57
-    MUL    shift, and go to state 58
-    DIV    shift, and go to state 59
-    MOD    shift, and go to state 60
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-<<<<<<< HEAD
     $default  reduziere mit Regel 43 (expression)
-=======
-    $default  reduce using rule 42 (expression)
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-<<<<<<< HEAD
     Konflikt zwischen Regel 43 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < NE).
     Konflikt zwischen Regel 43 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < NE).
     Konflikt zwischen Regel 43 and Token LOGICAL_AND wurde durch Reduzierung gelöst (LOGICAL_AND < NE).
@@ -3047,67 +2211,9 @@ Zustand 86
     Konflikt zwischen Regel 43 and Token MUL wurde durch Schieben gelöst (NE < MUL).
     Konflikt zwischen Regel 43 and Token DIV wurde durch Schieben gelöst (NE < DIV).
     Konflikt zwischen Regel 43 and Token MOD wurde durch Schieben gelöst (NE < MOD).
-=======
-    Conflict between rule 42 and token ASSIGN resolved as reduce (ASSIGN < EQ).
-    Conflict between rule 42 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < EQ).
-    Conflict between rule 42 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < EQ).
-    Conflict between rule 42 and token EQ resolved as reduce (%left EQ).
-    Conflict between rule 42 and token NE resolved as reduce (%left NE).
-    Conflict between rule 42 and token LS resolved as reduce (%left LS).
-    Conflict between rule 42 and token LSEQ resolved as reduce (%left LSEQ).
-    Conflict between rule 42 and token GTEQ resolved as reduce (%left GTEQ).
-    Conflict between rule 42 and token GT resolved as reduce (%left GT).
-    Conflict between rule 42 and token PLUS resolved as shift (EQ < PLUS).
-    Conflict between rule 42 and token MINUS resolved as shift (EQ < MINUS).
-    Conflict between rule 42 and token MUL resolved as shift (EQ < MUL).
-    Conflict between rule 42 and token DIV resolved as shift (EQ < DIV).
-    Conflict between rule 42 and token MOD resolved as shift (EQ < MOD).
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-state 86
-
-   38 expression: expression . ASSIGN expression
-   39           | expression . LOGICAL_OR expression
-   40           | expression . LOGICAL_AND expression
-   42           | expression . EQ expression
-   43           | expression . NE expression
-   43           | expression NE expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, EQ, NE, LS, LSEQ, GTEQ, GT, BRACKET_CLOSE, PARA_CLOSE]
-   44           | expression . LS expression
-   45           | expression . LSEQ expression
-   46           | expression . GTEQ expression
-   47           | expression . GT expression
-   48           | expression . PLUS expression
-   49           | expression . MINUS expression
-   50           | expression . MUL expression
-   51           | expression . DIV expression
-   52           | expression . MOD expression
-
-    PLUS   shift, and go to state 56
-    MINUS  shift, and go to state 57
-    MUL    shift, and go to state 58
-    DIV    shift, and go to state 59
-    MOD    shift, and go to state 60
-
-    $default  reduce using rule 43 (expression)
-
-    Conflict between rule 43 and token ASSIGN resolved as reduce (ASSIGN < NE).
-    Conflict between rule 43 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < NE).
-    Conflict between rule 43 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < NE).
-    Conflict between rule 43 and token EQ resolved as reduce (%left EQ).
-    Conflict between rule 43 and token NE resolved as reduce (%left NE).
-    Conflict between rule 43 and token LS resolved as reduce (%left LS).
-    Conflict between rule 43 and token LSEQ resolved as reduce (%left LSEQ).
-    Conflict between rule 43 and token GTEQ resolved as reduce (%left GTEQ).
-    Conflict between rule 43 and token GT resolved as reduce (%left GT).
-    Conflict between rule 43 and token PLUS resolved as shift (NE < PLUS).
-    Conflict between rule 43 and token MINUS resolved as shift (NE < MINUS).
-    Conflict between rule 43 and token MUL resolved as shift (NE < MUL).
-    Conflict between rule 43 and token DIV resolved as shift (NE < DIV).
-    Conflict between rule 43 and token MOD resolved as shift (NE < MOD).
-
-
-state 87
+Zustand 87
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -3125,157 +2231,14 @@ state 87
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    PLUS   shift, and go to state 56
-    MINUS  shift, and go to state 57
-    MUL    shift, and go to state 58
-    DIV    shift, and go to state 59
-    MOD    shift, and go to state 60
-
-    $default  reduce using rule 44 (expression)
-
-    Conflict between rule 44 and token ASSIGN resolved as reduce (ASSIGN < LS).
-    Conflict between rule 44 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < LS).
-    Conflict between rule 44 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < LS).
-    Conflict between rule 44 and token EQ resolved as reduce (%left EQ).
-    Conflict between rule 44 and token NE resolved as reduce (%left NE).
-    Conflict between rule 44 and token LS resolved as reduce (%left LS).
-    Conflict between rule 44 and token LSEQ resolved as reduce (%left LSEQ).
-    Conflict between rule 44 and token GTEQ resolved as reduce (%left GTEQ).
-    Conflict between rule 44 and token GT resolved as reduce (%left GT).
-    Conflict between rule 44 and token PLUS resolved as shift (LS < PLUS).
-    Conflict between rule 44 and token MINUS resolved as shift (LS < MINUS).
-    Conflict between rule 44 and token MUL resolved as shift (LS < MUL).
-    Conflict between rule 44 and token DIV resolved as shift (LS < DIV).
-    Conflict between rule 44 and token MOD resolved as shift (LS < MOD).
-
-
-state 88
-
-   38 expression: expression . ASSIGN expression
-   39           | expression . LOGICAL_OR expression
-   40           | expression . LOGICAL_AND expression
-   42           | expression . EQ expression
-   43           | expression . NE expression
-   44           | expression . LS expression
-   45           | expression . LSEQ expression
-   45           | expression LSEQ expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, EQ, NE, LS, LSEQ, GTEQ, GT, BRACKET_CLOSE, PARA_CLOSE]
-   46           | expression . GTEQ expression
-   47           | expression . GT expression
-   48           | expression . PLUS expression
-   49           | expression . MINUS expression
-   50           | expression . MUL expression
-   51           | expression . DIV expression
-   52           | expression . MOD expression
-
-    PLUS   shift, and go to state 56
-    MINUS  shift, and go to state 57
-    MUL    shift, and go to state 58
-    DIV    shift, and go to state 59
-    MOD    shift, and go to state 60
-
-    $default  reduce using rule 45 (expression)
-
-    Conflict between rule 45 and token ASSIGN resolved as reduce (ASSIGN < LSEQ).
-    Conflict between rule 45 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < LSEQ).
-    Conflict between rule 45 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < LSEQ).
-    Conflict between rule 45 and token EQ resolved as reduce (%left EQ).
-    Conflict between rule 45 and token NE resolved as reduce (%left NE).
-    Conflict between rule 45 and token LS resolved as reduce (%left LS).
-    Conflict between rule 45 and token LSEQ resolved as reduce (%left LSEQ).
-    Conflict between rule 45 and token GTEQ resolved as reduce (%left GTEQ).
-    Conflict between rule 45 and token GT resolved as reduce (%left GT).
-    Conflict between rule 45 and token PLUS resolved as shift (LSEQ < PLUS).
-    Conflict between rule 45 and token MINUS resolved as shift (LSEQ < MINUS).
-    Conflict between rule 45 and token MUL resolved as shift (LSEQ < MUL).
-    Conflict between rule 45 and token DIV resolved as shift (LSEQ < DIV).
-    Conflict between rule 45 and token MOD resolved as shift (LSEQ < MOD).
-
-
-state 89
-
-   38 expression: expression . ASSIGN expression
-   39           | expression . LOGICAL_OR expression
-   40           | expression . LOGICAL_AND expression
-   42           | expression . EQ expression
-   43           | expression . NE expression
-   44           | expression . LS expression
-   45           | expression . LSEQ expression
-   46           | expression . GTEQ expression
-   46           | expression GTEQ expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, EQ, NE, LS, LSEQ, GTEQ, GT, BRACKET_CLOSE, PARA_CLOSE]
-   47           | expression . GT expression
-   48           | expression . PLUS expression
-   49           | expression . MINUS expression
-   50           | expression . MUL expression
-   51           | expression . DIV expression
-   52           | expression . MOD expression
-
-    PLUS   shift, and go to state 56
-    MINUS  shift, and go to state 57
-    MUL    shift, and go to state 58
-    DIV    shift, and go to state 59
-    MOD    shift, and go to state 60
-
-    $default  reduce using rule 46 (expression)
-
-    Conflict between rule 46 and token ASSIGN resolved as reduce (ASSIGN < GTEQ).
-    Conflict between rule 46 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < GTEQ).
-    Conflict between rule 46 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < GTEQ).
-    Conflict between rule 46 and token EQ resolved as reduce (%left EQ).
-    Conflict between rule 46 and token NE resolved as reduce (%left NE).
-    Conflict between rule 46 and token LS resolved as reduce (%left LS).
-    Conflict between rule 46 and token LSEQ resolved as reduce (%left LSEQ).
-    Conflict between rule 46 and token GTEQ resolved as reduce (%left GTEQ).
-    Conflict between rule 46 and token GT resolved as reduce (%left GT).
-    Conflict between rule 46 and token PLUS resolved as shift (GTEQ < PLUS).
-    Conflict between rule 46 and token MINUS resolved as shift (GTEQ < MINUS).
-    Conflict between rule 46 and token MUL resolved as shift (GTEQ < MUL).
-    Conflict between rule 46 and token DIV resolved as shift (GTEQ < DIV).
-    Conflict between rule 46 and token MOD resolved as shift (GTEQ < MOD).
-
-
-state 90
-
-   38 expression: expression . ASSIGN expression
-   39           | expression . LOGICAL_OR expression
-   40           | expression . LOGICAL_AND expression
-   42           | expression . EQ expression
-   43           | expression . NE expression
-   44           | expression . LS expression
-   44           | expression LS expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, EQ, NE, LS, LSEQ, GTEQ, GT, BRACKET_CLOSE, PARA_CLOSE]
-   45           | expression . LSEQ expression
-   46           | expression . GTEQ expression
-   47           | expression . GT expression
-<<<<<<< HEAD
-=======
-   47           | expression GT expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, EQ, NE, LS, LSEQ, GTEQ, GT, BRACKET_CLOSE, PARA_CLOSE]
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
-   48           | expression . PLUS expression
-   49           | expression . MINUS expression
-   50           | expression . MUL expression
-   51           | expression . DIV expression
-   52           | expression . MOD expression
-
-<<<<<<< HEAD
     PLUS   schiebe und gehe zu Zustand 56 über
     MINUS  schiebe und gehe zu Zustand 57 über
     MUL    schiebe und gehe zu Zustand 58 über
     DIV    schiebe und gehe zu Zustand 59 über
     MOD    schiebe und gehe zu Zustand 60 über
-=======
-    PLUS   shift, and go to state 56
-    MINUS  shift, and go to state 57
-    MUL    shift, and go to state 58
-    DIV    shift, and go to state 59
-    MOD    shift, and go to state 60
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-<<<<<<< HEAD
     $default  reduziere mit Regel 44 (expression)
-=======
-    $default  reduce using rule 47 (expression)
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-<<<<<<< HEAD
     Konflikt zwischen Regel 44 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < LS).
     Konflikt zwischen Regel 44 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < LS).
     Konflikt zwischen Regel 44 and Token LOGICAL_AND wurde durch Reduzierung gelöst (LOGICAL_AND < LS).
@@ -3290,25 +2253,9 @@ state 90
     Konflikt zwischen Regel 44 and Token MUL wurde durch Schieben gelöst (LS < MUL).
     Konflikt zwischen Regel 44 and Token DIV wurde durch Schieben gelöst (LS < DIV).
     Konflikt zwischen Regel 44 and Token MOD wurde durch Schieben gelöst (LS < MOD).
-=======
-    Conflict between rule 47 and token ASSIGN resolved as reduce (ASSIGN < GT).
-    Conflict between rule 47 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < GT).
-    Conflict between rule 47 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < GT).
-    Conflict between rule 47 and token EQ resolved as reduce (%left EQ).
-    Conflict between rule 47 and token NE resolved as reduce (%left NE).
-    Conflict between rule 47 and token LS resolved as reduce (%left LS).
-    Conflict between rule 47 and token LSEQ resolved as reduce (%left LSEQ).
-    Conflict between rule 47 and token GTEQ resolved as reduce (%left GTEQ).
-    Conflict between rule 47 and token GT resolved as reduce (%left GT).
-    Conflict between rule 47 and token PLUS resolved as shift (GT < PLUS).
-    Conflict between rule 47 and token MINUS resolved as shift (GT < MINUS).
-    Conflict between rule 47 and token MUL resolved as shift (GT < MUL).
-    Conflict between rule 47 and token DIV resolved as shift (GT < DIV).
-    Conflict between rule 47 and token MOD resolved as shift (GT < MOD).
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-state 91
+Zustand 88
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -3321,23 +2268,17 @@ state 91
    46           | expression . GTEQ expression
    47           | expression . GT expression
    48           | expression . PLUS expression
-   48           | expression PLUS expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, EQ, NE, LS, LSEQ, GTEQ, GT, PLUS, MINUS, MUL, DIV, MOD, BRACKET_CLOSE, PARA_CLOSE]
    49           | expression . MINUS expression
    50           | expression . MUL expression
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-<<<<<<< HEAD
     PLUS   schiebe und gehe zu Zustand 56 über
     MINUS  schiebe und gehe zu Zustand 57 über
     MUL    schiebe und gehe zu Zustand 58 über
     DIV    schiebe und gehe zu Zustand 59 über
     MOD    schiebe und gehe zu Zustand 60 über
-=======
-    $default  reduce using rule 48 (expression)
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-<<<<<<< HEAD
     $default  reduziere mit Regel 45 (expression)
 
     Konflikt zwischen Regel 45 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < LSEQ).
@@ -3354,25 +2295,8 @@ state 91
     Konflikt zwischen Regel 45 and Token MUL wurde durch Schieben gelöst (LSEQ < MUL).
     Konflikt zwischen Regel 45 and Token DIV wurde durch Schieben gelöst (LSEQ < DIV).
     Konflikt zwischen Regel 45 and Token MOD wurde durch Schieben gelöst (LSEQ < MOD).
-=======
-    Conflict between rule 48 and token ASSIGN resolved as reduce (ASSIGN < PLUS).
-    Conflict between rule 48 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < PLUS).
-    Conflict between rule 48 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < PLUS).
-    Conflict between rule 48 and token EQ resolved as reduce (EQ < PLUS).
-    Conflict between rule 48 and token NE resolved as reduce (NE < PLUS).
-    Conflict between rule 48 and token LS resolved as reduce (LS < PLUS).
-    Conflict between rule 48 and token LSEQ resolved as reduce (LSEQ < PLUS).
-    Conflict between rule 48 and token GTEQ resolved as reduce (GTEQ < PLUS).
-    Conflict between rule 48 and token GT resolved as reduce (GT < PLUS).
-    Conflict between rule 48 and token PLUS resolved as reduce (%left PLUS).
-    Conflict between rule 48 and token MINUS resolved as reduce (%left MINUS).
-    Conflict between rule 48 and token MUL resolved as reduce (%left MUL).
-    Conflict between rule 48 and token DIV resolved as reduce (%left DIV).
-    Conflict between rule 48 and token MOD resolved as reduce (%left MOD).
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-<<<<<<< HEAD
 Zustand 89
 
    38 expression: expression . ASSIGN expression
@@ -3458,9 +2382,6 @@ Zustand 90
 
 
 Zustand 91
-=======
-state 92
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -3474,21 +2395,12 @@ state 92
    48           | expression . PLUS expression
    48           | expression PLUS expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, EQ, NE, LS, LSEQ, GTEQ, GT, PLUS, MINUS, MUL, DIV, MOD, BRACKET_CLOSE, PARA_CLOSE]
    49           | expression . MINUS expression
-<<<<<<< HEAD
-=======
-   49           | expression MINUS expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, EQ, NE, LS, LSEQ, GTEQ, GT, PLUS, MINUS, MUL, DIV, MOD, BRACKET_CLOSE, PARA_CLOSE]
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
    50           | expression . MUL expression
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-<<<<<<< HEAD
     $default  reduziere mit Regel 48 (expression)
-=======
-    $default  reduce using rule 49 (expression)
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-<<<<<<< HEAD
     Konflikt zwischen Regel 48 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < PLUS).
     Konflikt zwischen Regel 48 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < PLUS).
     Konflikt zwischen Regel 48 and Token LOGICAL_AND wurde durch Reduzierung gelöst (LOGICAL_AND < PLUS).
@@ -3503,25 +2415,9 @@ state 92
     Konflikt zwischen Regel 48 and Token MUL wurde durch Reduzierung gelöst (%left MUL).
     Konflikt zwischen Regel 48 and Token DIV wurde durch Reduzierung gelöst (%left DIV).
     Konflikt zwischen Regel 48 and Token MOD wurde durch Reduzierung gelöst (%left MOD).
-=======
-    Conflict between rule 49 and token ASSIGN resolved as reduce (ASSIGN < MINUS).
-    Conflict between rule 49 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < MINUS).
-    Conflict between rule 49 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < MINUS).
-    Conflict between rule 49 and token EQ resolved as reduce (EQ < MINUS).
-    Conflict between rule 49 and token NE resolved as reduce (NE < MINUS).
-    Conflict between rule 49 and token LS resolved as reduce (LS < MINUS).
-    Conflict between rule 49 and token LSEQ resolved as reduce (LSEQ < MINUS).
-    Conflict between rule 49 and token GTEQ resolved as reduce (GTEQ < MINUS).
-    Conflict between rule 49 and token GT resolved as reduce (GT < MINUS).
-    Conflict between rule 49 and token PLUS resolved as reduce (%left PLUS).
-    Conflict between rule 49 and token MINUS resolved as reduce (%left MINUS).
-    Conflict between rule 49 and token MUL resolved as reduce (%left MUL).
-    Conflict between rule 49 and token DIV resolved as reduce (%left DIV).
-    Conflict between rule 49 and token MOD resolved as reduce (%left MOD).
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-state 93
+Zustand 92
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -3536,17 +2432,11 @@ state 93
    49           | expression . MINUS expression
    49           | expression MINUS expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, EQ, NE, LS, LSEQ, GTEQ, GT, PLUS, MINUS, MUL, DIV, MOD, BRACKET_CLOSE, PARA_CLOSE]
    50           | expression . MUL expression
-   50           | expression MUL expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, EQ, NE, LS, LSEQ, GTEQ, GT, PLUS, MINUS, MUL, DIV, MOD, BRACKET_CLOSE, PARA_CLOSE]
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-<<<<<<< HEAD
     $default  reduziere mit Regel 49 (expression)
-=======
-    $default  reduce using rule 50 (expression)
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-<<<<<<< HEAD
     Konflikt zwischen Regel 49 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < MINUS).
     Konflikt zwischen Regel 49 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < MINUS).
     Konflikt zwischen Regel 49 and Token LOGICAL_AND wurde durch Reduzierung gelöst (LOGICAL_AND < MINUS).
@@ -3561,61 +2451,9 @@ state 93
     Konflikt zwischen Regel 49 and Token MUL wurde durch Reduzierung gelöst (%left MUL).
     Konflikt zwischen Regel 49 and Token DIV wurde durch Reduzierung gelöst (%left DIV).
     Konflikt zwischen Regel 49 and Token MOD wurde durch Reduzierung gelöst (%left MOD).
-=======
-    Conflict between rule 50 and token ASSIGN resolved as reduce (ASSIGN < MUL).
-    Conflict between rule 50 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < MUL).
-    Conflict between rule 50 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < MUL).
-    Conflict between rule 50 and token EQ resolved as reduce (EQ < MUL).
-    Conflict between rule 50 and token NE resolved as reduce (NE < MUL).
-    Conflict between rule 50 and token LS resolved as reduce (LS < MUL).
-    Conflict between rule 50 and token LSEQ resolved as reduce (LSEQ < MUL).
-    Conflict between rule 50 and token GTEQ resolved as reduce (GTEQ < MUL).
-    Conflict between rule 50 and token GT resolved as reduce (GT < MUL).
-    Conflict between rule 50 and token PLUS resolved as reduce (%left PLUS).
-    Conflict between rule 50 and token MINUS resolved as reduce (%left MINUS).
-    Conflict between rule 50 and token MUL resolved as reduce (%left MUL).
-    Conflict between rule 50 and token DIV resolved as reduce (%left DIV).
-    Conflict between rule 50 and token MOD resolved as reduce (%left MOD).
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-state 94
-
-   38 expression: expression . ASSIGN expression
-   39           | expression . LOGICAL_OR expression
-   40           | expression . LOGICAL_AND expression
-   42           | expression . EQ expression
-   43           | expression . NE expression
-   44           | expression . LS expression
-   45           | expression . LSEQ expression
-   46           | expression . GTEQ expression
-   47           | expression . GT expression
-   48           | expression . PLUS expression
-   49           | expression . MINUS expression
-   50           | expression . MUL expression
-   51           | expression . DIV expression
-   51           | expression DIV expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, EQ, NE, LS, LSEQ, GTEQ, GT, PLUS, MINUS, MUL, DIV, MOD, BRACKET_CLOSE, PARA_CLOSE]
-   52           | expression . MOD expression
-
-    $default  reduce using rule 51 (expression)
-
-    Conflict between rule 51 and token ASSIGN resolved as reduce (ASSIGN < DIV).
-    Conflict between rule 51 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < DIV).
-    Conflict between rule 51 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < DIV).
-    Conflict between rule 51 and token EQ resolved as reduce (EQ < DIV).
-    Conflict between rule 51 and token NE resolved as reduce (NE < DIV).
-    Conflict between rule 51 and token LS resolved as reduce (LS < DIV).
-    Conflict between rule 51 and token LSEQ resolved as reduce (LSEQ < DIV).
-    Conflict between rule 51 and token GTEQ resolved as reduce (GTEQ < DIV).
-    Conflict between rule 51 and token GT resolved as reduce (GT < DIV).
-    Conflict between rule 51 and token PLUS resolved as reduce (%left PLUS).
-    Conflict between rule 51 and token MINUS resolved as reduce (%left MINUS).
-    Conflict between rule 51 and token MUL resolved as reduce (%left MUL).
-    Conflict between rule 51 and token DIV resolved as reduce (%left DIV).
-    Conflict between rule 51 and token MOD resolved as reduce (%left MOD).
-
-
-state 95
+Zustand 93
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -3632,18 +2470,9 @@ state 95
    50           | expression MUL expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, EQ, NE, LS, LSEQ, GTEQ, GT, PLUS, MINUS, MUL, DIV, MOD, BRACKET_CLOSE, PARA_CLOSE]
    51           | expression . DIV expression
    52           | expression . MOD expression
-<<<<<<< HEAD
-=======
-   52           | expression MOD expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, EQ, NE, LS, LSEQ, GTEQ, GT, PLUS, MINUS, MUL, DIV, MOD, BRACKET_CLOSE, PARA_CLOSE]
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-<<<<<<< HEAD
     $default  reduziere mit Regel 50 (expression)
-=======
-    $default  reduce using rule 52 (expression)
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-<<<<<<< HEAD
     Konflikt zwischen Regel 50 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < MUL).
     Konflikt zwischen Regel 50 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < MUL).
     Konflikt zwischen Regel 50 and Token LOGICAL_AND wurde durch Reduzierung gelöst (LOGICAL_AND < MUL).
@@ -3658,25 +2487,8 @@ state 95
     Konflikt zwischen Regel 50 and Token MUL wurde durch Reduzierung gelöst (%left MUL).
     Konflikt zwischen Regel 50 and Token DIV wurde durch Reduzierung gelöst (%left DIV).
     Konflikt zwischen Regel 50 and Token MOD wurde durch Reduzierung gelöst (%left MOD).
-=======
-    Conflict between rule 52 and token ASSIGN resolved as reduce (ASSIGN < MOD).
-    Conflict between rule 52 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < MOD).
-    Conflict between rule 52 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < MOD).
-    Conflict between rule 52 and token EQ resolved as reduce (EQ < MOD).
-    Conflict between rule 52 and token NE resolved as reduce (NE < MOD).
-    Conflict between rule 52 and token LS resolved as reduce (LS < MOD).
-    Conflict between rule 52 and token LSEQ resolved as reduce (LSEQ < MOD).
-    Conflict between rule 52 and token GTEQ resolved as reduce (GTEQ < MOD).
-    Conflict between rule 52 and token GT resolved as reduce (GT < MOD).
-    Conflict between rule 52 and token PLUS resolved as reduce (%left PLUS).
-    Conflict between rule 52 and token MINUS resolved as reduce (%left MINUS).
-    Conflict between rule 52 and token MUL resolved as reduce (%left MUL).
-    Conflict between rule 52 and token DIV resolved as reduce (%left DIV).
-    Conflict between rule 52 and token MOD resolved as reduce (%left MOD).
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-<<<<<<< HEAD
 Zustand 94
 
    38 expression: expression . ASSIGN expression
@@ -3750,9 +2562,6 @@ Zustand 95
 
 
 Zustand 96
-=======
-state 96
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -3770,7 +2579,6 @@ state 96
    52           | expression . MOD expression
    62 function_call_parameters: function_call_parameters COMMA expression .  [COMMA, PARA_CLOSE]
 
-<<<<<<< HEAD
     ASSIGN       schiebe und gehe zu Zustand 47 über
     LOGICAL_OR   schiebe und gehe zu Zustand 48 über
     LOGICAL_AND  schiebe und gehe zu Zustand 49 über
@@ -3785,34 +2593,18 @@ state 96
     MUL          schiebe und gehe zu Zustand 58 über
     DIV          schiebe und gehe zu Zustand 59 über
     MOD          schiebe und gehe zu Zustand 60 über
-=======
-    ASSIGN       shift, and go to state 47
-    LOGICAL_OR   shift, and go to state 48
-    LOGICAL_AND  shift, and go to state 49
-    EQ           shift, and go to state 50
-    NE           shift, and go to state 51
-    LS           shift, and go to state 52
-    LSEQ         shift, and go to state 53
-    GTEQ         shift, and go to state 54
-    GT           shift, and go to state 55
-    PLUS         shift, and go to state 56
-    MINUS        shift, and go to state 57
-    MUL          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MOD          shift, and go to state 60
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    $default  reduce using rule 62 (function_call_parameters)
+    $default  reduziere mit Regel 62 (function_call_parameters)
 
 
-state 97
+Zustand 97
 
    37 stmt_loop: DO stmt . WHILE PARA_OPEN expression PARA_CLOSE SEMICOLON
 
-    WHILE  shift, and go to state 106
+    WHILE  schiebe und gehe zu Zustand 106 über
 
 
-state 98
+Zustand 98
 
    36 stmt_loop: WHILE PARA_OPEN . expression PARA_CLOSE stmt
    38 expression: . expression ASSIGN expression
@@ -3842,27 +2634,19 @@ state 98
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     ID           schiebe und gehe zu Zustand 30 über
     NUM          schiebe und gehe zu Zustand 31 über
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    expression                go to state 107
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 107 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 99
+Zustand 99
 
    34 stmt_conditional: IF PARA_OPEN . expression PARA_CLOSE stmt
    35                 | IF PARA_OPEN . expression PARA_CLOSE stmt ELSE stmt
@@ -3893,34 +2677,26 @@ state 99
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     ID           schiebe und gehe zu Zustand 30 über
     NUM          schiebe und gehe zu Zustand 31 über
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    expression                go to state 108
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 108 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 100
+Zustand 100
 
    31 stmt: RETURN SEMICOLON .
 
-    $default  reduce using rule 31 (stmt)
+    $default  reduziere mit Regel 31 (stmt)
 
 
-state 101
+Zustand 101
 
    30 stmt: RETURN expression . SEMICOLON
    38 expression: expression . ASSIGN expression
@@ -3938,7 +2714,6 @@ state 101
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-<<<<<<< HEAD
     SEMICOLON    schiebe und gehe zu Zustand 109 über
     ASSIGN       schiebe und gehe zu Zustand 47 über
     LOGICAL_OR   schiebe und gehe zu Zustand 48 über
@@ -3954,26 +2729,9 @@ state 101
     MUL          schiebe und gehe zu Zustand 58 über
     DIV          schiebe und gehe zu Zustand 59 über
     MOD          schiebe und gehe zu Zustand 60 über
-=======
-    SEMICOLON    shift, and go to state 109
-    ASSIGN       shift, and go to state 47
-    LOGICAL_OR   shift, and go to state 48
-    LOGICAL_AND  shift, and go to state 49
-    EQ           shift, and go to state 50
-    NE           shift, and go to state 51
-    LS           shift, and go to state 52
-    LSEQ         shift, and go to state 53
-    GTEQ         shift, and go to state 54
-    GT           shift, and go to state 55
-    PLUS         shift, and go to state 56
-    MINUS        shift, and go to state 57
-    MUL          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MOD          shift, and go to state 60
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-state 102
+Zustand 102
 
     7 type: . INT
     8     | . VOID
@@ -4021,7 +2779,6 @@ state 102
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     DO           schiebe und gehe zu Zustand 64 über
     WHILE        schiebe und gehe zu Zustand 65 über
     IF           schiebe und gehe zu Zustand 66 über
@@ -4036,64 +2793,48 @@ state 102
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    DO           shift, and go to state 64
-    WHILE        shift, and go to state 65
-    IF           shift, and go to state 66
-    INT          shift, and go to state 1
-    VOID         shift, and go to state 2
-    RETURN       shift, and go to state 67
-    SEMICOLON    shift, and go to state 68
-    BRACE_OPEN   shift, and go to state 69
-    BRACE_CLOSE  shift, and go to state 110
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    type                      go to state 71
-    declaration               go to state 72
-    stmt                      go to state 73
-    stmt_block                go to state 74
-    stmt_conditional          go to state 75
-    stmt_loop                 go to state 76
-    expression                go to state 77
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    type                      gehe zu Zustand 71 über
+    declaration               gehe zu Zustand 72 über
+    stmt                      gehe zu Zustand 73 über
+    stmt_block                gehe zu Zustand 74 über
+    stmt_conditional          gehe zu Zustand 75 über
+    stmt_loop                 gehe zu Zustand 76 über
+    expression                gehe zu Zustand 77 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 103
+Zustand 103
 
    26 stmt: declaration SEMICOLON .
 
-    $default  reduce using rule 26 (stmt)
+    $default  reduziere mit Regel 26 (stmt)
 
 
-state 104
+Zustand 104
 
    27 stmt: expression SEMICOLON .
 
-    $default  reduce using rule 27 (stmt)
+    $default  reduziere mit Regel 27 (stmt)
 
 
-state 105
+Zustand 105
 
    54 expression: ID BRACKET_OPEN primary BRACKET_CLOSE .
 
-    $default  reduce using rule 54 (expression)
+    $default  reduziere mit Regel 54 (expression)
 
 
-state 106
+Zustand 106
 
    37 stmt_loop: DO stmt WHILE . PARA_OPEN expression PARA_CLOSE SEMICOLON
 
-    PARA_OPEN  shift, and go to state 111
+    PARA_OPEN  schiebe und gehe zu Zustand 111 über
 
 
-state 107
+Zustand 107
 
    36 stmt_loop: WHILE PARA_OPEN expression . PARA_CLOSE stmt
    38 expression: expression . ASSIGN expression
@@ -4111,7 +2852,6 @@ state 107
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-<<<<<<< HEAD
     ASSIGN       schiebe und gehe zu Zustand 47 über
     LOGICAL_OR   schiebe und gehe zu Zustand 48 über
     LOGICAL_AND  schiebe und gehe zu Zustand 49 über
@@ -4127,26 +2867,9 @@ state 107
     DIV          schiebe und gehe zu Zustand 59 über
     MOD          schiebe und gehe zu Zustand 60 über
     PARA_CLOSE   schiebe und gehe zu Zustand 112 über
-=======
-    ASSIGN       shift, and go to state 47
-    LOGICAL_OR   shift, and go to state 48
-    LOGICAL_AND  shift, and go to state 49
-    EQ           shift, and go to state 50
-    NE           shift, and go to state 51
-    LS           shift, and go to state 52
-    LSEQ         shift, and go to state 53
-    GTEQ         shift, and go to state 54
-    GT           shift, and go to state 55
-    PLUS         shift, and go to state 56
-    MINUS        shift, and go to state 57
-    MUL          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MOD          shift, and go to state 60
-    PARA_CLOSE   shift, and go to state 112
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-state 108
+Zustand 108
 
    34 stmt_conditional: IF PARA_OPEN expression . PARA_CLOSE stmt
    35                 | IF PARA_OPEN expression . PARA_CLOSE stmt ELSE stmt
@@ -4165,7 +2888,6 @@ state 108
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-<<<<<<< HEAD
     ASSIGN       schiebe und gehe zu Zustand 47 über
     LOGICAL_OR   schiebe und gehe zu Zustand 48 über
     LOGICAL_AND  schiebe und gehe zu Zustand 49 über
@@ -4181,40 +2903,23 @@ state 108
     DIV          schiebe und gehe zu Zustand 59 über
     MOD          schiebe und gehe zu Zustand 60 über
     PARA_CLOSE   schiebe und gehe zu Zustand 113 über
-=======
-    ASSIGN       shift, and go to state 47
-    LOGICAL_OR   shift, and go to state 48
-    LOGICAL_AND  shift, and go to state 49
-    EQ           shift, and go to state 50
-    NE           shift, and go to state 51
-    LS           shift, and go to state 52
-    LSEQ         shift, and go to state 53
-    GTEQ         shift, and go to state 54
-    GT           shift, and go to state 55
-    PLUS         shift, and go to state 56
-    MINUS        shift, and go to state 57
-    MUL          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MOD          shift, and go to state 60
-    PARA_CLOSE   shift, and go to state 113
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-state 109
+Zustand 109
 
    30 stmt: RETURN expression SEMICOLON .
 
-    $default  reduce using rule 30 (stmt)
+    $default  reduziere mit Regel 30 (stmt)
 
 
-state 110
+Zustand 110
 
    33 stmt_block: BRACE_OPEN stmt_list BRACE_CLOSE .
 
-    $default  reduce using rule 33 (stmt_block)
+    $default  reduziere mit Regel 33 (stmt_block)
 
 
-state 111
+Zustand 111
 
    37 stmt_loop: DO stmt WHILE PARA_OPEN . expression PARA_CLOSE SEMICOLON
    38 expression: . expression ASSIGN expression
@@ -4244,27 +2949,19 @@ state 111
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     ID           schiebe und gehe zu Zustand 30 über
     NUM          schiebe und gehe zu Zustand 31 über
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    expression                go to state 114
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 114 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 112
+Zustand 112
 
     7 type: . INT
     8     | . VOID
@@ -4311,7 +3008,6 @@ state 112
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     DO           schiebe und gehe zu Zustand 64 über
     WHILE        schiebe und gehe zu Zustand 65 über
     IF           schiebe und gehe zu Zustand 66 über
@@ -4325,35 +3021,20 @@ state 112
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    DO           shift, and go to state 64
-    WHILE        shift, and go to state 65
-    IF           shift, and go to state 66
-    INT          shift, and go to state 1
-    VOID         shift, and go to state 2
-    RETURN       shift, and go to state 67
-    SEMICOLON    shift, and go to state 68
-    BRACE_OPEN   shift, and go to state 69
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    type                      go to state 71
-    declaration               go to state 72
-    stmt                      go to state 115
-    stmt_block                go to state 74
-    stmt_conditional          go to state 75
-    stmt_loop                 go to state 76
-    expression                go to state 77
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    type                      gehe zu Zustand 71 über
+    declaration               gehe zu Zustand 72 über
+    stmt                      gehe zu Zustand 115 über
+    stmt_block                gehe zu Zustand 74 über
+    stmt_conditional          gehe zu Zustand 75 über
+    stmt_loop                 gehe zu Zustand 76 über
+    expression                gehe zu Zustand 77 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 113
+Zustand 113
 
     7 type: . INT
     8     | . VOID
@@ -4401,7 +3082,6 @@ state 113
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     DO           schiebe und gehe zu Zustand 64 über
     WHILE        schiebe und gehe zu Zustand 65 über
     IF           schiebe und gehe zu Zustand 66 über
@@ -4415,35 +3095,20 @@ state 113
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    DO           shift, and go to state 64
-    WHILE        shift, and go to state 65
-    IF           shift, and go to state 66
-    INT          shift, and go to state 1
-    VOID         shift, and go to state 2
-    RETURN       shift, and go to state 67
-    SEMICOLON    shift, and go to state 68
-    BRACE_OPEN   shift, and go to state 69
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    type                      go to state 71
-    declaration               go to state 72
-    stmt                      go to state 116
-    stmt_block                go to state 74
-    stmt_conditional          go to state 75
-    stmt_loop                 go to state 76
-    expression                go to state 77
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    type                      gehe zu Zustand 71 über
+    declaration               gehe zu Zustand 72 über
+    stmt                      gehe zu Zustand 116 über
+    stmt_block                gehe zu Zustand 74 über
+    stmt_conditional          gehe zu Zustand 75 über
+    stmt_loop                 gehe zu Zustand 76 über
+    expression                gehe zu Zustand 77 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 114
+Zustand 114
 
    37 stmt_loop: DO stmt WHILE PARA_OPEN expression . PARA_CLOSE SEMICOLON
    38 expression: expression . ASSIGN expression
@@ -4461,7 +3126,6 @@ state 114
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-<<<<<<< HEAD
     ASSIGN       schiebe und gehe zu Zustand 47 über
     LOGICAL_OR   schiebe und gehe zu Zustand 48 über
     LOGICAL_AND  schiebe und gehe zu Zustand 49 über
@@ -4477,51 +3141,34 @@ state 114
     DIV          schiebe und gehe zu Zustand 59 über
     MOD          schiebe und gehe zu Zustand 60 über
     PARA_CLOSE   schiebe und gehe zu Zustand 117 über
-=======
-    ASSIGN       shift, and go to state 47
-    LOGICAL_OR   shift, and go to state 48
-    LOGICAL_AND  shift, and go to state 49
-    EQ           shift, and go to state 50
-    NE           shift, and go to state 51
-    LS           shift, and go to state 52
-    LSEQ         shift, and go to state 53
-    GTEQ         shift, and go to state 54
-    GT           shift, and go to state 55
-    PLUS         shift, and go to state 56
-    MINUS        shift, and go to state 57
-    MUL          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MOD          shift, and go to state 60
-    PARA_CLOSE   shift, and go to state 117
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
-state 115
+Zustand 115
 
    36 stmt_loop: WHILE PARA_OPEN expression PARA_CLOSE stmt .
 
-    $default  reduce using rule 36 (stmt_loop)
+    $default  reduziere mit Regel 36 (stmt_loop)
 
 
-state 116
+Zustand 116
 
    34 stmt_conditional: IF PARA_OPEN expression PARA_CLOSE stmt .  [DO, WHILE, IF, ELSE, INT, VOID, RETURN, SEMICOLON, BRACE_OPEN, BRACE_CLOSE, ID, NUM, LOGICAL_NOT, MINUS, PARA_OPEN]
    35                 | IF PARA_OPEN expression PARA_CLOSE stmt . ELSE stmt
 
-    ELSE  shift, and go to state 118
+    ELSE  schiebe und gehe zu Zustand 118 über
 
-    ELSE      [reduce using rule 34 (stmt_conditional)]
-    $default  reduce using rule 34 (stmt_conditional)
+    ELSE      [reduziere mit Regel 34 (stmt_conditional)]
+    $default  reduziere mit Regel 34 (stmt_conditional)
 
 
-state 117
+Zustand 117
 
    37 stmt_loop: DO stmt WHILE PARA_OPEN expression PARA_CLOSE . SEMICOLON
 
-    SEMICOLON  shift, and go to state 119
+    SEMICOLON  schiebe und gehe zu Zustand 119 über
 
 
-state 118
+Zustand 118
 
     7 type: . INT
     8     | . VOID
@@ -4568,7 +3215,6 @@ state 118
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-<<<<<<< HEAD
     DO           schiebe und gehe zu Zustand 64 über
     WHILE        schiebe und gehe zu Zustand 65 über
     IF           schiebe und gehe zu Zustand 66 über
@@ -4582,43 +3228,28 @@ state 118
     LOGICAL_NOT  schiebe und gehe zu Zustand 32 über
     MINUS        schiebe und gehe zu Zustand 33 über
     PARA_OPEN    schiebe und gehe zu Zustand 34 über
-=======
-    DO           shift, and go to state 64
-    WHILE        shift, and go to state 65
-    IF           shift, and go to state 66
-    INT          shift, and go to state 1
-    VOID         shift, and go to state 2
-    RETURN       shift, and go to state 67
-    SEMICOLON    shift, and go to state 68
-    BRACE_OPEN   shift, and go to state 69
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    LOGICAL_NOT  shift, and go to state 32
-    MINUS        shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
-    type                      go to state 71
-    declaration               go to state 72
-    stmt                      go to state 120
-    stmt_block                go to state 74
-    stmt_conditional          go to state 75
-    stmt_loop                 go to state 76
-    expression                go to state 77
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    type                      gehe zu Zustand 71 über
+    declaration               gehe zu Zustand 72 über
+    stmt                      gehe zu Zustand 120 über
+    stmt_block                gehe zu Zustand 74 über
+    stmt_conditional          gehe zu Zustand 75 über
+    stmt_loop                 gehe zu Zustand 76 über
+    expression                gehe zu Zustand 77 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 119
+Zustand 119
 
    37 stmt_loop: DO stmt WHILE PARA_OPEN expression PARA_CLOSE SEMICOLON .
 
-    $default  reduce using rule 37 (stmt_loop)
+    $default  reduziere mit Regel 37 (stmt_loop)
 
 
-state 120
+Zustand 120
 
    35 stmt_conditional: IF PARA_OPEN expression PARA_CLOSE stmt ELSE stmt .
 
-    $default  reduce using rule 35 (stmt_conditional)
+    $default  reduziere mit Regel 35 (stmt_conditional)

@@ -6,7 +6,7 @@
 	char* str;
 	int num;
 %}
- 
+
 %debug
 %locations
 %start program

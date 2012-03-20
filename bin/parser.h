@@ -52,7 +52,6 @@
      BRACE_OPEN = 268,
      BRACE_CLOSE = 269,
      END_OF_FILE = 270,
-<<<<<<< HEAD
      ID = 271,
      NUM = 272,
      ASSIGN = 273,
@@ -79,42 +78,26 @@
      BRACKET_CLOSE = 294,
      PARA_OPEN = 295,
      PARA_CLOSE = 296
-=======
-     KOMMENTAR = 271,
-     ID = 272,
-     NUM = 273,
-     ASSIGN = 274,
-     LOGICAL_OR = 275,
-     LOGICAL_NOT = 276,
-     LOGICAL_AND = 277,
-     SHIFT_LEFT = 278,
-     SHIFT_RIGHT = 279,
-     EQ = 280,
-     NE = 281,
-     LS = 282,
-     LSEQ = 283,
-     GTEQ = 284,
-     GT = 285,
-     PLUS = 286,
-     MINUS = 287,
-     MUL = 288,
-     DIV = 289,
-     MOD = 290,
-     NOT = 291,
-     UNARY_MINUS = 292,
-     UNARY_PLUS = 293,
-     BRACKET_OPEN = 294,
-     BRACKET_CLOSE = 295,
-     PARA_OPEN = 296,
-     PARA_CLOSE = 297
->>>>>>> e00ef27571aa7e1ec8bb86f21f8a233fe2841c3b
    };
 #endif
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+typedef union YYSTYPE
+{
+
+/* Line 1676 of yacc.c  */
+#line 5 "src/parser.y"
+
+	char* str;
+	int num;
+%
+
+
+/* Line 1676 of yacc.c  */
+#line 100 "bin/parser.h"
+} YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
