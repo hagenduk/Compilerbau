@@ -1,4 +1,4 @@
-Terminals unused in grammar
+Terminale, die in Grammatik unbenutzt sind
 
    COLON
    END_OF_FILE
@@ -8,10 +8,10 @@ Terminals unused in grammar
    UNARY_PLUS
 
 
-State 116 conflicts: 1 shift/reduce
+Zustand 116 Konflikte: 1 Schiebe/Reduziere
 
 
-Grammar
+Grammatik
 
     0 $accept: program $end
 
@@ -50,7 +50,7 @@ Grammar
 
    22 function_parameter_element: type identifier_declaration
 
-   23 stmt_list: /* empty */
+   23 stmt_list: /* leer */
    24          | stmt_list stmt
 
    25 stmt: stmt_block
@@ -101,7 +101,7 @@ Grammar
    63                         | ID PARA_OPEN expression
 
 
-Terminals, with rules where they appear
+Terminale und die Regeln, in denen sie verwendet werden
 
 $end (0) 0
 error (256)
@@ -146,59 +146,60 @@ BRACKET_CLOSE (295) 13 54
 BRACKET_OPEN (296) 13 54
 
 
-Nonterminals, with rules where they appear
+Nicht-Terminal und die Regeln, in denen sie verwendet werden
 
 $accept (42)
-    on left: 0
+    auf der linken Seite: 0
 program (43)
-    on left: 1, on right: 0
+    auf der linken Seite: 1, auf der rechten Seite: 0
 program_element_list (44)
-    on left: 2 3, on right: 1 2
+    auf der linken Seite: 2 3, auf der rechten Seite: 1 2
 program_element (45)
-    on left: 4 5 6, on right: 2 3
+    auf der linken Seite: 4 5 6, auf der rechten Seite: 2 3
 type (46)
-    on left: 7 8, on right: 10 15 22
+    auf der linken Seite: 7 8, auf der rechten Seite: 10 15 22
 declaration (47)
-    on left: 9 10, on right: 4 9 26
+    auf der linken Seite: 9 10, auf der rechten Seite: 4 9 26
 declaration_element (48)
-    on left: 11 12, on right: 9 10
+    auf der linken Seite: 11 12, auf der rechten Seite: 9 10
 identifier_declaration (49)
-    on left: 13 14, on right: 11 13 19 22
+    auf der linken Seite: 13 14, auf der rechten Seite: 11 13 19 22
 function_definition (50)
-    on left: 15, on right: 5
+    auf der linken Seite: 15, auf der rechten Seite: 5
 function_header (51)
-    on left: 16, on right: 12 15
+    auf der linken Seite: 16, auf der rechten Seite: 12 15
 function_prefix (52)
-    on left: 17 18, on right: 16
+    auf der linken Seite: 17 18, auf der rechten Seite: 16
 function_signature (53)
-    on left: 19, on right: 17 21
+    auf der linken Seite: 19, auf der rechten Seite: 17 21
 function_signature_parameters (54)
-    on left: 20 21, on right: 18 20
+    auf der linken Seite: 20 21, auf der rechten Seite: 18 20
 function_parameter_element (55)
-    on left: 22, on right: 20 21
+    auf der linken Seite: 22, auf der rechten Seite: 20 21
 stmt_list (56)
-    on left: 23 24, on right: 15 24 33
+    auf der linken Seite: 23 24, auf der rechten Seite: 15 24 33
 stmt (57)
-    on left: 25 26 27 28 29 30 31 32, on right: 24 34 35 36 37
+    auf der linken Seite: 25 26 27 28 29 30 31 32, auf der rechten Seite:
+    24 34 35 36 37
 stmt_block (58)
-    on left: 33, on right: 25
+    auf der linken Seite: 33, auf der rechten Seite: 25
 stmt_conditional (59)
-    on left: 34 35, on right: 28
+    auf der linken Seite: 34 35, auf der rechten Seite: 28
 stmt_loop (60)
-    on left: 36 37, on right: 29
+    auf der linken Seite: 36 37, auf der rechten Seite: 29
 expression (61)
-    on left: 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55
-    56 57, on right: 13 27 30 34 35 36 37 38 39 40 41 42 43 44 45 46
-    47 48 49 50 51 52 53 55 62 63
+    auf der linken Seite: 38 39 40 41 42 43 44 45 46 47 48 49 50 51
+    52 53 54 55 56 57, auf der rechten Seite: 13 27 30 34 35 36 37
+    38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 55 62 63
 primary (62)
-    on left: 58 59, on right: 54 57
+    auf der linken Seite: 58 59, auf der rechten Seite: 54 57
 function_call (63)
-    on left: 60 61, on right: 56
+    auf der linken Seite: 60 61, auf der rechten Seite: 56
 function_call_parameters (64)
-    on left: 62 63, on right: 61 62
+    auf der linken Seite: 62 63, auf der rechten Seite: 61 62
 
 
-state 0
+Zustand 0
 
     0 $accept: . program $end
     1 program: . program_element_list
@@ -213,47 +214,47 @@ state 0
    10            | . type declaration_element
    15 function_definition: . type function_header BRACE_OPEN stmt_list BRACE_CLOSE
 
-    INT        shift, and go to state 1
-    VOID       shift, and go to state 2
-    SEMICOLON  shift, and go to state 3
+    INT        schiebe und gehe zu Zustand 1 über
+    VOID       schiebe und gehe zu Zustand 2 über
+    SEMICOLON  schiebe und gehe zu Zustand 3 über
 
-    program               go to state 4
-    program_element_list  go to state 5
-    program_element       go to state 6
-    type                  go to state 7
-    declaration           go to state 8
-    function_definition   go to state 9
+    program               gehe zu Zustand 4 über
+    program_element_list  gehe zu Zustand 5 über
+    program_element       gehe zu Zustand 6 über
+    type                  gehe zu Zustand 7 über
+    declaration           gehe zu Zustand 8 über
+    function_definition   gehe zu Zustand 9 über
 
 
-state 1
+Zustand 1
 
     7 type: INT .
 
-    $default  reduce using rule 7 (type)
+    $default  reduziere mit Regel 7 (type)
 
 
-state 2
+Zustand 2
 
     8 type: VOID .
 
-    $default  reduce using rule 8 (type)
+    $default  reduziere mit Regel 8 (type)
 
 
-state 3
+Zustand 3
 
     6 program_element: SEMICOLON .
 
-    $default  reduce using rule 6 (program_element)
+    $default  reduziere mit Regel 6 (program_element)
 
 
-state 4
+Zustand 4
 
     0 $accept: program . $end
 
-    $end  shift, and go to state 10
+    $end  schiebe und gehe zu Zustand 10 über
 
 
-state 5
+Zustand 5
 
     1 program: program_element_list .  [$end]
     2 program_element_list: program_element_list . program_element
@@ -266,26 +267,26 @@ state 5
    10            | . type declaration_element
    15 function_definition: . type function_header BRACE_OPEN stmt_list BRACE_CLOSE
 
-    INT        shift, and go to state 1
-    VOID       shift, and go to state 2
-    SEMICOLON  shift, and go to state 3
+    INT        schiebe und gehe zu Zustand 1 über
+    VOID       schiebe und gehe zu Zustand 2 über
+    SEMICOLON  schiebe und gehe zu Zustand 3 über
 
-    $default  reduce using rule 1 (program)
+    $default  reduziere mit Regel 1 (program)
 
-    program_element      go to state 11
-    type                 go to state 7
-    declaration          go to state 8
-    function_definition  go to state 9
+    program_element      gehe zu Zustand 11 über
+    type                 gehe zu Zustand 7 über
+    declaration          gehe zu Zustand 8 über
+    function_definition  gehe zu Zustand 9 über
 
 
-state 6
+Zustand 6
 
     3 program_element_list: program_element .
 
-    $default  reduce using rule 3 (program_element_list)
+    $default  reduziere mit Regel 3 (program_element_list)
 
 
-state 7
+Zustand 7
 
    10 declaration: type . declaration_element
    11 declaration_element: . identifier_declaration
@@ -300,90 +301,90 @@ state 7
    20 function_signature_parameters: . function_signature_parameters COMMA function_parameter_element
    21                              | . function_signature function_parameter_element
 
-    ID  shift, and go to state 12
+    ID  schiebe und gehe zu Zustand 12 über
 
-    declaration_element            go to state 13
-    identifier_declaration         go to state 14
-    function_header                go to state 15
-    function_prefix                go to state 16
-    function_signature             go to state 17
-    function_signature_parameters  go to state 18
+    declaration_element            gehe zu Zustand 13 über
+    identifier_declaration         gehe zu Zustand 14 über
+    function_header                gehe zu Zustand 15 über
+    function_prefix                gehe zu Zustand 16 über
+    function_signature             gehe zu Zustand 17 über
+    function_signature_parameters  gehe zu Zustand 18 über
 
 
-state 8
+Zustand 8
 
     4 program_element: declaration . SEMICOLON
     9 declaration: declaration . COMMA declaration_element
 
-    COMMA      shift, and go to state 19
-    SEMICOLON  shift, and go to state 20
+    COMMA      schiebe und gehe zu Zustand 19 über
+    SEMICOLON  schiebe und gehe zu Zustand 20 über
 
 
-state 9
+Zustand 9
 
     5 program_element: function_definition .
 
-    $default  reduce using rule 5 (program_element)
+    $default  reduziere mit Regel 5 (program_element)
 
 
-state 10
+Zustand 10
 
     0 $accept: program $end .
 
-    $default  accept
+    $default  annehmen
 
 
-state 11
+Zustand 11
 
     2 program_element_list: program_element_list program_element .
 
-    $default  reduce using rule 2 (program_element_list)
+    $default  reduziere mit Regel 2 (program_element_list)
 
 
-state 12
+Zustand 12
 
    14 identifier_declaration: ID .
 
-    $default  reduce using rule 14 (identifier_declaration)
+    $default  reduziere mit Regel 14 (identifier_declaration)
 
 
-state 13
+Zustand 13
 
    10 declaration: type declaration_element .
 
-    $default  reduce using rule 10 (declaration)
+    $default  reduziere mit Regel 10 (declaration)
 
 
-state 14
+Zustand 14
 
    11 declaration_element: identifier_declaration .  [COMMA, SEMICOLON]
    13 identifier_declaration: identifier_declaration . BRACKET_OPEN expression BRACKET_CLOSE
    19 function_signature: identifier_declaration . PARA_OPEN
 
-    PARA_OPEN     shift, and go to state 21
-    BRACKET_OPEN  shift, and go to state 22
+    PARA_OPEN     schiebe und gehe zu Zustand 21 über
+    BRACKET_OPEN  schiebe und gehe zu Zustand 22 über
 
-    $default  reduce using rule 11 (declaration_element)
+    $default  reduziere mit Regel 11 (declaration_element)
 
 
-state 15
+Zustand 15
 
    12 declaration_element: function_header .  [COMMA, SEMICOLON]
    15 function_definition: type function_header . BRACE_OPEN stmt_list BRACE_CLOSE
 
-    BRACE_OPEN  shift, and go to state 23
+    BRACE_OPEN  schiebe und gehe zu Zustand 23 über
 
-    $default  reduce using rule 12 (declaration_element)
+    $default  reduziere mit Regel 12 (declaration_element)
 
 
-state 16
+Zustand 16
 
    16 function_header: function_prefix . PARA_CLOSE
 
-    PARA_CLOSE  shift, and go to state 24
+    PARA_CLOSE  schiebe und gehe zu Zustand 24 über
 
 
-state 17
+Zustand 17
 
     7 type: . INT
     8     | . VOID
@@ -391,26 +392,26 @@ state 17
    21 function_signature_parameters: function_signature . function_parameter_element
    22 function_parameter_element: . type identifier_declaration
 
-    INT   shift, and go to state 1
-    VOID  shift, and go to state 2
+    INT   schiebe und gehe zu Zustand 1 über
+    VOID  schiebe und gehe zu Zustand 2 über
 
-    $default  reduce using rule 17 (function_prefix)
+    $default  reduziere mit Regel 17 (function_prefix)
 
-    type                        go to state 25
-    function_parameter_element  go to state 26
+    type                        gehe zu Zustand 25 über
+    function_parameter_element  gehe zu Zustand 26 über
 
 
-state 18
+Zustand 18
 
    18 function_prefix: function_signature_parameters .  [PARA_CLOSE]
    20 function_signature_parameters: function_signature_parameters . COMMA function_parameter_element
 
-    COMMA  shift, and go to state 27
+    COMMA  schiebe und gehe zu Zustand 27 über
 
-    $default  reduce using rule 18 (function_prefix)
+    $default  reduziere mit Regel 18 (function_prefix)
 
 
-state 19
+Zustand 19
 
     9 declaration: declaration COMMA . declaration_element
    11 declaration_element: . identifier_declaration
@@ -424,31 +425,31 @@ state 19
    20 function_signature_parameters: . function_signature_parameters COMMA function_parameter_element
    21                              | . function_signature function_parameter_element
 
-    ID  shift, and go to state 12
+    ID  schiebe und gehe zu Zustand 12 über
 
-    declaration_element            go to state 28
-    identifier_declaration         go to state 14
-    function_header                go to state 29
-    function_prefix                go to state 16
-    function_signature             go to state 17
-    function_signature_parameters  go to state 18
+    declaration_element            gehe zu Zustand 28 über
+    identifier_declaration         gehe zu Zustand 14 über
+    function_header                gehe zu Zustand 29 über
+    function_prefix                gehe zu Zustand 16 über
+    function_signature             gehe zu Zustand 17 über
+    function_signature_parameters  gehe zu Zustand 18 über
 
 
-state 20
+Zustand 20
 
     4 program_element: declaration SEMICOLON .
 
-    $default  reduce using rule 4 (program_element)
+    $default  reduziere mit Regel 4 (program_element)
 
 
-state 21
+Zustand 21
 
    19 function_signature: identifier_declaration PARA_OPEN .
 
-    $default  reduce using rule 19 (function_signature)
+    $default  reduziere mit Regel 19 (function_signature)
 
 
-state 22
+Zustand 22
 
    13 identifier_declaration: identifier_declaration BRACKET_OPEN . expression BRACKET_CLOSE
    38 expression: . expression ASSIGN expression
@@ -478,103 +479,103 @@ state 22
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 35
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 35 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 23
+Zustand 23
 
    15 function_definition: type function_header BRACE_OPEN . stmt_list BRACE_CLOSE
    23 stmt_list: .
    24          | . stmt_list stmt
 
-    $default  reduce using rule 23 (stmt_list)
+    $default  reduziere mit Regel 23 (stmt_list)
 
-    stmt_list  go to state 39
+    stmt_list  gehe zu Zustand 39 über
 
 
-state 24
+Zustand 24
 
    16 function_header: function_prefix PARA_CLOSE .
 
-    $default  reduce using rule 16 (function_header)
+    $default  reduziere mit Regel 16 (function_header)
 
 
-state 25
+Zustand 25
 
    13 identifier_declaration: . identifier_declaration BRACKET_OPEN expression BRACKET_CLOSE
    14                       | . ID
    22 function_parameter_element: type . identifier_declaration
 
-    ID  shift, and go to state 12
+    ID  schiebe und gehe zu Zustand 12 über
 
-    identifier_declaration  go to state 40
+    identifier_declaration  gehe zu Zustand 40 über
 
 
-state 26
+Zustand 26
 
    21 function_signature_parameters: function_signature function_parameter_element .
 
-    $default  reduce using rule 21 (function_signature_parameters)
+    $default  reduziere mit Regel 21 (function_signature_parameters)
 
 
-state 27
+Zustand 27
 
     7 type: . INT
     8     | . VOID
    20 function_signature_parameters: function_signature_parameters COMMA . function_parameter_element
    22 function_parameter_element: . type identifier_declaration
 
-    INT   shift, and go to state 1
-    VOID  shift, and go to state 2
+    INT   schiebe und gehe zu Zustand 1 über
+    VOID  schiebe und gehe zu Zustand 2 über
 
-    type                        go to state 25
-    function_parameter_element  go to state 41
+    type                        gehe zu Zustand 25 über
+    function_parameter_element  gehe zu Zustand 41 über
 
 
-state 28
+Zustand 28
 
     9 declaration: declaration COMMA declaration_element .
 
-    $default  reduce using rule 9 (declaration)
+    $default  reduziere mit Regel 9 (declaration)
 
 
-state 29
+Zustand 29
 
    12 declaration_element: function_header .
 
-    $default  reduce using rule 12 (declaration_element)
+    $default  reduziere mit Regel 12 (declaration_element)
 
 
-state 30
+Zustand 30
 
    54 expression: ID . BRACKET_OPEN primary BRACKET_CLOSE
    59 primary: ID .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, NE, EQ, GT, GTEQ, LSEQ, LS, MINUS, PLUS, MOD, DIV, MUL, PARA_CLOSE, BRACKET_CLOSE]
    60 function_call: ID . PARA_OPEN
    63 function_call_parameters: ID . PARA_OPEN expression
 
-    PARA_OPEN     shift, and go to state 42
-    BRACKET_OPEN  shift, and go to state 43
+    PARA_OPEN     schiebe und gehe zu Zustand 42 über
+    BRACKET_OPEN  schiebe und gehe zu Zustand 43 über
 
-    $default  reduce using rule 59 (primary)
+    $default  reduziere mit Regel 59 (primary)
 
 
-state 31
+Zustand 31
 
    58 primary: NUM .
 
-    $default  reduce using rule 58 (primary)
+    $default  reduziere mit Regel 58 (primary)
 
 
-state 32
+Zustand 32
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -604,19 +605,19 @@ state 32
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 44
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 44 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 33
+Zustand 33
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -646,19 +647,19 @@ state 33
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 45
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 45 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 34
+Zustand 34
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -688,19 +689,19 @@ state 34
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 46
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 46 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 35
+Zustand 35
 
    13 identifier_declaration: identifier_declaration BRACKET_OPEN expression . BRACKET_CLOSE
    38 expression: expression . ASSIGN expression
@@ -718,48 +719,48 @@ state 35
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    ASSIGN         shift, and go to state 47
-    LOGICAL_OR     shift, and go to state 48
-    LOGICAL_AND    shift, and go to state 49
-    NE             shift, and go to state 50
-    EQ             shift, and go to state 51
-    GT             shift, and go to state 52
-    GTEQ           shift, and go to state 53
-    LSEQ           shift, and go to state 54
-    LS             shift, and go to state 55
-    MINUS          shift, and go to state 56
-    PLUS           shift, and go to state 57
-    MOD            shift, and go to state 58
-    DIV            shift, and go to state 59
-    MUL            shift, and go to state 60
-    BRACKET_CLOSE  shift, and go to state 61
+    ASSIGN         schiebe und gehe zu Zustand 47 über
+    LOGICAL_OR     schiebe und gehe zu Zustand 48 über
+    LOGICAL_AND    schiebe und gehe zu Zustand 49 über
+    NE             schiebe und gehe zu Zustand 50 über
+    EQ             schiebe und gehe zu Zustand 51 über
+    GT             schiebe und gehe zu Zustand 52 über
+    GTEQ           schiebe und gehe zu Zustand 53 über
+    LSEQ           schiebe und gehe zu Zustand 54 über
+    LS             schiebe und gehe zu Zustand 55 über
+    MINUS          schiebe und gehe zu Zustand 56 über
+    PLUS           schiebe und gehe zu Zustand 57 über
+    MOD            schiebe und gehe zu Zustand 58 über
+    DIV            schiebe und gehe zu Zustand 59 über
+    MUL            schiebe und gehe zu Zustand 60 über
+    BRACKET_CLOSE  schiebe und gehe zu Zustand 61 über
 
 
-state 36
+Zustand 36
 
    57 expression: primary .
 
-    $default  reduce using rule 57 (expression)
+    $default  reduziere mit Regel 57 (expression)
 
 
-state 37
+Zustand 37
 
    56 expression: function_call . PARA_CLOSE
 
-    PARA_CLOSE  shift, and go to state 62
+    PARA_CLOSE  schiebe und gehe zu Zustand 62 über
 
 
-state 38
+Zustand 38
 
    61 function_call: function_call_parameters .  [PARA_CLOSE]
    62 function_call_parameters: function_call_parameters . COMMA expression
 
-    COMMA  shift, and go to state 63
+    COMMA  schiebe und gehe zu Zustand 63 über
 
-    $default  reduce using rule 61 (function_call)
+    $default  reduziere mit Regel 61 (function_call)
 
 
-state 39
+Zustand 39
 
     7 type: . INT
     8     | . VOID
@@ -807,51 +808,51 @@ state 39
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    DO           shift, and go to state 64
-    WHILE        shift, and go to state 65
-    IF           shift, and go to state 66
-    INT          shift, and go to state 1
-    VOID         shift, and go to state 2
-    RETURN       shift, and go to state 67
-    SEMICOLON    shift, and go to state 68
-    BRACE_OPEN   shift, and go to state 69
-    BRACE_CLOSE  shift, and go to state 70
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    DO           schiebe und gehe zu Zustand 64 über
+    WHILE        schiebe und gehe zu Zustand 65 über
+    IF           schiebe und gehe zu Zustand 66 über
+    INT          schiebe und gehe zu Zustand 1 über
+    VOID         schiebe und gehe zu Zustand 2 über
+    RETURN       schiebe und gehe zu Zustand 67 über
+    SEMICOLON    schiebe und gehe zu Zustand 68 über
+    BRACE_OPEN   schiebe und gehe zu Zustand 69 über
+    BRACE_CLOSE  schiebe und gehe zu Zustand 70 über
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    type                      go to state 71
-    declaration               go to state 72
-    stmt                      go to state 73
-    stmt_block                go to state 74
-    stmt_conditional          go to state 75
-    stmt_loop                 go to state 76
-    expression                go to state 77
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    type                      gehe zu Zustand 71 über
+    declaration               gehe zu Zustand 72 über
+    stmt                      gehe zu Zustand 73 über
+    stmt_block                gehe zu Zustand 74 über
+    stmt_conditional          gehe zu Zustand 75 über
+    stmt_loop                 gehe zu Zustand 76 über
+    expression                gehe zu Zustand 77 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 40
+Zustand 40
 
    13 identifier_declaration: identifier_declaration . BRACKET_OPEN expression BRACKET_CLOSE
    22 function_parameter_element: type identifier_declaration .  [COMMA, PARA_CLOSE]
 
-    BRACKET_OPEN  shift, and go to state 22
+    BRACKET_OPEN  schiebe und gehe zu Zustand 22 über
 
-    $default  reduce using rule 22 (function_parameter_element)
+    $default  reduziere mit Regel 22 (function_parameter_element)
 
 
-state 41
+Zustand 41
 
    20 function_signature_parameters: function_signature_parameters COMMA function_parameter_element .
 
-    $default  reduce using rule 20 (function_signature_parameters)
+    $default  reduziere mit Regel 20 (function_signature_parameters)
 
 
-state 42
+Zustand 42
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -882,33 +883,33 @@ state 42
    63                         | . ID PARA_OPEN expression
    63                         | ID PARA_OPEN . expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    $default  reduce using rule 60 (function_call)
+    $default  reduziere mit Regel 60 (function_call)
 
-    expression                go to state 78
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 78 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 43
+Zustand 43
 
    54 expression: ID BRACKET_OPEN . primary BRACKET_CLOSE
    58 primary: . NUM
    59        | . ID
 
-    ID   shift, and go to state 79
-    NUM  shift, and go to state 31
+    ID   schiebe und gehe zu Zustand 79 über
+    NUM  schiebe und gehe zu Zustand 31 über
 
-    primary  go to state 80
+    primary  gehe zu Zustand 80 über
 
 
-state 44
+Zustand 44
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -926,25 +927,25 @@ state 44
    52           | expression . MOD expression
    53           | MINUS expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, NE, EQ, GT, GTEQ, LSEQ, LS, MINUS, PLUS, MOD, DIV, MUL, PARA_CLOSE, BRACKET_CLOSE]
 
-    $default  reduce using rule 53 (expression)
+    $default  reduziere mit Regel 53 (expression)
 
-    Conflict between rule 53 and token ASSIGN resolved as reduce (ASSIGN < UNARY_MINUS).
-    Conflict between rule 53 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < UNARY_MINUS).
-    Conflict between rule 53 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < UNARY_MINUS).
-    Conflict between rule 53 and token NE resolved as reduce (NE < UNARY_MINUS).
-    Conflict between rule 53 and token EQ resolved as reduce (EQ < UNARY_MINUS).
-    Conflict between rule 53 and token GT resolved as reduce (GT < UNARY_MINUS).
-    Conflict between rule 53 and token GTEQ resolved as reduce (GTEQ < UNARY_MINUS).
-    Conflict between rule 53 and token LSEQ resolved as reduce (LSEQ < UNARY_MINUS).
-    Conflict between rule 53 and token LS resolved as reduce (LS < UNARY_MINUS).
-    Conflict between rule 53 and token MINUS resolved as reduce (MINUS < UNARY_MINUS).
-    Conflict between rule 53 and token PLUS resolved as reduce (PLUS < UNARY_MINUS).
-    Conflict between rule 53 and token MOD resolved as reduce (MOD < UNARY_MINUS).
-    Conflict between rule 53 and token DIV resolved as reduce (DIV < UNARY_MINUS).
-    Conflict between rule 53 and token MUL resolved as reduce (MUL < UNARY_MINUS).
+    Konflikt zwischen Regel 53 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < UNARY_MINUS).
+    Konflikt zwischen Regel 53 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < UNARY_MINUS).
+    Konflikt zwischen Regel 53 and Token LOGICAL_AND wurde durch Reduzierung gelöst (LOGICAL_AND < UNARY_MINUS).
+    Konflikt zwischen Regel 53 and Token NE wurde durch Reduzierung gelöst (NE < UNARY_MINUS).
+    Konflikt zwischen Regel 53 and Token EQ wurde durch Reduzierung gelöst (EQ < UNARY_MINUS).
+    Konflikt zwischen Regel 53 and Token GT wurde durch Reduzierung gelöst (GT < UNARY_MINUS).
+    Konflikt zwischen Regel 53 and Token GTEQ wurde durch Reduzierung gelöst (GTEQ < UNARY_MINUS).
+    Konflikt zwischen Regel 53 and Token LSEQ wurde durch Reduzierung gelöst (LSEQ < UNARY_MINUS).
+    Konflikt zwischen Regel 53 and Token LS wurde durch Reduzierung gelöst (LS < UNARY_MINUS).
+    Konflikt zwischen Regel 53 and Token MINUS wurde durch Reduzierung gelöst (MINUS < UNARY_MINUS).
+    Konflikt zwischen Regel 53 and Token PLUS wurde durch Reduzierung gelöst (PLUS < UNARY_MINUS).
+    Konflikt zwischen Regel 53 and Token MOD wurde durch Reduzierung gelöst (MOD < UNARY_MINUS).
+    Konflikt zwischen Regel 53 and Token DIV wurde durch Reduzierung gelöst (DIV < UNARY_MINUS).
+    Konflikt zwischen Regel 53 and Token MUL wurde durch Reduzierung gelöst (MUL < UNARY_MINUS).
 
 
-state 45
+Zustand 45
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -962,25 +963,25 @@ state 45
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    $default  reduce using rule 41 (expression)
+    $default  reduziere mit Regel 41 (expression)
 
-    Conflict between rule 41 and token ASSIGN resolved as reduce (ASSIGN < LOGICAL_NOT).
-    Conflict between rule 41 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < LOGICAL_NOT).
-    Conflict between rule 41 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < LOGICAL_NOT).
-    Conflict between rule 41 and token NE resolved as reduce (NE < LOGICAL_NOT).
-    Conflict between rule 41 and token EQ resolved as reduce (EQ < LOGICAL_NOT).
-    Conflict between rule 41 and token GT resolved as reduce (GT < LOGICAL_NOT).
-    Conflict between rule 41 and token GTEQ resolved as reduce (GTEQ < LOGICAL_NOT).
-    Conflict between rule 41 and token LSEQ resolved as reduce (LSEQ < LOGICAL_NOT).
-    Conflict between rule 41 and token LS resolved as reduce (LS < LOGICAL_NOT).
-    Conflict between rule 41 and token MINUS resolved as reduce (MINUS < LOGICAL_NOT).
-    Conflict between rule 41 and token PLUS resolved as reduce (PLUS < LOGICAL_NOT).
-    Conflict between rule 41 and token MOD resolved as reduce (MOD < LOGICAL_NOT).
-    Conflict between rule 41 and token DIV resolved as reduce (DIV < LOGICAL_NOT).
-    Conflict between rule 41 and token MUL resolved as reduce (MUL < LOGICAL_NOT).
+    Konflikt zwischen Regel 41 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < LOGICAL_NOT).
+    Konflikt zwischen Regel 41 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < LOGICAL_NOT).
+    Konflikt zwischen Regel 41 and Token LOGICAL_AND wurde durch Reduzierung gelöst (LOGICAL_AND < LOGICAL_NOT).
+    Konflikt zwischen Regel 41 and Token NE wurde durch Reduzierung gelöst (NE < LOGICAL_NOT).
+    Konflikt zwischen Regel 41 and Token EQ wurde durch Reduzierung gelöst (EQ < LOGICAL_NOT).
+    Konflikt zwischen Regel 41 and Token GT wurde durch Reduzierung gelöst (GT < LOGICAL_NOT).
+    Konflikt zwischen Regel 41 and Token GTEQ wurde durch Reduzierung gelöst (GTEQ < LOGICAL_NOT).
+    Konflikt zwischen Regel 41 and Token LSEQ wurde durch Reduzierung gelöst (LSEQ < LOGICAL_NOT).
+    Konflikt zwischen Regel 41 and Token LS wurde durch Reduzierung gelöst (LS < LOGICAL_NOT).
+    Konflikt zwischen Regel 41 and Token MINUS wurde durch Reduzierung gelöst (MINUS < LOGICAL_NOT).
+    Konflikt zwischen Regel 41 and Token PLUS wurde durch Reduzierung gelöst (PLUS < LOGICAL_NOT).
+    Konflikt zwischen Regel 41 and Token MOD wurde durch Reduzierung gelöst (MOD < LOGICAL_NOT).
+    Konflikt zwischen Regel 41 and Token DIV wurde durch Reduzierung gelöst (DIV < LOGICAL_NOT).
+    Konflikt zwischen Regel 41 and Token MUL wurde durch Reduzierung gelöst (MUL < LOGICAL_NOT).
 
 
-state 46
+Zustand 46
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -998,24 +999,24 @@ state 46
    52           | expression . MOD expression
    55           | PARA_OPEN expression . PARA_CLOSE
 
-    ASSIGN       shift, and go to state 47
-    LOGICAL_OR   shift, and go to state 48
-    LOGICAL_AND  shift, and go to state 49
-    NE           shift, and go to state 50
-    EQ           shift, and go to state 51
-    GT           shift, and go to state 52
-    GTEQ         shift, and go to state 53
-    LSEQ         shift, and go to state 54
-    LS           shift, and go to state 55
-    MINUS        shift, and go to state 56
-    PLUS         shift, and go to state 57
-    MOD          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MUL          shift, and go to state 60
-    PARA_CLOSE   shift, and go to state 81
+    ASSIGN       schiebe und gehe zu Zustand 47 über
+    LOGICAL_OR   schiebe und gehe zu Zustand 48 über
+    LOGICAL_AND  schiebe und gehe zu Zustand 49 über
+    NE           schiebe und gehe zu Zustand 50 über
+    EQ           schiebe und gehe zu Zustand 51 über
+    GT           schiebe und gehe zu Zustand 52 über
+    GTEQ         schiebe und gehe zu Zustand 53 über
+    LSEQ         schiebe und gehe zu Zustand 54 über
+    LS           schiebe und gehe zu Zustand 55 über
+    MINUS        schiebe und gehe zu Zustand 56 über
+    PLUS         schiebe und gehe zu Zustand 57 über
+    MOD          schiebe und gehe zu Zustand 58 über
+    DIV          schiebe und gehe zu Zustand 59 über
+    MUL          schiebe und gehe zu Zustand 60 über
+    PARA_CLOSE   schiebe und gehe zu Zustand 81 über
 
 
-state 47
+Zustand 47
 
    38 expression: . expression ASSIGN expression
    38           | expression ASSIGN . expression
@@ -1045,19 +1046,19 @@ state 47
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 82
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 82 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 48
+Zustand 48
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1087,19 +1088,19 @@ state 48
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 83
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 83 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 49
+Zustand 49
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1129,19 +1130,19 @@ state 49
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 84
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 84 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 50
+Zustand 50
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1171,19 +1172,19 @@ state 50
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 85
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 85 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 51
+Zustand 51
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1213,19 +1214,19 @@ state 51
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 86
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 86 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 52
+Zustand 52
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1255,19 +1256,19 @@ state 52
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 87
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 87 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 53
+Zustand 53
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1297,19 +1298,19 @@ state 53
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 88
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 88 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 54
+Zustand 54
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1339,19 +1340,19 @@ state 54
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 89
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 89 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 55
+Zustand 55
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1381,19 +1382,19 @@ state 55
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 90
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 90 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 56
+Zustand 56
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1423,19 +1424,19 @@ state 56
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 91
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 91 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 57
+Zustand 57
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1465,19 +1466,19 @@ state 57
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 92
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 92 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 58
+Zustand 58
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1507,19 +1508,19 @@ state 58
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 93
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 93 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 59
+Zustand 59
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1549,19 +1550,19 @@ state 59
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 94
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 94 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 60
+Zustand 60
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1591,33 +1592,33 @@ state 60
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 95
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 95 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 61
+Zustand 61
 
    13 identifier_declaration: identifier_declaration BRACKET_OPEN expression BRACKET_CLOSE .
 
-    $default  reduce using rule 13 (identifier_declaration)
+    $default  reduziere mit Regel 13 (identifier_declaration)
 
 
-state 62
+Zustand 62
 
    56 expression: function_call PARA_CLOSE .
 
-    $default  reduce using rule 56 (expression)
+    $default  reduziere mit Regel 56 (expression)
 
 
-state 63
+Zustand 63
 
    38 expression: . expression ASSIGN expression
    39           | . expression LOGICAL_OR expression
@@ -1647,19 +1648,19 @@ state 63
    62                         | function_call_parameters COMMA . expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 96
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 96 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 64
+Zustand 64
 
     7 type: . INT
     8     | . VOID
@@ -1706,48 +1707,48 @@ state 64
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    DO           shift, and go to state 64
-    WHILE        shift, and go to state 65
-    IF           shift, and go to state 66
-    INT          shift, and go to state 1
-    VOID         shift, and go to state 2
-    RETURN       shift, and go to state 67
-    SEMICOLON    shift, and go to state 68
-    BRACE_OPEN   shift, and go to state 69
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    DO           schiebe und gehe zu Zustand 64 über
+    WHILE        schiebe und gehe zu Zustand 65 über
+    IF           schiebe und gehe zu Zustand 66 über
+    INT          schiebe und gehe zu Zustand 1 über
+    VOID         schiebe und gehe zu Zustand 2 über
+    RETURN       schiebe und gehe zu Zustand 67 über
+    SEMICOLON    schiebe und gehe zu Zustand 68 über
+    BRACE_OPEN   schiebe und gehe zu Zustand 69 über
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    type                      go to state 71
-    declaration               go to state 72
-    stmt                      go to state 97
-    stmt_block                go to state 74
-    stmt_conditional          go to state 75
-    stmt_loop                 go to state 76
-    expression                go to state 77
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    type                      gehe zu Zustand 71 über
+    declaration               gehe zu Zustand 72 über
+    stmt                      gehe zu Zustand 97 über
+    stmt_block                gehe zu Zustand 74 über
+    stmt_conditional          gehe zu Zustand 75 über
+    stmt_loop                 gehe zu Zustand 76 über
+    expression                gehe zu Zustand 77 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 65
+Zustand 65
 
    36 stmt_loop: WHILE . PARA_OPEN expression PARA_CLOSE stmt
 
-    PARA_OPEN  shift, and go to state 98
+    PARA_OPEN  schiebe und gehe zu Zustand 98 über
 
 
-state 66
+Zustand 66
 
    34 stmt_conditional: IF . PARA_OPEN expression PARA_CLOSE stmt
    35                 | IF . PARA_OPEN expression PARA_CLOSE stmt ELSE stmt
 
-    PARA_OPEN  shift, and go to state 99
+    PARA_OPEN  schiebe und gehe zu Zustand 99 über
 
 
-state 67
+Zustand 67
 
    30 stmt: RETURN . expression SEMICOLON
    31     | RETURN . SEMICOLON
@@ -1778,45 +1779,45 @@ state 67
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    SEMICOLON    shift, and go to state 100
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    SEMICOLON    schiebe und gehe zu Zustand 100 über
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 101
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 101 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 68
+Zustand 68
 
    32 stmt: SEMICOLON .
 
-    $default  reduce using rule 32 (stmt)
+    $default  reduziere mit Regel 32 (stmt)
 
 
-state 69
+Zustand 69
 
    23 stmt_list: .
    24          | . stmt_list stmt
    33 stmt_block: BRACE_OPEN . stmt_list BRACE_CLOSE
 
-    $default  reduce using rule 23 (stmt_list)
+    $default  reduziere mit Regel 23 (stmt_list)
 
-    stmt_list  go to state 102
+    stmt_list  gehe zu Zustand 102 über
 
 
-state 70
+Zustand 70
 
    15 function_definition: type function_header BRACE_OPEN stmt_list BRACE_CLOSE .
 
-    $default  reduce using rule 15 (function_definition)
+    $default  reduziere mit Regel 15 (function_definition)
 
 
-state 71
+Zustand 71
 
    10 declaration: type . declaration_element
    11 declaration_element: . identifier_declaration
@@ -1830,54 +1831,54 @@ state 71
    20 function_signature_parameters: . function_signature_parameters COMMA function_parameter_element
    21                              | . function_signature function_parameter_element
 
-    ID  shift, and go to state 12
+    ID  schiebe und gehe zu Zustand 12 über
 
-    declaration_element            go to state 13
-    identifier_declaration         go to state 14
-    function_header                go to state 29
-    function_prefix                go to state 16
-    function_signature             go to state 17
-    function_signature_parameters  go to state 18
+    declaration_element            gehe zu Zustand 13 über
+    identifier_declaration         gehe zu Zustand 14 über
+    function_header                gehe zu Zustand 29 über
+    function_prefix                gehe zu Zustand 16 über
+    function_signature             gehe zu Zustand 17 über
+    function_signature_parameters  gehe zu Zustand 18 über
 
 
-state 72
+Zustand 72
 
     9 declaration: declaration . COMMA declaration_element
    26 stmt: declaration . SEMICOLON
 
-    COMMA      shift, and go to state 19
-    SEMICOLON  shift, and go to state 103
+    COMMA      schiebe und gehe zu Zustand 19 über
+    SEMICOLON  schiebe und gehe zu Zustand 103 über
 
 
-state 73
+Zustand 73
 
    24 stmt_list: stmt_list stmt .
 
-    $default  reduce using rule 24 (stmt_list)
+    $default  reduziere mit Regel 24 (stmt_list)
 
 
-state 74
+Zustand 74
 
    25 stmt: stmt_block .
 
-    $default  reduce using rule 25 (stmt)
+    $default  reduziere mit Regel 25 (stmt)
 
 
-state 75
+Zustand 75
 
    28 stmt: stmt_conditional .
 
-    $default  reduce using rule 28 (stmt)
+    $default  reduziere mit Regel 28 (stmt)
 
 
-state 76
+Zustand 76
 
    29 stmt: stmt_loop .
 
-    $default  reduce using rule 29 (stmt)
+    $default  reduziere mit Regel 29 (stmt)
 
 
-state 77
+Zustand 77
 
    27 stmt: expression . SEMICOLON
    38 expression: expression . ASSIGN expression
@@ -1895,24 +1896,24 @@ state 77
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    SEMICOLON    shift, and go to state 104
-    ASSIGN       shift, and go to state 47
-    LOGICAL_OR   shift, and go to state 48
-    LOGICAL_AND  shift, and go to state 49
-    NE           shift, and go to state 50
-    EQ           shift, and go to state 51
-    GT           shift, and go to state 52
-    GTEQ         shift, and go to state 53
-    LSEQ         shift, and go to state 54
-    LS           shift, and go to state 55
-    MINUS        shift, and go to state 56
-    PLUS         shift, and go to state 57
-    MOD          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MUL          shift, and go to state 60
+    SEMICOLON    schiebe und gehe zu Zustand 104 über
+    ASSIGN       schiebe und gehe zu Zustand 47 über
+    LOGICAL_OR   schiebe und gehe zu Zustand 48 über
+    LOGICAL_AND  schiebe und gehe zu Zustand 49 über
+    NE           schiebe und gehe zu Zustand 50 über
+    EQ           schiebe und gehe zu Zustand 51 über
+    GT           schiebe und gehe zu Zustand 52 über
+    GTEQ         schiebe und gehe zu Zustand 53 über
+    LSEQ         schiebe und gehe zu Zustand 54 über
+    LS           schiebe und gehe zu Zustand 55 über
+    MINUS        schiebe und gehe zu Zustand 56 über
+    PLUS         schiebe und gehe zu Zustand 57 über
+    MOD          schiebe und gehe zu Zustand 58 über
+    DIV          schiebe und gehe zu Zustand 59 über
+    MUL          schiebe und gehe zu Zustand 60 über
 
 
-state 78
+Zustand 78
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -1930,46 +1931,46 @@ state 78
    52           | expression . MOD expression
    63 function_call_parameters: ID PARA_OPEN expression .  [COMMA, PARA_CLOSE]
 
-    ASSIGN       shift, and go to state 47
-    LOGICAL_OR   shift, and go to state 48
-    LOGICAL_AND  shift, and go to state 49
-    NE           shift, and go to state 50
-    EQ           shift, and go to state 51
-    GT           shift, and go to state 52
-    GTEQ         shift, and go to state 53
-    LSEQ         shift, and go to state 54
-    LS           shift, and go to state 55
-    MINUS        shift, and go to state 56
-    PLUS         shift, and go to state 57
-    MOD          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MUL          shift, and go to state 60
+    ASSIGN       schiebe und gehe zu Zustand 47 über
+    LOGICAL_OR   schiebe und gehe zu Zustand 48 über
+    LOGICAL_AND  schiebe und gehe zu Zustand 49 über
+    NE           schiebe und gehe zu Zustand 50 über
+    EQ           schiebe und gehe zu Zustand 51 über
+    GT           schiebe und gehe zu Zustand 52 über
+    GTEQ         schiebe und gehe zu Zustand 53 über
+    LSEQ         schiebe und gehe zu Zustand 54 über
+    LS           schiebe und gehe zu Zustand 55 über
+    MINUS        schiebe und gehe zu Zustand 56 über
+    PLUS         schiebe und gehe zu Zustand 57 über
+    MOD          schiebe und gehe zu Zustand 58 über
+    DIV          schiebe und gehe zu Zustand 59 über
+    MUL          schiebe und gehe zu Zustand 60 über
 
-    $default  reduce using rule 63 (function_call_parameters)
+    $default  reduziere mit Regel 63 (function_call_parameters)
 
 
-state 79
+Zustand 79
 
    59 primary: ID .
 
-    $default  reduce using rule 59 (primary)
+    $default  reduziere mit Regel 59 (primary)
 
 
-state 80
+Zustand 80
 
    54 expression: ID BRACKET_OPEN primary . BRACKET_CLOSE
 
-    BRACKET_CLOSE  shift, and go to state 105
+    BRACKET_CLOSE  schiebe und gehe zu Zustand 105 über
 
 
-state 81
+Zustand 81
 
    55 expression: PARA_OPEN expression PARA_CLOSE .
 
-    $default  reduce using rule 55 (expression)
+    $default  reduziere mit Regel 55 (expression)
 
 
-state 82
+Zustand 82
 
    38 expression: expression . ASSIGN expression
    38           | expression ASSIGN expression .  [COMMA, SEMICOLON, PARA_CLOSE, BRACKET_CLOSE]
@@ -1987,40 +1988,40 @@ state 82
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    ASSIGN       shift, and go to state 47
-    LOGICAL_OR   shift, and go to state 48
-    LOGICAL_AND  shift, and go to state 49
-    NE           shift, and go to state 50
-    EQ           shift, and go to state 51
-    GT           shift, and go to state 52
-    GTEQ         shift, and go to state 53
-    LSEQ         shift, and go to state 54
-    LS           shift, and go to state 55
-    MINUS        shift, and go to state 56
-    PLUS         shift, and go to state 57
-    MOD          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MUL          shift, and go to state 60
+    ASSIGN       schiebe und gehe zu Zustand 47 über
+    LOGICAL_OR   schiebe und gehe zu Zustand 48 über
+    LOGICAL_AND  schiebe und gehe zu Zustand 49 über
+    NE           schiebe und gehe zu Zustand 50 über
+    EQ           schiebe und gehe zu Zustand 51 über
+    GT           schiebe und gehe zu Zustand 52 über
+    GTEQ         schiebe und gehe zu Zustand 53 über
+    LSEQ         schiebe und gehe zu Zustand 54 über
+    LS           schiebe und gehe zu Zustand 55 über
+    MINUS        schiebe und gehe zu Zustand 56 über
+    PLUS         schiebe und gehe zu Zustand 57 über
+    MOD          schiebe und gehe zu Zustand 58 über
+    DIV          schiebe und gehe zu Zustand 59 über
+    MUL          schiebe und gehe zu Zustand 60 über
 
-    $default  reduce using rule 38 (expression)
+    $default  reduziere mit Regel 38 (expression)
 
-    Conflict between rule 38 and token ASSIGN resolved as shift (%right ASSIGN).
-    Conflict between rule 38 and token LOGICAL_OR resolved as shift (ASSIGN < LOGICAL_OR).
-    Conflict between rule 38 and token LOGICAL_AND resolved as shift (ASSIGN < LOGICAL_AND).
-    Conflict between rule 38 and token NE resolved as shift (ASSIGN < NE).
-    Conflict between rule 38 and token EQ resolved as shift (ASSIGN < EQ).
-    Conflict between rule 38 and token GT resolved as shift (ASSIGN < GT).
-    Conflict between rule 38 and token GTEQ resolved as shift (ASSIGN < GTEQ).
-    Conflict between rule 38 and token LSEQ resolved as shift (ASSIGN < LSEQ).
-    Conflict between rule 38 and token LS resolved as shift (ASSIGN < LS).
-    Conflict between rule 38 and token MINUS resolved as shift (ASSIGN < MINUS).
-    Conflict between rule 38 and token PLUS resolved as shift (ASSIGN < PLUS).
-    Conflict between rule 38 and token MOD resolved as shift (ASSIGN < MOD).
-    Conflict between rule 38 and token DIV resolved as shift (ASSIGN < DIV).
-    Conflict between rule 38 and token MUL resolved as shift (ASSIGN < MUL).
+    Konflikt zwischen Regel 38 and Token ASSIGN wurde durch Schieben gelöst (%right ASSIGN).
+    Konflikt zwischen Regel 38 and Token LOGICAL_OR wurde durch Schieben gelöst (ASSIGN < LOGICAL_OR).
+    Konflikt zwischen Regel 38 and Token LOGICAL_AND wurde durch Schieben gelöst (ASSIGN < LOGICAL_AND).
+    Konflikt zwischen Regel 38 and Token NE wurde durch Schieben gelöst (ASSIGN < NE).
+    Konflikt zwischen Regel 38 and Token EQ wurde durch Schieben gelöst (ASSIGN < EQ).
+    Konflikt zwischen Regel 38 and Token GT wurde durch Schieben gelöst (ASSIGN < GT).
+    Konflikt zwischen Regel 38 and Token GTEQ wurde durch Schieben gelöst (ASSIGN < GTEQ).
+    Konflikt zwischen Regel 38 and Token LSEQ wurde durch Schieben gelöst (ASSIGN < LSEQ).
+    Konflikt zwischen Regel 38 and Token LS wurde durch Schieben gelöst (ASSIGN < LS).
+    Konflikt zwischen Regel 38 and Token MINUS wurde durch Schieben gelöst (ASSIGN < MINUS).
+    Konflikt zwischen Regel 38 and Token PLUS wurde durch Schieben gelöst (ASSIGN < PLUS).
+    Konflikt zwischen Regel 38 and Token MOD wurde durch Schieben gelöst (ASSIGN < MOD).
+    Konflikt zwischen Regel 38 and Token DIV wurde durch Schieben gelöst (ASSIGN < DIV).
+    Konflikt zwischen Regel 38 and Token MUL wurde durch Schieben gelöst (ASSIGN < MUL).
 
 
-state 83
+Zustand 83
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -2038,38 +2039,38 @@ state 83
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    LOGICAL_AND  shift, and go to state 49
-    NE           shift, and go to state 50
-    EQ           shift, and go to state 51
-    GT           shift, and go to state 52
-    GTEQ         shift, and go to state 53
-    LSEQ         shift, and go to state 54
-    LS           shift, and go to state 55
-    MINUS        shift, and go to state 56
-    PLUS         shift, and go to state 57
-    MOD          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MUL          shift, and go to state 60
+    LOGICAL_AND  schiebe und gehe zu Zustand 49 über
+    NE           schiebe und gehe zu Zustand 50 über
+    EQ           schiebe und gehe zu Zustand 51 über
+    GT           schiebe und gehe zu Zustand 52 über
+    GTEQ         schiebe und gehe zu Zustand 53 über
+    LSEQ         schiebe und gehe zu Zustand 54 über
+    LS           schiebe und gehe zu Zustand 55 über
+    MINUS        schiebe und gehe zu Zustand 56 über
+    PLUS         schiebe und gehe zu Zustand 57 über
+    MOD          schiebe und gehe zu Zustand 58 über
+    DIV          schiebe und gehe zu Zustand 59 über
+    MUL          schiebe und gehe zu Zustand 60 über
 
-    $default  reduce using rule 39 (expression)
+    $default  reduziere mit Regel 39 (expression)
 
-    Conflict between rule 39 and token ASSIGN resolved as reduce (ASSIGN < LOGICAL_OR).
-    Conflict between rule 39 and token LOGICAL_OR resolved as reduce (%left LOGICAL_OR).
-    Conflict between rule 39 and token LOGICAL_AND resolved as shift (LOGICAL_OR < LOGICAL_AND).
-    Conflict between rule 39 and token NE resolved as shift (LOGICAL_OR < NE).
-    Conflict between rule 39 and token EQ resolved as shift (LOGICAL_OR < EQ).
-    Conflict between rule 39 and token GT resolved as shift (LOGICAL_OR < GT).
-    Conflict between rule 39 and token GTEQ resolved as shift (LOGICAL_OR < GTEQ).
-    Conflict between rule 39 and token LSEQ resolved as shift (LOGICAL_OR < LSEQ).
-    Conflict between rule 39 and token LS resolved as shift (LOGICAL_OR < LS).
-    Conflict between rule 39 and token MINUS resolved as shift (LOGICAL_OR < MINUS).
-    Conflict between rule 39 and token PLUS resolved as shift (LOGICAL_OR < PLUS).
-    Conflict between rule 39 and token MOD resolved as shift (LOGICAL_OR < MOD).
-    Conflict between rule 39 and token DIV resolved as shift (LOGICAL_OR < DIV).
-    Conflict between rule 39 and token MUL resolved as shift (LOGICAL_OR < MUL).
+    Konflikt zwischen Regel 39 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < LOGICAL_OR).
+    Konflikt zwischen Regel 39 and Token LOGICAL_OR wurde durch Reduzierung gelöst (%left LOGICAL_OR).
+    Konflikt zwischen Regel 39 and Token LOGICAL_AND wurde durch Schieben gelöst (LOGICAL_OR < LOGICAL_AND).
+    Konflikt zwischen Regel 39 and Token NE wurde durch Schieben gelöst (LOGICAL_OR < NE).
+    Konflikt zwischen Regel 39 and Token EQ wurde durch Schieben gelöst (LOGICAL_OR < EQ).
+    Konflikt zwischen Regel 39 and Token GT wurde durch Schieben gelöst (LOGICAL_OR < GT).
+    Konflikt zwischen Regel 39 and Token GTEQ wurde durch Schieben gelöst (LOGICAL_OR < GTEQ).
+    Konflikt zwischen Regel 39 and Token LSEQ wurde durch Schieben gelöst (LOGICAL_OR < LSEQ).
+    Konflikt zwischen Regel 39 and Token LS wurde durch Schieben gelöst (LOGICAL_OR < LS).
+    Konflikt zwischen Regel 39 and Token MINUS wurde durch Schieben gelöst (LOGICAL_OR < MINUS).
+    Konflikt zwischen Regel 39 and Token PLUS wurde durch Schieben gelöst (LOGICAL_OR < PLUS).
+    Konflikt zwischen Regel 39 and Token MOD wurde durch Schieben gelöst (LOGICAL_OR < MOD).
+    Konflikt zwischen Regel 39 and Token DIV wurde durch Schieben gelöst (LOGICAL_OR < DIV).
+    Konflikt zwischen Regel 39 and Token MUL wurde durch Schieben gelöst (LOGICAL_OR < MUL).
 
 
-state 84
+Zustand 84
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -2087,37 +2088,37 @@ state 84
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    NE     shift, and go to state 50
-    EQ     shift, and go to state 51
-    GT     shift, and go to state 52
-    GTEQ   shift, and go to state 53
-    LSEQ   shift, and go to state 54
-    LS     shift, and go to state 55
-    MINUS  shift, and go to state 56
-    PLUS   shift, and go to state 57
-    MOD    shift, and go to state 58
-    DIV    shift, and go to state 59
-    MUL    shift, and go to state 60
+    NE     schiebe und gehe zu Zustand 50 über
+    EQ     schiebe und gehe zu Zustand 51 über
+    GT     schiebe und gehe zu Zustand 52 über
+    GTEQ   schiebe und gehe zu Zustand 53 über
+    LSEQ   schiebe und gehe zu Zustand 54 über
+    LS     schiebe und gehe zu Zustand 55 über
+    MINUS  schiebe und gehe zu Zustand 56 über
+    PLUS   schiebe und gehe zu Zustand 57 über
+    MOD    schiebe und gehe zu Zustand 58 über
+    DIV    schiebe und gehe zu Zustand 59 über
+    MUL    schiebe und gehe zu Zustand 60 über
 
-    $default  reduce using rule 40 (expression)
+    $default  reduziere mit Regel 40 (expression)
 
-    Conflict between rule 40 and token ASSIGN resolved as reduce (ASSIGN < LOGICAL_AND).
-    Conflict between rule 40 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < LOGICAL_AND).
-    Conflict between rule 40 and token LOGICAL_AND resolved as reduce (%left LOGICAL_AND).
-    Conflict between rule 40 and token NE resolved as shift (LOGICAL_AND < NE).
-    Conflict between rule 40 and token EQ resolved as shift (LOGICAL_AND < EQ).
-    Conflict between rule 40 and token GT resolved as shift (LOGICAL_AND < GT).
-    Conflict between rule 40 and token GTEQ resolved as shift (LOGICAL_AND < GTEQ).
-    Conflict between rule 40 and token LSEQ resolved as shift (LOGICAL_AND < LSEQ).
-    Conflict between rule 40 and token LS resolved as shift (LOGICAL_AND < LS).
-    Conflict between rule 40 and token MINUS resolved as shift (LOGICAL_AND < MINUS).
-    Conflict between rule 40 and token PLUS resolved as shift (LOGICAL_AND < PLUS).
-    Conflict between rule 40 and token MOD resolved as shift (LOGICAL_AND < MOD).
-    Conflict between rule 40 and token DIV resolved as shift (LOGICAL_AND < DIV).
-    Conflict between rule 40 and token MUL resolved as shift (LOGICAL_AND < MUL).
+    Konflikt zwischen Regel 40 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < LOGICAL_AND).
+    Konflikt zwischen Regel 40 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < LOGICAL_AND).
+    Konflikt zwischen Regel 40 and Token LOGICAL_AND wurde durch Reduzierung gelöst (%left LOGICAL_AND).
+    Konflikt zwischen Regel 40 and Token NE wurde durch Schieben gelöst (LOGICAL_AND < NE).
+    Konflikt zwischen Regel 40 and Token EQ wurde durch Schieben gelöst (LOGICAL_AND < EQ).
+    Konflikt zwischen Regel 40 and Token GT wurde durch Schieben gelöst (LOGICAL_AND < GT).
+    Konflikt zwischen Regel 40 and Token GTEQ wurde durch Schieben gelöst (LOGICAL_AND < GTEQ).
+    Konflikt zwischen Regel 40 and Token LSEQ wurde durch Schieben gelöst (LOGICAL_AND < LSEQ).
+    Konflikt zwischen Regel 40 and Token LS wurde durch Schieben gelöst (LOGICAL_AND < LS).
+    Konflikt zwischen Regel 40 and Token MINUS wurde durch Schieben gelöst (LOGICAL_AND < MINUS).
+    Konflikt zwischen Regel 40 and Token PLUS wurde durch Schieben gelöst (LOGICAL_AND < PLUS).
+    Konflikt zwischen Regel 40 and Token MOD wurde durch Schieben gelöst (LOGICAL_AND < MOD).
+    Konflikt zwischen Regel 40 and Token DIV wurde durch Schieben gelöst (LOGICAL_AND < DIV).
+    Konflikt zwischen Regel 40 and Token MUL wurde durch Schieben gelöst (LOGICAL_AND < MUL).
 
 
-state 85
+Zustand 85
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -2135,35 +2136,35 @@ state 85
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    GT     shift, and go to state 52
-    GTEQ   shift, and go to state 53
-    LSEQ   shift, and go to state 54
-    LS     shift, and go to state 55
-    MINUS  shift, and go to state 56
-    PLUS   shift, and go to state 57
-    MOD    shift, and go to state 58
-    DIV    shift, and go to state 59
-    MUL    shift, and go to state 60
+    GT     schiebe und gehe zu Zustand 52 über
+    GTEQ   schiebe und gehe zu Zustand 53 über
+    LSEQ   schiebe und gehe zu Zustand 54 über
+    LS     schiebe und gehe zu Zustand 55 über
+    MINUS  schiebe und gehe zu Zustand 56 über
+    PLUS   schiebe und gehe zu Zustand 57 über
+    MOD    schiebe und gehe zu Zustand 58 über
+    DIV    schiebe und gehe zu Zustand 59 über
+    MUL    schiebe und gehe zu Zustand 60 über
 
-    $default  reduce using rule 43 (expression)
+    $default  reduziere mit Regel 43 (expression)
 
-    Conflict between rule 43 and token ASSIGN resolved as reduce (ASSIGN < NE).
-    Conflict between rule 43 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < NE).
-    Conflict between rule 43 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < NE).
-    Conflict between rule 43 and token NE resolved as reduce (%left NE).
-    Conflict between rule 43 and token EQ resolved as reduce (%left EQ).
-    Conflict between rule 43 and token GT resolved as shift (NE < GT).
-    Conflict between rule 43 and token GTEQ resolved as shift (NE < GTEQ).
-    Conflict between rule 43 and token LSEQ resolved as shift (NE < LSEQ).
-    Conflict between rule 43 and token LS resolved as shift (NE < LS).
-    Conflict between rule 43 and token MINUS resolved as shift (NE < MINUS).
-    Conflict between rule 43 and token PLUS resolved as shift (NE < PLUS).
-    Conflict between rule 43 and token MOD resolved as shift (NE < MOD).
-    Conflict between rule 43 and token DIV resolved as shift (NE < DIV).
-    Conflict between rule 43 and token MUL resolved as shift (NE < MUL).
+    Konflikt zwischen Regel 43 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < NE).
+    Konflikt zwischen Regel 43 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < NE).
+    Konflikt zwischen Regel 43 and Token LOGICAL_AND wurde durch Reduzierung gelöst (LOGICAL_AND < NE).
+    Konflikt zwischen Regel 43 and Token NE wurde durch Reduzierung gelöst (%left NE).
+    Konflikt zwischen Regel 43 and Token EQ wurde durch Reduzierung gelöst (%left EQ).
+    Konflikt zwischen Regel 43 and Token GT wurde durch Schieben gelöst (NE < GT).
+    Konflikt zwischen Regel 43 and Token GTEQ wurde durch Schieben gelöst (NE < GTEQ).
+    Konflikt zwischen Regel 43 and Token LSEQ wurde durch Schieben gelöst (NE < LSEQ).
+    Konflikt zwischen Regel 43 and Token LS wurde durch Schieben gelöst (NE < LS).
+    Konflikt zwischen Regel 43 and Token MINUS wurde durch Schieben gelöst (NE < MINUS).
+    Konflikt zwischen Regel 43 and Token PLUS wurde durch Schieben gelöst (NE < PLUS).
+    Konflikt zwischen Regel 43 and Token MOD wurde durch Schieben gelöst (NE < MOD).
+    Konflikt zwischen Regel 43 and Token DIV wurde durch Schieben gelöst (NE < DIV).
+    Konflikt zwischen Regel 43 and Token MUL wurde durch Schieben gelöst (NE < MUL).
 
 
-state 86
+Zustand 86
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -2181,35 +2182,35 @@ state 86
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    GT     shift, and go to state 52
-    GTEQ   shift, and go to state 53
-    LSEQ   shift, and go to state 54
-    LS     shift, and go to state 55
-    MINUS  shift, and go to state 56
-    PLUS   shift, and go to state 57
-    MOD    shift, and go to state 58
-    DIV    shift, and go to state 59
-    MUL    shift, and go to state 60
+    GT     schiebe und gehe zu Zustand 52 über
+    GTEQ   schiebe und gehe zu Zustand 53 über
+    LSEQ   schiebe und gehe zu Zustand 54 über
+    LS     schiebe und gehe zu Zustand 55 über
+    MINUS  schiebe und gehe zu Zustand 56 über
+    PLUS   schiebe und gehe zu Zustand 57 über
+    MOD    schiebe und gehe zu Zustand 58 über
+    DIV    schiebe und gehe zu Zustand 59 über
+    MUL    schiebe und gehe zu Zustand 60 über
 
-    $default  reduce using rule 42 (expression)
+    $default  reduziere mit Regel 42 (expression)
 
-    Conflict between rule 42 and token ASSIGN resolved as reduce (ASSIGN < EQ).
-    Conflict between rule 42 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < EQ).
-    Conflict between rule 42 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < EQ).
-    Conflict between rule 42 and token NE resolved as reduce (%left NE).
-    Conflict between rule 42 and token EQ resolved as reduce (%left EQ).
-    Conflict between rule 42 and token GT resolved as shift (EQ < GT).
-    Conflict between rule 42 and token GTEQ resolved as shift (EQ < GTEQ).
-    Conflict between rule 42 and token LSEQ resolved as shift (EQ < LSEQ).
-    Conflict between rule 42 and token LS resolved as shift (EQ < LS).
-    Conflict between rule 42 and token MINUS resolved as shift (EQ < MINUS).
-    Conflict between rule 42 and token PLUS resolved as shift (EQ < PLUS).
-    Conflict between rule 42 and token MOD resolved as shift (EQ < MOD).
-    Conflict between rule 42 and token DIV resolved as shift (EQ < DIV).
-    Conflict between rule 42 and token MUL resolved as shift (EQ < MUL).
+    Konflikt zwischen Regel 42 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < EQ).
+    Konflikt zwischen Regel 42 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < EQ).
+    Konflikt zwischen Regel 42 and Token LOGICAL_AND wurde durch Reduzierung gelöst (LOGICAL_AND < EQ).
+    Konflikt zwischen Regel 42 and Token NE wurde durch Reduzierung gelöst (%left NE).
+    Konflikt zwischen Regel 42 and Token EQ wurde durch Reduzierung gelöst (%left EQ).
+    Konflikt zwischen Regel 42 and Token GT wurde durch Schieben gelöst (EQ < GT).
+    Konflikt zwischen Regel 42 and Token GTEQ wurde durch Schieben gelöst (EQ < GTEQ).
+    Konflikt zwischen Regel 42 and Token LSEQ wurde durch Schieben gelöst (EQ < LSEQ).
+    Konflikt zwischen Regel 42 and Token LS wurde durch Schieben gelöst (EQ < LS).
+    Konflikt zwischen Regel 42 and Token MINUS wurde durch Schieben gelöst (EQ < MINUS).
+    Konflikt zwischen Regel 42 and Token PLUS wurde durch Schieben gelöst (EQ < PLUS).
+    Konflikt zwischen Regel 42 and Token MOD wurde durch Schieben gelöst (EQ < MOD).
+    Konflikt zwischen Regel 42 and Token DIV wurde durch Schieben gelöst (EQ < DIV).
+    Konflikt zwischen Regel 42 and Token MUL wurde durch Schieben gelöst (EQ < MUL).
 
 
-state 87
+Zustand 87
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -2227,31 +2228,31 @@ state 87
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    MINUS  shift, and go to state 56
-    PLUS   shift, and go to state 57
-    MOD    shift, and go to state 58
-    DIV    shift, and go to state 59
-    MUL    shift, and go to state 60
+    MINUS  schiebe und gehe zu Zustand 56 über
+    PLUS   schiebe und gehe zu Zustand 57 über
+    MOD    schiebe und gehe zu Zustand 58 über
+    DIV    schiebe und gehe zu Zustand 59 über
+    MUL    schiebe und gehe zu Zustand 60 über
 
-    $default  reduce using rule 47 (expression)
+    $default  reduziere mit Regel 47 (expression)
 
-    Conflict between rule 47 and token ASSIGN resolved as reduce (ASSIGN < GT).
-    Conflict between rule 47 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < GT).
-    Conflict between rule 47 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < GT).
-    Conflict between rule 47 and token NE resolved as reduce (NE < GT).
-    Conflict between rule 47 and token EQ resolved as reduce (EQ < GT).
-    Conflict between rule 47 and token GT resolved as reduce (%left GT).
-    Conflict between rule 47 and token GTEQ resolved as reduce (%left GTEQ).
-    Conflict between rule 47 and token LSEQ resolved as reduce (%left LSEQ).
-    Conflict between rule 47 and token LS resolved as reduce (%left LS).
-    Conflict between rule 47 and token MINUS resolved as shift (GT < MINUS).
-    Conflict between rule 47 and token PLUS resolved as shift (GT < PLUS).
-    Conflict between rule 47 and token MOD resolved as shift (GT < MOD).
-    Conflict between rule 47 and token DIV resolved as shift (GT < DIV).
-    Conflict between rule 47 and token MUL resolved as shift (GT < MUL).
+    Konflikt zwischen Regel 47 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < GT).
+    Konflikt zwischen Regel 47 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < GT).
+    Konflikt zwischen Regel 47 and Token LOGICAL_AND wurde durch Reduzierung gelöst (LOGICAL_AND < GT).
+    Konflikt zwischen Regel 47 and Token NE wurde durch Reduzierung gelöst (NE < GT).
+    Konflikt zwischen Regel 47 and Token EQ wurde durch Reduzierung gelöst (EQ < GT).
+    Konflikt zwischen Regel 47 and Token GT wurde durch Reduzierung gelöst (%left GT).
+    Konflikt zwischen Regel 47 and Token GTEQ wurde durch Reduzierung gelöst (%left GTEQ).
+    Konflikt zwischen Regel 47 and Token LSEQ wurde durch Reduzierung gelöst (%left LSEQ).
+    Konflikt zwischen Regel 47 and Token LS wurde durch Reduzierung gelöst (%left LS).
+    Konflikt zwischen Regel 47 and Token MINUS wurde durch Schieben gelöst (GT < MINUS).
+    Konflikt zwischen Regel 47 and Token PLUS wurde durch Schieben gelöst (GT < PLUS).
+    Konflikt zwischen Regel 47 and Token MOD wurde durch Schieben gelöst (GT < MOD).
+    Konflikt zwischen Regel 47 and Token DIV wurde durch Schieben gelöst (GT < DIV).
+    Konflikt zwischen Regel 47 and Token MUL wurde durch Schieben gelöst (GT < MUL).
 
 
-state 88
+Zustand 88
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -2269,31 +2270,31 @@ state 88
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    MINUS  shift, and go to state 56
-    PLUS   shift, and go to state 57
-    MOD    shift, and go to state 58
-    DIV    shift, and go to state 59
-    MUL    shift, and go to state 60
+    MINUS  schiebe und gehe zu Zustand 56 über
+    PLUS   schiebe und gehe zu Zustand 57 über
+    MOD    schiebe und gehe zu Zustand 58 über
+    DIV    schiebe und gehe zu Zustand 59 über
+    MUL    schiebe und gehe zu Zustand 60 über
 
-    $default  reduce using rule 46 (expression)
+    $default  reduziere mit Regel 46 (expression)
 
-    Conflict between rule 46 and token ASSIGN resolved as reduce (ASSIGN < GTEQ).
-    Conflict between rule 46 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < GTEQ).
-    Conflict between rule 46 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < GTEQ).
-    Conflict between rule 46 and token NE resolved as reduce (NE < GTEQ).
-    Conflict between rule 46 and token EQ resolved as reduce (EQ < GTEQ).
-    Conflict between rule 46 and token GT resolved as reduce (%left GT).
-    Conflict between rule 46 and token GTEQ resolved as reduce (%left GTEQ).
-    Conflict between rule 46 and token LSEQ resolved as reduce (%left LSEQ).
-    Conflict between rule 46 and token LS resolved as reduce (%left LS).
-    Conflict between rule 46 and token MINUS resolved as shift (GTEQ < MINUS).
-    Conflict between rule 46 and token PLUS resolved as shift (GTEQ < PLUS).
-    Conflict between rule 46 and token MOD resolved as shift (GTEQ < MOD).
-    Conflict between rule 46 and token DIV resolved as shift (GTEQ < DIV).
-    Conflict between rule 46 and token MUL resolved as shift (GTEQ < MUL).
+    Konflikt zwischen Regel 46 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < GTEQ).
+    Konflikt zwischen Regel 46 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < GTEQ).
+    Konflikt zwischen Regel 46 and Token LOGICAL_AND wurde durch Reduzierung gelöst (LOGICAL_AND < GTEQ).
+    Konflikt zwischen Regel 46 and Token NE wurde durch Reduzierung gelöst (NE < GTEQ).
+    Konflikt zwischen Regel 46 and Token EQ wurde durch Reduzierung gelöst (EQ < GTEQ).
+    Konflikt zwischen Regel 46 and Token GT wurde durch Reduzierung gelöst (%left GT).
+    Konflikt zwischen Regel 46 and Token GTEQ wurde durch Reduzierung gelöst (%left GTEQ).
+    Konflikt zwischen Regel 46 and Token LSEQ wurde durch Reduzierung gelöst (%left LSEQ).
+    Konflikt zwischen Regel 46 and Token LS wurde durch Reduzierung gelöst (%left LS).
+    Konflikt zwischen Regel 46 and Token MINUS wurde durch Schieben gelöst (GTEQ < MINUS).
+    Konflikt zwischen Regel 46 and Token PLUS wurde durch Schieben gelöst (GTEQ < PLUS).
+    Konflikt zwischen Regel 46 and Token MOD wurde durch Schieben gelöst (GTEQ < MOD).
+    Konflikt zwischen Regel 46 and Token DIV wurde durch Schieben gelöst (GTEQ < DIV).
+    Konflikt zwischen Regel 46 and Token MUL wurde durch Schieben gelöst (GTEQ < MUL).
 
 
-state 89
+Zustand 89
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -2311,31 +2312,31 @@ state 89
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    MINUS  shift, and go to state 56
-    PLUS   shift, and go to state 57
-    MOD    shift, and go to state 58
-    DIV    shift, and go to state 59
-    MUL    shift, and go to state 60
+    MINUS  schiebe und gehe zu Zustand 56 über
+    PLUS   schiebe und gehe zu Zustand 57 über
+    MOD    schiebe und gehe zu Zustand 58 über
+    DIV    schiebe und gehe zu Zustand 59 über
+    MUL    schiebe und gehe zu Zustand 60 über
 
-    $default  reduce using rule 45 (expression)
+    $default  reduziere mit Regel 45 (expression)
 
-    Conflict between rule 45 and token ASSIGN resolved as reduce (ASSIGN < LSEQ).
-    Conflict between rule 45 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < LSEQ).
-    Conflict between rule 45 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < LSEQ).
-    Conflict between rule 45 and token NE resolved as reduce (NE < LSEQ).
-    Conflict between rule 45 and token EQ resolved as reduce (EQ < LSEQ).
-    Conflict between rule 45 and token GT resolved as reduce (%left GT).
-    Conflict between rule 45 and token GTEQ resolved as reduce (%left GTEQ).
-    Conflict between rule 45 and token LSEQ resolved as reduce (%left LSEQ).
-    Conflict between rule 45 and token LS resolved as reduce (%left LS).
-    Conflict between rule 45 and token MINUS resolved as shift (LSEQ < MINUS).
-    Conflict between rule 45 and token PLUS resolved as shift (LSEQ < PLUS).
-    Conflict between rule 45 and token MOD resolved as shift (LSEQ < MOD).
-    Conflict between rule 45 and token DIV resolved as shift (LSEQ < DIV).
-    Conflict between rule 45 and token MUL resolved as shift (LSEQ < MUL).
+    Konflikt zwischen Regel 45 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < LSEQ).
+    Konflikt zwischen Regel 45 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < LSEQ).
+    Konflikt zwischen Regel 45 and Token LOGICAL_AND wurde durch Reduzierung gelöst (LOGICAL_AND < LSEQ).
+    Konflikt zwischen Regel 45 and Token NE wurde durch Reduzierung gelöst (NE < LSEQ).
+    Konflikt zwischen Regel 45 and Token EQ wurde durch Reduzierung gelöst (EQ < LSEQ).
+    Konflikt zwischen Regel 45 and Token GT wurde durch Reduzierung gelöst (%left GT).
+    Konflikt zwischen Regel 45 and Token GTEQ wurde durch Reduzierung gelöst (%left GTEQ).
+    Konflikt zwischen Regel 45 and Token LSEQ wurde durch Reduzierung gelöst (%left LSEQ).
+    Konflikt zwischen Regel 45 and Token LS wurde durch Reduzierung gelöst (%left LS).
+    Konflikt zwischen Regel 45 and Token MINUS wurde durch Schieben gelöst (LSEQ < MINUS).
+    Konflikt zwischen Regel 45 and Token PLUS wurde durch Schieben gelöst (LSEQ < PLUS).
+    Konflikt zwischen Regel 45 and Token MOD wurde durch Schieben gelöst (LSEQ < MOD).
+    Konflikt zwischen Regel 45 and Token DIV wurde durch Schieben gelöst (LSEQ < DIV).
+    Konflikt zwischen Regel 45 and Token MUL wurde durch Schieben gelöst (LSEQ < MUL).
 
 
-state 90
+Zustand 90
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -2353,31 +2354,31 @@ state 90
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    MINUS  shift, and go to state 56
-    PLUS   shift, and go to state 57
-    MOD    shift, and go to state 58
-    DIV    shift, and go to state 59
-    MUL    shift, and go to state 60
+    MINUS  schiebe und gehe zu Zustand 56 über
+    PLUS   schiebe und gehe zu Zustand 57 über
+    MOD    schiebe und gehe zu Zustand 58 über
+    DIV    schiebe und gehe zu Zustand 59 über
+    MUL    schiebe und gehe zu Zustand 60 über
 
-    $default  reduce using rule 44 (expression)
+    $default  reduziere mit Regel 44 (expression)
 
-    Conflict between rule 44 and token ASSIGN resolved as reduce (ASSIGN < LS).
-    Conflict between rule 44 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < LS).
-    Conflict between rule 44 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < LS).
-    Conflict between rule 44 and token NE resolved as reduce (NE < LS).
-    Conflict between rule 44 and token EQ resolved as reduce (EQ < LS).
-    Conflict between rule 44 and token GT resolved as reduce (%left GT).
-    Conflict between rule 44 and token GTEQ resolved as reduce (%left GTEQ).
-    Conflict between rule 44 and token LSEQ resolved as reduce (%left LSEQ).
-    Conflict between rule 44 and token LS resolved as reduce (%left LS).
-    Conflict between rule 44 and token MINUS resolved as shift (LS < MINUS).
-    Conflict between rule 44 and token PLUS resolved as shift (LS < PLUS).
-    Conflict between rule 44 and token MOD resolved as shift (LS < MOD).
-    Conflict between rule 44 and token DIV resolved as shift (LS < DIV).
-    Conflict between rule 44 and token MUL resolved as shift (LS < MUL).
+    Konflikt zwischen Regel 44 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < LS).
+    Konflikt zwischen Regel 44 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < LS).
+    Konflikt zwischen Regel 44 and Token LOGICAL_AND wurde durch Reduzierung gelöst (LOGICAL_AND < LS).
+    Konflikt zwischen Regel 44 and Token NE wurde durch Reduzierung gelöst (NE < LS).
+    Konflikt zwischen Regel 44 and Token EQ wurde durch Reduzierung gelöst (EQ < LS).
+    Konflikt zwischen Regel 44 and Token GT wurde durch Reduzierung gelöst (%left GT).
+    Konflikt zwischen Regel 44 and Token GTEQ wurde durch Reduzierung gelöst (%left GTEQ).
+    Konflikt zwischen Regel 44 and Token LSEQ wurde durch Reduzierung gelöst (%left LSEQ).
+    Konflikt zwischen Regel 44 and Token LS wurde durch Reduzierung gelöst (%left LS).
+    Konflikt zwischen Regel 44 and Token MINUS wurde durch Schieben gelöst (LS < MINUS).
+    Konflikt zwischen Regel 44 and Token PLUS wurde durch Schieben gelöst (LS < PLUS).
+    Konflikt zwischen Regel 44 and Token MOD wurde durch Schieben gelöst (LS < MOD).
+    Konflikt zwischen Regel 44 and Token DIV wurde durch Schieben gelöst (LS < DIV).
+    Konflikt zwischen Regel 44 and Token MUL wurde durch Schieben gelöst (LS < MUL).
 
 
-state 91
+Zustand 91
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -2395,29 +2396,29 @@ state 91
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    MOD  shift, and go to state 58
-    DIV  shift, and go to state 59
-    MUL  shift, and go to state 60
+    MOD  schiebe und gehe zu Zustand 58 über
+    DIV  schiebe und gehe zu Zustand 59 über
+    MUL  schiebe und gehe zu Zustand 60 über
 
-    $default  reduce using rule 49 (expression)
+    $default  reduziere mit Regel 49 (expression)
 
-    Conflict between rule 49 and token ASSIGN resolved as reduce (ASSIGN < MINUS).
-    Conflict between rule 49 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < MINUS).
-    Conflict between rule 49 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < MINUS).
-    Conflict between rule 49 and token NE resolved as reduce (NE < MINUS).
-    Conflict between rule 49 and token EQ resolved as reduce (EQ < MINUS).
-    Conflict between rule 49 and token GT resolved as reduce (GT < MINUS).
-    Conflict between rule 49 and token GTEQ resolved as reduce (GTEQ < MINUS).
-    Conflict between rule 49 and token LSEQ resolved as reduce (LSEQ < MINUS).
-    Conflict between rule 49 and token LS resolved as reduce (LS < MINUS).
-    Conflict between rule 49 and token MINUS resolved as reduce (%left MINUS).
-    Conflict between rule 49 and token PLUS resolved as reduce (%left PLUS).
-    Conflict between rule 49 and token MOD resolved as shift (MINUS < MOD).
-    Conflict between rule 49 and token DIV resolved as shift (MINUS < DIV).
-    Conflict between rule 49 and token MUL resolved as shift (MINUS < MUL).
+    Konflikt zwischen Regel 49 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < MINUS).
+    Konflikt zwischen Regel 49 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < MINUS).
+    Konflikt zwischen Regel 49 and Token LOGICAL_AND wurde durch Reduzierung gelöst (LOGICAL_AND < MINUS).
+    Konflikt zwischen Regel 49 and Token NE wurde durch Reduzierung gelöst (NE < MINUS).
+    Konflikt zwischen Regel 49 and Token EQ wurde durch Reduzierung gelöst (EQ < MINUS).
+    Konflikt zwischen Regel 49 and Token GT wurde durch Reduzierung gelöst (GT < MINUS).
+    Konflikt zwischen Regel 49 and Token GTEQ wurde durch Reduzierung gelöst (GTEQ < MINUS).
+    Konflikt zwischen Regel 49 and Token LSEQ wurde durch Reduzierung gelöst (LSEQ < MINUS).
+    Konflikt zwischen Regel 49 and Token LS wurde durch Reduzierung gelöst (LS < MINUS).
+    Konflikt zwischen Regel 49 and Token MINUS wurde durch Reduzierung gelöst (%left MINUS).
+    Konflikt zwischen Regel 49 and Token PLUS wurde durch Reduzierung gelöst (%left PLUS).
+    Konflikt zwischen Regel 49 and Token MOD wurde durch Schieben gelöst (MINUS < MOD).
+    Konflikt zwischen Regel 49 and Token DIV wurde durch Schieben gelöst (MINUS < DIV).
+    Konflikt zwischen Regel 49 and Token MUL wurde durch Schieben gelöst (MINUS < MUL).
 
 
-state 92
+Zustand 92
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -2435,29 +2436,29 @@ state 92
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    MOD  shift, and go to state 58
-    DIV  shift, and go to state 59
-    MUL  shift, and go to state 60
+    MOD  schiebe und gehe zu Zustand 58 über
+    DIV  schiebe und gehe zu Zustand 59 über
+    MUL  schiebe und gehe zu Zustand 60 über
 
-    $default  reduce using rule 48 (expression)
+    $default  reduziere mit Regel 48 (expression)
 
-    Conflict between rule 48 and token ASSIGN resolved as reduce (ASSIGN < PLUS).
-    Conflict between rule 48 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < PLUS).
-    Conflict between rule 48 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < PLUS).
-    Conflict between rule 48 and token NE resolved as reduce (NE < PLUS).
-    Conflict between rule 48 and token EQ resolved as reduce (EQ < PLUS).
-    Conflict between rule 48 and token GT resolved as reduce (GT < PLUS).
-    Conflict between rule 48 and token GTEQ resolved as reduce (GTEQ < PLUS).
-    Conflict between rule 48 and token LSEQ resolved as reduce (LSEQ < PLUS).
-    Conflict between rule 48 and token LS resolved as reduce (LS < PLUS).
-    Conflict between rule 48 and token MINUS resolved as reduce (%left MINUS).
-    Conflict between rule 48 and token PLUS resolved as reduce (%left PLUS).
-    Conflict between rule 48 and token MOD resolved as shift (PLUS < MOD).
-    Conflict between rule 48 and token DIV resolved as shift (PLUS < DIV).
-    Conflict between rule 48 and token MUL resolved as shift (PLUS < MUL).
+    Konflikt zwischen Regel 48 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < PLUS).
+    Konflikt zwischen Regel 48 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < PLUS).
+    Konflikt zwischen Regel 48 and Token LOGICAL_AND wurde durch Reduzierung gelöst (LOGICAL_AND < PLUS).
+    Konflikt zwischen Regel 48 and Token NE wurde durch Reduzierung gelöst (NE < PLUS).
+    Konflikt zwischen Regel 48 and Token EQ wurde durch Reduzierung gelöst (EQ < PLUS).
+    Konflikt zwischen Regel 48 and Token GT wurde durch Reduzierung gelöst (GT < PLUS).
+    Konflikt zwischen Regel 48 and Token GTEQ wurde durch Reduzierung gelöst (GTEQ < PLUS).
+    Konflikt zwischen Regel 48 and Token LSEQ wurde durch Reduzierung gelöst (LSEQ < PLUS).
+    Konflikt zwischen Regel 48 and Token LS wurde durch Reduzierung gelöst (LS < PLUS).
+    Konflikt zwischen Regel 48 and Token MINUS wurde durch Reduzierung gelöst (%left MINUS).
+    Konflikt zwischen Regel 48 and Token PLUS wurde durch Reduzierung gelöst (%left PLUS).
+    Konflikt zwischen Regel 48 and Token MOD wurde durch Schieben gelöst (PLUS < MOD).
+    Konflikt zwischen Regel 48 and Token DIV wurde durch Schieben gelöst (PLUS < DIV).
+    Konflikt zwischen Regel 48 and Token MUL wurde durch Schieben gelöst (PLUS < MUL).
 
 
-state 93
+Zustand 93
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -2475,25 +2476,25 @@ state 93
    52           | expression . MOD expression
    52           | expression MOD expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, NE, EQ, GT, GTEQ, LSEQ, LS, MINUS, PLUS, MOD, DIV, MUL, PARA_CLOSE, BRACKET_CLOSE]
 
-    $default  reduce using rule 52 (expression)
+    $default  reduziere mit Regel 52 (expression)
 
-    Conflict between rule 52 and token ASSIGN resolved as reduce (ASSIGN < MOD).
-    Conflict between rule 52 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < MOD).
-    Conflict between rule 52 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < MOD).
-    Conflict between rule 52 and token NE resolved as reduce (NE < MOD).
-    Conflict between rule 52 and token EQ resolved as reduce (EQ < MOD).
-    Conflict between rule 52 and token GT resolved as reduce (GT < MOD).
-    Conflict between rule 52 and token GTEQ resolved as reduce (GTEQ < MOD).
-    Conflict between rule 52 and token LSEQ resolved as reduce (LSEQ < MOD).
-    Conflict between rule 52 and token LS resolved as reduce (LS < MOD).
-    Conflict between rule 52 and token MINUS resolved as reduce (MINUS < MOD).
-    Conflict between rule 52 and token PLUS resolved as reduce (PLUS < MOD).
-    Conflict between rule 52 and token MOD resolved as reduce (%left MOD).
-    Conflict between rule 52 and token DIV resolved as reduce (%left DIV).
-    Conflict between rule 52 and token MUL resolved as reduce (%left MUL).
+    Konflikt zwischen Regel 52 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < MOD).
+    Konflikt zwischen Regel 52 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < MOD).
+    Konflikt zwischen Regel 52 and Token LOGICAL_AND wurde durch Reduzierung gelöst (LOGICAL_AND < MOD).
+    Konflikt zwischen Regel 52 and Token NE wurde durch Reduzierung gelöst (NE < MOD).
+    Konflikt zwischen Regel 52 and Token EQ wurde durch Reduzierung gelöst (EQ < MOD).
+    Konflikt zwischen Regel 52 and Token GT wurde durch Reduzierung gelöst (GT < MOD).
+    Konflikt zwischen Regel 52 and Token GTEQ wurde durch Reduzierung gelöst (GTEQ < MOD).
+    Konflikt zwischen Regel 52 and Token LSEQ wurde durch Reduzierung gelöst (LSEQ < MOD).
+    Konflikt zwischen Regel 52 and Token LS wurde durch Reduzierung gelöst (LS < MOD).
+    Konflikt zwischen Regel 52 and Token MINUS wurde durch Reduzierung gelöst (MINUS < MOD).
+    Konflikt zwischen Regel 52 and Token PLUS wurde durch Reduzierung gelöst (PLUS < MOD).
+    Konflikt zwischen Regel 52 and Token MOD wurde durch Reduzierung gelöst (%left MOD).
+    Konflikt zwischen Regel 52 and Token DIV wurde durch Reduzierung gelöst (%left DIV).
+    Konflikt zwischen Regel 52 and Token MUL wurde durch Reduzierung gelöst (%left MUL).
 
 
-state 94
+Zustand 94
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -2511,25 +2512,25 @@ state 94
    51           | expression DIV expression .  [COMMA, SEMICOLON, ASSIGN, LOGICAL_OR, LOGICAL_AND, NE, EQ, GT, GTEQ, LSEQ, LS, MINUS, PLUS, MOD, DIV, MUL, PARA_CLOSE, BRACKET_CLOSE]
    52           | expression . MOD expression
 
-    $default  reduce using rule 51 (expression)
+    $default  reduziere mit Regel 51 (expression)
 
-    Conflict between rule 51 and token ASSIGN resolved as reduce (ASSIGN < DIV).
-    Conflict between rule 51 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < DIV).
-    Conflict between rule 51 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < DIV).
-    Conflict between rule 51 and token NE resolved as reduce (NE < DIV).
-    Conflict between rule 51 and token EQ resolved as reduce (EQ < DIV).
-    Conflict between rule 51 and token GT resolved as reduce (GT < DIV).
-    Conflict between rule 51 and token GTEQ resolved as reduce (GTEQ < DIV).
-    Conflict between rule 51 and token LSEQ resolved as reduce (LSEQ < DIV).
-    Conflict between rule 51 and token LS resolved as reduce (LS < DIV).
-    Conflict between rule 51 and token MINUS resolved as reduce (MINUS < DIV).
-    Conflict between rule 51 and token PLUS resolved as reduce (PLUS < DIV).
-    Conflict between rule 51 and token MOD resolved as reduce (%left MOD).
-    Conflict between rule 51 and token DIV resolved as reduce (%left DIV).
-    Conflict between rule 51 and token MUL resolved as reduce (%left MUL).
+    Konflikt zwischen Regel 51 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < DIV).
+    Konflikt zwischen Regel 51 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < DIV).
+    Konflikt zwischen Regel 51 and Token LOGICAL_AND wurde durch Reduzierung gelöst (LOGICAL_AND < DIV).
+    Konflikt zwischen Regel 51 and Token NE wurde durch Reduzierung gelöst (NE < DIV).
+    Konflikt zwischen Regel 51 and Token EQ wurde durch Reduzierung gelöst (EQ < DIV).
+    Konflikt zwischen Regel 51 and Token GT wurde durch Reduzierung gelöst (GT < DIV).
+    Konflikt zwischen Regel 51 and Token GTEQ wurde durch Reduzierung gelöst (GTEQ < DIV).
+    Konflikt zwischen Regel 51 and Token LSEQ wurde durch Reduzierung gelöst (LSEQ < DIV).
+    Konflikt zwischen Regel 51 and Token LS wurde durch Reduzierung gelöst (LS < DIV).
+    Konflikt zwischen Regel 51 and Token MINUS wurde durch Reduzierung gelöst (MINUS < DIV).
+    Konflikt zwischen Regel 51 and Token PLUS wurde durch Reduzierung gelöst (PLUS < DIV).
+    Konflikt zwischen Regel 51 and Token MOD wurde durch Reduzierung gelöst (%left MOD).
+    Konflikt zwischen Regel 51 and Token DIV wurde durch Reduzierung gelöst (%left DIV).
+    Konflikt zwischen Regel 51 and Token MUL wurde durch Reduzierung gelöst (%left MUL).
 
 
-state 95
+Zustand 95
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -2547,25 +2548,25 @@ state 95
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    $default  reduce using rule 50 (expression)
+    $default  reduziere mit Regel 50 (expression)
 
-    Conflict between rule 50 and token ASSIGN resolved as reduce (ASSIGN < MUL).
-    Conflict between rule 50 and token LOGICAL_OR resolved as reduce (LOGICAL_OR < MUL).
-    Conflict between rule 50 and token LOGICAL_AND resolved as reduce (LOGICAL_AND < MUL).
-    Conflict between rule 50 and token NE resolved as reduce (NE < MUL).
-    Conflict between rule 50 and token EQ resolved as reduce (EQ < MUL).
-    Conflict between rule 50 and token GT resolved as reduce (GT < MUL).
-    Conflict between rule 50 and token GTEQ resolved as reduce (GTEQ < MUL).
-    Conflict between rule 50 and token LSEQ resolved as reduce (LSEQ < MUL).
-    Conflict between rule 50 and token LS resolved as reduce (LS < MUL).
-    Conflict between rule 50 and token MINUS resolved as reduce (MINUS < MUL).
-    Conflict between rule 50 and token PLUS resolved as reduce (PLUS < MUL).
-    Conflict between rule 50 and token MOD resolved as reduce (%left MOD).
-    Conflict between rule 50 and token DIV resolved as reduce (%left DIV).
-    Conflict between rule 50 and token MUL resolved as reduce (%left MUL).
+    Konflikt zwischen Regel 50 and Token ASSIGN wurde durch Reduzierung gelöst (ASSIGN < MUL).
+    Konflikt zwischen Regel 50 and Token LOGICAL_OR wurde durch Reduzierung gelöst (LOGICAL_OR < MUL).
+    Konflikt zwischen Regel 50 and Token LOGICAL_AND wurde durch Reduzierung gelöst (LOGICAL_AND < MUL).
+    Konflikt zwischen Regel 50 and Token NE wurde durch Reduzierung gelöst (NE < MUL).
+    Konflikt zwischen Regel 50 and Token EQ wurde durch Reduzierung gelöst (EQ < MUL).
+    Konflikt zwischen Regel 50 and Token GT wurde durch Reduzierung gelöst (GT < MUL).
+    Konflikt zwischen Regel 50 and Token GTEQ wurde durch Reduzierung gelöst (GTEQ < MUL).
+    Konflikt zwischen Regel 50 and Token LSEQ wurde durch Reduzierung gelöst (LSEQ < MUL).
+    Konflikt zwischen Regel 50 and Token LS wurde durch Reduzierung gelöst (LS < MUL).
+    Konflikt zwischen Regel 50 and Token MINUS wurde durch Reduzierung gelöst (MINUS < MUL).
+    Konflikt zwischen Regel 50 and Token PLUS wurde durch Reduzierung gelöst (PLUS < MUL).
+    Konflikt zwischen Regel 50 and Token MOD wurde durch Reduzierung gelöst (%left MOD).
+    Konflikt zwischen Regel 50 and Token DIV wurde durch Reduzierung gelöst (%left DIV).
+    Konflikt zwischen Regel 50 and Token MUL wurde durch Reduzierung gelöst (%left MUL).
 
 
-state 96
+Zustand 96
 
    38 expression: expression . ASSIGN expression
    39           | expression . LOGICAL_OR expression
@@ -2583,32 +2584,32 @@ state 96
    52           | expression . MOD expression
    62 function_call_parameters: function_call_parameters COMMA expression .  [COMMA, PARA_CLOSE]
 
-    ASSIGN       shift, and go to state 47
-    LOGICAL_OR   shift, and go to state 48
-    LOGICAL_AND  shift, and go to state 49
-    NE           shift, and go to state 50
-    EQ           shift, and go to state 51
-    GT           shift, and go to state 52
-    GTEQ         shift, and go to state 53
-    LSEQ         shift, and go to state 54
-    LS           shift, and go to state 55
-    MINUS        shift, and go to state 56
-    PLUS         shift, and go to state 57
-    MOD          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MUL          shift, and go to state 60
+    ASSIGN       schiebe und gehe zu Zustand 47 über
+    LOGICAL_OR   schiebe und gehe zu Zustand 48 über
+    LOGICAL_AND  schiebe und gehe zu Zustand 49 über
+    NE           schiebe und gehe zu Zustand 50 über
+    EQ           schiebe und gehe zu Zustand 51 über
+    GT           schiebe und gehe zu Zustand 52 über
+    GTEQ         schiebe und gehe zu Zustand 53 über
+    LSEQ         schiebe und gehe zu Zustand 54 über
+    LS           schiebe und gehe zu Zustand 55 über
+    MINUS        schiebe und gehe zu Zustand 56 über
+    PLUS         schiebe und gehe zu Zustand 57 über
+    MOD          schiebe und gehe zu Zustand 58 über
+    DIV          schiebe und gehe zu Zustand 59 über
+    MUL          schiebe und gehe zu Zustand 60 über
 
-    $default  reduce using rule 62 (function_call_parameters)
+    $default  reduziere mit Regel 62 (function_call_parameters)
 
 
-state 97
+Zustand 97
 
    37 stmt_loop: DO stmt . WHILE PARA_OPEN expression PARA_CLOSE SEMICOLON
 
-    WHILE  shift, and go to state 106
+    WHILE  schiebe und gehe zu Zustand 106 über
 
 
-state 98
+Zustand 98
 
    36 stmt_loop: WHILE PARA_OPEN . expression PARA_CLOSE stmt
    38 expression: . expression ASSIGN expression
@@ -2638,19 +2639,19 @@ state 98
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 107
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 107 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 99
+Zustand 99
 
    34 stmt_conditional: IF PARA_OPEN . expression PARA_CLOSE stmt
    35                 | IF PARA_OPEN . expression PARA_CLOSE stmt ELSE stmt
@@ -2681,26 +2682,26 @@ state 99
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 108
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 108 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 100
+Zustand 100
 
    31 stmt: RETURN SEMICOLON .
 
-    $default  reduce using rule 31 (stmt)
+    $default  reduziere mit Regel 31 (stmt)
 
 
-state 101
+Zustand 101
 
    30 stmt: RETURN expression . SEMICOLON
    38 expression: expression . ASSIGN expression
@@ -2718,24 +2719,24 @@ state 101
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    SEMICOLON    shift, and go to state 109
-    ASSIGN       shift, and go to state 47
-    LOGICAL_OR   shift, and go to state 48
-    LOGICAL_AND  shift, and go to state 49
-    NE           shift, and go to state 50
-    EQ           shift, and go to state 51
-    GT           shift, and go to state 52
-    GTEQ         shift, and go to state 53
-    LSEQ         shift, and go to state 54
-    LS           shift, and go to state 55
-    MINUS        shift, and go to state 56
-    PLUS         shift, and go to state 57
-    MOD          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MUL          shift, and go to state 60
+    SEMICOLON    schiebe und gehe zu Zustand 109 über
+    ASSIGN       schiebe und gehe zu Zustand 47 über
+    LOGICAL_OR   schiebe und gehe zu Zustand 48 über
+    LOGICAL_AND  schiebe und gehe zu Zustand 49 über
+    NE           schiebe und gehe zu Zustand 50 über
+    EQ           schiebe und gehe zu Zustand 51 über
+    GT           schiebe und gehe zu Zustand 52 über
+    GTEQ         schiebe und gehe zu Zustand 53 über
+    LSEQ         schiebe und gehe zu Zustand 54 über
+    LS           schiebe und gehe zu Zustand 55 über
+    MINUS        schiebe und gehe zu Zustand 56 über
+    PLUS         schiebe und gehe zu Zustand 57 über
+    MOD          schiebe und gehe zu Zustand 58 über
+    DIV          schiebe und gehe zu Zustand 59 über
+    MUL          schiebe und gehe zu Zustand 60 über
 
 
-state 102
+Zustand 102
 
     7 type: . INT
     8     | . VOID
@@ -2783,62 +2784,62 @@ state 102
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    DO           shift, and go to state 64
-    WHILE        shift, and go to state 65
-    IF           shift, and go to state 66
-    INT          shift, and go to state 1
-    VOID         shift, and go to state 2
-    RETURN       shift, and go to state 67
-    SEMICOLON    shift, and go to state 68
-    BRACE_OPEN   shift, and go to state 69
-    BRACE_CLOSE  shift, and go to state 110
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    DO           schiebe und gehe zu Zustand 64 über
+    WHILE        schiebe und gehe zu Zustand 65 über
+    IF           schiebe und gehe zu Zustand 66 über
+    INT          schiebe und gehe zu Zustand 1 über
+    VOID         schiebe und gehe zu Zustand 2 über
+    RETURN       schiebe und gehe zu Zustand 67 über
+    SEMICOLON    schiebe und gehe zu Zustand 68 über
+    BRACE_OPEN   schiebe und gehe zu Zustand 69 über
+    BRACE_CLOSE  schiebe und gehe zu Zustand 110 über
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    type                      go to state 71
-    declaration               go to state 72
-    stmt                      go to state 73
-    stmt_block                go to state 74
-    stmt_conditional          go to state 75
-    stmt_loop                 go to state 76
-    expression                go to state 77
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    type                      gehe zu Zustand 71 über
+    declaration               gehe zu Zustand 72 über
+    stmt                      gehe zu Zustand 73 über
+    stmt_block                gehe zu Zustand 74 über
+    stmt_conditional          gehe zu Zustand 75 über
+    stmt_loop                 gehe zu Zustand 76 über
+    expression                gehe zu Zustand 77 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 103
+Zustand 103
 
    26 stmt: declaration SEMICOLON .
 
-    $default  reduce using rule 26 (stmt)
+    $default  reduziere mit Regel 26 (stmt)
 
 
-state 104
+Zustand 104
 
    27 stmt: expression SEMICOLON .
 
-    $default  reduce using rule 27 (stmt)
+    $default  reduziere mit Regel 27 (stmt)
 
 
-state 105
+Zustand 105
 
    54 expression: ID BRACKET_OPEN primary BRACKET_CLOSE .
 
-    $default  reduce using rule 54 (expression)
+    $default  reduziere mit Regel 54 (expression)
 
 
-state 106
+Zustand 106
 
    37 stmt_loop: DO stmt WHILE . PARA_OPEN expression PARA_CLOSE SEMICOLON
 
-    PARA_OPEN  shift, and go to state 111
+    PARA_OPEN  schiebe und gehe zu Zustand 111 über
 
 
-state 107
+Zustand 107
 
    36 stmt_loop: WHILE PARA_OPEN expression . PARA_CLOSE stmt
    38 expression: expression . ASSIGN expression
@@ -2856,24 +2857,24 @@ state 107
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    ASSIGN       shift, and go to state 47
-    LOGICAL_OR   shift, and go to state 48
-    LOGICAL_AND  shift, and go to state 49
-    NE           shift, and go to state 50
-    EQ           shift, and go to state 51
-    GT           shift, and go to state 52
-    GTEQ         shift, and go to state 53
-    LSEQ         shift, and go to state 54
-    LS           shift, and go to state 55
-    MINUS        shift, and go to state 56
-    PLUS         shift, and go to state 57
-    MOD          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MUL          shift, and go to state 60
-    PARA_CLOSE   shift, and go to state 112
+    ASSIGN       schiebe und gehe zu Zustand 47 über
+    LOGICAL_OR   schiebe und gehe zu Zustand 48 über
+    LOGICAL_AND  schiebe und gehe zu Zustand 49 über
+    NE           schiebe und gehe zu Zustand 50 über
+    EQ           schiebe und gehe zu Zustand 51 über
+    GT           schiebe und gehe zu Zustand 52 über
+    GTEQ         schiebe und gehe zu Zustand 53 über
+    LSEQ         schiebe und gehe zu Zustand 54 über
+    LS           schiebe und gehe zu Zustand 55 über
+    MINUS        schiebe und gehe zu Zustand 56 über
+    PLUS         schiebe und gehe zu Zustand 57 über
+    MOD          schiebe und gehe zu Zustand 58 über
+    DIV          schiebe und gehe zu Zustand 59 über
+    MUL          schiebe und gehe zu Zustand 60 über
+    PARA_CLOSE   schiebe und gehe zu Zustand 112 über
 
 
-state 108
+Zustand 108
 
    34 stmt_conditional: IF PARA_OPEN expression . PARA_CLOSE stmt
    35                 | IF PARA_OPEN expression . PARA_CLOSE stmt ELSE stmt
@@ -2892,38 +2893,38 @@ state 108
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    ASSIGN       shift, and go to state 47
-    LOGICAL_OR   shift, and go to state 48
-    LOGICAL_AND  shift, and go to state 49
-    NE           shift, and go to state 50
-    EQ           shift, and go to state 51
-    GT           shift, and go to state 52
-    GTEQ         shift, and go to state 53
-    LSEQ         shift, and go to state 54
-    LS           shift, and go to state 55
-    MINUS        shift, and go to state 56
-    PLUS         shift, and go to state 57
-    MOD          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MUL          shift, and go to state 60
-    PARA_CLOSE   shift, and go to state 113
+    ASSIGN       schiebe und gehe zu Zustand 47 über
+    LOGICAL_OR   schiebe und gehe zu Zustand 48 über
+    LOGICAL_AND  schiebe und gehe zu Zustand 49 über
+    NE           schiebe und gehe zu Zustand 50 über
+    EQ           schiebe und gehe zu Zustand 51 über
+    GT           schiebe und gehe zu Zustand 52 über
+    GTEQ         schiebe und gehe zu Zustand 53 über
+    LSEQ         schiebe und gehe zu Zustand 54 über
+    LS           schiebe und gehe zu Zustand 55 über
+    MINUS        schiebe und gehe zu Zustand 56 über
+    PLUS         schiebe und gehe zu Zustand 57 über
+    MOD          schiebe und gehe zu Zustand 58 über
+    DIV          schiebe und gehe zu Zustand 59 über
+    MUL          schiebe und gehe zu Zustand 60 über
+    PARA_CLOSE   schiebe und gehe zu Zustand 113 über
 
 
-state 109
+Zustand 109
 
    30 stmt: RETURN expression SEMICOLON .
 
-    $default  reduce using rule 30 (stmt)
+    $default  reduziere mit Regel 30 (stmt)
 
 
-state 110
+Zustand 110
 
    33 stmt_block: BRACE_OPEN stmt_list BRACE_CLOSE .
 
-    $default  reduce using rule 33 (stmt_block)
+    $default  reduziere mit Regel 33 (stmt_block)
 
 
-state 111
+Zustand 111
 
    37 stmt_loop: DO stmt WHILE PARA_OPEN . expression PARA_CLOSE SEMICOLON
    38 expression: . expression ASSIGN expression
@@ -2953,19 +2954,19 @@ state 111
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    expression                go to state 114
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    expression                gehe zu Zustand 114 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 112
+Zustand 112
 
     7 type: . INT
     8     | . VOID
@@ -3012,33 +3013,33 @@ state 112
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    DO           shift, and go to state 64
-    WHILE        shift, and go to state 65
-    IF           shift, and go to state 66
-    INT          shift, and go to state 1
-    VOID         shift, and go to state 2
-    RETURN       shift, and go to state 67
-    SEMICOLON    shift, and go to state 68
-    BRACE_OPEN   shift, and go to state 69
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    DO           schiebe und gehe zu Zustand 64 über
+    WHILE        schiebe und gehe zu Zustand 65 über
+    IF           schiebe und gehe zu Zustand 66 über
+    INT          schiebe und gehe zu Zustand 1 über
+    VOID         schiebe und gehe zu Zustand 2 über
+    RETURN       schiebe und gehe zu Zustand 67 über
+    SEMICOLON    schiebe und gehe zu Zustand 68 über
+    BRACE_OPEN   schiebe und gehe zu Zustand 69 über
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    type                      go to state 71
-    declaration               go to state 72
-    stmt                      go to state 115
-    stmt_block                go to state 74
-    stmt_conditional          go to state 75
-    stmt_loop                 go to state 76
-    expression                go to state 77
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    type                      gehe zu Zustand 71 über
+    declaration               gehe zu Zustand 72 über
+    stmt                      gehe zu Zustand 115 über
+    stmt_block                gehe zu Zustand 74 über
+    stmt_conditional          gehe zu Zustand 75 über
+    stmt_loop                 gehe zu Zustand 76 über
+    expression                gehe zu Zustand 77 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 113
+Zustand 113
 
     7 type: . INT
     8     | . VOID
@@ -3086,33 +3087,33 @@ state 113
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    DO           shift, and go to state 64
-    WHILE        shift, and go to state 65
-    IF           shift, and go to state 66
-    INT          shift, and go to state 1
-    VOID         shift, and go to state 2
-    RETURN       shift, and go to state 67
-    SEMICOLON    shift, and go to state 68
-    BRACE_OPEN   shift, and go to state 69
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    DO           schiebe und gehe zu Zustand 64 über
+    WHILE        schiebe und gehe zu Zustand 65 über
+    IF           schiebe und gehe zu Zustand 66 über
+    INT          schiebe und gehe zu Zustand 1 über
+    VOID         schiebe und gehe zu Zustand 2 über
+    RETURN       schiebe und gehe zu Zustand 67 über
+    SEMICOLON    schiebe und gehe zu Zustand 68 über
+    BRACE_OPEN   schiebe und gehe zu Zustand 69 über
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    type                      go to state 71
-    declaration               go to state 72
-    stmt                      go to state 116
-    stmt_block                go to state 74
-    stmt_conditional          go to state 75
-    stmt_loop                 go to state 76
-    expression                go to state 77
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    type                      gehe zu Zustand 71 über
+    declaration               gehe zu Zustand 72 über
+    stmt                      gehe zu Zustand 116 über
+    stmt_block                gehe zu Zustand 74 über
+    stmt_conditional          gehe zu Zustand 75 über
+    stmt_loop                 gehe zu Zustand 76 über
+    expression                gehe zu Zustand 77 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 114
+Zustand 114
 
    37 stmt_loop: DO stmt WHILE PARA_OPEN expression . PARA_CLOSE SEMICOLON
    38 expression: expression . ASSIGN expression
@@ -3130,49 +3131,49 @@ state 114
    51           | expression . DIV expression
    52           | expression . MOD expression
 
-    ASSIGN       shift, and go to state 47
-    LOGICAL_OR   shift, and go to state 48
-    LOGICAL_AND  shift, and go to state 49
-    NE           shift, and go to state 50
-    EQ           shift, and go to state 51
-    GT           shift, and go to state 52
-    GTEQ         shift, and go to state 53
-    LSEQ         shift, and go to state 54
-    LS           shift, and go to state 55
-    MINUS        shift, and go to state 56
-    PLUS         shift, and go to state 57
-    MOD          shift, and go to state 58
-    DIV          shift, and go to state 59
-    MUL          shift, and go to state 60
-    PARA_CLOSE   shift, and go to state 117
+    ASSIGN       schiebe und gehe zu Zustand 47 über
+    LOGICAL_OR   schiebe und gehe zu Zustand 48 über
+    LOGICAL_AND  schiebe und gehe zu Zustand 49 über
+    NE           schiebe und gehe zu Zustand 50 über
+    EQ           schiebe und gehe zu Zustand 51 über
+    GT           schiebe und gehe zu Zustand 52 über
+    GTEQ         schiebe und gehe zu Zustand 53 über
+    LSEQ         schiebe und gehe zu Zustand 54 über
+    LS           schiebe und gehe zu Zustand 55 über
+    MINUS        schiebe und gehe zu Zustand 56 über
+    PLUS         schiebe und gehe zu Zustand 57 über
+    MOD          schiebe und gehe zu Zustand 58 über
+    DIV          schiebe und gehe zu Zustand 59 über
+    MUL          schiebe und gehe zu Zustand 60 über
+    PARA_CLOSE   schiebe und gehe zu Zustand 117 über
 
 
-state 115
+Zustand 115
 
    36 stmt_loop: WHILE PARA_OPEN expression PARA_CLOSE stmt .
 
-    $default  reduce using rule 36 (stmt_loop)
+    $default  reduziere mit Regel 36 (stmt_loop)
 
 
-state 116
+Zustand 116
 
    34 stmt_conditional: IF PARA_OPEN expression PARA_CLOSE stmt .  [DO, WHILE, IF, ELSE, INT, VOID, RETURN, SEMICOLON, BRACE_OPEN, BRACE_CLOSE, ID, NUM, MINUS, LOGICAL_NOT, PARA_OPEN]
    35                 | IF PARA_OPEN expression PARA_CLOSE stmt . ELSE stmt
 
-    ELSE  shift, and go to state 118
+    ELSE  schiebe und gehe zu Zustand 118 über
 
-    ELSE      [reduce using rule 34 (stmt_conditional)]
-    $default  reduce using rule 34 (stmt_conditional)
+    ELSE      [reduziere mit Regel 34 (stmt_conditional)]
+    $default  reduziere mit Regel 34 (stmt_conditional)
 
 
-state 117
+Zustand 117
 
    37 stmt_loop: DO stmt WHILE PARA_OPEN expression PARA_CLOSE . SEMICOLON
 
-    SEMICOLON  shift, and go to state 119
+    SEMICOLON  schiebe und gehe zu Zustand 119 über
 
 
-state 118
+Zustand 118
 
     7 type: . INT
     8     | . VOID
@@ -3219,41 +3220,41 @@ state 118
    62 function_call_parameters: . function_call_parameters COMMA expression
    63                         | . ID PARA_OPEN expression
 
-    DO           shift, and go to state 64
-    WHILE        shift, and go to state 65
-    IF           shift, and go to state 66
-    INT          shift, and go to state 1
-    VOID         shift, and go to state 2
-    RETURN       shift, and go to state 67
-    SEMICOLON    shift, and go to state 68
-    BRACE_OPEN   shift, and go to state 69
-    ID           shift, and go to state 30
-    NUM          shift, and go to state 31
-    MINUS        shift, and go to state 32
-    LOGICAL_NOT  shift, and go to state 33
-    PARA_OPEN    shift, and go to state 34
+    DO           schiebe und gehe zu Zustand 64 über
+    WHILE        schiebe und gehe zu Zustand 65 über
+    IF           schiebe und gehe zu Zustand 66 über
+    INT          schiebe und gehe zu Zustand 1 über
+    VOID         schiebe und gehe zu Zustand 2 über
+    RETURN       schiebe und gehe zu Zustand 67 über
+    SEMICOLON    schiebe und gehe zu Zustand 68 über
+    BRACE_OPEN   schiebe und gehe zu Zustand 69 über
+    ID           schiebe und gehe zu Zustand 30 über
+    NUM          schiebe und gehe zu Zustand 31 über
+    MINUS        schiebe und gehe zu Zustand 32 über
+    LOGICAL_NOT  schiebe und gehe zu Zustand 33 über
+    PARA_OPEN    schiebe und gehe zu Zustand 34 über
 
-    type                      go to state 71
-    declaration               go to state 72
-    stmt                      go to state 120
-    stmt_block                go to state 74
-    stmt_conditional          go to state 75
-    stmt_loop                 go to state 76
-    expression                go to state 77
-    primary                   go to state 36
-    function_call             go to state 37
-    function_call_parameters  go to state 38
+    type                      gehe zu Zustand 71 über
+    declaration               gehe zu Zustand 72 über
+    stmt                      gehe zu Zustand 120 über
+    stmt_block                gehe zu Zustand 74 über
+    stmt_conditional          gehe zu Zustand 75 über
+    stmt_loop                 gehe zu Zustand 76 über
+    expression                gehe zu Zustand 77 über
+    primary                   gehe zu Zustand 36 über
+    function_call             gehe zu Zustand 37 über
+    function_call_parameters  gehe zu Zustand 38 über
 
 
-state 119
+Zustand 119
 
    37 stmt_loop: DO stmt WHILE PARA_OPEN expression PARA_CLOSE SEMICOLON .
 
-    $default  reduce using rule 37 (stmt_loop)
+    $default  reduziere mit Regel 37 (stmt_loop)
 
 
-state 120
+Zustand 120
 
    35 stmt_conditional: IF PARA_OPEN expression PARA_CLOSE stmt ELSE stmt .
 
-    $default  reduce using rule 35 (stmt_conditional)
+    $default  reduziere mit Regel 35 (stmt_conditional)
