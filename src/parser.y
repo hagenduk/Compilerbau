@@ -25,7 +25,6 @@
 %token COLON COMMA SEMICOLON
 %token BRACE_OPEN BRACE_CLOSE
 %token END_OF_FILE
-%token KOMMENTAR
 %token ID
 %token NUM
 
