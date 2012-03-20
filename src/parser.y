@@ -2,7 +2,9 @@
  * parser.y - Parser utility for the DHBW compiler
  */
  
-%{
+%union{
+	char* str;
+	int num;
 %}
  
 %debug
