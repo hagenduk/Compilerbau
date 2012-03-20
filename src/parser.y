@@ -5,7 +5,7 @@
 %union{
 	char* str;
 	int num;
-%}
+}
  
 %debug
 %locations
