@@ -72,4 +72,5 @@ while { return WHILE; }
 							
 <<EOF>>		{ return 0; }
 
-.
+%%
+
