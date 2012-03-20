@@ -66,7 +66,6 @@ while { return WHILE; }
 
 {identifier} { return ID; }
 {number} { return NUM; }
-{kommentar} { return KOMMENTAR; }
 							
 <<EOF>>		{ return 0; }
 
