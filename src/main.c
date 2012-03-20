@@ -12,6 +12,9 @@ static const char *C_EXT = ".c";
 static const char *IR_EXT = ".ir";
 static const char *OUTPUT_EXT = ".s";
 
+extern FILE * yyin;
+extern int yyparse(void);
+
 cc_options_t cc_options = {
   .print_ir = 0,
   .ir_file = NULL,
@@ -260,6 +263,14 @@ int main (int argc, char *argv[]) {
     rm_cleanup_resources(&resource_mgr);
     exit(EXIT_FAILURE);
   }
+
+  yyin = fopen(argv[1], "r");
+  if(!yyin) {
+	exit(1);
+  }
+
+  yyparse();
+  fclose(yyin);
 
   printf("Input: %s\n", cc_options.input_file);
   printf("Output: %s\n", cc_options.output_file);
