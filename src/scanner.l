@@ -3,6 +3,7 @@
  */
 
 %{
+	#include <stdlib.h>
 	#include "parser.h"
 %}
 
@@ -64,9 +65,10 @@ while { return WHILE; }
 \[ { return BRACKET_OPEN; }
 \] { return BRACKET_CLOSE; }
 
-{identifier} { return ID; }
-{number} { return NUM; }
+{identifier} {return ID; }
+{number} {yylval = atoi(yytext); return(NUM); }
 							
 <<EOF>>		{ return 0; }
 
-.
+%%
+
