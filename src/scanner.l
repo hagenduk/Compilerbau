@@ -20,11 +20,11 @@
 
 identifier		[_a-zA-Z][_a-zA-Z0-9]*
 number			[1-9][0-9]*|0				 	 
-kommentar		"//".*\n
 %%
 
 \n	/* new line */
 [\t ]+	/* ignore white spaces */
+"//".*\n /* ignore comments */
 
 do { return DO; }
 else { return ELSE; }
