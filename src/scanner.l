@@ -65,8 +65,10 @@ while { return WHILE; }
 \[ { return BRACKET_OPEN; }
 \] { return BRACKET_CLOSE; }
 
-{identifier} {return ID; }
-{number} {yylval = atoi(yytext); return(NUM); }
+{identifier} { yylval.str = strdup(yytext); return ID; }
+{number} { yylval.num = atoi(yytext);
+			return NUM; 
+}
 							
 <<EOF>>		{ return 0; }
 
