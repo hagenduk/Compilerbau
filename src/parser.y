@@ -3,10 +3,16 @@
  */
 
 %union{
+<<<<<<< HEAD
 	char* ID;
 	int NUM;
 };
 
+=======
+	char* str;
+	int num;
+}
+>>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 %debug
 %locations

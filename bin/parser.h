@@ -90,9 +90,19 @@ typedef union YYSTYPE
 /* Line 1676 of yacc.c  */
 #line 5 "src/parser.y"
 
+<<<<<<< HEAD
 	char* ID;
 	int NUM;
 
+=======
+	char* str;
+	int num;
+<<<<<<< HEAD
+
+=======
+%
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
+>>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
 /* Line 1676 of yacc.c  */

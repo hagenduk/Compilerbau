@@ -71,14 +71,3 @@ while { return WHILE; }
 <<EOF>>		{ return 0; }
 
 .
-
-%%
-/*
-{identifier} { yylval.ID = strdup(yytext); return ID; }
-{number} { yylval.NUM = atoi(yytext);
-			return NUM; 
-}
-							
-
-
-*/

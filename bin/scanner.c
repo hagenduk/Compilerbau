@@ -479,7 +479,11 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[70] =
     {   0,
+<<<<<<< HEAD
+        0,    0,   40,   39,    2,    1,   16,   28,   39,   33,
+=======
         0,    0,   41,   39,    2,    1,   16,   28,   39,   33,
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
        34,   26,   24,   13,   25,   27,   38,   38,   12,   11,
        22,   17,   20,   37,   35,   36,   37,   37,   37,   37,
        37,   37,   31,   39,   32,    2,   18,   14,    0,   38,
@@ -593,7 +597,11 @@ static yyconst flex_int32_t yy_rule_can_match_eol[41] =
     {   0,
 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+<<<<<<< HEAD
+        };
+=======
     0,     };
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
 
 static yy_state_type yy_last_accepting_state;
 static char *yy_last_accepting_cpos;
@@ -606,7 +614,15 @@ static yyconst flex_int16_t yy_rule_linenum[40] =
        26,   27,   28,   30,   31,   32,   33,   34,   35,   36,
        38,   39,   40,   42,   43,   44,   45,   46,   47,   48,
        49,   50,   51,   53,   54,   55,   56,   57,   58,   59,
+<<<<<<< HEAD
        61,   62,   63,   64,   65,   66,   68,   69,   73
+=======
+<<<<<<< HEAD
+       61,   62,   63,   64,   65,   66,   68,   69
+=======
+       61,   62,   63,   64,   65,   66,   67,   68,   74
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
+>>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -1188,21 +1204,59 @@ YY_RULE_SETUP
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
+<<<<<<< HEAD
 #line 68 "src/scanner.l"
 { yylval.ID = strdup(yytext); return ID; }
+=======
+<<<<<<< HEAD
+#line 68 "src/scanner.l"
+=======
+#line 67 "src/scanner.l"
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
+{ yylval.str = strdup(yytext); return ID; }
+>>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
+<<<<<<< HEAD
 #line 69 "src/scanner.l"
 { yylval.NUM = atoi(yytext); return NUM; }
+=======
+<<<<<<< HEAD
+#line 69 "src/scanner.l"
+=======
+#line 68 "src/scanner.l"
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
+{ yylval.num = atoi(yytext);
+			return NUM; 
+}
+>>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
+<<<<<<< HEAD
 #line 71 "src/scanner.l"
+=======
+<<<<<<< HEAD
+#line 73 "src/scanner.l"
+=======
+#line 72 "src/scanner.l"
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
+>>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 { return 0; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
+<<<<<<< HEAD
 #line 73 "src/scanner.l"
+=======
+<<<<<<< HEAD
+#line 75 "src/scanner.l"
+ECHO;
+	YY_BREAK
+#line 1211 "bin/scanner.c"
+=======
+#line 74 "src/scanner.l"
+>>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 	YY_BREAK
 case 40:
@@ -1210,7 +1264,12 @@ YY_RULE_SETUP
 #line 75 "src/scanner.l"
 ECHO;
 	YY_BREAK
+<<<<<<< HEAD
 #line 1214 "bin/scanner.c"
+=======
+#line 1216 "bin/scanner.c"
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
+>>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2354,7 +2413,17 @@ void yyfree (void * ptr )
 
 /* %ok-for-header */
 
+<<<<<<< HEAD
 #line 75 "src/scanner.l"
+=======
+<<<<<<< HEAD
+#line 75 "src/scanner.l"
+
+
+=======
+#line 76 "src/scanner.l"
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
+>>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
 /*
