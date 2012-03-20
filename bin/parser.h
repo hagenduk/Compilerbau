@@ -92,7 +92,11 @@ typedef union YYSTYPE
 
 	char* str;
 	int num;
+<<<<<<< HEAD
 
+=======
+%
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
 
 
 /* Line 1676 of yacc.c  */

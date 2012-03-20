@@ -55,7 +55,11 @@ $(OBJDIR)/parser.c $(OBJDIR)/parser.h: $(SRCDIR)/parser.y
 	  -o $(OBJDIR)/parser.c -rall --report-file=$(OBJDIR)/bison.out $<
 
 $(OBJDIR)/scanner.c: $(SRCDIR)/scanner.l
+<<<<<<< HEAD
 	$(FLEX) -d -o $(OBJDIR)/scanner.c $< 
+=======
+	$(FLEX) -d -o $(OBJDIR)/scanner.c $< # --bison-bridge --bison-locations $<
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
 
 .PHONY: clean_compiler
 clean_compiler:

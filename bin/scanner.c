@@ -468,8 +468,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	(yy_c_buf_p) = yy_cp;
 
 /* %% [4.0] data tables for the DFA and the user's section 1 definitions go here */
-#define YY_NUM_RULES 39
-#define YY_END_OF_BUFFER 40
+#define YY_NUM_RULES 40
+#define YY_END_OF_BUFFER 41
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -479,7 +479,11 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[70] =
     {   0,
+<<<<<<< HEAD
         0,    0,   40,   39,    2,    1,   16,   28,   39,   33,
+=======
+        0,    0,   41,   39,    2,    1,   16,   28,   39,   33,
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
        34,   26,   24,   13,   25,   27,   38,   38,   12,   11,
        22,   17,   20,   37,   35,   36,   37,   37,   37,   37,
        37,   37,   31,   39,   32,    2,   18,   14,    0,   38,
@@ -589,11 +593,15 @@ static yyconst flex_int16_t yy_chk[122] =
     } ;
 
 /* Table of booleans, true if rule could match eol. */
-static yyconst flex_int32_t yy_rule_can_match_eol[40] =
+static yyconst flex_int32_t yy_rule_can_match_eol[41] =
     {   0,
 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+<<<<<<< HEAD
         };
+=======
+    0,     };
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
 
 static yy_state_type yy_last_accepting_state;
 static char *yy_last_accepting_cpos;
@@ -601,12 +609,16 @@ static char *yy_last_accepting_cpos;
 extern int yy_flex_debug;
 int yy_flex_debug = 1;
 
-static yyconst flex_int16_t yy_rule_linenum[39] =
+static yyconst flex_int16_t yy_rule_linenum[40] =
     {   0,
        26,   27,   28,   30,   31,   32,   33,   34,   35,   36,
        38,   39,   40,   42,   43,   44,   45,   46,   47,   48,
        49,   50,   51,   53,   54,   55,   56,   57,   58,   59,
+<<<<<<< HEAD
        61,   62,   63,   64,   65,   66,   68,   69
+=======
+       61,   62,   63,   64,   65,   66,   67,   68,   74
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -982,13 +994,13 @@ do_action:	/* This label is used only to access EOF actions. */
 			{
 			if ( yy_act == 0 )
 				fprintf( stderr, "--scanner backing up\n" );
-			else if ( yy_act < 39 )
+			else if ( yy_act < 40 )
 				fprintf( stderr, "--accepting rule at line %ld (\"%s\")\n",
 				         (long)yy_rule_linenum[yy_act], yytext );
-			else if ( yy_act == 39 )
+			else if ( yy_act == 40 )
 				fprintf( stderr, "--accepting default rule (\"%s\")\n",
 				         yytext );
-			else if ( yy_act == 40 )
+			else if ( yy_act == 41 )
 				fprintf( stderr, "--(end of buffer or a NUL)\n" );
 			else
 				fprintf( stderr, "--EOF (start condition %d)\n", YY_START );
@@ -1188,26 +1200,50 @@ YY_RULE_SETUP
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
+<<<<<<< HEAD
 #line 68 "src/scanner.l"
+=======
+#line 67 "src/scanner.l"
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
 { yylval.str = strdup(yytext); return ID; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
+<<<<<<< HEAD
 #line 69 "src/scanner.l"
+=======
+#line 68 "src/scanner.l"
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
 { yylval.num = atoi(yytext);
 			return NUM; 
 }
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
+<<<<<<< HEAD
 #line 73 "src/scanner.l"
+=======
+#line 72 "src/scanner.l"
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
 { return 0; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
+<<<<<<< HEAD
 #line 75 "src/scanner.l"
 ECHO;
 	YY_BREAK
 #line 1211 "bin/scanner.c"
+=======
+#line 74 "src/scanner.l"
+
+	YY_BREAK
+case 40:
+YY_RULE_SETUP
+#line 76 "src/scanner.l"
+ECHO;
+	YY_BREAK
+#line 1216 "bin/scanner.c"
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2351,8 +2387,12 @@ void yyfree (void * ptr )
 
 /* %ok-for-header */
 
+<<<<<<< HEAD
 #line 75 "src/scanner.l"
 
 
+=======
+#line 76 "src/scanner.l"
+>>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
 
 
