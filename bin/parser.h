@@ -90,9 +90,9 @@ typedef union YYSTYPE
 /* Line 1676 of yacc.c  */
 #line 5 "src/parser.y"
 
-	char* str;
-	int num;
-%
+	char* ID;
+	int NUM;
+
 
 
 /* Line 1676 of yacc.c  */

@@ -64,13 +64,21 @@ while { return WHILE; }
 \) { return PARA_CLOSE; }
 \[ { return BRACKET_OPEN; }
 \] { return BRACKET_CLOSE; }
-{identifier} { yylval.str = strdup(yytext); return ID; }
-{number} { yylval.num = atoi(yytext);
-			return NUM; 
-}
-							
+
+{identifier} { yylval.ID = strdup(yytext); return ID; }
+{number} { yylval.NUM = atoi(yytext); return NUM; }
+
 <<EOF>>		{ return 0; }
 
 .
 
 %%
+/*
+{identifier} { yylval.ID = strdup(yytext); return ID; }
+{number} { yylval.NUM = atoi(yytext);
+			return NUM; 
+}
+							
+
+
+*/

@@ -606,7 +606,7 @@ static yyconst flex_int16_t yy_rule_linenum[40] =
        26,   27,   28,   30,   31,   32,   33,   34,   35,   36,
        38,   39,   40,   42,   43,   44,   45,   46,   47,   48,
        49,   50,   51,   53,   54,   55,   56,   57,   58,   59,
-       61,   62,   63,   64,   65,   66,   67,   68,   74
+       61,   62,   63,   64,   65,   66,   68,   69,   73
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -1188,31 +1188,29 @@ YY_RULE_SETUP
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 67 "src/scanner.l"
-{ yylval.str = strdup(yytext); return ID; }
+#line 68 "src/scanner.l"
+{ yylval.ID = strdup(yytext); return ID; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 68 "src/scanner.l"
-{ yylval.num = atoi(yytext);
-			return NUM; 
-}
+#line 69 "src/scanner.l"
+{ yylval.NUM = atoi(yytext); return NUM; }
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
-#line 72 "src/scanner.l"
+#line 71 "src/scanner.l"
 { return 0; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 74 "src/scanner.l"
+#line 73 "src/scanner.l"
 
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 76 "src/scanner.l"
+#line 75 "src/scanner.l"
 ECHO;
 	YY_BREAK
-#line 1216 "bin/scanner.c"
+#line 1214 "bin/scanner.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2356,6 +2354,15 @@ void yyfree (void * ptr )
 
 /* %ok-for-header */
 
-#line 76 "src/scanner.l"
+#line 75 "src/scanner.l"
 
 
+/*
+{identifier} { yylval.ID = strdup(yytext); return ID; }
+{number} { yylval.NUM = atoi(yytext);
+			return NUM; 
+}
+							
+
+
+*/
