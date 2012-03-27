@@ -3,16 +3,9 @@
  */
 
 %union{
-<<<<<<< HEAD
 	char* ID;
 	int NUM;
 };
-
-=======
-	char* str;
-	int num;
-}
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 %debug
 %locations
@@ -39,26 +32,16 @@
 
 /* TODO: add associativity and precedence so that the 256 shift-reduce vanish */
 %right	ASSIGN
-%token	ASSIGN
 
-%token	LOGICAL_OR LOGICAL_NOT LOGICAL_AND 
-%left	LOGICAL_OR LOGICAL_AND
-%right	LOGICAL_NOT
-
-%token	SHIFT_LEFT SHIFT_RIGHT
+%left	LOGICAL_OR 
+%left	LOGICAL_AND
+%left	EQ NE
+%left	LS LSEQ GTEQ GT
 %left	SHIFT_LEFT SHIFT_RIGHT
-
-%token	EQ NE LS LSEQ GTEQ GT
-%left	EQ NE LS LSEQ GTEQ GT
-
-%token	PLUS MINUS MUL DIV MOD
-%left	PLUS MINUS MUL DIV MOD
-
-%token	NOT UNARY_MINUS UNARY_PLUS
-%right	UNARY_MINUS UNARY_PLUS
-
-%token	BRACKET_OPEN BRACKET_CLOSE PARA_OPEN PARA_CLOSE
-%left	BRACKET_OPEN BRACKET_CLOSE PARA_OPEN PARA_CLOSE
+%left	PLUS MINUS 
+%left	MUL
+%right	LOGICAL_NOT UNARY_MINUS UNARY_PLUS
+%left	BRACKET_OPEN BRACKET_CLOSE PARA_OPEN PARA_CLOSE //TODO Find out just Bracket or also Para?
 
 %%
 
@@ -285,4 +268,5 @@ function_call_parameters
 
 void yyerror (const char *msg)
 {
+printf("ERROR: %s\n",msg);
 }
