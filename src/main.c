@@ -264,17 +264,17 @@ int main (int argc, char *argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  yyin = fopen(argv[1], "r");
+  printf("Input: %s\n", cc_options.input_file);
+  printf("Output: %s\n", cc_options.output_file);
+  printf("IR: %s\n", cc_options.ir_file);
+
+  yyin = fopen(cc_options.input_file, "r");
   if(!yyin) {
 	exit(1);
   }
 
   yyparse();
   fclose(yyin);
-
-  printf("Input: %s\n", cc_options.input_file);
-  printf("Output: %s\n", cc_options.output_file);
-  printf("IR: %s\n", cc_options.ir_file);
 
   rm_cleanup_resources(&resource_mgr);
   return 0;

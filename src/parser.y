@@ -27,12 +27,11 @@
 %token COLON COMMA SEMICOLON
 %token BRACE_OPEN BRACE_CLOSE
 %token END_OF_FILE
-%token ID
-%token NUM
+%token <ID> ID
+%token <NUM> NUM
 
 /* TODO: add associativity and precedence so that the 256 shift-reduce vanish */
 %right	ASSIGN
-
 %left	LOGICAL_OR 
 %left	LOGICAL_AND
 %left	EQ NE
@@ -41,8 +40,7 @@
 %left	PLUS MINUS 
 %left	MUL
 %right	LOGICAL_NOT UNARY_MINUS UNARY_PLUS
-%left	BRACKET_OPEN BRACKET_CLOSE PARA_OPEN PARA_CLOSE //TODO Find out just Bracket or also Para?
-
+%left	BRACKET_OPEN BRACKET_CLOSE PARA_OPEN PARA_CLOSE 
 %%
 
 /* 
@@ -233,8 +231,6 @@ expression
      | expression PLUS expression
      | expression MINUS expression
      | expression MUL expression
-     | expression DIV expression 
-     | expression MOD expression 
      | MINUS expression %prec UNARY_MINUS
      | ID BRACKET_OPEN primary BRACKET_CLOSE
      | PARA_OPEN expression PARA_CLOSE
@@ -243,8 +239,8 @@ expression
      ;
 
 primary
-     : NUM
-     | ID
+     : NUM {printf("%d\n",$1);}
+     | ID {printf("%s\n",$1);}
      ;
 
 /*

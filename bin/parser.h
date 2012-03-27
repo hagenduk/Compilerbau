@@ -56,28 +56,25 @@
      NUM = 272,
      ASSIGN = 273,
      LOGICAL_OR = 274,
-     LOGICAL_NOT = 275,
-     LOGICAL_AND = 276,
-     SHIFT_LEFT = 277,
-     SHIFT_RIGHT = 278,
-     EQ = 279,
-     NE = 280,
+     LOGICAL_AND = 275,
+     NE = 276,
+     EQ = 277,
+     GT = 278,
+     GTEQ = 279,
+     LSEQ = 280,
      LS = 281,
-     LSEQ = 282,
-     GTEQ = 283,
-     GT = 284,
+     SHIFT_RIGHT = 282,
+     SHIFT_LEFT = 283,
+     MINUS = 284,
      PLUS = 285,
-     MINUS = 286,
-     MUL = 287,
-     DIV = 288,
-     MOD = 289,
-     NOT = 290,
-     UNARY_MINUS = 291,
-     UNARY_PLUS = 292,
-     BRACKET_OPEN = 293,
-     BRACKET_CLOSE = 294,
-     PARA_OPEN = 295,
-     PARA_CLOSE = 296
+     MUL = 286,
+     UNARY_PLUS = 287,
+     UNARY_MINUS = 288,
+     LOGICAL_NOT = 289,
+     PARA_CLOSE = 290,
+     PARA_OPEN = 291,
+     BRACKET_CLOSE = 292,
+     BRACKET_OPEN = 293
    };
 #endif
 
@@ -90,23 +87,13 @@ typedef union YYSTYPE
 /* Line 1676 of yacc.c  */
 #line 5 "src/parser.y"
 
-<<<<<<< HEAD
 	char* ID;
 	int NUM;
 
-=======
-	char* str;
-	int num;
-<<<<<<< HEAD
-
-=======
-%
->>>>>>> 9becde0a99488d652db4c0a402d44d23bbadb074
->>>>>>> branch 'master' of git@github.com:hagenduk/Compilerbau.git
 
 
 /* Line 1676 of yacc.c  */
-#line 100 "bin/parser.h"
+#line 97 "bin/parser.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
