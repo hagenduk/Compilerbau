@@ -3,10 +3,11 @@
 #include "SymbTab.h"
 
 
-struct entry *localentryptr;
-struct SymbTab *localtableptr;
+//struct entry *localentryptr;
+//struct SymbTab *localtableptr;
 
 //for testing
+/*
 int main(int argc, char *argv[])
 {
   struct SymTab *rootptr;     //root table erstellen
@@ -17,6 +18,7 @@ int main(int argc, char *argv[])
   system("PAUSE");  
   return 0;
 }
+*/
 
 //void initialise
 struct SymTab *init_table(){
@@ -59,7 +61,7 @@ struct entry *currententry; //link zu aktuellem eintrag
      strcpy (currententry->name,name);
      currententry->scope=scope;
      //gib das Ergebnis aus
-     printf("Inserted into Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'isarray' %d  }", current->id, currententry->id, offset, name, scope, isarray);
+     printf("Inserted into Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'isarray' %d  }", current->id, currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->isarray);
 }
 
 //void neue function, eröffnet sub level

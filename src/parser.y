@@ -3,6 +3,11 @@
  */
  
 %{
+	#include <stdio.h>
+	#include "SymbTab.h"
+
+	struct SymbTab *localtableptr;
+	struct entry *localentryptr;
 %}
 
 %union{
@@ -51,7 +56,7 @@ program
      ;
 
 program_element_list
-     : program_element_list program_element 
+     : program_element_list program_element
      | program_element 
      ;
 
@@ -74,7 +79,7 @@ variable_declaration
 
 identifier_declaration
      : ID BRACKET_OPEN NUM BRACKET_CLOSE
-     | ID
+     | ID	{ new_entry(localtableptr,5,$1,0,0,0); }
      ;
 
 function_definition

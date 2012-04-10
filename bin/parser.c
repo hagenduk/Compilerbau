@@ -70,10 +70,15 @@
 /* Line 189 of yacc.c  */
 #line 5 "src/parser.y"
 
+	#include <stdio.h>
+	#include "SymbTab.h"
+
+	struct SymbTab *localtableptr;
+	struct entry *localentryptr;
 
 
 /* Line 189 of yacc.c  */
-#line 77 "bin/parser.c"
+#line 82 "bin/parser.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -145,7 +150,7 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 8 "src/parser.y"
+#line 13 "src/parser.y"
 
 	char* ID;
 	int NUM;
@@ -153,7 +158,7 @@ typedef union YYSTYPE
 
 
 /* Line 214 of yacc.c  */
-#line 157 "bin/parser.c"
+#line 162 "bin/parser.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -178,7 +183,7 @@ typedef struct YYLTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 182 "bin/parser.c"
+#line 187 "bin/parser.c"
 
 #ifdef short
 # undef short
@@ -492,13 +497,13 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    50,    50,    54,    55,    59,    60,    61,    62,    66,
-      67,    71,    72,    76,    77,    81,    82,    86,    87,    91,
-      92,    96,    99,   101,   105,   106,   107,   108,   109,   110,
-     111,   112,   116,   120,   121,   125,   126,   130,   131,   132,
-     133,   134,   135,   136,   137,   138,   139,   140,   141,   142,
-     143,   144,   145,   146,   147,   151,   152,   156,   157,   161,
-     162
+       0,    55,    55,    59,    60,    64,    65,    66,    67,    71,
+      72,    76,    77,    81,    82,    86,    87,    91,    92,    96,
+      97,   101,   104,   106,   110,   111,   112,   113,   114,   115,
+     116,   117,   121,   125,   126,   130,   131,   135,   136,   137,
+     138,   139,   140,   141,   142,   143,   144,   145,   146,   147,
+     148,   149,   150,   151,   152,   156,   157,   161,   162,   166,
+     167
 };
 #endif
 
@@ -1545,10 +1550,17 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-      
+        case 2:
 
 /* Line 1455 of yacc.c  */
-#line 1552 "bin/parser.c"
+#line 55 "src/parser.y"
+    { localtableptr = (struct SymTab *) malloc (sizeof (struct SymTab)); ;}
+    break;
+
+
+
+/* Line 1455 of yacc.c  */
+#line 1564 "bin/parser.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1767,7 +1779,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 165 "src/parser.y"
+#line 170 "src/parser.y"
 
 
 void yyerror (const char *msg)
