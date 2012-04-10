@@ -63,8 +63,8 @@ while { return WHILE; }
 \[ { return BRACKET_OPEN; }
 \] { return BRACKET_CLOSE; }
 
-{identifier} { yylval.ID = strdup(yytext); return ID; }
-{number} { yylval.NUM = atoi(yytext); return NUM; }
+{identifier} { yylval.id = strdup(yytext); return ID; }
+{number} { yylval.num = atoi(yytext); return NUM; }
 
 <<EOF>>		{ return 0; }
 

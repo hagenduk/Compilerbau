@@ -72,13 +72,15 @@
 
 	#include <stdio.h>
 	#include "SymbTab.c"
+	
+	#define YYERROR_VERBOSE
 
 	struct SymbTab *tablePtr;
 	struct entry *entryPtr;
 
 
 /* Line 189 of yacc.c  */
-#line 82 "bin/parser.c"
+#line 84 "bin/parser.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -150,15 +152,16 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 13 "src/parser.y"
+#line 15 "src/parser.y"
 
-	char* ID;
-	int NUM;
+	char* id;
+	int num;
+	int type; //0 = void; 1 = INT
 
 
 
 /* Line 214 of yacc.c  */
-#line 162 "bin/parser.c"
+#line 165 "bin/parser.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -183,7 +186,7 @@ typedef struct YYLTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 187 "bin/parser.c"
+#line 190 "bin/parser.c"
 
 #ifdef short
 # undef short
@@ -497,13 +500,13 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    55,    55,    55,    59,    60,    64,    65,    66,    67,
-      71,    72,    76,    77,    81,    82,    86,    87,    91,    92,
-      96,    97,   101,   104,   106,   110,   111,   112,   113,   114,
-     115,   116,   117,   121,   125,   126,   130,   131,   135,   136,
-     137,   138,   139,   140,   141,   142,   143,   144,   145,   146,
-     147,   148,   149,   150,   151,   152,   156,   157,   161,   162,
-     166,   167
+       0,    58,    58,    58,    62,    63,    67,    68,    69,    70,
+      74,    75,    79,    80,    84,    85,    95,    96,   100,   101,
+     105,   106,   110,   113,   115,   119,   120,   121,   122,   123,
+     124,   125,   126,   130,   134,   135,   139,   140,   144,   145,
+     146,   147,   148,   149,   150,   151,   152,   153,   154,   155,
+     156,   157,   158,   159,   160,   161,   165,   166,   170,   171,
+     175,   176
 };
 #endif
 
@@ -1558,35 +1561,55 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 55 "src/parser.y"
+#line 58 "src/parser.y"
     {tablePtr = (struct SymTap *) malloc (sizeof (struct SymTab)); ;}
     break;
 
-  case 14:
+  case 6:
 
 /* Line 1455 of yacc.c  */
-#line 81 "src/parser.y"
-    { printf(yylval.ID); new_entry(tablePtr,5,yylval.ID,0,2,0); ;}
+#line 67 "src/parser.y"
+    { printf("program_element"); ;}
+    break;
+
+  case 10:
+
+/* Line 1455 of yacc.c  */
+#line 74 "src/parser.y"
+    {yylval.type = 1;}
+    break;
+
+  case 11:
+
+/* Line 1455 of yacc.c  */
+#line 75 "src/parser.y"
+    {yylval.type = 0;}
+    break;
+
+  case 13:
+
+/* Line 1455 of yacc.c  */
+#line 80 "src/parser.y"
+    { printf("variable_declaration\n"); ;}
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 82 "src/parser.y"
-    { new_entry(tablePtr,5,yylval.ID,0,1,0); ;}
+#line 85 "src/parser.y"
+    {	if (get_name(tablePtr, yylval.id) == NULL) {
+     												new_entry(tablePtr,5,yylval.id,0,1,0);
+     											} else {
+     												yyerror("Variable wurde bereits deklariert!");
+     											}
+     											printf("ID: %s\n", yylval.id);
+     										;}
     break;
 
-  case 18:
-
-/* Line 1455 of yacc.c  */
-#line 91 "src/parser.y"
-    { new_entry(tablePtr,5,yylval.ID,0,4,0); ;}
-    break;
-
 
 
 /* Line 1455 of yacc.c  */
-#line 1590 "bin/parser.c"
+#line 1613 "bin/parser.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1805,7 +1828,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 170 "src/parser.y"
+#line 179 "src/parser.y"
 
 
 void yyerror (const char *msg)

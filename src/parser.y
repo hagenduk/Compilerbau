@@ -5,14 +5,17 @@
 %{
 	#include <stdio.h>
 	#include "SymbTab.c"
+	
+	#define YYERROR_VERBOSE
 
 	struct SymbTab *tablePtr;
 	struct entry *entryPtr;
 %}
 
 %union{
-	char* ID;
-	int NUM;
+	char* id;
+	int num;
+	int type; //0 = void; 1 = INT
 };
  
 %debug
@@ -30,7 +33,7 @@
 
 %token DO WHILE
 %token IF ELSE
-%token INT VOID
+%token <id>INT <num>VOID
 %token RETURN
 %token COLON COMMA SEMICOLON
 %token BRACE_OPEN BRACE_CLOSE
@@ -61,25 +64,31 @@ program_element_list
      ;
 
 program_element
-     : variable_declaration SEMICOLON
+     : variable_declaration SEMICOLON	{ printf("program_element"); }
      | function_declaration SEMICOLON
      | function_definition
      | SEMICOLON
      ;
 									
 type
-     : INT
-     | VOID
+     : INT		{yylval.type = 1}
+     | VOID		{yylval.type = 0}
      ;
 
 variable_declaration
      : variable_declaration COMMA identifier_declaration
-     | type identifier_declaration
+     | type identifier_declaration			{ printf("variable_declaration\n"); }
      ;
 
 identifier_declaration
-     : ID BRACKET_OPEN NUM BRACKET_CLOSE	{ printf(yylval.ID); new_entry(tablePtr,5,yylval.ID,0,2,0); }
-     | ID 									{ new_entry(tablePtr,5,yylval.ID,0,1,0); }
+     : ID BRACKET_OPEN NUM BRACKET_CLOSE	//{ printf("NUM: %d", yylval.num); }
+     | ID 									{	if (get_name(tablePtr, yylval.id) == NULL) {
+     												new_entry(tablePtr,5,yylval.id,0,1,0);
+     											} else {
+     												yyerror("Variable wurde bereits deklariert!");
+     											}
+     											printf("ID: %s\n", yylval.id);
+     										}
      ;
 
 function_definition
@@ -88,7 +97,7 @@ function_definition
      ;
 
 function_declaration
-     : type ID PARA_OPEN PARA_CLOSE			{ new_entry(tablePtr,5,yylval.ID,0,4,0); }
+     : type ID PARA_OPEN PARA_CLOSE			//{ new_entry(tablePtr,5,yylval.id,0,4,0); }
      | type ID PARA_OPEN function_parameter_list PARA_CLOSE
      ;
 

@@ -273,7 +273,12 @@ int main (int argc, char *argv[]) {
 	exit(1);
   }
 
-  yyparse();
+//  yyparse();
+
+  do {
+  		yyparse();
+  	} while (!feof(yyin));
+
   fclose(yyin);
 
   rm_cleanup_resources(&resource_mgr);

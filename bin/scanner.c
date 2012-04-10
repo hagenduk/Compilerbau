@@ -1173,12 +1173,12 @@ YY_RULE_SETUP
 case 35:
 YY_RULE_SETUP
 #line 66 "src/scanner.l"
-{ yylval.ID = strdup(yytext); return ID; }
+{ yylval.id = strdup(yytext); return ID; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
 #line 67 "src/scanner.l"
-{ yylval.NUM = atoi(yytext); return NUM; }
+{ yylval.num = atoi(yytext); return NUM; }
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
 #line 69 "src/scanner.l"
