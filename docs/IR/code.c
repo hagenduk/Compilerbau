@@ -1,4 +1,5 @@
-int global, a[10];
+int global; //, a[10];
+int a[10];
 
 int func (int arr[10], int len, int threshold) {
   int i, sum;

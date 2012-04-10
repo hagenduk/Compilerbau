@@ -1566,21 +1566,21 @@ yyreduce:
 
 /* Line 1455 of yacc.c  */
 #line 81 "src/parser.y"
-    { new_entry(tablePtr,5,yylval.ID,0,1,0); ;}
+    { printf(yylval.ID); new_entry(tablePtr,5,yylval.ID,0,2,0); ;}
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
 #line 82 "src/parser.y"
-    { new_entry(tablePtr,5,yylval.ID,0,0,0); ;}
+    { new_entry(tablePtr,5,yylval.ID,0,1,0); ;}
     break;
 
   case 18:
 
 /* Line 1455 of yacc.c  */
 #line 91 "src/parser.y"
-    { new_entry(tablePtr,5,yylval.ID,0,0,0); ;}
+    { new_entry(tablePtr,5,yylval.ID,0,4,0); ;}
     break;
 
 
