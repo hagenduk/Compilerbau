@@ -110,9 +110,10 @@ void printentry(struct entry *currententry, FILE* datei){
 fprintf(datei,"Contains entry %d\n{'offset' %d, 'name' %s, 'scope' %d, \n 'type' %d \n }", currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->type);      //wie printf() zu handhaben!
 }
 
-//enty read_entry by name
 struct entry *get_name(struct SymTab *current, char const *name){
-   struct entry *return_entry=NULL;                       //initialise returnentry with null, 
+   struct entry *return_entry;                       //initialise returnentry with null, 
+   return_entry = (struct entry *) malloc (sizeof (struct entry));
+   return_entry=NULL;
    struct entry *current_entry;            //set current entry to start entry of current SymTab             
    current_entry = (struct entry *) malloc (sizeof (struct entry));
    current_entry=current->start;
@@ -123,16 +124,16 @@ struct entry *get_name(struct SymTab *current, char const *name){
            if((strcmp (current_entry->name,name) == 0)){            //If name = currententry->name
            return_entry=current_entry;             //returnentry=currententry
            break;                                  //break loop1
-           }
-           else{                                    //else
-             current_entry=current_entry->next;       //current entry is current_entry->next (next entry in same SymTab)
-           }
-         }                                        //end loop 2
-       if(return_entry) break;                    // if entry yet found break loop 2
+           }                                    //else
+           current_entry=current_entry->next;       //current entry is current_entry->next (next entry in same SymTab)           
+         }                                       //end loop 2
+       if(return_entry!=NULL) break;          
+       if(current->father!=NULL){                    // if entry yet found break loop 2
        current=current->father;                 //set current SymTab to current->father
-       current_entry=current->start;         //current entry = start of symtab
+       current_entry=current->start;}         //current entry = start of symtab
       //printf("looking next");
-   }                                              //end loop 1
+   }
+   if(return_entry==NULL) printf("Wert: STIRB!");                                                //end loop 1
    return return_entry;                           //return returnentry (null if not found)
 //printf("ende");
 }
