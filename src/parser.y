@@ -5,10 +5,10 @@
 %{
 %}
 
-%union {
-  int i;
-  char *id;
-}
+%union{
+	char* ID;
+	int NUM;
+};
  
 %debug
 %locations
