@@ -59,12 +59,12 @@ program
      ;
 
 program_element_list
-     : program_element_list program_element	{ printf("\tprogram_element_list\n")}
-     | program_element 						{ printf("\tprogram_element_list\n")}
+     : program_element_list program_element	//{ printf("\tprogram_element_list\n")}
+     | program_element 						//{ printf("\tprogram_element_list\n")}
      ;
 
 program_element
-     : variable_declaration SEMICOLON	{ printf("\tprogram_element\n"); }
+     : variable_declaration SEMICOLON	//{ printf("\tprogram_element\n"); }
      | function_declaration SEMICOLON
      | function_definition
      | SEMICOLON
@@ -77,31 +77,35 @@ type
 
 variable_declaration
      : variable_declaration COMMA identifier_declaration
-     | type identifier_declaration			{ printf("\tvariable_declaration\n"); }
+     | type identifier_declaration			//{ printf("\tvariable_declaration\n"); }
      ;
 
 identifier_declaration
-     : ID BRACKET_OPEN NUM BRACKET_CLOSE	{	printf("\tARRAY: %s[%d]\n", yylval.id, yylval.num);
-     										//	new_entry(tablePtr,yylval.num,yylval.id,0,2,0);
+     : ID BRACKET_OPEN NUM BRACKET_CLOSE	{	printf("\tArray: MIST[%d]\n", yylval.num);
+     											new_entry(tablePtr,yylval.num,"MIST",0,2,0);
+     											//new_entry(tablePtr,$3,$1,0,2,0);
      										}
      | ID 									{	printf("\tID: %s\n", yylval.id);
-     											/*entryPtr = get_name(tablePtr, yylval.id);
-     											printf("\tICH LEBE NOCH\n");
-     											if (entryPtr != NULL) {
+     											entryPtr = get_name(tablePtr, yylval.id);
+     											if (entryPtr == NULL) {
+     												new_entry(tablePtr,1,yylval.id,0,1,0);
+     												//new_entry(tablePtr,1,$1,0,1,0);
+     											} else {
      												yyerror("Variable wurde bereits deklariert!");
-     											}*/
-     											new_entry(tablePtr,1,yylval.id,0,1,0);
+     											}
      										}
      ;
 
 function_definition
-     : type ID PARA_OPEN PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE
-     | type ID PARA_OPEN function_parameter_list PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE
+     : type ID PARA_OPEN PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE							{ printf("\tfunction_definition\n"); }
+     | type ID PARA_OPEN function_parameter_list PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE	{ printf("\tfunction_definition\n"); }
      ;
 
 function_declaration
-     : type ID PARA_OPEN PARA_CLOSE			//{ new_entry(tablePtr,5,yylval.id,0,4,0); }
-     | type ID PARA_OPEN function_parameter_list PARA_CLOSE
+     : type ID PARA_OPEN PARA_CLOSE								{	printf("\tfunction_declaration\n");
+     																//new_entry(tablePtr,5,yylval.id,0,4,0); 
+     															}
+     | type ID PARA_OPEN function_parameter_list PARA_CLOSE		{ printf("\tfunction_declaration\n"); }
      ;
 
 function_parameter_list
@@ -110,7 +114,9 @@ function_parameter_list
      ;
 	
 function_parameter
-     : type identifier_declaration
+     : type identifier_declaration								{	printf("\tfunction_parameter\n");
+     				 												
+     															}
      ;
 									
 stmt_list

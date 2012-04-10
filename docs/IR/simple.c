@@ -1,1 +1,3 @@
-int f[10];
+int func (int arr[10], int len, int threshold) {
+
+}

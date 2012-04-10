@@ -5,6 +5,8 @@
 #include <string.h>
 #include <unistd.h>
 
+
+
 #include "main.h"
 
 /* Constants */
@@ -280,6 +282,8 @@ int main (int argc, char *argv[]) {
   	} while (!feof(yyin));
 
   fclose(yyin);
+
+  printallstart(cc_options.ir_file);
 
   rm_cleanup_resources(&resource_mgr);
   return 0;
