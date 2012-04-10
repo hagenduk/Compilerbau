@@ -30,7 +30,7 @@ struct SymTab *decfunction(struct SymTab *parenttable, char const *name){
 
 
 //void new_entry
-void new_entry(struct SymTab *current, int offset, char const *name, int scope, int type, int position){
+struct entry new_entry(struct SymTab *current, int offset, char const *name, int scope, int type, int position){
 
 struct entry *currententry; //link zu aktuellem eintrag
 
@@ -64,6 +64,7 @@ struct entry *currententry; //link zu aktuellem eintrag
      currententry->function=NULL;
      //gib das Ergebnis aus
      printf("Inserted into Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'type' %d \n }", current->id, currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->type);
+     return currententry;
 }
 
 //void neue function, eröffnet sub level
