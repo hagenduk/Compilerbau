@@ -88,12 +88,11 @@ typedef union YYSTYPE
 
 	char* id;
 	int num;
-	int type; //0 = void; 1 = INT
 
 
 
 /* Line 1676 of yacc.c  */
-#line 97 "bin/parser.h"
+#line 96 "bin/parser.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

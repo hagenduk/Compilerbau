@@ -156,12 +156,11 @@ typedef union YYSTYPE
 
 	char* id;
 	int num;
-	int type; //0 = void; 1 = INT
 
 
 
 /* Line 214 of yacc.c  */
-#line 165 "bin/parser.c"
+#line 164 "bin/parser.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -186,7 +185,7 @@ typedef struct YYLTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 190 "bin/parser.c"
+#line 189 "bin/parser.c"
 
 #ifdef short
 # undef short
@@ -500,13 +499,13 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    58,    58,    58,    63,    64,    68,    69,    70,    71,
-      75,    76,    80,    81,    85,    86,    97,    98,   102,   103,
-     107,   108,   112,   115,   117,   121,   122,   123,   124,   125,
-     126,   127,   128,   132,   136,   137,   141,   142,   146,   147,
-     148,   149,   150,   151,   152,   153,   154,   155,   156,   157,
-     158,   159,   160,   161,   162,   163,   167,   168,   172,   173,
-     177,   178
+       0,    57,    57,    57,    62,    63,    67,    68,    69,    70,
+      74,    75,    79,    80,    84,    87,    98,    99,   103,   104,
+     108,   109,   113,   116,   118,   122,   123,   124,   125,   126,
+     127,   128,   129,   133,   137,   138,   142,   143,   147,   148,
+     149,   150,   151,   152,   153,   154,   155,   156,   157,   158,
+     159,   160,   161,   162,   163,   164,   168,   169,   173,   174,
+     178,   179
 };
 #endif
 
@@ -1561,7 +1560,7 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 58 "src/parser.y"
+#line 57 "src/parser.y"
     { tablePtr = (struct SymTap *) malloc (sizeof (struct SymTab));
      	 entryPtr = (struct entry *) malloc (sizeof (struct entry)); ;}
     break;
@@ -1569,70 +1568,79 @@ yyreduce:
   case 3:
 
 /* Line 1455 of yacc.c  */
-#line 59 "src/parser.y"
-    { printf("program\n");}
+#line 58 "src/parser.y"
+    { printf("\tprogram\n");}
     break;
 
   case 4:
 
 /* Line 1455 of yacc.c  */
-#line 63 "src/parser.y"
-    { printf("program_element_list\n");}
+#line 62 "src/parser.y"
+    { printf("\tprogram_element_list\n");}
     break;
 
   case 5:
 
 /* Line 1455 of yacc.c  */
-#line 64 "src/parser.y"
-    { printf("program_element_list\n");}
+#line 63 "src/parser.y"
+    { printf("\tprogram_element_list\n");}
     break;
 
   case 6:
 
 /* Line 1455 of yacc.c  */
-#line 68 "src/parser.y"
-    { printf("program_element\n"); ;}
+#line 67 "src/parser.y"
+    { printf("\tprogram_element\n"); ;}
     break;
 
   case 10:
 
 /* Line 1455 of yacc.c  */
-#line 75 "src/parser.y"
-    {yylval.type = 1; printf("Type: INT\n");}
+#line 74 "src/parser.y"
+    { printf("\tType: INT\n")  ;}
     break;
 
   case 11:
 
 /* Line 1455 of yacc.c  */
-#line 76 "src/parser.y"
-    {yylval.type = 0; printf("Type: VOID\n");}
+#line 75 "src/parser.y"
+    { printf("\tType: VOID\n") ;}
     break;
 
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 81 "src/parser.y"
-    { printf("variable_declaration\n"); ;}
+#line 80 "src/parser.y"
+    { printf("\tvariable_declaration\n"); ;}
+    break;
+
+  case 14:
+
+/* Line 1455 of yacc.c  */
+#line 84 "src/parser.y"
+    {	printf("\tARRAY: %s[%d]\n", yylval.id, yylval.num);
+     										//	new_entry(tablePtr,yylval.num,yylval.id,0,2,0);
+     										;}
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 86 "src/parser.y"
-    {	printf("ID: %s\n", yylval.id);
-     											entryPtr = get_name(tablePtr, yylval.id);
-     											printf("ICH LEBE NOCH\n");
+#line 87 "src/parser.y"
+    {	printf("\tID: %s\n", yylval.id);
+     											/*entryPtr = get_name(tablePtr, yylval.id);
+     											printf("\tICH LEBE NOCH\n");
      											if (entryPtr != NULL) {
      												yyerror("Variable wurde bereits deklariert!");
-     											}
-     											new_entry(tablePtr,5,yylval.id,0,1,0);
+     											}*/
+     											new_entry(tablePtr,1,yylval.id,0,1,0);
      										;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 1636 "bin/parser.c"
+#line 1644 "bin/parser.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1851,7 +1859,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 181 "src/parser.y"
+#line 182 "src/parser.y"
 
 
 void yyerror (const char *msg)

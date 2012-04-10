@@ -125,7 +125,7 @@ struct entry *get_name(struct SymTab *current, char const *name){
            break;                                  //break loop1
            }
            else{                                    //else
-           current_entry=current_entry->next;       //current entry is current_entry->next (next entry in same SymTab)
+             current_entry=current_entry->next;       //current entry is current_entry->next (next entry in same SymTab)
            }
          }                                        //end loop 2
        if(return_entry) break;                    // if entry yet found break loop 2
