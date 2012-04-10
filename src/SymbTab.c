@@ -49,6 +49,7 @@ struct entry *currententry; //link zu aktuellem eintrag
      strcpy (currententry->name,name);
      currententry->scope=scope;
      currententry->type=0;
+     currententry->function=NULL;
      //gib das Ergebnis aus
      printf("Inserted into Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'type' %d \n }", current->id, currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->type);
 }
@@ -68,21 +69,9 @@ struct SymTab *end_function(struct SymTab *current){
        return current->father;          //returns father of SymTab
 }
 
-void printall(char *file, struct SymTab *root){
-    struct entry *current_entry;   
-    current_entry = (struct entry *) malloc (sizeof (struct entry));
-    current_entry = root->start;
-         while(current_entry!=NULL){                    //While current entry exists (last entry is null=false, Loop1)
-           if(current_entry->function!=NULL){            //If it is a pointer to new symboltable
-           printall(file, current_entry->function);
-           }
-           printentry(current_entry, file);
-           current_entry=current_entry->next;
-         }                                            //end loop 1      
-}
-void printentry(struct entry *currententry, char *file){
+int printallstart(char *file){     
 FILE* datei;
-datei=fopen("datei.txt","a+");
+datei=fopen(file,"w+");
 /* alternativ zu r+
 r - nur zum lesen
 w - nur zum schreiben
@@ -97,8 +86,28 @@ fseek(datei,0,SEEK_END);
 SEEK_END heisst ans ende der datei, SEEK_SET ist der anfang und SEEK_CUR ist die aktuelle position...
 0 ist der wert um den die position geaendert wird (in unserem fall 0, da wir ja das datei einde wollen)
 */
+printall(datei, root);
+
+    fclose(datei);                     //wichtig: FILE* muss wieder geschlossen werden
+
+}
+
+void printall(FILE* datei, struct SymTab *root){
+    struct entry *current_entry;   
+    current_entry = (struct entry *) malloc (sizeof (struct entry));
+    current_entry = root->start;
+         while(current_entry!=NULL){                    //While current entry exists (last entry is null=false, Loop1)
+           if(current_entry->function!=NULL){            //If it is a pointer to new symboltable
+           printall(datei, current_entry->function);
+           }
+           printentry(current_entry, datei);
+           current_entry=current_entry->next;
+         }                                            //end loop 1 
+
+}
+
+void printentry(struct entry *currententry, FILE* datei){
 fprintf(datei,"Contains entry %d\n{'offset' %d, 'name' %s, 'scope' %d, \n 'type' %d \n }", currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->type);      //wie printf() zu handhaben!
-fclose(datei);                     //wichtig: FILE* muss wieder geschlossen werden     
 }
 
 //enty read_entry by name
