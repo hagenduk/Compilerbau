@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "SymbTab.h"
 
-/*
+
 struct entry *localentryptr;
 struct SymbTab *localtableptr;
 
@@ -15,21 +15,22 @@ int main(int argc, char *argv[])
   struct SymTab *rootptr;     //root table erstellen
   rootptr = (struct SymTab *) malloc (sizeof (struct SymTab));
   rootptr=init_table();
-  new_entry(rootptr,5,"hallo",0,0,0);
-  rootptr=new_function(rootptr);
-  printf("\n Father is: %s \n", rootptr->father);
-  currententry=get_name(rootptr,"hallo");
-  printf("Read from Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'isarray' %d \n }", rootptr->id, currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->isarray); 
   new_entry(rootptr,1,"hallo",2,3,4);
-  currententry=get_name(rootptr,"hallo");
+  new_entry(rootptr,5,"hallo2",0,0,0);
+  rootptr=new_function(rootptr);
+  //printf("\n Father is: %s \n", rootptr->father);
+  currententry=get_name(rootptr,"hallo2");
   printf("Read from Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'isarray' %d \n }", rootptr->id, currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->isarray); 
+  //new_entry(rootptr,1,"hallo",2,3,4);
+  currententry=get_name(rootptr,"hallo");
+  //printf("Read from Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'isarray' %d \n }", rootptr->id, currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->isarray); 
   rootptr=end_function(rootptr);
   currententry=get_name(rootptr,"hallo");
-  printf("Read from Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'isarray' %d \n }", rootptr->id, currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->isarray); 
+  //printf("Read from Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'isarray' %d \n }", rootptr->id, currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->isarray); 
   system("PAUSE");  
   return 0;
 }
-*/
+
 //void initialise
 struct SymTab *init_table(){
  struct SymTab *rootptr;     //root table erstellen
@@ -91,6 +92,43 @@ struct SymTab *end_function(struct SymTab *current){
        return current->father;          //returns father of SymTab
 }
 
+void printall(struct SymTab *root){
+    
+    current_entry = (struct entry *) malloc (sizeof (struct entry));
+    current_entry=root->start;
+         while(current_entry!=NULL){                    //While current entry exists (last entry is null=false, Loop1)
+           if(current_entry->function!=NULL){            //If it is a pointer to new symboltable
+           printall(current_entry->function);
+           }
+           printentry(current_entry);
+           current_entry=current_entry->next;
+         }                                            //end loop 1      
+}
+
+void printentry(struct entry *toprint){
+FILE* datei1;
+datei=fopen("datei.txt","r+");
+/* alternativ zu r+
+r - nur zum lesen
+w - nur zum schreiben
+r+, w+ - zum schreiben UND lesen (ueberschreiben der datei)
+a - schreiben, aber anhaengen an die datei
+a+ - schreiben und lesen, an die datei wird angehaengt*/
+
+if(datei==NULL)
+//fehler beim oeffnen
+return -1;
+
+fseek(datei,0,SEEK_END);
+/*fseek veraendert die position in der datei...
+SEEK_END heisst ans ende der datei, SEEK_SET ist der anfang und SEEK_CUR ist die aktuelle position...
+0 ist der wert um den die position geaendert wird (in unserem fall 0, da wir ja das datei einde wollen)
+*/
+
+fprintf(datei,"Hallo Datei");      //wie printf() zu handhaben!
+fclose(datei);                     //wichtig: FILE* muss wieder geschlossen werden     
+}
+
 //enty read_entry by name
 struct entry *get_name(struct SymTab *current, char const *name){
    struct entry *return_entry=NULL;                       //initialise returnentry with null, 
@@ -98,9 +136,9 @@ struct entry *get_name(struct SymTab *current, char const *name){
    current_entry = (struct entry *) malloc (sizeof (struct entry));
    current_entry=current->start;
    while(current->father!=NULL || current_entry!=NULL){       //While Father of current Symtab exists or current entry exits (Loop1)
-            printf("\n Looking in Table id %d \n", current->id);
+            //printf("\n Looking in Table id %d \n", current->id);
          while(current_entry!=NULL){                    //While current entry exists (last entry is null=false, Loop2)
-         printf("\n Lookin in Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'isarray' %d \n }", current->id, current_entry->id, current_entry->offset, current_entry->name, current_entry->scope, current_entry->isarray); 
+         //printf("\n Lookin in Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'isarray' %d \n }", current->id, current_entry->id, current_entry->offset, current_entry->name, current_entry->scope, current_entry->isarray); 
            if((strcmp (current_entry->name,name) == 0)){            //If name = currententry->name
            return_entry=current_entry;             //returnentry=currententry
            break;                                  //break loop1
@@ -112,8 +150,8 @@ struct entry *get_name(struct SymTab *current, char const *name){
        if(return_entry) break;                    // if entry yet found break loop 2
        current=current->father;                 //set current SymTab to current->father
        current_entry=current->start;         //current entry = start of symtab
-      printf("looking next");
+      //printf("looking next");
    }                                              //end loop 1
    return return_entry;                           //return returnentry (null if not found)
-printf("ende");
+//printf("ende");
 }
