@@ -3,34 +3,6 @@
 #include "SymbTab.h"
 
 
-struct entry *localentryptr;
-struct SymbTab *localtableptr;
-
-//for testing
-int main(int argc, char *argv[])
-{
-  struct entry *currententry;     //root table erstellen
-  currententry = (struct entry *) malloc (sizeof (struct entry));
-  
-  struct SymTab *rootptr;     //root table erstellen
-  rootptr = (struct SymTab *) malloc (sizeof (struct SymTab));
-  rootptr=init_table();
-  new_entry(rootptr,1,"hallo",2,3,4);
-  new_entry(rootptr,5,"hallo2",0,0,0);
-  rootptr=new_function(rootptr);
-  //printf("\n Father is: %s \n", rootptr->father);
-  currententry=get_name(rootptr,"hallo2");
-  printf("Read from Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'isarray' %d \n }", rootptr->id, currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->isarray); 
-  //new_entry(rootptr,1,"hallo",2,3,4);
-  currententry=get_name(rootptr,"hallo");
-  //printf("Read from Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'isarray' %d \n }", rootptr->id, currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->isarray); 
-  rootptr=end_function(rootptr);
-  currententry=get_name(rootptr,"hallo");
-  //printf("Read from Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'isarray' %d \n }", rootptr->id, currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->isarray); 
-  system("PAUSE");  
-  return 0;
-}
-
 //void initialise
 struct SymTab *init_table(){
  struct SymTab *rootptr;     //root table erstellen
@@ -72,9 +44,9 @@ struct entry *currententry; //link zu aktuellem eintrag
      currententry->name = (char *) malloc (strlen (name) + 1);
      strcpy (currententry->name,name);
      currententry->scope=scope;
-     currententry->isarray=0;
+     currententry->type=0;
      //gib das Ergebnis aus
-     printf("Inserted into Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'isarray' %d \n }", current->id, currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->isarray);
+     printf("Inserted into Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'isarray' %d \n }", current->id, currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->type);
 }
 
 //void neue function, eröffnet sub level
@@ -91,7 +63,7 @@ struct SymTab *new_function(struct SymTab *current){
 struct SymTab *end_function(struct SymTab *current){
        return current->father;          //returns father of SymTab
 }
-
+/*
 void printall(struct SymTab *root){
     
     current_entry = (struct entry *) malloc (sizeof (struct entry));
@@ -107,28 +79,28 @@ void printall(struct SymTab *root){
 
 void printentry(struct entry *toprint){
 FILE* datei1;
-datei=fopen("datei.txt","r+");
+datei=fopen("datei.txt","r+");*/
 /* alternativ zu r+
 r - nur zum lesen
 w - nur zum schreiben
 r+, w+ - zum schreiben UND lesen (ueberschreiben der datei)
 a - schreiben, aber anhaengen an die datei
 a+ - schreiben und lesen, an die datei wird angehaengt*/
-
+/*
 if(datei==NULL)
 //fehler beim oeffnen
 return -1;
 
-fseek(datei,0,SEEK_END);
+fseek(datei,0,SEEK_END);*/
 /*fseek veraendert die position in der datei...
 SEEK_END heisst ans ende der datei, SEEK_SET ist der anfang und SEEK_CUR ist die aktuelle position...
 0 ist der wert um den die position geaendert wird (in unserem fall 0, da wir ja das datei einde wollen)
 */
-
+/*
 fprintf(datei,"Hallo Datei");      //wie printf() zu handhaben!
 fclose(datei);                     //wichtig: FILE* muss wieder geschlossen werden     
 }
-
+*/
 //enty read_entry by name
 struct entry *get_name(struct SymTab *current, char const *name){
    struct entry *return_entry=NULL;                       //initialise returnentry with null, 

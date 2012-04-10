@@ -1562,6 +1562,13 @@ yyreduce:
     {tablePtr = (struct SymTap *) malloc (sizeof (struct SymTab)); ;}
     break;
 
+  case 14:
+
+/* Line 1455 of yacc.c  */
+#line 81 "src/parser.y"
+    { new_entry(tablePtr,5,yylval.ID,0,1,0); ;}
+    break;
+
   case 15:
 
 /* Line 1455 of yacc.c  */
@@ -1569,10 +1576,17 @@ yyreduce:
     { new_entry(tablePtr,5,yylval.ID,0,0,0); ;}
     break;
 
+  case 18:
+
+/* Line 1455 of yacc.c  */
+#line 91 "src/parser.y"
+    { new_entry(tablePtr,5,yylval.ID,0,0,0); ;}
+    break;
+
 
 
 /* Line 1455 of yacc.c  */
-#line 1576 "bin/parser.c"
+#line 1590 "bin/parser.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
