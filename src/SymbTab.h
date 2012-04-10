@@ -37,6 +37,6 @@ void new_entry(struct SymTab *current, int offset, char const *name, int scope, 
 struct SymTab *new_function(struct SymTab *current);
 struct SymTab *end_function(struct SymTab *current);
 struct entry *get_name(struct SymTab *current, char const *name);
-void printall();
-void print(struct entry *toprint); 
+void printall(char *file, struct SymTab *root);
+void printentry(struct entry *currententry, char *file); 
 #endif
