@@ -6,7 +6,7 @@
 	#include <stdio.h>
 	#include "SymbTab.c"
 	
-	#define YYERROR_VERBOSE
+	//#define YYERROR_VERBOSE
 
 	struct SymbTab *tablePtr;
 	struct entry *entryPtr;
@@ -55,24 +55,25 @@
 %%
 
 program
-     : {tablePtr = (struct SymTap *) malloc (sizeof (struct SymTab)); } program_element_list
+     : { tablePtr = (struct SymTap *) malloc (sizeof (struct SymTab));
+     	 entryPtr = (struct entry *) malloc (sizeof (struct entry)); } program_element_list { printf("program\n")}
      ;
 
 program_element_list
-     : program_element_list program_element
-     | program_element 
+     : program_element_list program_element { printf("program_element_list\n")}
+     | program_element 					{ printf("program_element_list\n")}
      ;
 
 program_element
-     : variable_declaration SEMICOLON	{ printf("program_element"); }
+     : variable_declaration SEMICOLON	{ printf("program_element\n"); }
      | function_declaration SEMICOLON
      | function_definition
      | SEMICOLON
      ;
 									
 type
-     : INT		{yylval.type = 1}
-     | VOID		{yylval.type = 0}
+     : INT		{yylval.type = 1; printf("Type: INT\n")}
+     | VOID		{yylval.type = 0; printf("Type: VOID\n")}
      ;
 
 variable_declaration
@@ -81,13 +82,14 @@ variable_declaration
      ;
 
 identifier_declaration
-     : ID BRACKET_OPEN NUM BRACKET_CLOSE	//{ printf("NUM: %d", yylval.num); }
-     | ID 									{	if (get_name(tablePtr, yylval.id) == NULL) {
-     												new_entry(tablePtr,5,yylval.id,0,1,0);
-     											} else {
+     : ID BRACKET_OPEN NUM BRACKET_CLOSE	//{ printf("NUM: %d\n", yylval.num); }
+     | ID 									{	printf("ID: %s\n", yylval.id);
+     											entryPtr = get_name(tablePtr, yylval.id);
+     											printf("ICH LEBE NOCH\n");
+     											if (entryPtr != NULL) {
      												yyerror("Variable wurde bereits deklariert!");
      											}
-     											printf("ID: %s\n", yylval.id);
+     											new_entry(tablePtr,5,yylval.id,0,1,0);
      										}
      ;
 

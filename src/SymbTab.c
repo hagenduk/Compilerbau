@@ -18,7 +18,7 @@ struct SymTab *init_table(){
 }
 
 //void new_entry
-void new_entry(struct SymTab *current, int offset, char const *name, int scope, int isarray, int position){
+void new_entry(struct SymTab *current, int offset, char const *name, int scope, int type, int position){
 
 struct entry *currententry; //link zu aktuellem eintrag
 
@@ -48,7 +48,7 @@ struct entry *currententry; //link zu aktuellem eintrag
      currententry->name = (char *) malloc (strlen (name) + 1);
      strcpy (currententry->name,name);
      currententry->scope=scope;
-     currententry->type=0;
+     currententry->type=type;
      currententry->function=NULL;
      //gib das Ergebnis aus
      printf("Inserted into Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'type' %d \n }", current->id, currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->type);
@@ -133,6 +133,7 @@ struct entry *get_name(struct SymTab *current, char const *name){
        current_entry=current->start;         //current entry = start of symtab
       //printf("looking next");
    }                                              //end loop 1
+   return NULL;
    return return_entry;                           //return returnentry (null if not found)
 //printf("ende");
 }

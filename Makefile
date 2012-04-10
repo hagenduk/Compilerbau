@@ -31,6 +31,7 @@ compiler: $(OBJDIR)/dhbwcc
 cc_objects: $(GENERATED_OBJECTS)
 parser: $(OBJDIR)/parser.c $(OBJDIR)/parser.h
 scanner: $(OBJDIR)/scanner.c
+symbtab: $(OBJDIR)/SymbTab.c
 
 $(OBJDIR)/dhbwcc: $(DHBWCC_OBJECTS) 
 	$(CC) $(CFLAGS) -o $@ $+
@@ -42,6 +43,9 @@ $(OBJDIR)/resource_manager.o: $(SRCDIR)/resource_manager.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR)/main.o: $(SRCDIR)/main.c
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+$(OBJDIR)/SymbTab.o: $(SRCDIR)/SymbTab.c 
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR)/scanner.o: $(OBJDIR)/scanner.c $(OBJDIR)/parser.h
