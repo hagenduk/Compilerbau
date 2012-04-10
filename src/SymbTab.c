@@ -68,7 +68,7 @@ struct SymTab *end_function(struct SymTab *current){
        return current->father;          //returns father of SymTab
 }
 
-void printall(char *file){   
+void printall(char *file){
     current_entry = (struct entry *) malloc (sizeof (struct entry));
     current_entry=root->start;
          while(current_entry!=NULL){                    //While current entry exists (last entry is null=false, Loop1)
@@ -77,7 +77,7 @@ void printall(char *file){
            }
            printentry(current_entry);
            current_entry=current_entry->next;
-         }                                            //end loop 1      
+         }                                            //end loop 1
 }
 void printentry(struct entry *currententry, char *file){
 FILE* datei1;
@@ -97,19 +97,19 @@ SEEK_END heisst ans ende der datei, SEEK_SET ist der anfang und SEEK_CUR ist die
 0 ist der wert um den die position geaendert wird (in unserem fall 0, da wir ja das datei einde wollen)
 */
 fprintf(datei,"Contains entry %d\n{'offset' %d, 'name' %s, 'scope' %d, \n 'type' %d \n }", currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->type);      //wie printf() zu handhaben!
-fclose(datei);                     //wichtig: FILE* muss wieder geschlossen werden     
+fclose(datei);                     //wichtig: FILE* muss wieder geschlossen werden
 }
 
 //enty read_entry by name
 struct entry *get_name(struct SymTab *current, char const *name){
-   struct entry *return_entry=NULL;                       //initialise returnentry with null, 
-   struct entry *current_entry;            //set current entry to start entry of current SymTab             
+   struct entry *return_entry=NULL;                       //initialise returnentry with null,
+   struct entry *current_entry;            //set current entry to start entry of current SymTab
    current_entry = (struct entry *) malloc (sizeof (struct entry));
    current_entry=current->start;
    while(current->father!=NULL || current_entry!=NULL){       //While Father of current Symtab exists or current entry exits (Loop1)
             //printf("\n Looking in Table id %d \n", current->id);
          while(current_entry!=NULL){                    //While current entry exists (last entry is null=false, Loop2)
-         //printf("\n Lookin in Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'isarray' %d \n }", current->id, current_entry->id, current_entry->offset, current_entry->name, current_entry->scope, current_entry->isarray); 
+         //printf("\n Lookin in Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'isarray' %d \n }", current->id, current_entry->id, current_entry->offset, current_entry->name, current_entry->scope, current_entry->isarray);
            if((strcmp (current_entry->name,name) == 0)){            //If name = currententry->name
            return_entry=current_entry;             //returnentry=currententry
            break;                                  //break loop1
