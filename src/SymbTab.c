@@ -133,7 +133,6 @@ struct entry *get_name(struct SymTab *current, char const *name){
        current_entry=current->start;         //current entry = start of symtab
       //printf("looking next");
    }                                              //end loop 1
-   return NULL;
    return return_entry;                           //return returnentry (null if not found)
 //printf("ende");
 }
