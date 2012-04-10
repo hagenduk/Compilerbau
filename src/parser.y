@@ -82,13 +82,13 @@ variable_declaration
 
 identifier_declaration
      : ID BRACKET_OPEN NUM BRACKET_CLOSE	{	printf("\tArray: MIST[%d]\n", yylval.num);
-     											new_entry(tablePtr,yylval.num,"MIST",0,2,0);
+     											entryPtr = new_entry(tablePtr,yylval.num,"MIST",0,2,0);
      											//new_entry(tablePtr,$3,$1,0,2,0);
      										}
      | ID 									{	printf("\tID: %s\n", yylval.id);
      											entryPtr = get_name(tablePtr, yylval.id);
      											if (entryPtr == NULL) {
-     												new_entry(tablePtr,1,yylval.id,0,1,0);
+     												entryPtr = new_entry(tablePtr,1,yylval.id,0,1,0);
      												//new_entry(tablePtr,1,$1,0,1,0);
      											} else {
      												yyerror("Variable wurde bereits deklariert!");
@@ -115,7 +115,7 @@ function_parameter_list
 	
 function_parameter
      : type identifier_declaration								{	printf("\tfunction_parameter\n");
-     				 												
+     				 												entryPtr->scope = 1;
      															}
      ;
 									

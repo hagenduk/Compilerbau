@@ -13,7 +13,7 @@ typedef struct entry {
    int id;                    //just for testing
    int offset;                // length of the entry
    char *name;                 //name of the object in the entry
-   int scope;                 // 0 = local, else different
+   int scope;                 // 0 = local, else different (parameter)
    struct entry *previous;    // previous entry
    struct entry *next;        // next entry
    int type;               //is it an array
