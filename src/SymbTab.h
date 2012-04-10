@@ -2,6 +2,13 @@
 #define _DHBWCC_SYMTABLE_H
 
 //Struct entry, Offset, name, typ, anzahl der übergabeparam, level(local,anders)
+/*Types: IMMER: name, type, offset
+        0 - void
+        1 - int
+        2 - array
+        3 - prototype
+        4 - function
+*/
 typedef struct entry {
    int id;                    //just for testing
    int offset;                // length of the entry
@@ -9,21 +16,19 @@ typedef struct entry {
    int scope;                 // 0 = local, else different
    struct entry *previous;    // previous entry
    struct entry *next;        // next entry
-   int isarray;               //is it an array
+   int type;               //is it an array
    int position;              //if yes whats the position?
    struct SymTab *function;   //Functionpointer
-   int value;                 //integer value
+   int retType;               //if function returntype
+   int param;                 // Number of the parameters
 } entry;
 
 
 //Struct Symbtab
 typedef struct SymTab {
-  struct entry *start;   // starting entry
+	struct entry *start;   // starting entry
 	struct SymTab *father;       // father table
 	int id;
-    int retType;               //if function returntype
-    int param;                 // Number of the parameters
-    int isPrototype;           //is it a prototype?
 } SymTab;
 
 
@@ -32,4 +37,6 @@ void new_entry(struct SymTab *current, int offset, char const *name, int scope, 
 struct SymTab *new_function(struct SymTab *current);
 struct SymTab *end_function(struct SymTab *current);
 struct entry *get_name(struct SymTab *current, char const *name);
+void printall();
+void print(struct entry *toprint); 
 #endif
