@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "symbtab.h"
+#include "SymbTab.h"
 
-
+/*
 struct entry *localentryptr;
 struct SymbTab *localtableptr;
 
@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
   system("PAUSE");  
   return 0;
 }
-
+*/
 //void initialise
 struct SymTab *init_table(){
  struct SymTab *rootptr;     //root table erstellen

@@ -4,10 +4,10 @@
  
 %{
 	#include <stdio.h>
-	#include "SymbTab.h"
+	#include "SymbTab.c"
 
-	struct SymbTab *localtableptr;
-	struct entry *localentryptr;
+	struct SymbTab *tablePtr;
+	struct entry *entryPtr;
 %}
 
 %union{
@@ -52,7 +52,7 @@
 %%
 
 program
-     : program_element_list
+     : {tablePtr = (struct SymTap *) malloc (sizeof (struct SymTab)); } program_element_list
      ;
 
 program_element_list
@@ -78,8 +78,8 @@ variable_declaration
      ;
 
 identifier_declaration
-     : ID BRACKET_OPEN NUM BRACKET_CLOSE
-     | ID	{ new_entry(localtableptr,5,$1,0,0,0); }
+     : ID BRACKET_OPEN NUM BRACKET_CLOSE	{ new_entry(tablePtr,5,yylval.ID,0,1,0); }
+     | ID 									{ new_entry(tablePtr,5,yylval.ID,0,0,0); }
      ;
 
 function_definition
