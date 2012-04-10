@@ -7,6 +7,10 @@ struct entry *localentryptr;
 struct SymbTab *localtableptr;
 
 
+int main() {
+  int a;
+}
+
 //void initialise
 struct SymTab *init_table(){
  struct SymTab *rootptr;     //root table erstellen
