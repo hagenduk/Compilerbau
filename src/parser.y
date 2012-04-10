@@ -88,7 +88,7 @@ function_definition
      ;
 
 function_declaration
-     : type ID PARA_OPEN PARA_CLOSE
+     : type ID PARA_OPEN PARA_CLOSE			{ new_entry(tablePtr,5,yylval.ID,0,0,0); }
      | type ID PARA_OPEN function_parameter_list PARA_CLOSE
      ;
 
