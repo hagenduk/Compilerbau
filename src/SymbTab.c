@@ -17,6 +17,18 @@ struct SymTab *init_table(){
  return rootptr;
 }
 
+//void newfunction
+struct SymTab *decfunction(struct SymTab *parenttable, char const *name){
+  localentryptr=new_entry(parenttable,0,name,0,0,0);
+  struct SymTab *localsmybtabptr;     //root table erstellen
+  localsmybtabptr = (struct SymTab *) malloc (sizeof (struct SymTab)); 
+  localentryptr->function=new_function(parenttable);
+  localsmybtabptr=localentryptr->function;
+  return localsmybtabptr;              
+}
+
+
+
 //void new_entry
 void new_entry(struct SymTab *current, int offset, char const *name, int scope, int type, int position){
 

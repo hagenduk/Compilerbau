@@ -33,10 +33,11 @@ typedef struct SymTab {
 
 
 struct SymTab *init_table();
-void new_entry(struct SymTab *current, int offset, char const *name, int scope, int type, int position);
+struct entry *new_entry(struct SymTab *current, int offset, char const *name, int scope, int isarray, int position);
 struct SymTab *new_function(struct SymTab *current);
 struct SymTab *end_function(struct SymTab *current);
 struct entry *get_name(struct SymTab *current, char const *name);
 void printall(FILE* datei, struct SymTab *root);
-void printentry(struct entry *currententry, FILE* datei); 
+void printentry(struct entry *currententry, FILE* datei);
+struct SymTab *decfunction(struct SymTab *parenttable, char const *name);
 #endif
