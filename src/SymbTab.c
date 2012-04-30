@@ -30,7 +30,7 @@ struct SymTab *decfunction(struct SymTab *parenttable, char const *name){
 
 
 //void new_entry
-struct entry new_entry(struct SymTab *current, int offset, char const *name, int scope, int type, int position){
+struct entry *new_entry(struct SymTab *current, int offset, char const *name, int scope, int type, int position){
 
 struct entry *currententry; //link zu aktuellem eintrag
 

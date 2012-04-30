@@ -1,3 +1,1 @@
-int func (int arr[10], int len, int threshold) {
-
-}
+int global, a[10];

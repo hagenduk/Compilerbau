@@ -71,28 +71,38 @@ program_element
      ;
 									
 type
-     : INT		{ printf("\tType: INT\n")  }
-     | VOID		{ printf("\tType: VOID\n") }
+     : INT		{ printf("\tType: INT\n"); entryPtr->name = yylval.id;  }
+     | VOID		{ printf("\tType: VOID\n"); entryPtr->name = yylval.id; }
      ;
 
 variable_declaration
-     : variable_declaration COMMA identifier_declaration
-     | type identifier_declaration			//{ printf("\tvariable_declaration\n"); }
+     : variable_declaration COMMA identifier_declaration	{	printf("\tvariable_declaration\n");
+																new_entry(tablePtr, entryPtr->offset , entryPtr->name ,0, entryPtr->type ,0);
+															}
+     | type identifier_declaration			{	printf("\tvariable_declaration\n");
+												new_entry(tablePtr, entryPtr->offset , entryPtr->name ,0, entryPtr->type ,0);
+											}
      ;
 
 identifier_declaration
      : ID BRACKET_OPEN NUM BRACKET_CLOSE	{	printf("\tArray: MIST[%d]\n", yylval.num);
-     											entryPtr = new_entry(tablePtr,yylval.num,"MIST",0,2,0);
+     											//entryPtr = new_entry(tablePtr,yylval.num,"MIST",0,2,0);
      											//new_entry(tablePtr,$3,$1,0,2,0);
+												entryPtr->offset = yylval.num;
+												entryPtr->name = "MIST";
+												entryPtr->type = 2;
      										}
      | ID 									{	printf("\tID: %s\n", yylval.id);
-     											entryPtr = get_name(tablePtr, yylval.id);
-     											if (entryPtr == NULL) {
-     												entryPtr = new_entry(tablePtr,1,yylval.id,0,1,0);
+     											//entryPtr = get_name(tablePtr, yylval.id);
+     											//if (entryPtr == NULL) {
+     												//entryPtr = new_entry(tablePtr,1,yylval.id,0,1,0);
      												//new_entry(tablePtr,1,$1,0,1,0);
-     											} else {
-     												yyerror("Variable wurde bereits deklariert!");
-     											}
+     												entryPtr->offset =1;
+     												entryPtr->name = yylval.id;
+     												entryPtr->type = 1;
+//     											} else {
+//     												yyerror("Variable wurde bereits deklariert!");
+//     											}
      										}
      ;
 
@@ -105,17 +115,24 @@ function_declaration
      : type ID PARA_OPEN PARA_CLOSE								{	printf("\tfunction_declaration\n");
      																//new_entry(tablePtr,5,yylval.id,0,4,0); 
      															}
-     | type ID PARA_OPEN function_parameter_list PARA_CLOSE		{ printf("\tfunction_declaration\n"); }
+     | type ID PARA_OPEN function_parameter_list PARA_CLOSE		{	printf("\tfunction_declaration\n");
+																	printf("\tFUNC NAME: %s\n", yylval.id);
+																	//tablePtr = decfunction(tablePtr, yylval.id);
+																}
      ;
 
-function_parameter_list
-     : function_parameter
-     | function_parameter_list COMMA function_parameter
+function_parameter_list											// TODO extra Liste für parameter_list wird benötigt
+     : function_parameter										{	printf("\tfunction_parameter_list\n");
+																	tablePtr = decfunction(tablePtr,"hallowelt");
+																	new_entry(tablePtr, entryPtr->offset , entryPtr->name ,/*SCOPE:*/1, entryPtr->type ,0);
+																}
+     | function_parameter_list COMMA function_parameter			{	printf("\tfunction_parameter_list\n");
+																	new_entry(tablePtr, entryPtr->offset , entryPtr->name ,/*SCOPE:*/1, entryPtr->type ,0);
+																}
      ;
 	
 function_parameter
      : type identifier_declaration								{	printf("\tfunction_parameter\n");
-     				 												entryPtr->scope = 1;
      															}
      ;
 									

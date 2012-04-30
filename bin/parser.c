@@ -500,12 +500,12 @@ static const yytype_int8 yyrhs[] =
 static const yytype_uint8 yyrline[] =
 {
        0,    57,    57,    57,    62,    63,    67,    68,    69,    70,
-      74,    75,    79,    80,    84,    88,   100,   101,   105,   108,
-     112,   113,   117,   122,   124,   128,   129,   130,   131,   132,
-     133,   134,   135,   139,   143,   144,   148,   149,   153,   154,
-     155,   156,   157,   158,   159,   160,   161,   162,   163,   164,
-     165,   166,   167,   168,   169,   170,   174,   175,   179,   180,
-     184,   185
+      74,    75,    79,    82,    88,    95,   110,   111,   115,   118,
+     125,   129,   135,   139,   141,   145,   146,   147,   148,   149,
+     150,   151,   152,   156,   160,   161,   165,   166,   170,   171,
+     172,   173,   174,   175,   176,   177,   178,   179,   180,   181,
+     182,   183,   184,   185,   186,   187,   191,   192,   196,   197,
+     201,   202
 };
 #endif
 
@@ -1576,59 +1576,83 @@ yyreduce:
 
 /* Line 1455 of yacc.c  */
 #line 74 "src/parser.y"
-    { printf("\tType: INT\n")  ;}
+    { printf("\tType: INT\n"); entryPtr->name = yylval.id;  ;}
     break;
 
   case 11:
 
 /* Line 1455 of yacc.c  */
 #line 75 "src/parser.y"
-    { printf("\tType: VOID\n") ;}
+    { printf("\tType: VOID\n"); entryPtr->name = yylval.id; ;}
+    break;
+
+  case 12:
+
+/* Line 1455 of yacc.c  */
+#line 79 "src/parser.y"
+    {	printf("\tvariable_declaration\n");
+																new_entry(tablePtr, entryPtr->offset , entryPtr->name ,0, entryPtr->type ,0);
+															;}
+    break;
+
+  case 13:
+
+/* Line 1455 of yacc.c  */
+#line 82 "src/parser.y"
+    {	printf("\tvariable_declaration\n");
+												new_entry(tablePtr, entryPtr->offset , entryPtr->name ,0, entryPtr->type ,0);
+											;}
     break;
 
   case 14:
 
 /* Line 1455 of yacc.c  */
-#line 84 "src/parser.y"
+#line 88 "src/parser.y"
     {	printf("\tArray: MIST[%d]\n", yylval.num);
-     											new_entry(tablePtr,yylval.num,"MIST",0,2,0);
+     											//entryPtr = new_entry(tablePtr,yylval.num,"MIST",0,2,0);
      											//new_entry(tablePtr,$3,$1,0,2,0);
+												entryPtr->offset = yylval.num;
+												entryPtr->name = "MIST";
+												entryPtr->type = 2;
      										;}
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 88 "src/parser.y"
+#line 95 "src/parser.y"
     {	printf("\tID: %s\n", yylval.id);
-     											entryPtr = get_name(tablePtr, yylval.id);
-     											if (entryPtr == NULL) {
-     												new_entry(tablePtr,1,yylval.id,0,1,0);
+     											//entryPtr = get_name(tablePtr, yylval.id);
+     											//if (entryPtr == NULL) {
+     												//entryPtr = new_entry(tablePtr,1,yylval.id,0,1,0);
      												//new_entry(tablePtr,1,$1,0,1,0);
-     											} else {
-     												yyerror("Variable wurde bereits deklariert!");
-     											}
+     												entryPtr->offset =1;
+     												entryPtr->name = yylval.id;
+     												entryPtr->type = 1;
+//     											} else {
+//     												yyerror("Variable wurde bereits deklariert!");
+//     											}
      										;}
     break;
 
   case 16:
 
 /* Line 1455 of yacc.c  */
-#line 100 "src/parser.y"
+#line 110 "src/parser.y"
     { printf("\tfunction_definition\n"); ;}
     break;
 
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 101 "src/parser.y"
+#line 111 "src/parser.y"
     { printf("\tfunction_definition\n"); ;}
     break;
 
   case 18:
 
 /* Line 1455 of yacc.c  */
-#line 105 "src/parser.y"
+#line 115 "src/parser.y"
     {	printf("\tfunction_declaration\n");
      																//new_entry(tablePtr,5,yylval.id,0,4,0); 
      															;}
@@ -1637,23 +1661,44 @@ yyreduce:
   case 19:
 
 /* Line 1455 of yacc.c  */
-#line 108 "src/parser.y"
-    { printf("\tfunction_declaration\n"); ;}
+#line 118 "src/parser.y"
+    {	printf("\tfunction_declaration\n");
+																	printf("\tFUNC NAME: %s\n", yylval.id);
+																	//tablePtr = decfunction(tablePtr, yylval.id);
+																;}
+    break;
+
+  case 20:
+
+/* Line 1455 of yacc.c  */
+#line 125 "src/parser.y"
+    {	printf("\tfunction_parameter_list\n");
+																	tablePtr = decfunction(tablePtr,"hallowelt");
+																	new_entry(tablePtr, entryPtr->offset , entryPtr->name ,/*SCOPE:*/1, entryPtr->type ,0);
+																;}
+    break;
+
+  case 21:
+
+/* Line 1455 of yacc.c  */
+#line 129 "src/parser.y"
+    {	printf("\tfunction_parameter_list\n");
+																	new_entry(tablePtr, entryPtr->offset , entryPtr->name ,/*SCOPE:*/1, entryPtr->type ,0);
+																;}
     break;
 
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 117 "src/parser.y"
+#line 135 "src/parser.y"
     {	printf("\tfunction_parameter\n");
-     				 												
      															;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 1657 "bin/parser.c"
+#line 1702 "bin/parser.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1872,7 +1917,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 188 "src/parser.y"
+#line 205 "src/parser.y"
 
 
 void yyerror (const char *msg)
