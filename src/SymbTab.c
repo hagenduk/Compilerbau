@@ -18,7 +18,17 @@ struct SymTab *init_table(){
 }
 
 //void newfunction
-struct SymTab *decfunction(struct SymTab *parenttable, char const *name){
+
+
+/**
+ * \brief Anlegen einer neuen Funktion
+ * \param parenttable	Aktuelle Symboltabelle
+ * \param name			Name der Funktion
+ * \param retType		Returntype der Funktion: 0 -> void; 1 -> int
+ * \return 				Pointer auf die Symboltabelle der neuen Funktion.
+ */
+// TODO Marvin: Retrun-Type kann nicht gesetzt werden
+struct SymTab *decfunction(struct SymTab *parenttable, char const *name/*, int retType*/){
   localentryptr=new_entry(parenttable,0,name,0,0,0);
   struct SymTab *localsmybtabptr;     //root table erstellen
   localsmybtabptr = (struct SymTab *) malloc (sizeof (struct SymTab)); 
@@ -63,7 +73,7 @@ struct entry *currententry; //link zu aktuellem eintrag
      currententry->type=type;
      currententry->function=NULL;
      //gib das Ergebnis aus
-     printf("Inserted into Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'type' %d \n }", current->id, currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->type);
+     printf("\tInserted into Table %d \n\t in entry %d VALUES \n\t{'offset' %d, 'name' %s, 'scope' %d, \n\t 'type' %d \n\t }\n\n", current->id, currententry->id, currententry->offset, currententry->name, currententry->scope, currententry->type);
      return currententry;
 }
 

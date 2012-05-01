@@ -7,14 +7,17 @@
 	#include "SymbTab.c"
 	
 	//#define YYERROR_VERBOSE
-
 	struct SymbTab *tablePtr;
-	struct entry *entryPtr;
+	
+	extern int    yylineno;
 %}
 
 %union{
-	char* id;
 	int num;
+	char* id;
+
+	struct SymbTab *tableStruct;
+	struct entry *entryStruct;
 };
  
 %debug
@@ -32,13 +35,13 @@
 
 %token DO WHILE
 %token IF ELSE
-%token <id>INT <num>VOID
+%token <id>INT <id>VOID
 %token RETURN
 %token COLON COMMA SEMICOLON
 %token BRACE_OPEN BRACE_CLOSE
 
-%token ID
-%token NUM
+%token <id>ID
+%token <num>NUM
 
 %right ASSIGN 
 %left  LOGICAL_OR
@@ -51,89 +54,99 @@
 %right LOGICAL_NOT UNARY_MINUS UNARY_PLUS
 %left  BRACKET_OPEN BRACKET_CLOSE PARA_OPEN PARA_CLOSE
 
+//%type <> function_call_parameters
+//%type <> function_definition
+//%type <entryStruct> function_declaration
+//%type <> function_call
+%type <num> type
+%type <entryStruct> function_parameter
+%type <entryStruct> identifier_declaration
+//%type <> expression
+//%type <> primary
+
 %%
 
 program
-     : { tablePtr = (struct SymTap *) malloc (sizeof (struct SymTab));
-     	 entryPtr = (struct entry *) malloc (sizeof (struct entry)); } program_element_list { printf("\tprogram\n")}
+     : { tablePtr = (struct SymTap *) malloc (sizeof (struct SymTab)); } program_element_list
      ;
 
 program_element_list
-     : program_element_list program_element	//{ printf("\tprogram_element_list\n")}
-     | program_element 						//{ printf("\tprogram_element_list\n")}
+     : program_element_list program_element
+     | program_element
      ;
 
 program_element
-     : variable_declaration SEMICOLON	//{ printf("\tprogram_element\n"); }
+     : variable_declaration SEMICOLON
      | function_declaration SEMICOLON
      | function_definition
      | SEMICOLON
      ;
 									
+
 type
-     : INT		{ printf("\tType: INT\n"); entryPtr->name = yylval.id;  }
-     | VOID		{ printf("\tType: VOID\n"); entryPtr->name = yylval.id; }
-     ;
+	: INT		{ $$ = 1; }
+	| VOID		{ $$ = 0; }
+	;
+     
 
 variable_declaration
-     : variable_declaration COMMA identifier_declaration	{	printf("\tvariable_declaration\n");
-																new_entry(tablePtr, entryPtr->offset , entryPtr->name ,0, entryPtr->type ,0);
-															}
-     | type identifier_declaration			{	printf("\tvariable_declaration\n");
-												new_entry(tablePtr, entryPtr->offset , entryPtr->name ,0, entryPtr->type ,0);
+	: variable_declaration COMMA identifier_declaration
+	| type identifier_declaration			{ 
+												if( 0 == $1 ) {
+													// TODO yyerror für die Fehlerausgabe verwenden.
+													printf("> Wrong type declaration of >>%s<< as \"void\" at line %d\n", $2->name, yylineno);
+													//yyerror("Wrong type declaration");// of \"" + $2->name + "\"");
+												}
 											}
-     ;
+	;
+	
 
 identifier_declaration
-     : ID BRACKET_OPEN NUM BRACKET_CLOSE	{	printf("\tArray: MIST[%d]\n", yylval.num);
-     											//entryPtr = new_entry(tablePtr,yylval.num,"MIST",0,2,0);
-     											//new_entry(tablePtr,$3,$1,0,2,0);
-												entryPtr->offset = yylval.num;
-												entryPtr->name = "MIST";
-												entryPtr->type = 2;
-     										}
-     | ID 									{	printf("\tID: %s\n", yylval.id);
-     											//entryPtr = get_name(tablePtr, yylval.id);
-     											//if (entryPtr == NULL) {
-     												//entryPtr = new_entry(tablePtr,1,yylval.id,0,1,0);
-     												//new_entry(tablePtr,1,$1,0,1,0);
-     												entryPtr->offset =1;
-     												entryPtr->name = yylval.id;
-     												entryPtr->type = 1;
-//     											} else {
-//     												yyerror("Variable wurde bereits deklariert!");
-//     											}
-     										}
-     ;
+	: ID BRACKET_OPEN NUM BRACKET_CLOSE		{ // Array Entry erstellen:
+												// TODO Pruefen, ob Variable in diesem Scope bereits deklariert wurde.
+												$$ = new_entry(tablePtr, $3, $1, 0, 2, 0);
+											}
+	| ID									{ // INT Entry erstellen:
+												// TODO Pruefen, ob Variable in diesem Scope bereits deklariert wurde.
+												$$ = new_entry(tablePtr, 1, $1, 0, 1, 0);
+											}
+	;
+
 
 function_definition
-     : type ID PARA_OPEN PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE							{ printf("\tfunction_definition\n"); }
-     | type ID PARA_OPEN function_parameter_list PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE	{ printf("\tfunction_definition\n"); }
-     ;
+    : MARKER_FUNKTION_BEGIN PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE								{ tablePtr = end_function( tablePtr ); }
+    | MARKER_FUNKTION_BEGIN function_parameter_list PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE		{ tablePtr = end_function( tablePtr ); }
+	;
+
 
 function_declaration
-     : type ID PARA_OPEN PARA_CLOSE								{	printf("\tfunction_declaration\n");
-     																//new_entry(tablePtr,5,yylval.id,0,4,0); 
-     															}
-     | type ID PARA_OPEN function_parameter_list PARA_CLOSE		{	printf("\tfunction_declaration\n");
-																	printf("\tFUNC NAME: %s\n", yylval.id);
-																	//tablePtr = decfunction(tablePtr, yylval.id);
-																}
-     ;
+	: MARKER_FUNKTION_BEGIN PARA_CLOSE								{ tablePtr = end_function( tablePtr ); }
+	| MARKER_FUNKTION_BEGIN function_parameter_list PARA_CLOSE		{ tablePtr = end_function( tablePtr ); }
+	;
 
-function_parameter_list											// TODO extra Liste für parameter_list wird benötigt
-     : function_parameter										{	printf("\tfunction_parameter_list\n");
-																	tablePtr = decfunction(tablePtr,"hallowelt");
-																	new_entry(tablePtr, entryPtr->offset , entryPtr->name ,/*SCOPE:*/1, entryPtr->type ,0);
-																}
-     | function_parameter_list COMMA function_parameter			{	printf("\tfunction_parameter_list\n");
-																	new_entry(tablePtr, entryPtr->offset , entryPtr->name ,/*SCOPE:*/1, entryPtr->type ,0);
-																}
-     ;
+MARKER_FUNKTION_BEGIN
+	: type ID PARA_OPEN	{ //
+							// TODO Pruefen, ob Funktion schon deklariert wurde
+							tablePtr = decfunction( tablePtr, $2 );
+						}
+	;
+
+
+function_parameter_list
+	: function_parameter
+	| function_parameter_list COMMA function_parameter
+	;
 	
 function_parameter
-     : type identifier_declaration								{	printf("\tfunction_parameter\n");
-     															}
+     : type identifier_declaration		{ // Entry von identifier_declaration weiterreichen
+											 $2->scope=1;
+											 $$ = $2;
+											 if( 0 == $1 ) {
+												 // TODO yyerror für die Fehlerausgabe verwenden.
+												 printf("> Wrong type declaration of >>%s<< as \"void\" at line %d\n", $2->name, yylineno);
+												 //yyerror("Wrong type declaration");// of \"" + $2->name + "\"");
+											}
+     									}
      ;
 									
 stmt_list
