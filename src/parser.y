@@ -127,7 +127,8 @@ function_declaration
 MARKER_FUNCTION_BEGIN
 	: type ID PARA_OPEN	{ //
 							// TODO Pruefen, ob Funktion schon deklariert wurde
-							tablePtr = decfunction( tablePtr, $2 );
+							if(is_root_table(tablePtr)==1) printf("hallo");
+							tablePtr = decfunction( tablePtr, $2 , $1 );
 						}
 	;
 

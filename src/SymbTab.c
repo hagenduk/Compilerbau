@@ -27,12 +27,12 @@ struct SymTab *init_table(){
  * \brief Anlegen einer neuen Funktion
  * \param parenttable	Aktuelle Symboltabelle
  * \param name			Name der Funktion
- * \param retType		Returntype der Funktion: 0 -> void; 1 -> int
+ * \param type			Returntype der Funktion: 0 -> void; 1 -> int
  * \return 				Pointer auf die Symboltabelle der neuen Funktion.
  */
 // TODO Marvin: Retrun-Type kann nicht gesetzt werden
-struct SymTab *decfunction(struct SymTab *parenttable, char const *name/*, int retType*/){
-  localentryptr=new_entry(parenttable,0,name,0,0,0);
+struct SymTab *decfunction(struct SymTab *parenttable, char const *name, int type){
+  localentryptr=new_entry(parenttable,0,name,0,type,0);
   struct SymTab *localsmybtabptr;     //root table erstellen
   localsmybtabptr = (struct SymTab *) malloc (sizeof (struct SymTab)); 
   localentryptr->function=new_function(parenttable);
@@ -193,6 +193,19 @@ void printentry(struct entry *currententry, FILE* datei){
 			currententry->name,
 			currententry->scope,
 			currententry->type);
+}
+
+
+
+
+/**
+ * \brief 			Prüft ob aktuelle Tabelle root ist
+ * \param current	Symboltabelle, die verglichen werden soll.
+ * \return			Integer 1 - Ja, 0 - Nein
+ */
+int is_root_table(struct SymTab *current){
+	if(current==root) return 1;
+	return 0;
 }
 
 
