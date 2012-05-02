@@ -129,7 +129,7 @@ struct SymTab *new_function(struct SymTab *current){
  */
 struct SymTab *end_function(struct SymTab *current, int number){
 
-	struct *entry function;
+	struct entry *function;
 	localentryptr->param=number;
 
        return current->father;          //returns father of SymTab

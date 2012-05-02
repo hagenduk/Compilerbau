@@ -34,7 +34,7 @@ typedef struct SymTab {
 struct SymTab *init_table();
 struct entry *new_entry(struct SymTab *current, int offset, char const *name, int scope, int type, int position);
 struct SymTab *new_function(struct SymTab *current);
-struct SymTab *end_function(struct SymTab *current);
+struct SymTab *end_function(struct SymTab *current, int number);
 struct entry *get_name(struct SymTab *current, char const *name);
 void printall(FILE* datei, struct SymTab *root);
 void printentry(struct entry *currententry, FILE* datei);
