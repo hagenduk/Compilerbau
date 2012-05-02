@@ -8,6 +8,7 @@
 	
 	//#define YYERROR_VERBOSE
 	struct SymbTab *tablePtr;
+	int numberOfParameters = 0;
 	
 	extern int    yylineno;
 %}
@@ -114,14 +115,20 @@ identifier_declaration
 
 
 function_definition
-    : MARKER_FUNCTION_BEGIN PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE								{ tablePtr = end_function( tablePtr ); }
-    | MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE		{ tablePtr = end_function( tablePtr ); }
+    : MARKER_FUNCTION_BEGIN PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE								{
+																										tablePtr = end_function( tablePtr );
+																										numberOfParameters = 0;
+																									}
+    | MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE		{
+																										tablePtr = end_function( tablePtr );
+																										numberOfParameters = 0;
+																									}
 	;
 
 
 function_declaration
-	: MARKER_FUNCTION_BEGIN PARA_CLOSE								{ tablePtr = end_function( tablePtr ); }
-	| MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE		{ tablePtr = end_function( tablePtr ); }
+	: MARKER_FUNCTION_BEGIN PARA_CLOSE								{ tablePtr = end_function( tablePtr ); numberOfParameters = 0; }
+	| MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE		{ tablePtr = end_function( tablePtr ); numberOfParameters = 0; }
 	;
 
 MARKER_FUNCTION_BEGIN
@@ -142,6 +149,7 @@ function_parameter
      : type identifier_declaration		{ // Entry von identifier_declaration weiterreichen
 											 $2->scope=1;
 											 $$ = $2;
+											 numberOfParameters++;
 											 if( 0 == $1 ) {
 												 // TODO yyerror für die Fehlerausgabe verwenden.
 												 printf("> Wrong type declaration of >>%s<< as \"void\" at line %d\n", $2->name, yylineno);
