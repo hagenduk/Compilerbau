@@ -39,4 +39,7 @@ struct entry *get_name(struct SymTab *current, char const *name);
 void printall(FILE* datei, struct SymTab *root);
 void printentry(struct entry *currententry, FILE* datei);
 struct SymTab *decfunction(struct SymTab *parenttable, char const *name, int type);
+int is_root_table(struct SymTab *current);
+int exists_entry(struct SymTab *current, char const *name);
+int get_function(struct SymTab *current, char const *name);
 #endif
