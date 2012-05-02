@@ -3,8 +3,8 @@
 #include "SymbTab.h"
 
 
-struct entry *localentryptr;
-struct SymTab *root;
+struct entry *localentryptr;		//aktueller func entry in father
+struct SymTab *root;				//root
 
 
 /**
@@ -127,7 +127,11 @@ struct SymTab *new_function(struct SymTab *current){
  * \param current	Aktuelle Symboltabelle
  * \return 			Pointer auf uebergeordnete Symboltabelle
  */
-struct SymTab *end_function(struct SymTab *current){
+struct SymTab *end_function(struct SymTab *current, int number){
+
+	struct *entry function;
+	localentryptr->param=number;
+
        return current->father;          //returns father of SymTab
 }
 
