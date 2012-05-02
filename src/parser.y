@@ -67,7 +67,7 @@
 %%
 
 program
-     : { tablePtr = (struct SymTap *) malloc (sizeof (struct SymTab)); } program_element_list
+     : { tablePtr=init_table(); } program_element_list
      ;
 
 program_element_list
@@ -114,17 +114,17 @@ identifier_declaration
 
 
 function_definition
-    : MARKER_FUNKTION_BEGIN PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE								{ tablePtr = end_function( tablePtr ); }
-    | MARKER_FUNKTION_BEGIN function_parameter_list PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE		{ tablePtr = end_function( tablePtr ); }
+    : MARKER_FUNCTION_BEGIN PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE								{ tablePtr = end_function( tablePtr ); }
+    | MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE		{ tablePtr = end_function( tablePtr ); }
 	;
 
 
 function_declaration
-	: MARKER_FUNKTION_BEGIN PARA_CLOSE								{ tablePtr = end_function( tablePtr ); }
-	| MARKER_FUNKTION_BEGIN function_parameter_list PARA_CLOSE		{ tablePtr = end_function( tablePtr ); }
+	: MARKER_FUNCTION_BEGIN PARA_CLOSE								{ tablePtr = end_function( tablePtr ); }
+	| MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE		{ tablePtr = end_function( tablePtr ); }
 	;
 
-MARKER_FUNKTION_BEGIN
+MARKER_FUNCTION_BEGIN
 	: type ID PARA_OPEN	{ //
 							// TODO Pruefen, ob Funktion schon deklariert wurde
 							tablePtr = decfunction( tablePtr, $2 );

@@ -140,7 +140,7 @@ struct SymTab *end_function(struct SymTab *current){
  */
 int printallstart(char *file){     
 	FILE* datei;
-	datei=fopen(file,"w+");					/*	alternativ zu r+
+	datei=fopen(file,"w");					/*	alternativ zu r+
 												r - nur zum lesen
 												w - nur zum schreiben
 												r+, w+ - zum schreiben UND lesen (ueberschreiben der datei)
@@ -150,10 +150,6 @@ int printallstart(char *file){
 
 	if(datei==NULL)	return -1;				//fehler beim oeffnen
 
-	fseek(datei,0,SEEK_END);				/*	fseek veraendert die position in der datei...
-												SEEK_END heisst ans ende der datei, SEEK_SET ist der anfang und SEEK_CUR ist die aktuelle position...
-												0 ist der wert um den die position geaendert wird (in unserem fall 0, da wir ja das datei einde wollen)
-											*/
 	printall(datei, root);
 
     fclose(datei);                     		//wichtig: FILE* muss wieder geschlossen werden
