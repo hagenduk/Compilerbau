@@ -105,10 +105,12 @@ variable_declaration
 identifier_declaration
 	: ID BRACKET_OPEN NUM BRACKET_CLOSE		{ // Array Entry erstellen:
 												// TODO Pruefen, ob Variable in diesem Scope bereits deklariert wurde.
+												//TODO kein entry wenn functionparameter
 												$$ = new_entry(tablePtr, $3, $1, 0, 2, 0);
 											}
 	| ID									{ // INT Entry erstellen:
 												// TODO Pruefen, ob Variable in diesem Scope bereits deklariert wurde.
+												//TODO kein entry wenn functionparameter
 												$$ = new_entry(tablePtr, 1, $1, 0, 1, 0);
 											}
 	;
@@ -134,6 +136,7 @@ function_declaration
 MARKER_FUNCTION_BEGIN
 	: type ID PARA_OPEN	{ //
 							// TODO Pruefen, ob Funktion schon deklariert wurde
+							if(exists_entry(tablePtr,$2)) yyerror("Entry already exists!");
 							if(is_root_table(tablePtr)==1) printf("hallo");
 							tablePtr = decfunction( tablePtr, $2 , $1 );
 						}
@@ -154,6 +157,10 @@ function_parameter
 												 // TODO yyerror für die Fehlerausgabe verwenden.
 												 printf("> Wrong type declaration of >>%s<< as \"void\" at line %d\n", $2->name, yylineno);
 												 //yyerror("Wrong type declaration");// of \"" + $2->name + "\"");
+											}
+											else {
+											if(exists_param(tablePtr, $2)==NULL)new_param(tablePtr, $2, $1);
+											else {yyerror("Param already exits!");}
 											}
      									}
      ;
@@ -215,9 +222,17 @@ primary
      ;
 
 function_call
-      : ID PARA_OPEN PARA_CLOSE
-      | ID PARA_OPEN function_call_parameters PARA_CLOSE
+      : MARKER_FUNCTIONCALL_BEGIN PARA_CLOSE								{tablePtr=tablePtr.father;}
+      | MARKER_FUNCTIONCALL_BEGIN function_call_parameters PARA_CLOSE		{tablePtr=tablePtr.father;}
       ;
+
+MARKER_FUNCTIONCALL_BEGIN
+	: ID PARA_OPEN
+	| ID PARA_OPEN	{
+							// geht nur bei scope <2
+							tablePtr = get_function( tablePtr, $2);
+						}
+	;
 
 function_call_parameters
      : function_call_parameters COMMA expression
