@@ -23,10 +23,28 @@ typedef struct entry {
 } entry;
 
 
+//Struct param, name, typ
+/*Types: IMMER: name, type, offset
+        0 - void
+        1 - int
+        2 - array
+        3 - prototype
+        4 - function
+*/
+typedef struct param {
+   int id;                    //just for testing
+   char *name;                 //name of the object in the entry
+   struct param *previous;    // previous entry
+   struct param *next;        // next entry
+   int type;               //is it an array
+} param;
+
+
 //Struct Symbtab
 typedef struct SymTab {
 	struct entry *start;   // starting entry
 	struct SymTab *father;       // father table
+	struct param *first;		//first param of Function (each Table = 1 Function)
 	int id;
 } SymTab;
 
@@ -42,4 +60,6 @@ struct SymTab *decfunction(struct SymTab *parenttable, char const *name, int typ
 int is_root_table(struct SymTab *current);
 int exists_entry(struct SymTab *current, char const *name);
 int get_function(struct SymTab *current, char const *name);
+void new_param(struct SymTab *current, char const *name, int type);
+struct param *exists_param(struct SymTab *current, char const *name);
 #endif

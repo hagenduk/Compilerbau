@@ -105,6 +105,89 @@ struct entry *new_entry(struct SymTab *current, int offset, char const *name, in
      return currententry;
 }
 
+/**
+ * \brief Erstellt einen neuen Function Parameter.
+ * \param current		Vater der Tabelle, der der Eintrag hinzugefügt werden soll.
+ * \param name			Name des Identifiers
+ * \param type			Typ des Identifiers
+ * \return				1 =Erfolg 0=Error
+ */
+void new_param(struct SymTab *current, char const *name, int type){
+	struct param *currentparam;											//link zu aktuellem eintrag
+
+	if(current->first==NULL){               							//wenn in der aktuellen symboltabelle noch kein eintrag existiert
+		struct param *start;                      						//erstelle Eintrag
+		start = (struct param *) malloc (sizeof (struct param));
+
+		current->first=start;             								//schreibe an start
+		start->next=NULL;                 								//initialisiere
+		start->previous=NULL;             								//...
+		start->id=0;                      								//id auf 0 da erster Eintrag
+
+		currentparam = start;   										//setze aktuellen eintrag auf neuen eintrag
+	} else {                                   							//Ansonsten
+    	 currentparam=current->first;        							//setzte aktuellen auf 1. Eintrag in tabelle
+
+    	 while(currentparam->next!=NULL) {          					//solange der eeintrag weiter in next hat
+			currentparam=currentparam->next;    							//setze aktuellen eintrag auf nexteintrag
+    	 }
+
+    	 struct param *newlast;                        					//erstelle neuen eintrag
+    	 newlast = (struct param *) malloc (sizeof (struct param));
+
+    	 currentparam->next=newlast;            						//aktueler eintrag.next (vorher null) jetzt neuer Eintrag
+    	 newlast->previous=currentparam;         						//neuer eintrag.vorherige=aktueller Eintrag
+    	 newlast->id=currentparam->id+1;        						//id = id des aktuellen +1
+    	 newlast->next=NULL;                 							//initialisiere
+
+			currentparam=newlast;                  						//aktueller = neuer eintrag
+	}
+
+	currentparam->name = (char *) malloc (strlen (name) + 1);
+	strcpy (currentparam->name,name);
+
+	currentparam->type=type;
+
+     //gib das Ergebnis aus
+     printf("\tInserted into Table %d \n\t in entry %d VALUES \n\t{'name' %s, \n\t 'type' %d \n\t }\n\n",
+    		 current->id,
+    		 currentparam->id,
+    		 currentparam->name,
+    		 currentparam->type);
+
+}
+
+/**
+ * \brief 			Prüft ob paramname local bereits vergeben ist
+ * \param current	Symboltabelle, die verglichen werden soll.
+ *  * \param name		Name des Parameters.
+ * \return			Integer 1 - Ja, 0 - Nein
+ */
+struct param *exists_param(struct SymTab *current, char const *name){
+
+	struct param *found_param;                       						//initialise returnparam with null,
+		found_param = (struct param *) malloc (sizeof (struct param));
+		found_param=NULL;
+
+		struct param *current_param;            								//set current param to start param of current SymTab
+		current_param = (struct param *) malloc (sizeof (struct param));
+		current_param=current->first;
+
+			while(current_param!=NULL){                    						//While current param exists (last param is null=false, Loop2)
+
+				//printf("\n Lookin in Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'isarray' %d \n }", current->id, current_entry->id, current_entry->offset, current_entry->name, current_entry->scope, current_entry->isarray);
+
+				if((strcmp (current_param->name,name) == 0)){            		//If name = currentparam->name
+					found_param=current_param;             					//returnparam=currentparam
+					break;//break loop1
+				}
+
+				current_param=current_param->next;       						//current entry is current_param->next (next param in same SymTab)
+			}//end loop 2
+
+	if(found_param!=NULL) return found_param;
+	return NULL;
+}
 
 /**
  * \brief Erstellt eine neue Symboltabelle und verkettet sie mit der aktuellen Tabelle "current"
