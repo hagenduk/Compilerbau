@@ -127,14 +127,22 @@ function_definition
 
 
 function_declaration
-	: MARKER_FUNCTION_BEGIN PARA_CLOSE								{ tablePtr = end_function( tablePtr, numberOfParameters); numberOfParameters = 0; }
-	| MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE		{ tablePtr = end_function( tablePtr, numberOfParameters ); numberOfParameters = 0; }
+	: MARKER_FUNCTION_BEGIN PARA_CLOSE								{
+																		tablePtr = end_function( tablePtr, numberOfParameters); numberOfParameters = 0;
+																	}
+
+	| MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE		{
+																		tablePtr = end_function( tablePtr, numberOfParameters );
+																		numberOfParameters = 0; }
 	;
 
 MARKER_FUNCTION_BEGIN
 	: type ID PARA_OPEN	{ //
 							// TODO Pruefen, ob Funktion schon deklariert wurde
-							if(is_root_table(tablePtr)==1) printf("hallo");
+							if(is_root_table(tablePtr)==0) {
+								yyerror("Function declarations within functions are not allowed.");
+							}
+							
 							tablePtr = decfunction( tablePtr, $2 , $1 );
 						}
 	;
