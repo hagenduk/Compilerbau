@@ -140,9 +140,11 @@ function_declaration
 
 MARKER_FUNCTION_BEGIN
 	: type ID PARA_OPEN	{ //
-							if(exists_entry(tablePtr,$2)) yyerror("Entry already exists!");
-							if(is_root_table(tablePtr)==1) printf("hallo");
-							tablePtr = decfunction( tablePtr, $2 , $1 );
+							if( exists_entry(tablePtr,$2) )
+								yyerror("Entry already exists!");
+							else {
+								tablePtr = decfunction( tablePtr, $2 , $1 );
+							}
 						}
 	;
 
@@ -226,17 +228,16 @@ primary
      ;
 
 function_call
-      : MARKER_FUNCTIONCALL_BEGIN PARA_CLOSE								{tablePtr=tablePtr.father;}
-      | MARKER_FUNCTIONCALL_BEGIN function_call_parameters PARA_CLOSE		{tablePtr=tablePtr.father;}
+      : ID PARA_OPEN PARA_CLOSE									{//
+																  tablePtr = get_function( tablePtr, $1);
+																  // TODO @Marvin: Was wolltest du hier machen?
+																  //tablePtr=tablePtr.father;
+																}
+      | ID PARA_OPEN function_call_parameters PARA_CLOSE		{//
+																  tablePtr = get_function( tablePtr, $1);
+																  //tablePtr= tablePtr.father;
+																}
       ;
-
-MARKER_FUNCTIONCALL_BEGIN
-	: ID PARA_OPEN
-	| ID PARA_OPEN	{
-							// geht nur bei scope <2
-							tablePtr = get_function( tablePtr, $2);
-						}
-	;
 
 function_call_parameters
      : function_call_parameters COMMA expression
