@@ -96,7 +96,6 @@ variable_declaration
 												if( 0 == $1 ) {
 													// TODO yyerror für die Fehlerausgabe verwenden.
 													printf("> Wrong type declaration of >>%s<< as \"void\" at line %d\n", $2->name, yylineno);
-													//yyerror("Wrong type declaration");// of \"" + $2->name + "\"");
 												}
 											}
 	;
@@ -104,14 +103,20 @@ variable_declaration
 
 identifier_declaration
 	: ID BRACKET_OPEN NUM BRACKET_CLOSE		{ // Array Entry erstellen:
-												// TODO Pruefen, ob Variable in diesem Scope bereits deklariert wurde.
+												if( get_name(tablePtr, $1) ) {
+													yyerror("Exists allready");
+												} else {
+													$$ = new_entry(tablePtr, $3, $1, 0, 2, 0);
+												}
 												//TODO kein entry wenn functionparameter
-												$$ = new_entry(tablePtr, $3, $1, 0, 2, 0);
 											}
 	| ID									{ // INT Entry erstellen:
-												// TODO Pruefen, ob Variable in diesem Scope bereits deklariert wurde.
+												if( get_name(tablePtr, $1) ) {
+													yyerror("Exists allready");
+												} else {
+													$$ = new_entry(tablePtr, 1, $1, 0, 1, 0);
+												}
 												//TODO kein entry wenn functionparameter
-												$$ = new_entry(tablePtr, 1, $1, 0, 1, 0);
 											}
 	;
 
