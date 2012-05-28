@@ -108,7 +108,7 @@ identifier_declaration
 												} else {
 													$$ = new_entry(tablePtr, $3, $1, 0, 2, 0);
 												}
-												//TODO kein entry wenn functionparameter
+												//TODO new param wenn functionparameter
 											}
 	| ID									{ // INT Entry erstellen:
 												if( get_name(tablePtr, $1) ) {
@@ -116,7 +116,7 @@ identifier_declaration
 												} else {
 													$$ = new_entry(tablePtr, 1, $1, 0, 1, 0);
 												}
-												//TODO kein entry wenn functionparameter
+												//TODO new param wenn functionparameter
 											}
 	;
 
@@ -144,11 +144,11 @@ function_declaration
 	;
 
 MARKER_FUNCTION_BEGIN
-	: type ID PARA_OPEN	{ //
+	: type ID PARA_OPEN	{ //TODO Wenn Prototyp dann überschreiben erlauben, Typ und Parametervergleich
 							if( exists_entry(tablePtr,$2) )
 								yyerror("Entry already exists!");
 							else {
-								tablePtr = decfunction( tablePtr, $2 , $1 );
+								tablePtr = decfunction( tablePtr, $2 , $1 ); //$1 = returntype
 							}
 						}
 	;
@@ -160,7 +160,7 @@ function_parameter_list
 	;
 	
 function_parameter
-     : type identifier_declaration		{ // Entry von identifier_declaration weiterreichen
+     : type identifier_declaration		{ //Entry von identifier_declaration weiterreichen
 											 $2->scope=1;
 											 $$ = $2;
 											 numberOfParameters++;
@@ -170,7 +170,7 @@ function_parameter
 												 //yyerror("Wrong type declaration");// of \"" + $2->name + "\"");
 											}
 											else {
-											if(exists_param(tablePtr, $2)==NULL)new_param(tablePtr, $2, $1);
+											if(exists_param(tablePtr, $2)==NULL)new_param(tablePtr, $2, $1); //TODO in identifier new param aufrufen und type übergeben
 											else {yyerror("Param already exits!");}
 											}
      									}
@@ -207,7 +207,9 @@ stmt_loop
      ;
 									
 expression
-     : expression ASSIGN expression
+     : expression ASSIGN expression				{//TODO: Fehlermeldung
+     											//TODO: WARUM GEHT DER SCHEIß NICHT? -.- if(checktype($1,$3)==0)yyerror("Fehler, Falsche Typ zuweisung!");
+     											}
      | expression LOGICAL_OR expression
      | expression LOGICAL_AND expression
      | LOGICAL_NOT expression
@@ -223,26 +225,33 @@ expression
      | MINUS expression %prec UNARY_MINUS
      | ID BRACKET_OPEN primary BRACKET_CLOSE
      | PARA_OPEN expression PARA_CLOSE
-     | function_call
+     | function_call							{//TODO $1 = return entry type
+     												}
      | primary
      ;
 
 primary
-     : NUM
-     | ID
+     : NUM			
+     | ID			
      ;
 
 function_call
-      : ID PARA_OPEN PARA_CLOSE									{//
+      : ID MARKER_BEGIN_FC PARA_OPEN PARA_CLOSE									{//
 																  tablePtr = get_function( tablePtr, $1);
 																  // TODO @Marvin: Was wolltest du hier machen?
 																  //tablePtr=tablePtr.father;
 																}
-      | ID PARA_OPEN function_call_parameters PARA_CLOSE		{//
+      | ID MARKER_BEGIN_FC PARA_OPEN function_call_parameters PARA_CLOSE		{//
 																  tablePtr = get_function( tablePtr, $1);
 																  //tablePtr= tablePtr.father;
 																}
       ;
+      
+MARKER_BEGIN_FC
+	:															{// Epsilon TODO: $1 = ID
+																//get_function(tablePtr, $1)
+																}
+	;      
 
 function_call_parameters
      : function_call_parameters COMMA expression

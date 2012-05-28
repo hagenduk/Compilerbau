@@ -41,11 +41,17 @@ typedef struct param {
 
 
 //Struct Symbtab
+/*Returntypes
+        0 - void
+        1 - int
+        2 - array
+*/
 typedef struct SymTab {
 	struct entry *start;   // starting entry
 	struct SymTab *father;       // father table
 	struct param *first;		//first param of Function (each Table = 1 Function)
 	int id;
+	int returntype;
 } SymTab;
 
 
@@ -62,4 +68,10 @@ int exists_entry(struct SymTab *current, char const *name);
 int get_function(struct SymTab *current, char const *name);
 void new_param(struct SymTab *current, char const *name, int type);
 struct param *exists_param(struct SymTab *current, char const *name);
+struct SymTab *decfunction(struct SymTab *parenttable, char const *name, int type);
+
+
+/*************************************************************   TypSystem    ***************************************************/
+int checktype(int first, int second);
+
 #endif

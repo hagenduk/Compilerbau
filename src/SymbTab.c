@@ -33,11 +33,12 @@ struct SymTab *init_table(){
 // TODO Marvin: Retrun-Type kann nicht gesetzt werden
 struct SymTab *decfunction(struct SymTab *parenttable, char const *name, int type){
   localentryptr=new_entry(parenttable,0,name,0,type,0);
-  struct SymTab *localsmybtabptr;     //root table erstellen
-  localsmybtabptr = (struct SymTab *) malloc (sizeof (struct SymTab)); 
+  struct SymTab *localsymbtabptr;     //root table erstellen
+  localsymbtabptr = (struct SymTab *) malloc (sizeof (struct SymTab));
   localentryptr->function=new_function(parenttable);
-  localsmybtabptr=localentryptr->function;
-  return localsmybtabptr;              
+  localsymbtabptr=localentryptr->function;
+  localsymbtabptr->returntype = type;
+  return localsymbtabptr;
 }
 
 
@@ -384,4 +385,13 @@ struct entry *get_name(struct SymTab *current, char const *name){
 
 	return return_entry;                           //return returnentry (null if not found)
 	//printf("ende");
+}
+
+
+
+/*************************************************************   TypSystem    ***************************************************/
+
+int checktype(int first, int second){
+if(first==second) return 1;
+return 0;
 }
