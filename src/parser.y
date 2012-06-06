@@ -105,20 +105,36 @@ variable_declaration
 
 identifier_declaration
 	: ID BRACKET_OPEN NUM BRACKET_CLOSE		{ // Array Entry erstellen:
-												if( get_name(tablePtr, $1) ) {
-													printf("%d> Array >>%s<< allready declared.\n", yylineno, $1->name);
-												} else {
-													$$ = new_entry(tablePtr, $3, $1, 0, 2, 0);
+												if( !isParam ) {
+													if( get_name(tablePtr, $1) ) {
+														printf("%d> Array >>%s<< allready declared.\n", yylineno, $1->name);
+													} else {
+														$$ = new_entry(tablePtr, $3, $1, 0, 2, 0);
+													}
+												} else {	//Parameter
+													if(exists_param(tablePtr, $2)==NULL) {
+														new_param(tablePtr, $1, 1);
+													} else {
+														printf("%d> Parameter >>%s<< allready exist.\n", yylineno, $2->name);
+													}
+													isParam = false;
 												}
-												//TODO new param wenn functionparameter
 											}
 	| ID									{ // INT Entry erstellen:
-												if( get_name(tablePtr, $1) ) {
-													yyerror("Exists allready");
-												} else {
-													$$ = new_entry(tablePtr, 1, $1, 0, 1, 0);
+												if( !isParam ) {
+													if( get_name(tablePtr, $1) ) {
+														yyerror("Exists allready");
+													} else {
+														$$ = new_entry(tablePtr, 1, $1, 0, 1, 0);
+													}
+												} else {	//Parameter
+													if(exists_param(tablePtr, $2)==NULL) {
+														new_param(tablePtr, $1, 1);
+													} else {
+														printf("%d> Parameter >>%s<< allready exist.\n", yylineno, $2->name);
+													}
+													isParam = false;
 												}
-												//TODO new param wenn functionparameter
 											}
 	;
 
@@ -185,13 +201,6 @@ function_parameter
 										numberOfParameters++;
 										if( 0 == $1 ) {
 											printf("%d> Wrong type declaration of >>%s<< as \"void\".\n", yylineno , $2->name);
-										}
-										else {
-											if(exists_param(tablePtr, $2)==NULL) {
-												new_param(tablePtr, $2, $1); //TODO in identifier new param aufrufen und type übergeben
-											} else {
-												printf("%d> Parameter >>%s<< allready exist.\n", yylineno, $2->name);
-											}
 										}
 									 }
      ;
