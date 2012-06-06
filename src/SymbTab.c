@@ -27,17 +27,18 @@ struct SymTab *init_table(){
  * \brief Anlegen einer neuen Funktion
  * \param parenttable	Aktuelle Symboltabelle
  * \param name			Name der Funktion
- * \param type			Returntype der Funktion: 0 -> void; 1 -> int
+ * \param type			Prototype -> 3 ; Function -> 4
+ * \param returnType	Returntype der Funktion: 0 -> void; 1 -> int
  * \return 				Pointer auf die Symboltabelle der neuen Funktion.
  */
 // TODO Marvin: Retrun-Type kann nicht gesetzt werden
-struct SymTab *decfunction(struct SymTab *parenttable, char const *name, int type){
+struct SymTab *decfunction(struct SymTab *parenttable, char const *name, int type, int returnType){
   localentryptr=new_entry(parenttable,0,name,0,type,0);
   struct SymTab *localsymbtabptr;     //root table erstellen
   localsymbtabptr = (struct SymTab *) malloc (sizeof (struct SymTab));
   localentryptr->function=new_function(parenttable);
   localsymbtabptr=localentryptr->function;
-  localsymbtabptr->returntype = type;
+  localsymbtabptr->returntype = returnType;
   return localsymbtabptr;
 }
 
@@ -161,7 +162,7 @@ void new_param(struct SymTab *current, char const *name, int type){
 /**
  * \brief 			Prüft ob paramname local bereits vergeben ist
  * \param current	Symboltabelle, die verglichen werden soll.
- *  * \param name		Name des Parameters.
+ * \param name		Name des Parameters.
  * \return			Integer 1 - Ja, 0 - Nein
  */
 struct param *exists_param(struct SymTab *current, char const *name){

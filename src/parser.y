@@ -4,11 +4,13 @@
  
 %{
 	#include <stdio.h>
-	#include "SymbTab.c"
+	#include "SymbTab.c";
+	#include "diag.h";
 	
 	//#define YYERROR_VERBOSE
 	struct SymbTab *tablePtr;
 	int numberOfParameters = 0;
+	bool isParam = 0;
 	
 	extern int    yylineno;
 %}
@@ -62,6 +64,7 @@
 %type <num> type
 %type <entryStruct> function_parameter
 %type <entryStruct> identifier_declaration
+%type <entryStruct> function_declaration
 //%type <> expression
 //%type <> primary
 
@@ -94,8 +97,7 @@ variable_declaration
 	: variable_declaration COMMA identifier_declaration
 	| type identifier_declaration			{ 
 												if( 0 == $1 ) {
-													// TODO yyerror für die Fehlerausgabe verwenden.
-													printf("> Wrong type declaration of >>%s<< as \"void\" at line %d\n", $2->name, yylineno);
+													printf("%d> Wrong type declaration of >>%s<< as \"void\".\n", yylineno, $2->name);
 												}
 											}
 	;
@@ -104,7 +106,7 @@ variable_declaration
 identifier_declaration
 	: ID BRACKET_OPEN NUM BRACKET_CLOSE		{ // Array Entry erstellen:
 												if( get_name(tablePtr, $1) ) {
-													yyerror("Exists allready");
+													printf("%d> Array >>%s<< allready declared.\n", yylineno, $1->name);
 												} else {
 													$$ = new_entry(tablePtr, $3, $1, 0, 2, 0);
 												}
@@ -134,15 +136,31 @@ function_definition
 
 
 function_declaration
-	: MARKER_FUNCTION_BEGIN PARA_CLOSE								{
-																		tablePtr = end_function( tablePtr, numberOfParameters); numberOfParameters = 0;
-																	}
+	: type ID PARA_OPEN {	
+							if( exists_entry(tablePtr,$2) )
+								printf("%d> Prototype >>%s<< was allready declared.\n", yylineno, $1->name);
+							else {
+								tablePtr = decfunction( tablePtr, $2 , 3, $1 );
+							}
+						}
+		PARA_CLOSE		{
+							tablePtr = end_function( tablePtr, numberOfParameters); numberOfParameters = 0;
+						}
 
-	| MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE		{
-																		tablePtr = end_function( tablePtr, numberOfParameters );
-																		numberOfParameters = 0; }
+	| type ID PARA_OPEN {
+							if( exists_entry(tablePtr,$2) )
+								if( getName( tablePtr, $1)->type == 4 )
+								printf("%d> Function >>%s<< was allready declared.\n", yylineno, $1->name);
+							else {
+								tablePtr = decfunction( tablePtr, $2 , 4, $1 );
+							}
+						}
+		function_parameter_list PARA_CLOSE	{
+												tablePtr = end_function( tablePtr, numberOfParameters );
+												numberOfParameters = 0;
+											}
 	;
-
+/*
 MARKER_FUNCTION_BEGIN
 	: type ID PARA_OPEN	{ //TODO Wenn Prototyp dann überschreiben erlauben, Typ und Parametervergleich
 							if( exists_entry(tablePtr,$2) )
@@ -151,7 +169,7 @@ MARKER_FUNCTION_BEGIN
 								tablePtr = decfunction( tablePtr, $2 , $1 ); //$1 = returntype
 							}
 						}
-	;
+	;*/
 
 
 function_parameter_list
@@ -160,20 +178,22 @@ function_parameter_list
 	;
 	
 function_parameter
-     : type identifier_declaration		{ //Entry von identifier_declaration weiterreichen
-											 $2->scope=1;
-											 $$ = $2;
-											 numberOfParameters++;
-											 if( 0 == $1 ) {
-												 // TODO yyerror für die Fehlerausgabe verwenden.
-												 printf("> Wrong type declaration of >>%s<< as \"void\" at line %d\n", $2->name, yylineno);
-												 //yyerror("Wrong type declaration");// of \"" + $2->name + "\"");
+     : type { isParam = true; }
+		 identifier_declaration		{ //Entry von identifier_declaration weiterreichen
+										$2->scope=1;
+										$$ = $2;
+										numberOfParameters++;
+										if( 0 == $1 ) {
+											printf("%d> Wrong type declaration of >>%s<< as \"void\".\n", yylineno , $2->name);
+										}
+										else {
+											if(exists_param(tablePtr, $2)==NULL) {
+												new_param(tablePtr, $2, $1); //TODO in identifier new param aufrufen und type übergeben
+											} else {
+												printf("%d> Parameter >>%s<< allready exist.\n", yylineno, $2->name);
 											}
-											else {
-											if(exists_param(tablePtr, $2)==NULL)new_param(tablePtr, $2, $1); //TODO in identifier new param aufrufen und type übergeben
-											else {yyerror("Param already exits!");}
-											}
-     									}
+										}
+									 }
      ;
 									
 stmt_list
