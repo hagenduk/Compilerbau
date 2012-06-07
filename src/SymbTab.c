@@ -212,12 +212,13 @@ struct SymTab *new_function(struct SymTab *current){
  * \param current	Aktuelle Symboltabelle
  * \return 			Pointer auf uebergeordnete Symboltabelle
  */
-struct SymTab *end_function(struct SymTab *current, int number){
+struct SymTab *end_function(struct SymTab *current, int numberOfParameters){
 
 	struct entry *function;
-	localentryptr->param=number;
+	localentryptr->param=numberOfParameters;
 
-       return current->father;          //returns father of SymTab
+	current->paramCnt = numberOfParameters;
+	return current->father;          //returns father of SymTab
 }
 
 

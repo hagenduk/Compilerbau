@@ -10,7 +10,7 @@
 	//#define YYERROR_VERBOSE
 	struct SymbTab *tablePtr;
 	int numberOfParameters = 0;
-	bool isParam = 0;
+	int isParam = 0;
 	
 	extern int    yylineno;
 %}
@@ -62,7 +62,7 @@
 //%type <entryStruct> function_declaration
 //%type <> function_call
 %type <num> type
-%type <entryStruct> function_parameter
+//%type <entryStruct> function_parameter
 %type <entryStruct> identifier_declaration
 %type <entryStruct> function_declaration
 //%type <> expression
@@ -107,17 +107,18 @@ identifier_declaration
 	: ID BRACKET_OPEN NUM BRACKET_CLOSE		{ // Array Entry erstellen:
 												if( !isParam ) {
 													if( get_name(tablePtr, $1) ) {
-														printf("%d> Array >>%s<< allready declared.\n", yylineno, $1->name);
+														printf("%d> Array >>%s<< allready declared.\n", yylineno, $1);
 													} else {
 														$$ = new_entry(tablePtr, $3, $1, 0, 2, 0);
 													}
 												} else {	//Parameter
-													if(exists_param(tablePtr, $2)==NULL) {
+													if(exists_param(tablePtr, $1)==NULL) {
 														new_param(tablePtr, $1, 1);
+														$$ = NULL;
 													} else {
-														printf("%d> Parameter >>%s<< allready exist.\n", yylineno, $2->name);
+														printf("%d> Parameter >>%s<< allready exist.\n", yylineno, $1);
 													}
-													isParam = false;
+													isParam = 0;
 												}
 											}
 	| ID									{ // INT Entry erstellen:
@@ -128,64 +129,79 @@ identifier_declaration
 														$$ = new_entry(tablePtr, 1, $1, 0, 1, 0);
 													}
 												} else {	//Parameter
-													if(exists_param(tablePtr, $2)==NULL) {
+													if(exists_param(tablePtr, $1)==NULL) {
 														new_param(tablePtr, $1, 1);
+														$$ = NULL;
 													} else {
-														printf("%d> Parameter >>%s<< allready exist.\n", yylineno, $2->name);
+														printf("%d> Parameter >>%s<< allready exist.\n", yylineno, $1);
 													}
-													isParam = false;
+													isParam = 0;
 												}
 											}
 	;
 
 
 function_definition
-    : MARKER_FUNCTION_BEGIN PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE								{
-																										tablePtr = end_function( tablePtr, numberOfParameters );
-																										numberOfParameters = 0;
-																									}
-    | MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE		{
-																										tablePtr = end_function( tablePtr, numberOfParameters );
-																										numberOfParameters = 0;
-																									}
+    : MARKER_FUNCTION_BEGIN /*type ID PARA_OPEN		{
+								if( exists_entry(tablePtr,$2) ) {
+									yyerror("Entry already exists!");
+								} else {
+									tablePtr = decfunction( tablePtr, $2, 4, $1 ); //$1 = returntype
+								}
+							}*/
+		PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE		{
+															tablePtr = end_function( tablePtr, numberOfParameters );
+															numberOfParameters = 0;
+														}
+    | MARKER_FUNCTION_BEGIN /*type ID PARA_OPEN		{
+								if( exists_entry(tablePtr,$2) ) {
+									yyerror("Entry already exists!");
+								} else {
+									tablePtr = decfunction( tablePtr, $2, 4, $1 ); //$1 = returntype
+								}
+							}*/
+		function_parameter_list PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE		{
+																					tablePtr = end_function( tablePtr, numberOfParameters );
+																					numberOfParameters = 0;
+																				}
 	;
 
 
 function_declaration
-	: type ID PARA_OPEN {	
+	: MARKER_FUNCTION_BEGIN /*type ID PARA_OPEN {
 							if( exists_entry(tablePtr,$2) )
 								printf("%d> Prototype >>%s<< was allready declared.\n", yylineno, $1->name);
 							else {
 								tablePtr = decfunction( tablePtr, $2 , 3, $1 );
 							}
-						}
+						}*/
 		PARA_CLOSE		{
 							tablePtr = end_function( tablePtr, numberOfParameters); numberOfParameters = 0;
 						}
 
-	| type ID PARA_OPEN {
+	| MARKER_FUNCTION_BEGIN /*type ID PARA_OPEN {
 							if( exists_entry(tablePtr,$2) )
 								if( getName( tablePtr, $1)->type == 4 )
 								printf("%d> Function >>%s<< was allready declared.\n", yylineno, $1->name);
 							else {
-								tablePtr = decfunction( tablePtr, $2 , 4, $1 );
+								tablePtr = decfunction( tablePtr, $2 , 3, $1 );
 							}
-						}
+						}*/
 		function_parameter_list PARA_CLOSE	{
 												tablePtr = end_function( tablePtr, numberOfParameters );
 												numberOfParameters = 0;
 											}
 	;
-/*
+
 MARKER_FUNCTION_BEGIN
 	: type ID PARA_OPEN	{ //TODO Wenn Prototyp dann überschreiben erlauben, Typ und Parametervergleich
 							if( exists_entry(tablePtr,$2) )
 								yyerror("Entry already exists!");
 							else {
-								tablePtr = decfunction( tablePtr, $2 , $1 ); //$1 = returntype
+								tablePtr = decfunction( tablePtr, $2, 4, $1 ); //$1 = returntype
 							}
 						}
-	;*/
+	;
 
 
 function_parameter_list
@@ -194,13 +210,12 @@ function_parameter_list
 	;
 	
 function_parameter
-     : type { isParam = true; }
+     : type { isParam = 1; }
 		 identifier_declaration		{ //Entry von identifier_declaration weiterreichen
-										$2->scope=1;
-										$$ = $2;
+									//	$$ = $3;
 										numberOfParameters++;
 										if( 0 == $1 ) {
-											printf("%d> Wrong type declaration of >>%s<< as \"void\".\n", yylineno , $2->name);
+											printf("%d> Void as type of a parameter is not allowed.\n", yylineno);
 										}
 									 }
      ;
@@ -266,20 +281,16 @@ primary
 
 function_call
       : ID MARKER_BEGIN_FC PARA_OPEN PARA_CLOSE					{//
-																	tablePtr = get_function( tablePtr, $1);
-																	if( tablePtr->param != numberOfParameters ) {
-																		printf("%d> Too many parameters for function >>%s<<.\n", yylineno , $1->name);
+																	if( get_function( tablePtr, $1)->paramCnt != numberOfParameters ) {
+																		printf("%d> Too many parameters for function >>%s<<.\n", yylineno , $1);
 																	}
 																	numberOfParameters = 0;
-																    tablePtr=tablePtr.father;
 																}
       | ID MARKER_BEGIN_FC PARA_OPEN function_call_parameters PARA_CLOSE		{//
-																				  tablePtr = get_function( tablePtr, $1);
-																				  if( tablePtr->param != numberOfParameters ) {
-																					  printf("%d> Number of parameters does not match to the declaration of function >>%s<<.\n", yylineno , $1->name);
+																				  if( get_function( tablePtr, $1)->paramCnt != numberOfParameters ) {
+																					  printf("%d> Number of parameters does not match to the declaration of function >>%s<<.\n", yylineno);
 																				  }
 																				  numberOfParameters = 0;
-																				  tablePtr= tablePtr.father;
 																				}
       ;
       

@@ -50,6 +50,7 @@ typedef struct SymTab {
 	struct entry *start;   // starting entry
 	struct SymTab *father;       // father table
 	struct param *first;		//first param of Function (each Table = 1 Function)
+	int paramCnt;				// Anzahl der Parameter
 	int id;
 	int returntype;
 } SymTab;
