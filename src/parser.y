@@ -265,15 +265,22 @@ primary
      ;
 
 function_call
-      : ID MARKER_BEGIN_FC PARA_OPEN PARA_CLOSE									{//
-																  tablePtr = get_function( tablePtr, $1);
-																  // TODO @Marvin: Was wolltest du hier machen?
-																  //tablePtr=tablePtr.father;
+      : ID MARKER_BEGIN_FC PARA_OPEN PARA_CLOSE					{//
+																	tablePtr = get_function( tablePtr, $1);
+																	if( tablePtr->param != numberOfParameters ) {
+																		printf("%d> Too many parameters for function >>%s<<.\n", yylineno , $1->name);
+																	}
+																	numberOfParameters = 0;
+																    tablePtr=tablePtr.father;
 																}
       | ID MARKER_BEGIN_FC PARA_OPEN function_call_parameters PARA_CLOSE		{//
-																  tablePtr = get_function( tablePtr, $1);
-																  //tablePtr= tablePtr.father;
-																}
+																				  tablePtr = get_function( tablePtr, $1);
+																				  if( tablePtr->param != numberOfParameters ) {
+																					  printf("%d> Number of parameters does not match to the declaration of function >>%s<<.\n", yylineno , $1->name);
+																				  }
+																				  numberOfParameters = 0;
+																				  tablePtr= tablePtr.father;
+																				}
       ;
       
 MARKER_BEGIN_FC
