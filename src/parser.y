@@ -281,15 +281,15 @@ primary
 
 function_call
       : ID MARKER_BEGIN_FC PARA_OPEN PARA_CLOSE					{//
-																	if( get_function( tablePtr, $1)->paramCnt != numberOfParameters ) {
-																		printf("%d> Too many parameters for function >>%s<<.\n", yylineno , $1);
-																	}
+//																	if( get_function( tablePtr, $1)->paramCnt != numberOfParameters ) {
+//																		printf("%d> Too many parameters for function >>%s<<.\n", yylineno , $1);
+//																	}
 																	numberOfParameters = 0;
 																}
       | ID MARKER_BEGIN_FC PARA_OPEN function_call_parameters PARA_CLOSE		{//
-																				  if( get_function( tablePtr, $1)->paramCnt != numberOfParameters ) {
-																					  printf("%d> Number of parameters does not match to the declaration of function >>%s<<.\n", yylineno);
-																				  }
+//																				  if( get_function( tablePtr, $1)->paramCnt != numberOfParameters ) {
+//																					  printf("%d> Number of parameters does not match to the declaration of function >>%s<<.\n", yylineno);
+//																				  }
 																				  numberOfParameters = 0;
 																				}
       ;
