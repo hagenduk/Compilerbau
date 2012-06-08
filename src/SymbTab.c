@@ -336,7 +336,7 @@ int exists_entry(struct SymTab *current, char const *name){
  * \param name		Name des Eintrages.
  * \return			Pointer auf die Funktionss.
  */
-int get_function(struct SymTab *current, char const *name){
+struct symtab *get_function(struct SymTab *current, char const *name){
 
 	struct entry *found_entry;                       						//initialise returnentry with null,
 		found_entry = (struct entry *) malloc (sizeof (struct entry));
