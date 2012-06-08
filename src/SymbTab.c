@@ -334,10 +334,32 @@ int exists_entry(struct SymTab *current, char const *name){
  * \brief Sucht in einer Symboltabelle und ggf. in der uebergeordneten Symboltabelle nach einem Eintrag. Der Eintrag wird mit Hilfe des Names gesucht.
  * \param current	Symboltabelle, in der gesucht werden soll.
  * \param name		Name des Eintrages.
- * \return			Pointer auf das zuerst gefundene Entry.
+ * \return			Pointer auf die Funktionss.
  */
 int get_function(struct SymTab *current, char const *name){
 
+	struct entry *found_entry;                       						//initialise returnentry with null,
+		found_entry = (struct entry *) malloc (sizeof (struct entry));
+		found_entry=NULL;
+
+		struct entry *current_entry;            								//set current entry to start entry of current SymTab
+		current_entry = (struct entry *) malloc (sizeof (struct entry));
+		current_entry=current->start;
+
+			while(current_entry!=NULL){                    						//While current entry exists (last entry is null=false, Loop2)
+
+				//printf("\n Lookin in Table %d \n in entry %d VALUES \n{'offset' %d, 'name' %s, 'scope' %d, \n 'isarray' %d \n }", current->id, current_entry->id, current_entry->offset, current_entry->name, current_entry->scope, current_entry->isarray);
+
+				if((strcmp (current_entry->name,name) == 0 && current_entry->function!=NULL)){            		//If name = currententry->name and function pointer not NULL
+					found_entry=current_entry;             					//returnentry=currententry
+					break;//break loop1
+				}
+
+				current_entry=current_entry->next;       						//current entry is current_entry->next (next entry in same SymTab)
+			}//end loop 2
+
+	if(found_entry!=NULL) return NULL;
+	return found_entry->function;												//return function
 }
 
 
