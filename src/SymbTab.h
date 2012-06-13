@@ -66,7 +66,7 @@ void printentry(struct entry *currententry, FILE* datei);
 struct SymTab *decfunction(struct SymTab *parenttable, char const *name, int type, int returnType);
 int is_root_table(struct SymTab *current);
 int exists_entry(struct SymTab *current, char const *name);
-struct symtab *get_function(struct SymTab *current, char const *name);
+struct SymTab *get_function(struct SymTab *current, char const *name);
 void new_param(struct SymTab *current, char const *name, int type);
 struct param *exists_param(struct SymTab *current, char const *name);
 //struct SymTab *decfunction(struct SymTab *parenttable, char const *name, int type);
