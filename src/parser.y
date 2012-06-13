@@ -124,7 +124,7 @@ identifier_declaration
 	| ID									{ // INT Entry erstellen:
 												if( !isParam ) {
 													if( get_name(tablePtr, $1) ) {
-														yyerror("Exists allready");
+														printf("%d> Variable >>%s<< allready declared.\n", yylineno, $1);
 													} else {
 														$$ = new_entry(tablePtr, 1, $1, 0, 1, 0);
 													}
