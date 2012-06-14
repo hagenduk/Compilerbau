@@ -18,6 +18,7 @@ typedef struct entry {
    struct entry *next;        // next entry
    int type;               //is it an array
    int value;              //int value
+   struct avalue *arrayvalue;		//array values
    struct SymTab *function;   //Functionpointer
    int param;                 // Number of the parameters
 } entry;
@@ -37,8 +38,23 @@ typedef struct param {
    struct param *previous;    // previous entry
    struct param *next;        // next entry
    int value;					//value
+   struct avalue *arrayvalue;		//array values
    int type;               //is it an array
 } param;
+
+//Struct param, name, typ
+/*Types: IMMER: name, type, offset
+        0 - void
+        1 - int
+        2 - array
+        3 - prototype
+        4 - function
+*/
+typedef struct avalue {
+   struct avalue *previous;    // previous entry
+   struct avalue *next;        // next entry
+   int value;					//value
+} avalue;
 
 
 //Struct Symbtab
