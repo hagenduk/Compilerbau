@@ -17,7 +17,7 @@ typedef struct entry {
    struct entry *previous;    // previous entry
    struct entry *next;        // next entry
    int type;               //is it an array
-   int position;              //if yes whats the position?
+   int value;              //int value
    struct SymTab *function;   //Functionpointer
    int param;                 // Number of the parameters
 } entry;
@@ -36,6 +36,7 @@ typedef struct param {
    char *name;                 //name of the object in the entry
    struct param *previous;    // previous entry
    struct param *next;        // next entry
+   int value;					//value
    int type;               //is it an array
 } param;
 
