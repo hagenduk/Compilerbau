@@ -20,3 +20,24 @@ struct ir_struct {
 
 void ir_entry(enum op_codes op, entry *var0, entry *var1, entry *var2, int jmp);
 void ir_entry_assign(entry *var0, entry *var1);
+struct entry *ir_1exp(enum op_codes op, struct entry *var0);
+struct entry *ir_2exp(enum op_codes op, struct entry *var1,
+		struct entry *var2);
+void ir_return(enum op_codes op, struct entry *var0);
+struct entry *ir_assign_arr(struct entry *var0, struct entry *var1);
+void ir_if(struct entry *var0);
+void ir_goto();
+void ir_while(struct entry *var0);
+void ir_while_begin();
+void ir_while_goto_begin();
+void ir_do_while_begin();
+void ir_do_while_end(struct entry *var0);
+struct entry *ir_funccall(enum op_codes op, struct entry *var0, int jmp);
+void backp_if(int new);
+void backp_return();
+void backp_while();
+int ir_find_FuncDef(struct entry *var0);
+struct entry *ir_tmp();
+int set_jmpLabel(int pos, int label);
+void ir_set_file(FILE *file);
+void generate_ir_code();
