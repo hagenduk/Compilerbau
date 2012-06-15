@@ -1,5 +1,5 @@
-#ifndef _DHBWCC_SYMTABLE_H
-#define _DHBWCC_SYMTABLE_H
+#ifndef _DHBWCC_SYMBTAB_H
+#define _DHBWCC_SYMBTAB_H
 
 //Struct entry, Offset, name, typ, anzahl der übergabeparam, level(local,anders)
 /*Types: IMMER: name, type, offset
@@ -78,19 +78,13 @@ struct entry *new_entry(struct SymTab *current, int offset, char const *name, in
 struct SymTab *new_function(struct SymTab *current);
 struct SymTab *end_function(struct SymTab *current, int number);
 struct entry *get_name(struct SymTab *current, char const *name);
-void printall(FILE* datei, struct SymTab *root);
-void printentry(struct entry *currententry, FILE* datei);
+int printallstart(char *file);
 struct SymTab *decfunction(struct SymTab *parenttable, char const *name, int type, int returnType);
 int is_root_table(struct SymTab *current);
 int exists_entry(struct SymTab *current, char const *name);
 struct SymTab *get_function(struct SymTab *current, char const *name);
 void new_param(struct SymTab *current, char const *name, int type);
 struct param *exists_param(struct SymTab *current, char const *name);
-struct SymTab *get_rootptr()
-//struct SymTab *decfunction(struct SymTab *parenttable, char const *name, int type);
-
-
-/*************************************************************   TypSystem    ***************************************************/
-int checktype(int first, int second);
+struct SymTab *get_rootptr();
 
 #endif

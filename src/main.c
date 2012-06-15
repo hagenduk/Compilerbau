@@ -283,7 +283,7 @@ int main (int argc, char *argv[]) {
 
   fclose(yyin);
 
-  printallstart(cc_options.ir_file);
+  //printallstart(cc_options.ir_file);
 
   rm_cleanup_resources(&resource_mgr);
   return 0;

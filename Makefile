@@ -45,7 +45,10 @@ $(OBJDIR)/resource_manager.o: $(SRCDIR)/resource_manager.c
 $(OBJDIR)/main.o: $(SRCDIR)/main.c
 	$(CC) $(CFLAGS) -c $< -o $@
 	
-$(OBJDIR)/SymbTab.o: $(SRCDIR)/SymbTab.c 
+$(OBJDIR)/SymbTab.o: $(SRCDIR)/SymbTab.c $(SRCDIR)/SymbTab.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJDIR)/ircode.o: $(SRCDIR)/ircode.c $(SRCDIR)/ircode.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR)/scanner.o: $(OBJDIR)/scanner.c $(OBJDIR)/parser.h

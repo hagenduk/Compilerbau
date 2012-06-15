@@ -223,7 +223,7 @@ struct SymTab *end_function(struct SymTab *current, int numberOfParameters){
 
 
 /**
- * \brief Oeffnet eine Datei zum schreiben und uebergint das handle an printall()
+ * \brief Oeffnet eine Datei zum schreiben und uebergint das handle an printall
  * \return	Statuscode, ob Prozess erfolgreich war
  * 			-1 -> Datei konnte nicht geoeffnet werden.
  * 			 1 -> Schreibprozess wurde erfolgreich beendet.

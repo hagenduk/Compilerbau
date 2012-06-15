@@ -4,8 +4,9 @@
  
 %{
 	#include <stdio.h>
-	#include "SymbTab.c";
-	#include "diag.h";
+	#include "diag.h"
+	#include "SymbTab.c"
+	#include "ircode.h"
 	
 	//#define YYERROR_VERBOSE
 	struct SymbTab *tablePtr;
@@ -97,7 +98,7 @@ variable_declaration
 	: variable_declaration COMMA identifier_declaration
 	| type identifier_declaration			{ 
 												if( 0 == $1 ) {
-													printf("%d> Wrong type declaration of >>%s<< as \"void\".\n", yylineno, $2->name);
+//													printf("%d> Wrong type declaration of >>%s<< as \"void\".\n", yylineno, $2->name);
 												}
 											}
 	;
@@ -281,9 +282,9 @@ primary
 
 function_call
       : ID MARKER_BEGIN_FC PARA_OPEN PARA_CLOSE					{//
-																	if( (get_function( tablePtr, $1))->paramCnt != numberOfParameters ) {
-																		printf("%d> Too many parameters for function >>%s<<.\n", yylineno , $1);
-																	}
+//																	if( (get_function( tablePtr, $1))->paramCnt != numberOfParameters ) {
+//																		printf("%d> Too many parameters for function >>%s<<.\n", yylineno , $1);
+//																	}
 																	numberOfParameters = 0;
 																}
       | ID MARKER_BEGIN_FC PARA_OPEN function_call_parameters PARA_CLOSE		{//

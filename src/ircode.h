@@ -41,3 +41,5 @@ struct entry *ir_tmp();
 int set_jmpLabel(int pos, int label);
 void ir_set_file(FILE *file);
 void generate_ir_code();
+
+#endif
