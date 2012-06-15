@@ -86,6 +86,7 @@ int exists_entry(struct SymTab *current, char const *name);
 struct SymTab *get_function(struct SymTab *current, char const *name);
 void new_param(struct SymTab *current, char const *name, int type);
 struct param *exists_param(struct SymTab *current, char const *name);
+struct SymTab *get_rootptr()
 //struct SymTab *decfunction(struct SymTab *parenttable, char const *name, int type);
 
 

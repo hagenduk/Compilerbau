@@ -411,7 +411,9 @@ struct entry *get_name(struct SymTab *current, char const *name){
 	//printf("ende");
 }
 
-
+struct SymTab *get_rootptr() {
+	return root;
+}
 
 /*************************************************************   TypSystem    ***************************************************/
 
