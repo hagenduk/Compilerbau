@@ -76,8 +76,7 @@ struct entry *ir_1exp(enum op_codes op, struct entry *var0) {
 	return v;
 }
 
-struct entry *ir_2exp(enum op_codes op, struct entry *var1,
-		struct entry *var2) {
+struct entry *ir_2exp(enum op_codes op, struct entry *var1,	struct entry *var2) {
 	//TODO Fix if (var1->type == 0 || 2->type == 0) {
 	if (var1->type == 0 || var2->type == 0) {
 		yyerror("Operands can not be of type VOID");

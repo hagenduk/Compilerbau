@@ -260,25 +260,69 @@ expression
 			}
      | expression LOGICAL_OR expression
 			 {
-				// ir_assign(struct entry *var0, struct entry *var1, NULL);
+				 $$ = ir_2exp(IR_LOGICAL_OR, $1, $3);
 			 }
      | expression LOGICAL_AND expression
+			 {
+				 $$ = ir_2exp(IR_LOGICAL_AND, $1, $3); 
+			 }
      | LOGICAL_NOT expression
+			 {
+				 $$ = ir_1exp(IR_LOGICAL_NOT, $2); 
+			 }
      | expression EQ expression
+			 {
+				 $$ = ir_2exp(IR_EQ, $1, $3); 
+			 }
      | expression NE expression
-     | expression LS expression 
-     | expression LSEQ expression 
-     | expression GTEQ expression 
+			 {
+				 $$ = ir_2exp(IR_NE, $1, $3); 
+			 }
+     | expression LS expression
+			 {
+				 $$ = ir_2exp(IR_LS, $1, $3); 
+			 } 
+     | expression LSEQ expression
+			 {
+				 $$ = ir_2exp(IR_LSEQ, $1, $3); 
+			 } 
+     | expression GTEQ expression
+			 {
+				 $$ = ir_2exp(IR_GTEQ, $1, $3); 
+			 } 
      | expression GT expression
+			 {
+				 $$ = ir_2exp(IR_GT, $1, $3); 
+			 }
      | expression PLUS expression
+			 {
+				 $$ = ir_2exp(IR_PLUS, $1, $3); 
+			 }
      | expression MINUS expression
+			 {
+				 $$ = ir_2exp(IR_MINUS, $1, $3); 
+			 }
      | expression MUL expression
+			 {
+				 $$ = ir_2exp(IR_MUL, $1, $3); 
+			 }
      | MINUS expression %prec UNARY_MINUS
+			 {
+				 $$ = ir_1exp(IR_MINUS, $2); 
+			 }
      | ID BRACKET_OPEN primary BRACKET_CLOSE
      | PARA_OPEN expression PARA_CLOSE
-     | function_call							{//TODO $1 = return entry type
-     												}
+			 {
+				$$ = $2; 
+			 }
+     | function_call	
+			 {//TODO $1 = return entry type
+				 
+			 }
      | primary
+			 {
+				$$ = $1; 
+			 }
      ;
 
 primary
