@@ -4,6 +4,7 @@
 #include "diag.h"
 #include "resource_manager.h"
 #include "SymbTab.h"
+#include "ircode.h"
 
 /** 
  * \struct cc_options

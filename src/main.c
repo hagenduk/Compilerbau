@@ -282,8 +282,12 @@ int main (int argc, char *argv[]) {
   	} while (!feof(yyin));
 
   fclose(yyin);
-
-  //printallstart(cc_options.ir_file);
+  FILE * ir_file = cc_options.ir_file;
+  ir_set_file(fopen(ir_file, "w"));
+  FILE * sym_file = cc_options.output_file;
+  printallstart(sym_file);
+  generate_ir_code();
+  fclose(ir_file);
 
   rm_cleanup_resources(&resource_mgr);
   return 0;
