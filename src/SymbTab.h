@@ -18,6 +18,7 @@ typedef struct entry {
    struct entry *next;        // next entry
    int type;               //is it an array
    int value;              //int value
+   int position;			// array position
    struct avalue *arrayvalue;		//array values
    struct SymTab *function;   //Functionpointer
    int param;                 // Number of the parameters

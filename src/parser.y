@@ -6,12 +6,13 @@
 	#include <stdio.h>
 	#include "diag.h"
 	#include "SymbTab.c"
-	#include "ircode.h"
+	#include "ircode.c"
 	
 	//#define YYERROR_VERBOSE
 	struct SymbTab *tablePtr;
 	int numberOfParameters = 0;
 	int isParam = 0;
+	int idForNumCounter = 0;
 	
 	extern int    yylineno;
 %}
@@ -66,8 +67,8 @@
 //%type <entryStruct> function_parameter
 %type <entryStruct> identifier_declaration
 %type <entryStruct> function_declaration
-//%type <> expression
-//%type <> primary
+%type <entryStruct> expression
+%type <entryStruct> primary
 
 %%
 
@@ -98,7 +99,7 @@ variable_declaration
 	: variable_declaration COMMA identifier_declaration
 	| type identifier_declaration			{ 
 												if( 0 == $1 ) {
-//													printf("%d> Wrong type declaration of >>%s<< as \"void\".\n", yylineno, $2->name);
+													printf("%d> Wrong type declaration of >>%s<< as \"void\".\n", yylineno, $2->name);
 												}
 											}
 	;
@@ -252,10 +253,15 @@ stmt_loop
      ;
 									
 expression
-     : expression ASSIGN expression				{//TODO: Fehlermeldung
-     											//TODO: WARUM GEHT DER SCHEIß NICHT? -.- if(checktype($1,$3)==0)yyerror("Fehler, Falsche Typ zuweisung!");
-     											}
+     : expression ASSIGN expression
+			{
+				 ir_assign($1, $3, NULL);
+				 $$ = $3;
+			}
      | expression LOGICAL_OR expression
+			 {
+				// ir_assign(struct entry *var0, struct entry *var1, NULL);
+			 }
      | expression LOGICAL_AND expression
      | LOGICAL_NOT expression
      | expression EQ expression
@@ -276,21 +282,39 @@ expression
      ;
 
 primary
-     : NUM			
-     | ID			
+     : NUM
+		   {
+			 $$ = new_entry(tablePtr, 1, NULL, 0, 1, 0);
+			 sprintf($$->name,"NUM%d",idForNumCounter);
+			 $$->value = $1;
+			 
+			 idForNumCounter++;
+		   }
+     | ID
+		   {
+			 if( exists_entry(tablePtr, $1) ) {
+				 $$ = get_name(tablePtr, $1);
+			 } else {
+				 printf("%d> Primary >>%s<< was not declared.\n", yylineno, $1);
+				 $$ = new_entry(tablePtr, 1, NULL, 0, 1, 0);
+				 sprintf($$->name,"UNKNOWN%d",idForNumCounter);
+				 $$->value = 1;	//default value of unknown variables
+				 idForNumCounter++;
+			 }
+		   }
      ;
 
 function_call
       : ID MARKER_BEGIN_FC PARA_OPEN PARA_CLOSE					{//
-//																	if( (get_function( tablePtr, $1))->paramCnt != numberOfParameters ) {
-//																		printf("%d> Too many parameters for function >>%s<<.\n", yylineno , $1);
-//																	}
+																	if( (get_function( tablePtr, $1))->paramCnt != numberOfParameters ) {
+																		printf("%d> Too many parameters for function >>%s<<.\n", yylineno , $1);
+																	}
 																	numberOfParameters = 0;
 																}
       | ID MARKER_BEGIN_FC PARA_OPEN function_call_parameters PARA_CLOSE		{//
-//																				  if( get_function( tablePtr, $1)->paramCnt != numberOfParameters ) {
-//																					  printf("%d> Number of parameters does not match to the declaration of function >>%s<<.\n", yylineno);
-//																				  }
+																				  if( get_function( tablePtr, $1)->paramCnt != numberOfParameters ) {
+																					  printf("%d> Number of parameters does not match to the declaration of function >>%s<<.\n", yylineno);
+																				  }
 																				  numberOfParameters = 0;
 																				}
       ;

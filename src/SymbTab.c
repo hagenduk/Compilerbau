@@ -85,6 +85,7 @@ struct entry *new_entry(struct SymTab *current, int offset, char const *name, in
 	}
 
 	currententry->offset=offset;             							//setzte werte aus übergabe für aktuellen eintrag
+	currententry->position = 0;
 
 	currententry->name = (char *) malloc (strlen (name) + 1);
 	strcpy (currententry->name,name);

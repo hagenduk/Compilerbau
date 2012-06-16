@@ -3,6 +3,7 @@
 #include "diag.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "uthash.h"
 
 /*
  * For Throwing errors
@@ -17,6 +18,10 @@ int ir_count = -1;
 int ir_tmp_counter = 0;
 
 int jmp_count = 0;
+
+FILE *ir_file;
+int code_count = 0;
+char s [200];
 
 struct ir_struct *container = NULL;
 
@@ -63,7 +68,8 @@ void ir_assign(struct entry *var0, struct entry *var1, struct entry *var2) {
 
 struct entry *ir_1exp(enum op_codes op, struct entry *var0) {
 	struct entry *v = ir_tmp();
-	if (var1->type == 0) {
+	//TODO Fix if (var1->type == 0) {
+	if (var0->type == 0) {
 		yyerror("Operands can not be of type VOID");
 	}
 	ir_entry(op, v, var0, NULL, NULL);
@@ -72,7 +78,8 @@ struct entry *ir_1exp(enum op_codes op, struct entry *var0) {
 
 struct entry *ir_2exp(enum op_codes op, struct entry *var1,
 		struct entry *var2) {
-	if (var1->type == 0 || 2->type == 0) {
+	//TODO Fix if (var1->type == 0 || 2->type == 0) {
+	if (var1->type == 0 || var2->type == 0) {
 		yyerror("Operands can not be of type VOID");
 	}
 	struct entry *v = ir_tmp();
@@ -83,7 +90,8 @@ struct entry *ir_2exp(enum op_codes op, struct entry *var1,
 	if (var2->type == 1 && var2->position == NULL) {
 		yyerror("Second Operand must have an array index");
 	}
-	ir_entry(operation, v, var1, var2, NULL, NULL);
+	//TODO Fix ir_entry(operation, v, var1, var2, NULL, NULL);
+	ir_entry(op, v, var1, var2, NULL);
 	return v;
 }
 
@@ -124,7 +132,8 @@ void ir_while_goto_begin() {
 }
 
 void ir_do_while_begin() {
-	gencode(IR_DO_WHILE_BEGIN, NULL, NULL, NULL, -2);
+	//TODO Fix gencode(IR_DO_WHILE_BEGIN, NULL, NULL, NULL, -2);
+	ir_entry(IR_DO_WHILE_BEGIN, NULL, NULL, NULL, -2);
 }
 
 void ir_do_while_end(struct entry *var0) {
@@ -144,7 +153,8 @@ void ir_do_while_end(struct entry *var0) {
 
 struct entry *ir_funccall(enum op_codes op, struct entry *var0, int jmp) {
 	struct entry *v = ir_tmp();
-	gencode(operation, var0, v, NULL, jmp);
+	//TODO Fix gencode(operation, var0, v, NULL, jmp);
+	ir_entry(op, var0, v, NULL, jmp);
 	return v;
 }
 /****************************************************BACKP*********************************************************/
@@ -255,121 +265,143 @@ void generate_ir_code() {
 		case IR_PLUS:
 			sprintf(s, "%s = %s + %s", c->var0->name, c->var1->name,
 					c->var2->name);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_MINUS:
 			sprintf(s, "%s = %s - %s", c->var0->name, c->var1->name,
 					c->var2->name);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_MUL:
 			sprintf(s, "%s = %s * %s", c->var0->name, c->var1->name,
 					c->var2->name);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_UNARY_MINUS:
 			sprintf(s, "%s = -%s", c->var0->name, c->var1->name);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_SHIFT_LEFT:
 			sprintf(s, "%s = %s << %s", c->var0->name, c->var1->name,
 					c->var2->name);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_SHIFT_RIGHT:
 			sprintf(s, "%s = %s >> %s", c->var0->name, c->var1->name,
 					c->var2->name);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_LOGICAL_AND:
 			sprintf(s, "%s = %s && %s", c->var0->name, c->var1->name,
 					c->var2->name);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_LOGICAL_OR:
 			sprintf(s, "%s = %s || %s", c->var0->name, c->var1->name,
 					c->var2->name);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_LOGICAL_NOT:
 			sprintf(s, "%s = !%s", c->var0->name, c->var1->name);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_NE:
 			sprintf(s, "%s = %s != %s", c->var0->name, c->var1->name,
 					c->var2->name);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_EQ:
 			sprintf(s, "%s = %s == %s", c->var0->name, c->var1->name,
 					c->var2->name);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_GT:
 			sprintf(s, "%s = %s > %s", c->var0->name, c->var1->name,
 					c->var2->name);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_GTEQ:
 			sprintf(s, "%s = %s >= %s", c->var0->name, c->var1->name,
 					c->var2->name);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_LS:
 			sprintf(s, "%s = %s < %s", c->var0->name, c->var1->name,
 					c->var2->name);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_LSEQ:
 			sprintf(s, "%s = %s <= %s", c->var0->name, c->var1->name,
 					c->var2->name);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_IF:
 			jmp_count++;
 			if (!set_jmpLabel(c->jmp, jmp_count)) {
 				jmp_count--;
-				c->jmp = code[c->jmp].label;
+//TODO Fix				c->jmp = code[c->jmp].label;
+				c->jmp = container[c->jmp].label;
 			} else {
 				c->jmp = jmp_count;
 			}
 			sprintf(s, "IF %s GOTO .l%d", c->var0->name, c->jmp);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_GOTO:
 			jmp_count++;
 			if (!set_jmpLabel(c->jmp, jmp_count)) {
 				jmp_count--;
-				c->jmp = code[c->jmp].jmp;
+//TODO Fix				c->jmp = code[c->jmp].jmp;
+				c->jmp = container[c->jmp].jmp;
 			} else {
 				c->jmp = jmp_count;
 			}
 			sprintf(s, "GOTO .l%d", c->jmp);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_WHILE_BEGIN:
 			jmp_count++;
 			c->label = jmp_count;
 			sprintf(s, ".l%d:\n", c->label);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_DO_WHILE_BEGIN:
 			jmp_count++;
 			c->label = jmp_count;
 			sprintf(s, ".l%d:\n", c->label);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_RETURN:
 			if (c->var0 != NULL)
 				sprintf(s, "RETURN %s", c->var0->name);
 			else
 				sprintf(s, "RETURN");
-			add_str(s);
+			//TODO add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_PARA:
 			parcount++;
-			HASH_ADD_KEYPTR(hh, pars, c->var0->varname,
-					strlen(c->var0->varname), c->var0);
+//TODO Fix			HASH_ADD_KEYPTR(hh, pars, c->var0->varname,
+//					strlen(c->var0->varname), c->var0);
 			tab = '\t';
 			break;
 /*		case CALL_IR:
@@ -395,12 +427,14 @@ void generate_ir_code() {
 */		case IR_ASSIGN_ARR:
 			sprintf(s, "%s = %s[%s]", c->var0->name, c->var1->name,
 					c->var1->position);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 		case IR_ARR_ASSIGN:
 			sprintf(s, "%s[%s] = %s", c->var0->name, c->var1->value,
 					c->var2->name);
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 			break;
 /*		case ADDR_IR:
 			sprintf(s, "%s = ADDR(%s)", c->var0->varname, c->var1->varname);
@@ -409,7 +443,8 @@ void generate_ir_code() {
 */		case IR_FUNC_START:
 			if (c->var0->type == 4) {
 				sprintf(s, "%s:", c->var0->name);
-				add_str(s);
+				//TODO Fix add_str(s);
+				fputs(s,ir_file);
 			}
 			tab = '\t';
 			break;
@@ -421,7 +456,8 @@ void generate_ir_code() {
 		if (c->op != IR_PARA && c->op != IR_WHILE_BEGIN
 				&& c->op != IR_DO_WHILE_BEGIN) {
 			sprintf(s, "\n");
-			add_str(s);
+			//TODO Fix add_str(s);
+			fputs(s,ir_file);
 		}
 	}
 }
