@@ -1,8 +1,3 @@
-int global, a[10];
-int i;
+int func();
 
-void abc();
-
-void printall(int datei, int root, int c);
-
-void dprintall(int datei);
+int func () {}
