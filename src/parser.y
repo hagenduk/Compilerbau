@@ -15,6 +15,7 @@
 	int functionType;
 	int idForNumCounter = 0;
 	int errorCounter = 0;
+	int returnType=0;
 	
 	extern int    yylineno;
 %}
@@ -175,8 +176,20 @@ function_definition
     : MARKER_FUNCTION_BEGIN PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE
 						 {
 							if( $1->type == 5 || $1->type == 3 ) {
-								tablePtr = end_function( tablePtr, numberOfParameters );
-								$1->type = 4;
+								if(returnType==getReturnType(tablePtr)){ //returntypefehler
+									if(getParamCnt(tablePtr)==0){
+										tablePtr = end_function( tablePtr, numberOfParameters );
+										$1->type = 4;
+										}
+										else{
+											printf("%d> Function >>%s<< parameter mismatch.\n", yylineno, $1->name);
+											errorCounter++;
+										}
+								}
+								else{
+									printf("%d> Function >>%s<< returntype mismatch.\n", yylineno, $1->name);
+									errorCounter++;
+									}
 							} else {
 								printf("%d> Function >>%s<< was allready declared.\n", yylineno, $1->name);
 								errorCounter++;
@@ -186,8 +199,14 @@ function_definition
     | MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE
 						{
 							if( $1->type == 5 || $1->type == 3 ) {
-								tablePtr = end_function( tablePtr, numberOfParameters );
-								$1->type = 4;
+								if(returnType==getReturnType(tablePtr)){
+									tablePtr = end_function( tablePtr, numberOfParameters );
+									$1->type = 4;
+								}
+								else{
+									printf("%d> Function >>%s<< returntype mismatch.\n", yylineno, $1->name);
+									errorCounter++;
+									}
 							} else {
 								printf("%d> Function >>%s<< was allready declared.\n", yylineno, $1->name);
 								errorCounter++;
@@ -201,8 +220,20 @@ function_declaration
 	: MARKER_FUNCTION_BEGIN PARA_CLOSE
 						{
 							if($1->type==5) {
-								tablePtr = end_function( tablePtr, numberOfParameters );
-								$1->type = 3;
+								if(returnType==getReturnType(tablePtr)){
+									if(getParamCnt(tablePtr)==0){
+										tablePtr = end_function( tablePtr, numberOfParameters );
+										$1->type = 3;
+									}
+										else{
+											printf("%d> Function >>%s<< parameter mismatch.\n", yylineno, $1->name);
+											errorCounter++;
+										}
+								}
+								else{
+									printf("%d> Function >>%s<< returntype mismatch.\n", yylineno, $1->name);
+									errorCounter++;
+									}
 							} else if($1->type==3) {
 								printf("%d> Function >>%s<< was allready defined.\n", yylineno, $1->name);
 								errorCounter++;
@@ -216,8 +247,14 @@ function_declaration
 	| MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE
 											{
 												if($1->type==5) {
-													tablePtr = end_function( tablePtr, numberOfParameters );
-													$1->type = 3;
+													if(returnType==getReturnType(tablePtr)){
+														tablePtr = end_function( tablePtr, numberOfParameters );
+														$1->type = 3;
+													}
+												else{
+														printf("%d> Function >>%s<< returntype mismatch.\n", yylineno, $1->name);
+														errorCounter++;
+													}
 												} else if($1->type==3) {
 													printf("%d> Function >>%s<< was allready defined.\n", yylineno, $1->name);
 													errorCounter++;
@@ -240,9 +277,9 @@ MARKER_FUNCTION_BEGIN
 							}
 							
 							functionType = $$->type;
+							returnType = getReturnType(tablePtr);
 						}
 	;
-
 
 function_parameter_list
 	: function_parameter
@@ -275,7 +312,11 @@ stmt
      | RETURN expression SEMICOLON
 		 {
 			 ir_return(IR_RETURN,$2);
-			 if( getReturnType(tablePtr) != $2->type ) {
+			 if(getReturnType(tablePtr)==0){
+			 	printf("%d> Void has no return statements.\n", yylineno);
+				 errorCounter++;
+			 }
+			 else if( getReturnType(tablePtr) != $2->type ) {
 				 printf("%d> Wrong return type.\n", yylineno);
 				 errorCounter++;
 			 }
