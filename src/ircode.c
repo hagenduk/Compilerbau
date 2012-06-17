@@ -94,7 +94,7 @@ struct entry *ir_2exp(enum op_codes op, struct entry *var1, struct entry *var2) 
 	if (var1->type == 2 && var1->position == NULL) {
 		yyerror("First Operand must have an array index");
 	}
-	if (var2->type == 1 && var2->position == NULL) {
+	if (var2->type == 2 && var2->position == NULL) {
 		yyerror("Second Operand must have an array index");
 	}
 	ir_entry(op, v, var1, var2, NULL);
