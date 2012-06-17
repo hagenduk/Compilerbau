@@ -175,21 +175,23 @@ identifier_declaration
 function_definition
     : MARKER_FUNCTION_BEGIN PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE
 						 {
-							if( $1->type == 5 || $1->type == 3 ) {
+							if( $1->type == 5 ) {
+								$1->type = 4;
+								tablePtr = end_function( tablePtr, numberOfParameters );
+							} else if( $1->type == 3 ) {
 								if(returnType==getReturnType(tablePtr)){ //returntypefehler
+									printf("Parameter Count: %d", getParamCnt(tablePtr));
 									if(getParamCnt(tablePtr)==0){
 										tablePtr = end_function( tablePtr, numberOfParameters );
 										$1->type = 4;
-										}
-										else{
-											printf("%d> Function >>%s<< parameter mismatch.\n", yylineno, $1->name);
-											errorCounter++;
-										}
-								}
-								else{
+									} else {
+										printf("%d> -B- Function >>%s<< parameter mismatch.\n", yylineno, $1->name);
+										errorCounter++;
+									}
+								} else {
 									printf("%d> Function >>%s<< returntype mismatch.\n", yylineno, $1->name);
 									errorCounter++;
-									}
+								}
 							} else {
 								printf("%d> Function >>%s<< was allready declared.\n", yylineno, $1->name);
 								errorCounter++;
@@ -230,7 +232,7 @@ function_declaration
 										$1->type = 3;
 									}
 										else{
-											printf("%d> Function >>%s<< parameter mismatch.\n", yylineno, $1->name);
+											printf("%d> -A- Function >>%s<< parameter mismatch.\n", yylineno, $1->name);
 											errorCounter++;
 										}
 								}
@@ -514,7 +516,8 @@ primary
 		   {
 			 struct param *p = exists_param(tablePtr, $1);
 			 //struct param *p = NULL;
-			 if( exists_entry(tablePtr, $1) ) {
+			 //if( exists_entry(tablePtr, $1) ) {
+			 if( get_name(tablePtr, $1) != NULL ) {
 				 $$ = get_name(tablePtr, $1);
 			 } else if(p != NULL){
 				
