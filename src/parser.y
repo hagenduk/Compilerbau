@@ -65,7 +65,7 @@
 //%type <> function_call_parameters
 //%type <> function_definition
 //%type <entryStruct> function_declaration
-//%type <> function_call
+%type <entryStruct> function_call
 %type <num> type
 //%type <entryStruct> function_parameter
 %type <entryStruct> identifier_declaration
@@ -363,7 +363,7 @@ expression
 				 ir_assign($1, $3);
 				 $$ = $3;
 				 if(checktype($1->type,$3->type)==0){
-				 	 printf("%d> type mismatch.\n", yylineno);
+				 	 printf("%d> type mismatch or cannot calc with void.\n", yylineno);
 					 errorCounter++;
     	 		}
     	 		 	if(checkexpr($1)==0){
@@ -415,7 +415,7 @@ expression
 			 {
 				 $$ = ir_2exp(IR_PLUS, $1, $3);
 				 	if(checktype($1->type,$3->type)==0 && $3->type!=1){
-				 	 	printf("%d> type mismatch.\n", yylineno);
+				 	 	printf("%d> type mismatch or cannot calc with void.\n", yylineno);
 					 	errorCounter++;
     	 			}
 			 }
@@ -423,7 +423,7 @@ expression
 			 {
 				 $$ = ir_2exp(IR_MINUS, $1, $3);
 				 if(checktype($1->type,$3->type)==0 && $3->type!=1){
-				 	 	printf("%d> type mismatch.\n", yylineno);
+				 	 	printf("%d> type mismatch or cannot calc with void.\n", yylineno);
 					 	errorCounter++;
     	 			} 
 			 }
@@ -431,7 +431,7 @@ expression
 			 {
 				 $$ = ir_2exp(IR_MUL, $1, $3);
 				 if(checktype($1->type,$3->type)==0 && $3->type!=1){
-				 	 	printf("%d> type mismatch.\n", yylineno);
+				 	 	printf("%d> type mismatch or cannot calc with void.\n", yylineno);
 					 	errorCounter++;
     	 			}
 
@@ -456,12 +456,10 @@ expression
 			   struct entry *e;
 			   
 			   if(exists_entry(tablePtr, $1) ) {
-					printf("----------------");
 					e = get_name(tablePtr,$1);
 					e->position = $3;
 					$$ = ir_assign_arr(e, $3);
 				} else if(p != NULL){
-					printf("----------------");
 					e = getParamAsEntry(tablePtr,p);
 					e->position = $3;
 					$$ = ir_assign_arr(e, $3);
@@ -474,7 +472,7 @@ expression
 				$$ = $2; 
 			 }
      | function_call	
-			 {//TODO $1 = return entry type
+			 { $$=$1;
 				 
 			 }
      | primary
@@ -516,10 +514,10 @@ primary
 
 function_call
       : ID MARKER_BEGIN_FC PARA_OPEN PARA_CLOSE					{//
-																	if( (get_function( tablePtr, $1))->paramCnt != numberOfParameters ) {
-																		printf("%d> Too many parameters for function >>%s<<.\n", yylineno , $1);
-																		errorCounter++;
-																	}
+																	//if( (get_function( tablePtr, $1))->paramCnt != numberOfParameters ) {
+																	//	printf("%d> Too many parameters for function >>%s<<.\n", yylineno , $1);
+																	//	errorCounter++;
+																//	}
 																	
 																	if( exists_entry(tablePtr, $1) ) {
 																		struct entry *e = get_name(tablePtr, $1);
@@ -528,14 +526,14 @@ function_call
 																		}
 																		/*$$ = */ ir_funccall(e, ir_find_FuncDef(e) );
 																	}
-																	
+																	$$=get_name(tablePtr, $1);
 																	numberOfParameters = 0;
 																}
       | ID MARKER_BEGIN_FC PARA_OPEN function_call_parameters PARA_CLOSE		{//
-																				  if( get_function( tablePtr, $1)->paramCnt != numberOfParameters ) {
-																					  printf("%d> Number of parameters does not match to the declaration of function >>%s<<.\n", yylineno);
-																					  errorCounter++;
-																				  }
+																				 // if( get_function( tablePtr, $1)->paramCnt != numberOfParameters ) {
+																				//	  printf("%d> Number of parameters does not match to the declaration of function >>%s<<.\n", yylineno);
+																				//	  errorCounter++;
+																				//  }
 																				  
 																				  if( exists_entry(tablePtr, $1) ) {
 																					  struct entry *e = get_name(tablePtr, $1);
@@ -544,7 +542,7 @@ function_call
 																					  }
 																					  /*$$ = */ ir_funccall(e, ir_find_FuncDef(e) );
 																				  }
-																				  
+																				  $$=get_name(tablePtr, $1);
 																				  numberOfParameters = 0;
 																				}
       ;

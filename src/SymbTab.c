@@ -481,7 +481,7 @@ struct entry *getParamAsEntry(struct SymTab *table, struct param *p) {
 /*************************************************************   TypSystem    ***************************************************/
 
 int checktype(int first, int second){
-if(first==second) return 1;
+if(first==second){ return 1;}
 return 0;
 }
 
