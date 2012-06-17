@@ -210,6 +210,9 @@ int getTypeOfParam(struct SymTab *current, int index) {
 		return p->type;
 	}
 
+	if(p->next == NULL)
+		printf("NEXT: 0000000000000000000\n");
+
 	if(index>0) {
 		for(int i=0; i<=index; i++) {
 			if( p->next == NULL ) {
