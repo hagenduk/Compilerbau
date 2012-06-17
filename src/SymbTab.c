@@ -193,6 +193,30 @@ struct param *exists_param(struct SymTab *current, char const *name){
 }
 
 /**
+ * \brief Gibt den Typ eines Parameters zurueck,
+ * \param current Symboltabelle der Function
+ * \param index Position des Parameters (beginnt bei 0)
+ * \return Type des Parameters, oder -1 falls es an der Stelle kein Parameter exisitiert
+ */
+int getTypeOfParam(struct SymTab *current, int index) {
+	struct param *p;
+	p = current->first;
+
+	if(p == NULL)
+			return -1;
+
+	if(index>0) {
+		for(int i=0; i<=index; i++) {
+			if( p->next == NULL )
+				return -1;
+			p = p->next;
+		}
+	}
+
+	return p->type;
+}
+
+/**
  * \brief Erstellt eine neue Symboltabelle und verkettet sie mit der aktuellen Tabelle "current"
  * \param current	Aktuelle Symboltabelle
  * \return			Pointer auf neuangelegte Symboltabelle
