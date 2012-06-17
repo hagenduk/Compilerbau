@@ -14,7 +14,7 @@
 	int isParam = 0;
 	int functionType;
 	int idForNumCounter = 0;
-	int errorCounter = 0;
+//	int errorCounter = 0;
 	int returnType=0;
 	
 	extern int    yylineno;

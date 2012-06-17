@@ -27,6 +27,8 @@ FILE *ir_file;
 int code_count = 0;
 char s[200];
 
+int errorCounter = 0;
+
 struct ir_struct *container = NULL;
 
 void ir_entry(enum op_codes op, entry *var0, entry *var1, entry *var2, int jmp) {
