@@ -122,7 +122,7 @@ identifier_declaration
 												} else {	//Parameter
 													if(functionType == 5)  {//erstmalige function definition/declaration
 														if(exists_param(tablePtr, $1)==NULL) {
-															new_param(tablePtr, $1, 1);
+															new_param(tablePtr, $1, 2);
 															$$ = NULL;
 														} else {
 															printf("%d> Parameter >>%s<< allready exist.\n", yylineno, $1);
@@ -133,7 +133,7 @@ identifier_declaration
 															printf("%d> Parameter >>%s<<: Too many parameters? .\n", yylineno, $1);
 															errorCounter++;
 														} else if( getTypeOfParam(tablePtr,numberOfParameters) == 1) {
-															printf("%d> Parameter >>%s<<: Wrong type of parameter? .\n", yylineno, $1);
+															printf("%d> Parameter >>%s<<: Wrong type of parameter? %d.\n", yylineno, $1, numberOfParameters);
 															errorCounter++;
 														}
 													}
@@ -194,7 +194,7 @@ function_definition
 								printf("%d> Function >>%s<< was allready declared.\n", yylineno, $1->name);
 								errorCounter++;
 							}
-							ir_func_end($1);
+//							ir_func_end($1);
 							numberOfParameters = 0;
 						 }
     | MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE
@@ -214,7 +214,7 @@ function_definition
 								errorCounter++;
 							}
 
-							ir_func_end($1);
+//							ir_func_end($1);
 							numberOfParameters = 0;
 						}
 	;
@@ -246,7 +246,7 @@ function_declaration
 								errorCounter++;
 							}
 
-							ir_func_end($1);
+//							ir_func_end($1);
 							numberOfParameters = 0;
 						}
 
@@ -269,7 +269,7 @@ function_declaration
 													errorCounter++;
 												}
 
-												ir_func_end($1);
+//												ir_func_end($1);
 												numberOfParameters = 0;
 											}
 	;
@@ -286,7 +286,7 @@ MARKER_FUNCTION_BEGIN
 							
 							functionType = $$->type;
 							returnType = getReturnType(tablePtr);
-							ir_func_begin($$);
+//							ir_func_begin($$);
 						}
 	;
 
