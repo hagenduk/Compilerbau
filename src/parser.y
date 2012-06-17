@@ -456,12 +456,10 @@ expression
 			   struct entry *e;
 			   
 			   if(exists_entry(tablePtr, $1) ) {
-					printf("----------------");
 					e = get_name(tablePtr,$1);
 					e->position = $3;
 					$$ = ir_assign_arr(e, $3);
 				} else if(p != NULL){
-					printf("----------------");
 					e = getParamAsEntry(tablePtr,p);
 					e->position = $3;
 					$$ = ir_assign_arr(e, $3);
