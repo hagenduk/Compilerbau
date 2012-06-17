@@ -199,11 +199,15 @@ struct param *exists_param(struct SymTab *current, char const *name){
  * \return Type des Parameters, oder -1 falls es an der Stelle kein Parameter exisitiert
  */
 int getTypeOfParam(struct SymTab *current, int index) {
+	printf("----------getTypeOfParam-----------%d\n",index);
 	struct param *p;
 	p = current->first;
 
 	if(p == NULL)
 			return -1;
+
+	if(index == 0)
+		return p->type;
 
 	if(index>0) {
 		for(int i=0; i<=index; i++) {
@@ -213,6 +217,7 @@ int getTypeOfParam(struct SymTab *current, int index) {
 		}
 	}
 
+	printf("---------TYPE  %d\n",p->type);
 	return p->type;
 }
 
