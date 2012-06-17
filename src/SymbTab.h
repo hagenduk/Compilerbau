@@ -16,6 +16,7 @@ typedef struct entry {
    int scope;                 // 0 = local, else different (parameter)
    struct entry *previous;    // previous entry
    struct entry *next;        // next entry
+   struct entry *arrayfirstpos;    //array first pos
    int type;               //is it an array
    int value;              //int value
    int position;			// array position
