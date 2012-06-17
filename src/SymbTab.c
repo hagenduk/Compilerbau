@@ -455,7 +455,6 @@ int getParamCnt(struct SymTab *current) {
 }
 
 struct entry *getParamAsEntry(struct param *p) {
-	printf("----getParamAsEntry");
 	struct entry *e;
 	e = (struct entry *) malloc (sizeof (struct entry));
 
