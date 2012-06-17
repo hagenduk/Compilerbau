@@ -276,10 +276,14 @@ function_declaration
 
 MARKER_FUNCTION_BEGIN
 	: type ID PARA_OPEN	{ //TODO Wenn Prototyp dann überschreiben erlauben, Typ und Parametervergleich
+							printf("hi");
 							if( exists_entry(tablePtr,$2) ) {
 								if(get_name(tablePtr, $2)->function != NULL) {
 									$$ = get_name(tablePtr, $2);
 									tablePtr = $$->function;//get_function(get_rootptr(), $2);
+								} else {
+								tablePtr = decfunction( tablePtr, $2, 5, $1 );
+								$$ = get_name( get_rootptr() , $2);
 								}
 							} else {
 								tablePtr = decfunction( tablePtr, $2, 5, $1 );
