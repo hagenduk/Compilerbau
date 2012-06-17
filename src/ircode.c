@@ -236,13 +236,14 @@ void ir_set_file(FILE *file) {
 }
 
 void generate_ir_code() {
+	printf("IR START \n");
 	if (ir_file != NULL) {
 		struct ir_struct *c;
 		struct param *param = NULL;
 		char tab = '\0';
-		sprintf(s, "---------- Symbol Table ----------\n");
-		fputs(s, ir_file);
 		sprintf(s, "--------- Intermediate Code ---------\n");
+		fputs(s, ir_file);
+		sprintf(s,"%d",ir_count);
 		fputs(s, ir_file);
 
 		for (int i = 0; i < ir_count; i++) {

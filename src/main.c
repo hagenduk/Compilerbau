@@ -265,13 +265,14 @@ int main (int argc, char *argv[]) {
     rm_cleanup_resources(&resource_mgr);
     exit(EXIT_FAILURE);
   }
-
   printf("Input: %s\n", cc_options.input_file);
   printf("Output: %s\n", cc_options.output_file);
   printf("IR: %s\n", cc_options.ir_file);
 
   yyin = fopen(cc_options.input_file, "r");
+
   if(!yyin) {
+	  printf("FAIL");
 	exit(1);
   }
 
@@ -282,11 +283,11 @@ int main (int argc, char *argv[]) {
   	} while (!feof(yyin));
 
   fclose(yyin);
-  FILE * ir_file = cc_options.ir_file;
-  ir_set_file(fopen(ir_file, "w"));
-  FILE * sym_file = cc_options.output_file;
-  printallstart(sym_file);
+  //printf("TEST");
+  FILE * ir_file = fopen(cc_options.ir_file, "w");
+  ir_set_file(ir_file);
   generate_ir_code();
+  //printf("TEST");
   fclose(ir_file);
 
   rm_cleanup_resources(&resource_mgr);
