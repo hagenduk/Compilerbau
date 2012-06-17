@@ -25,6 +25,8 @@ struct entry *ir_2exp(enum op_codes op, struct entry *var1,
 		struct entry *var2);
 void ir_return(enum op_codes op, struct entry *var0);
 struct entry *ir_assign_arr(struct entry *var0, struct entry *var1);
+void ir_func_begin(struct entry *var0);
+void ir_func_end(struct entry *var0);
 void ir_if(struct entry *var0);
 void ir_goto();
 void ir_while(struct entry *var0);
