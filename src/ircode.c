@@ -69,7 +69,6 @@ void ir_assign(struct entry *var0, struct entry *var1) {
 		} else if (var0->type == 1) {
 			ir_entry(IR_ASSIGN, var0, var1, NULL, NULL);
 		} else {
-			//TODO More detailed Errors
 			yyerror("Assign Error!");
 		}
 	}
@@ -227,9 +226,9 @@ int ir_find_FuncDef(struct entry *var0) {
 
 struct entry *ir_tmp() {
 	root = get_rootptr();
-	char *buffer[3];
+	char *buffer[5];
 	sprintf(buffer, ".tmp%d", ir_tmp_counter);
-	return new_entry(root, 0, buffer, 0, 1, NULL);
+	return new_entry(root, 1, buffer, 0, 1, NULL);
 }
 
 int set_jmpLabel(int pos, int label) {
@@ -246,14 +245,15 @@ void ir_set_file(FILE *file) {
 	ir_file = file;
 }
 
+
 void generate_ir_code() {
-	printf("IR START \n");
 	if (ir_file != NULL) {
+		printf("IR START \n");
 		struct ir_struct *c;
 		struct param *param = NULL;
 		char tab = '\0';
 		sprintf(s, "--------- Intermediate Code ---------\n");
-		fputs(s, ir_file);
+		fprintf(ir_file,"%s",s);
 		sprintf(s,"%d",ir_count);
 		fputs(s, ir_file);
 
@@ -442,5 +442,5 @@ void generate_ir_code() {
 				fputs(s, ir_file);
 			}
 		}
-	}
+	}fclose(ir_file);
 }
