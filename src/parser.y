@@ -272,8 +272,21 @@ stmt
      | expression SEMICOLON
      | stmt_conditional
      | stmt_loop
-     | RETURN expression SEMICOLON	{ ir_return(IR_RETURN,$$2);}
+     | RETURN expression SEMICOLON
+		 {
+			 ir_return(IR_RETURN,$2);
+			 if( getReturnType(tablePtr) != $2->type ) {
+				 printf("%d> Wrong return type.\n", yylineno);
+				 errorCounter++;
+			 }
+		 }
      | RETURN SEMICOLON
+		 {
+			 if( getReturnType(tablePtr) != 0) {
+				 printf("%d> Wrong return type.\n", yylineno);
+				 errorCounter++;
+    	 	}
+		 }
      | SEMICOLON /* empty statement */
      ;
 
@@ -288,7 +301,7 @@ stmt_conditional
 									
 stmt_loop
      : WHILE{ir_while_begin();} PARA_OPEN expression {ir_while($4);ir_while_goto_begin();} PARA_CLOSE stmt {backp_while();}
-     | DO {ir_do_while_begin();} stmt WHILE PARA_OPEN expression PARA_CLOSE SEMICOLON { ir_do_while_end($5);}
+     | DO {ir_do_while_begin();} stmt WHILE PARA_OPEN expression PARA_CLOSE SEMICOLON { ir_do_while_end($6);}
      ;
 									
 expression
@@ -375,8 +388,12 @@ primary
 		   }
      | ID
 		   {
+			 struct param *p = exists_param(tablePtr, $1);
+			 //struct param *p = NULL;
 			 if( exists_entry(tablePtr, $1) ) {
 				 $$ = get_name(tablePtr, $1);
+			 } else if(p != NULL){
+				 $$ = getParamAsEntry(p);
 			 } else {
 				 printf("%d> Primary >>%s<< was not declared.\n", yylineno, $1);
 				 errorCounter++;
