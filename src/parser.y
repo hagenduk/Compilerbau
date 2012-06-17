@@ -388,8 +388,11 @@ primary
 		   }
      | ID
 		   {
+			 struct param *p = exists_param(tablePtr, $1);
 			 if( exists_entry(tablePtr, $1) ) {
 				 $$ = get_name(tablePtr, $1);
+			 } else if(p != NULL){
+				 //$$ = getParamAsEntry(p);
 			 } else {
 				 printf("%d> Primary >>%s<< was not declared.\n", yylineno, $1);
 				 errorCounter++;
