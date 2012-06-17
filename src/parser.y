@@ -130,10 +130,10 @@ identifier_declaration
 														}
 													} else if (functionType == 3) {
 														if ( getTypeOfParam(tablePtr,numberOfParameters) == -1) {
-															printf("%d> Parameter >>%s<<: Too many parameters? .\n", yylineno, $1);
+															printf("%d> Parameter >>%s<<: Too many parameters?\n", yylineno, $1);
 															errorCounter++;
 														} else if( getTypeOfParam(tablePtr,numberOfParameters) == 1) {
-															printf("%d> Parameter >>%s<<: Wrong type of parameter? %d.\n", yylineno, $1, numberOfParameters);
+															printf("%d> Parameter >>%s<<: Wrong type of parameter?\n", yylineno, $1);
 															errorCounter++;
 														}
 													}
@@ -159,10 +159,10 @@ identifier_declaration
 														}
 													} else if (functionType == 3) {
 														if ( getTypeOfParam(tablePtr,numberOfParameters) == -1) {
-															printf("%d> Parameter >>%s<<: Too many parameters? .\n", yylineno, $1);
+															printf("%d> Parameter >>%s<<: Too many parameters?\n", yylineno, $1);
 															errorCounter++;
 														} else if( getTypeOfParam(tablePtr,numberOfParameters) == 2) {
-															printf("%d> Parameter >>%s<<: Wrong type of parameter? .\n", yylineno, $1);
+															printf("%d> Parameter >>%s<<: Wrong type of parameter?\n", yylineno, $1);
 															errorCounter++;
 														}
 													}
