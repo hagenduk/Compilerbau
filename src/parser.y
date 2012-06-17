@@ -360,8 +360,14 @@ stmt_block
      ;
 	
 stmt_conditional
-     : IF PARA_OPEN expression {ir_if($3);ir_goto();} PARA_CLOSE stmt {backp_if(0);}
-     | IF PARA_OPEN expression PARA_CLOSE stmt ELSE {backp_if(1);ir_goto();} stmt {backp_if(0);}
+//     : IF PARA_OPEN expression {ir_if($3);ir_goto();} PARA_CLOSE stmt {backp_if(0);}
+//     | IF PARA_OPEN expression PARA_CLOSE stmt ELSE {backp_if(1);ir_goto();} stmt {backp_if(0);}
+	 : IF PARA_OPEN expression {ir_if($3);ir_goto();} PARA_CLOSE MARKER_STMT_CONDITIONAL
+     ;
+
+MARKER_STMT_CONDITIONAL
+	 : stmt {backp_if(0);}
+     | stmt ELSE {backp_if(1);ir_goto();} stmt {backp_if(0);}
      ;
 									
 stmt_loop
