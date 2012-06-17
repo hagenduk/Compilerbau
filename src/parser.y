@@ -360,6 +360,14 @@ expression
 				 	 printf("%d> type mismatch.\n", yylineno);
 					 errorCounter++;
     	 		}
+    	 		 	if(checkexpr($1)==0){
+    	 			 		    	printf("%d> cannot calc with void.\n", yylineno);
+									errorCounter++;
+									}
+					if(checkexpr($3)==0){
+    	 			 		    	printf("%d> cannot calc with void.\n", yylineno);
+									errorCounter++;
+					}
 			}
      | expression LOGICAL_OR expression
 			 {
@@ -403,7 +411,7 @@ expression
 				 	if(checktype($1->type,$3->type)==0 && $3->type!=1){
 				 	 	printf("%d> type mismatch.\n", yylineno);
 					 	errorCounter++;
-    	 			} 
+    	 			}
 			 }
      | expression MINUS expression
 			 {
@@ -411,7 +419,7 @@ expression
 				 if(checktype($1->type,$3->type)==0 && $3->type!=1){
 				 	 	printf("%d> type mismatch.\n", yylineno);
 					 	errorCounter++;
-    	 			}  
+    	 			} 
 			 }
      | expression MUL expression
 			 {
@@ -419,7 +427,8 @@ expression
 				 if(checktype($1->type,$3->type)==0 && $3->type!=1){
 				 	 	printf("%d> type mismatch.\n", yylineno);
 					 	errorCounter++;
-    	 			}  
+    	 			}
+
 			 }
      | MINUS expression %prec UNARY_MINUS
 			 {
@@ -427,7 +436,13 @@ expression
 				 if($2->type!=1){
 				 	 	printf("%d> type mismatch.\n", yylineno);
 					 	errorCounter++;
-    	 			}  
+    	 			}
+    	 			 if($2->function!=NULL){
+					 	if(getReturnType($2->function)==0){
+					 		printf("%d> cannot calc with void.\n", yylineno);
+					 		errorCounter++;
+					 	}
+					 }  
 			 }
      | ID BRACKET_OPEN primary BRACKET_CLOSE
      | PARA_OPEN expression PARA_CLOSE

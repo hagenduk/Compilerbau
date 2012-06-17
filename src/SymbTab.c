@@ -479,3 +479,14 @@ int checktype(int first, int second){
 if(first==second) return 1;
 return 0;
 }
+
+int checkexpr(struct entry *first){
+	if(first->function!=NULL){
+		if(getReturnType(first->function)==0){
+				return 0;
+		}
+	 }
+	return 1;
+
+}
+
