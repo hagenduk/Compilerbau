@@ -444,29 +444,30 @@ int getReturnType(struct SymTab *current) {
 	return current->returntype;
 }
 
-//struct entry *getParamAsEntry(struct param *p) {
-//	struct entry *e;
-////	e = (struct entry *) malloc (sizeof (struct entry));
-//
-//	e->id = p->id;
-//	e->value = p->value;
-//
-//	switch(p->type) {
-//		case 0:
-//			e->type = 0;
-//			break;
-//		case 1:
-//			e->type = 1;
-//			break;
-//		case 2:
-//			e->type = 2;
-//			break;
-//		default:
-//			printf("ERROR: Check type of parameters!.\n");
-//	}
-//
-//	return e;
-//}
+struct entry *getParamAsEntry(struct param *p) {
+	printf("----getParamAsEntry");
+	struct entry *e;
+	e = (struct entry *) malloc (sizeof (struct entry));
+
+	e->id = p->id;
+	e->value = p->value;
+
+	switch(p->type) {
+		case 0:
+			e->type = 0;
+			break;
+		case 1:
+			e->type = 1;
+			break;
+		case 2:
+			e->type = 2;
+			break;
+		default:
+			printf("ERROR: Check type of parameters!.\n");
+	}
+
+	return e;
+}
 
 /*************************************************************   TypSystem    ***************************************************/
 
