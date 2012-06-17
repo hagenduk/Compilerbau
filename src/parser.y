@@ -445,6 +445,13 @@ expression
 					 }  
 			 }
      | ID BRACKET_OPEN primary BRACKET_CLOSE
+			{
+				if(exists_entry(tablePtr, $1) ) {
+					$$ = ir_assign_arr(get_name(tablePtr,$1), $3);
+				} else {
+					printf("%d> Unknown array >>%s<<.\n", yylineno, $1);
+				}
+			}
      | PARA_OPEN expression PARA_CLOSE
 			 {
 				$$ = $2; 
@@ -493,6 +500,15 @@ function_call
 																		printf("%d> Too many parameters for function >>%s<<.\n", yylineno , $1);
 																		errorCounter++;
 																	}
+																	
+																	if( exists_entry(tablePtr, $1) ) {
+																		struct entry *e = get_name(tablePtr, $1);
+																		if(e->type != 4) {
+																			printf("%d> Function >>%s<< was not defined.\n", yylineno , $1);
+																		}
+																		/*$$ = */ ir_funccall(e, ir_find_FuncDef(e) );
+																	}
+																	
 																	numberOfParameters = 0;
 																}
       | ID MARKER_BEGIN_FC PARA_OPEN function_call_parameters PARA_CLOSE		{//
@@ -500,6 +516,15 @@ function_call
 																					  printf("%d> Number of parameters does not match to the declaration of function >>%s<<.\n", yylineno);
 																					  errorCounter++;
 																				  }
+																				  
+																				  if( exists_entry(tablePtr, $1) ) {
+																					  struct entry *e = get_name(tablePtr, $1);
+																					  if(e->type != 4) {
+																						  printf("%d> Function >>%s<< was not defined.\n", yylineno , $1);
+																					  }
+																					  /*$$ = */ ir_funccall(e, ir_find_FuncDef(e) );
+																				  }
+																				  
 																				  numberOfParameters = 0;
 																				}
       ;
