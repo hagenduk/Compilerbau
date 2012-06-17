@@ -54,7 +54,6 @@ void ir_entry(enum op_codes op, entry *var0, entry *var1, entry *var2, int jmp) 
  *
  */
 void ir_assign(struct entry *var0, struct entry *var1) {
-	printf("ASSING");
 	if (var0->name == NULL) {
 		yyerror("Syntax error;");
 	}
@@ -87,7 +86,6 @@ struct entry *ir_1exp(enum op_codes op, struct entry *var0) {
 }
 
 struct entry *ir_2exp(enum op_codes op, struct entry *var1, struct entry *var2) {
-	printf("OPCODE");
 	if (var1->type == 0 || var2->type == 0) {
 		yyerror("Operands can not be of type VOID");
 	}
