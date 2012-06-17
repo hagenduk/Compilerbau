@@ -454,28 +454,28 @@ int getParamCnt(struct SymTab *current) {
 	return current->paramCnt;
 }
 
-struct entry *getParamAsEntry(struct param *p) {
-	struct entry *e;
-	e = (struct entry *) malloc (sizeof (struct entry));
+struct entry *getParamAsEntry(struct SymTab *table, struct param *p) {
+//	struct entry *e;
+//	e = (struct entry *) malloc (sizeof (struct entry));
+//
+//	e->id = p->id;
+//	e->value = p->value;
+//
+//	switch(p->type) {
+//		case 0:
+//			e->type = 0;
+//			break;
+//		case 1:
+//			e->type = 1;
+//			break;
+//		case 2:
+//			e->type = 2;
+//			break;
+//		default:
+//			printf("ERROR: Check type of parameters!.\n");
+//	}
 
-	e->id = p->id;
-	e->value = p->value;
-
-	switch(p->type) {
-		case 0:
-			e->type = 0;
-			break;
-		case 1:
-			e->type = 1;
-			break;
-		case 2:
-			e->type = 2;
-			break;
-		default:
-			printf("ERROR: Check type of parameters!.\n");
-	}
-
-	return e;
+	return new_entry(table, 1, p->name, 0, p->type, 0);
 }
 
 /*************************************************************   TypSystem    ***************************************************/

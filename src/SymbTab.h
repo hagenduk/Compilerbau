@@ -76,6 +76,7 @@ struct param *exists_param(struct SymTab *current, char const *name);
 int getTypeOfParam(struct SymTab *current, int pos);
 struct SymTab *get_rootptr();
 int getReturnType(struct SymTab *current);
-struct entry *getParamAsEntry(struct param *p);
+//struct entry *getParamAsEntry(struct param *p);
+struct entry *getParamAsEntry(struct SymTab *table, struct param *p);
 
 #endif
