@@ -55,7 +55,7 @@ void ir_entry(enum op_codes op, entry *var0, entry *var1, entry *var2, int jmp) 
  */
 void ir_assign(struct entry *var0, struct entry *var1) {
 	if (var0->name == NULL) {
-		yyerror("Syntax error;");
+		yyerror("You cannot assign to an integer;");
 	}
 	if (var0->type == 0 || var1->type == 0) {
 		yyerror("Cannot assign Void!");
