@@ -388,7 +388,8 @@ primary
 		   }
      | ID
 		   {
-			 struct param *p = exists_param(tablePtr, $1);
+			 //struct param *p = exists_param(tablePtr, $1);
+			 struct param *p = NULL;
 			 if( exists_entry(tablePtr, $1) ) {
 				 $$ = get_name(tablePtr, $1);
 			 } else if(p != NULL){
