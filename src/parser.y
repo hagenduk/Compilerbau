@@ -350,6 +350,10 @@ expression
 			{
 				 ir_assign($1, $3);
 				 $$ = $3;
+				 if(checktype($1->type,$3->type)==0){
+				 	 printf("%d> type mismatch.\n", yylineno);
+					 errorCounter++;
+    	 		}
 			}
      | expression LOGICAL_OR expression
 			 {
@@ -389,19 +393,35 @@ expression
 			 }
      | expression PLUS expression
 			 {
-				 $$ = ir_2exp(IR_PLUS, $1, $3); 
+				 $$ = ir_2exp(IR_PLUS, $1, $3);
+				 	if(checktype($1->type,$3->type)==0 && $3->type!=1){
+				 	 	printf("%d> type mismatch.\n", yylineno);
+					 	errorCounter++;
+    	 			} 
 			 }
      | expression MINUS expression
 			 {
-				 $$ = ir_2exp(IR_MINUS, $1, $3); 
+				 $$ = ir_2exp(IR_MINUS, $1, $3);
+				 if(checktype($1->type,$3->type)==0 && $3->type!=1){
+				 	 	printf("%d> type mismatch.\n", yylineno);
+					 	errorCounter++;
+    	 			}  
 			 }
      | expression MUL expression
 			 {
-				 $$ = ir_2exp(IR_MUL, $1, $3); 
+				 $$ = ir_2exp(IR_MUL, $1, $3);
+				 if(checktype($1->type,$3->type)==0 && $3->type!=1){
+				 	 	printf("%d> type mismatch.\n", yylineno);
+					 	errorCounter++;
+    	 			}  
 			 }
      | MINUS expression %prec UNARY_MINUS
 			 {
-				 $$ = ir_1exp(IR_MINUS, $2); 
+				 $$ = ir_1exp(IR_MINUS, $2);
+				 if($2->type!=1){
+				 	 	printf("%d> type mismatch.\n", yylineno);
+					 	errorCounter++;
+    	 			}  
 			 }
      | ID BRACKET_OPEN primary BRACKET_CLOSE
      | PARA_OPEN expression PARA_CLOSE
