@@ -19,18 +19,36 @@ extern void yyerror(const char *msg);
  */
 int ir_count = 0;
 
+/**
+ * Counter for temp Variables
+ */
 int ir_tmp_counter = 0;
 
+/**
+ * Counter for Backpatch
+ */
 int jmp_count = 0;
 
+/**
+ * File the IR-Code will be written to
+ */
 FILE *ir_file;
+/**
+ * Number of entries, used to iterate array
+ */
 int code_count = 0;
+
+/**
+ * char buffer
+ */
 char s[200];
 
 int errorCounter = 0;
 
 struct ir_struct *container = NULL;
-
+/**
+ * Interace function to fill container containing the IR-Code
+ */
 void ir_entry(enum op_codes op, entry *var0, entry *var1, entry *var2, int jmp) {
 
 	struct ir_struct *tmp = (struct ir_struct*) realloc(container, ir_count
@@ -38,6 +56,7 @@ void ir_entry(enum op_codes op, entry *var0, entry *var1, entry *var2, int jmp) 
 	container = tmp;
 	if (tmp == NULL) {
 		FATAL_OS_ERROR(OUT_OF_MEMORY, 0, "tmp -> realloc");
+		errorCounter++;
 		return;
 	}
 	ir_count++;
@@ -74,6 +93,9 @@ void ir_assign(struct entry *var0, struct entry *var1) {
 	}
 }
 
+/**
+ * For one expression (logical not,...)
+ */
 struct entry *ir_1exp(enum op_codes op, struct entry *var0) {
 	struct entry *v = ir_tmp();
 	if (var0->type == 0) {
@@ -84,6 +106,9 @@ struct entry *ir_1exp(enum op_codes op, struct entry *var0) {
 	return v;
 }
 
+/**
+ * Used for most op codes, like Plus, Mul,...
+ */
 struct entry *ir_2exp(enum op_codes op, struct entry *var1, struct entry *var2) {
 	if (var1->type == 0 || var2->type == 0) {
 		yyerror("Operands can not be of type VOID");
@@ -100,6 +125,9 @@ struct entry *ir_2exp(enum op_codes op, struct entry *var1, struct entry *var2) 
 	return v;
 }
 
+/**
+ * Return variable
+ */
 void ir_return(enum op_codes op, struct entry *var0) {
 	if (op == IR_RETURN) {
 		ir_entry(op, var0, NULL, NULL, -2);
@@ -108,6 +136,9 @@ void ir_return(enum op_codes op, struct entry *var0) {
 	}
 }
 
+/**
+ * Assign array value to new temp
+ */
 struct entry *ir_assign_arr(struct entry *var0, struct entry *var1) {
 	struct entry *v = ir_tmp();
 	v->next = var0;
@@ -116,38 +147,64 @@ struct entry *ir_assign_arr(struct entry *var0, struct entry *var1) {
 	return v;
 }
 
+/**
+ * Label func begin
+ */
 void ir_func_begin(struct entry *var0){
 ir_entry(IR_FUNC_START, var0, NULL, NULL, NULL);
 }
 
+/**
+ * Label func end
+ */
 void ir_func_end(struct entry *var0){
 ir_entry(IR_FUNC_END, var0, NULL, NULL, NULL);
 }
 
+/**
+ * Label if
+ */
 void ir_if(struct entry *var0) {
 	ir_entry(IR_IF, var0, NULL, NULL, ir_count + 2);
 }
 
+/**
+ * Label Goto
+ */
 void ir_goto() {
 	ir_entry(IR_GOTO, NULL, NULL, NULL, -2);
 }
 
+/**
+ * Set While (Same as If)
+ */
 void ir_while(struct entry *var0) {
 	ir_entry(IR_IF, var0, NULL, NULL, ir_count + 2);
 }
 
+/**
+ * Label While Begin
+ */
 void ir_while_begin() {
 	ir_entry(IR_WHILE_BEGIN, NULL, NULL, NULL, -2);
 }
 
+/**
+ * Label While() goto begin
+ */
 void ir_while_goto_begin() {
 	ir_entry(IR_GOTO, NULL, NULL, NULL, -2);
 }
 
+/**
+ * Label while() do begin
+ */
 void ir_do_while_begin() {
 	ir_entry(IR_DO_WHILE_BEGIN, NULL, NULL, NULL, -2);
 }
-
+/**
+ * Set If for do while end and backpatch
+ */
 void ir_do_while_end(struct entry *var0) {
 	struct ir_struct *cptr;
 	int i;
@@ -163,6 +220,9 @@ void ir_do_while_end(struct entry *var0) {
 	ir_entry(IR_IF, var0, NULL, NULL, i);
 }
 
+/**
+ * Set a Funccall
+ */
 struct entry *ir_funccall(struct entry *var0, int jmp) {
 	struct entry *v = ir_tmp();
 	ir_entry(IR_CALL, var0, v, NULL, jmp);
@@ -213,6 +273,9 @@ void backp_while() {
 	}
 }
 /**********************************************************************************************************/
+/**
+ * Used to find the Function and set the jmp to there
+ */
 int ir_find_FuncDef(struct entry *var0) {
 	struct ir_struct *c;
 	for (int i = 0; i < ir_count; i++) {
@@ -223,7 +286,9 @@ int ir_find_FuncDef(struct entry *var0) {
 	}
 	return 0;
 }
-
+/**
+ * Returns a Temp variable
+ */
 struct entry *ir_tmp() {
 	root = get_rootptr();
 	char *buffer[5];
@@ -231,6 +296,9 @@ struct entry *ir_tmp() {
 	return new_entry(root, 1, buffer, 0, 1, NULL);
 }
 
+/**
+ * Used for Backpatching and Code Iteration
+ */
 int set_jmpLabel(int pos, int label) {
 	if (container[pos].label == NULL) {
 		if ((pos > 0) && (pos < ir_count)) {
@@ -241,11 +309,16 @@ int set_jmpLabel(int pos, int label) {
 	return 0;
 }
 
+/**
+ * Has to be called first
+ */
 void ir_set_file(FILE *file) {
 	ir_file = file;
 }
 
-
+/**
+ * Generate the actual IR-Code and write to file
+ */
 void generate_ir_code() {
 	if (ir_file != NULL) {
 		printf("IR START \n");
@@ -256,8 +329,8 @@ void generate_ir_code() {
 		fprintf(ir_file,"%s",s);
 		sprintf(s,"%d",ir_count);
 		fputs(s, ir_file);
-
-		for (int i = 0; i < ir_count; i++) {
+		printf("start");
+		for (int i = 0; i <= ir_count; i++) {
 			c = &container[i];
 			if (c->op == IR_FUNC_END || c->op == IR_PARA || c->op
 					== IR_WHILE_BEGIN || c->op == IR_DO_WHILE_BEGIN) {
