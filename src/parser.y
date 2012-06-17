@@ -272,7 +272,7 @@ stmt
      | expression SEMICOLON
      | stmt_conditional
      | stmt_loop
-     | RETURN expression SEMICOLON	{ ir_return(IR_RETURN,$$2);}
+     | RETURN expression SEMICOLON	{ ir_return(IR_RETURN,$2);}
      | RETURN SEMICOLON
      | SEMICOLON /* empty statement */
      ;
@@ -288,7 +288,7 @@ stmt_conditional
 									
 stmt_loop
      : WHILE{ir_while_begin();} PARA_OPEN expression {ir_while($4);ir_while_goto_begin();} PARA_CLOSE stmt {backp_while();}
-     | DO {ir_do_while_begin();} stmt WHILE PARA_OPEN expression PARA_CLOSE SEMICOLON { ir_do_while_end($5);}
+     | DO {ir_do_while_begin();} stmt WHILE PARA_OPEN expression PARA_CLOSE SEMICOLON { ir_do_while_end($6);}
      ;
 									
 expression
