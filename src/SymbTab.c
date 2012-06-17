@@ -444,6 +444,10 @@ int getReturnType(struct SymTab *current) {
 	return current->returntype;
 }
 
+int getParamCnt(struct SymTab *current) {
+	return current->paramCnt;
+}
+
 struct entry *getParamAsEntry(struct param *p) {
 	printf("----getParamAsEntry");
 	struct entry *e;

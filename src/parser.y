@@ -176,8 +176,8 @@ function_definition
     : MARKER_FUNCTION_BEGIN PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE
 						 {
 							if( $1->type == 5 || $1->type == 3 ) {
-								if(returnType==tablePtr.returntype){ //returntypefehler
-									if(tablePtr.paramCnt==0){
+								if(returnType==getReturnType(tablePtr)){ //returntypefehler
+									if(getParamCnt(tablePtr)==0){
 										tablePtr = end_function( tablePtr, numberOfParameters );
 										$1->type = 4;
 										}
@@ -199,7 +199,7 @@ function_definition
     | MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE
 						{
 							if( $1->type == 5 || $1->type == 3 ) {
-								if(returnType==tablePtr.returntype){
+								if(returnType==getReturnType(tablePtr)){
 									tablePtr = end_function( tablePtr, numberOfParameters );
 									$1->type = 4;
 								}
@@ -220,8 +220,8 @@ function_declaration
 	: MARKER_FUNCTION_BEGIN PARA_CLOSE
 						{
 							if($1->type==5) {
-								if(returnType==tablePtr.returntype){
-									if(tablePtr.paramCnt==0){
+								if(returnType==getReturnType(tablePtr)){
+									if(getParamCnt(tablePtr)==0){
 										tablePtr = end_function( tablePtr, numberOfParameters );
 										$1->type = 3;
 									}
@@ -247,7 +247,7 @@ function_declaration
 	| MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE
 											{
 												if($1->type==5) {
-													if(returnType==tablePtr.returntype){
+													if(returnType==getReturnType(tablePtr)){
 														tablePtr = end_function( tablePtr, numberOfParameters );
 														$1->type = 3;
 													}
@@ -274,11 +274,10 @@ MARKER_FUNCTION_BEGIN
 							} else {
 								tablePtr = decfunction( tablePtr, $2, 5, $1 );
 								$$ = get_name( get_rootptr() , $2);
-								tablePtr.returntype=$1;
 							}
 							
 							functionType = $$->type;
-							returnType = tablePtr.returntype;
+							returnType = getReturnType(tablePtr);
 						}
 	;
 
