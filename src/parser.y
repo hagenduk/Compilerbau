@@ -294,7 +294,7 @@ stmt_loop
 expression
      : expression ASSIGN expression
 			{
-				 ir_assign($1, $3, NULL);
+				 ir_assign($1, $3);
 				 $$ = $3;
 			}
      | expression LOGICAL_OR expression

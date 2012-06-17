@@ -49,15 +49,15 @@ void ir_entry(enum op_codes op, entry *var0, entry *var1, entry *var2, int jmp) 
 
 /*
  * Assignment
- * TODO ARRAY ASSIGN NOT GIVEN!
+ *
  */
-void ir_assign(struct entry *var0, struct entry *var1, struct entry *var2) {
+void ir_assign(struct entry *var0, struct entry *var1) {
 	if (var0->type == 0 || var1->type == 0) {
 		yyerror("Cannot assign Void!");
 	} else {
 		if (var0->type == 2) {
 			if (var0->position != NULL) {
-				ir_entry(IR_ARR_ASSIGN, var0, var1, var2, NULL);
+				ir_entry(IR_ARR_ASSIGN, var0, var1, NULL, NULL);
 			} else if (var0->position == NULL) {
 				yyerror("Array without indexing cannot be assigned a value!");
 			}
@@ -399,15 +399,11 @@ void generate_ir_code() {
 				fputs(s, ir_file);
 				break;
 			case IR_ARR_ASSIGN:
-				sprintf(s, "%s[%s] = %s", c->var0->name, c->var1->value,
-						c->var2->name);
+				sprintf(s, "%s[%s] = %s", c->var0->name, c->var0->position,
+						c->var1->name);
 				fputs(s, ir_file);
 				break;
-				/*		case ADDR_IR:
-				 sprintf(s, "%s = ADDR(%s)", c->var0->varname, c->var1->varname);
-				 add_str(s);
-				 break;
-				 */case IR_FUNC_START:
+			case IR_FUNC_START:
 				if (c->var0->type == 4) {
 					sprintf(s, "%s:", c->var0->name);
 					fputs(s, ir_file);
