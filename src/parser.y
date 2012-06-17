@@ -194,6 +194,7 @@ function_definition
 								printf("%d> Function >>%s<< was allready declared.\n", yylineno, $1->name);
 								errorCounter++;
 							}
+							ir_1exp(IR_FUNC_END, $1);
 							numberOfParameters = 0;
 						 }
     | MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE
@@ -211,6 +212,7 @@ function_definition
 								printf("%d> Function >>%s<< was allready declared.\n", yylineno, $1->name);
 								errorCounter++;
 							}
+							ir_1exp(IR_FUNC_END, $1);
 							numberOfParameters = 0;
 						}
 	;
@@ -241,6 +243,7 @@ function_declaration
 								printf("%d> Function >>%s<< was allready declared.\n", yylineno, $1->name);	
 								errorCounter++;
 							}
+							ir_1exp(IR_FUNC_END, $1);
 							numberOfParameters = 0;
 						}
 
@@ -262,6 +265,7 @@ function_declaration
 													printf("%d> Function >>%s<< was allready declared.\n", yylineno, $1->name);	
 													errorCounter++;
 												}
+												ir_1exp(IR_FUNC_END, $1);
 												numberOfParameters = 0;
 											}
 	;
@@ -278,6 +282,7 @@ MARKER_FUNCTION_BEGIN
 							
 							functionType = $$->type;
 							returnType = getReturnType(tablePtr);
+							ir_1exp(IR_FUNC_START, $$);
 						}
 	;
 
@@ -323,6 +328,7 @@ stmt
 		 }
      | RETURN SEMICOLON
 		 {
+			 ir_return(IR_RETURN,NULL);
 			 if( getReturnType(tablePtr) != 0) {
 				 printf("%d> Wrong return type.\n", yylineno);
 				 errorCounter++;
