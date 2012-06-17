@@ -17,7 +17,7 @@ extern void yyerror(const char *msg);
 /*
  * Counter for correct array (containing ir_codes) assign
  */
-int ir_count = -1;
+int ir_count = 0;
 
 int ir_tmp_counter = 0;
 
@@ -32,25 +32,21 @@ int errorCounter = 0;
 struct ir_struct *container = NULL;
 
 void ir_entry(enum op_codes op, entry *var0, entry *var1, entry *var2, int jmp) {
-	printf("TEST 1");
-	ir_count++;
-	printf("TEST 2");
+
 	struct ir_struct *tmp = (struct ir_struct*) realloc(container, ir_count
 			* sizeof(struct ir_struct));
-	printf("TEST 3");
 	container = tmp;
 	if (tmp == NULL) {
 		FATAL_OS_ERROR(OUT_OF_MEMORY, 0, "tmp -> realloc");
 		return;
 	}
-
+	ir_count++;
 	container[ir_count].op = op;
 	container[ir_count].var0 = var0;
 	container[ir_count].var1 = var1;
 	container[ir_count].var2 = var2;
 	container[ir_count].jmp = op;
 	container[ir_count].label = NULL;
-	printf("TEST 4");
 }
 
 /*
