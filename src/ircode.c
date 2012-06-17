@@ -52,6 +52,9 @@ void ir_entry(enum op_codes op, entry *var0, entry *var1, entry *var2, int jmp) 
  *
  */
 void ir_assign(struct entry *var0, struct entry *var1) {
+	if (var0->name == NULL) {
+		yyerror("Syntax error;");
+	}
 	if (var0->type == 0 || var1->type == 0) {
 		yyerror("Cannot assign Void!");
 	} else {
@@ -104,6 +107,9 @@ void ir_return(enum op_codes op, struct entry *var0) {
 }
 
 struct entry *ir_assign_arr(struct entry *var0, struct entry *var1) {
+	if (var0->name == NULL) {
+		yyerror("Syntax error;");
+	}
 	struct entry *v = ir_tmp();
 	v->next = var0;
 	var0->position = var1->value;
@@ -256,9 +262,15 @@ void generate_ir_code() {
 			fputs(s, ir_file);
 			switch (c->op) {
 			case IR_ASSIGN:
-				sprintf(s, "%s = %s", c->var0->name, c->var1->name);
-				fputs(s, ir_file);
-				break;
+				if (c->var1->name == NULL) {
+					sprintf(s, "%s = %s", c->var0->name, c->var1->value);
+					fputs(s, ir_file);
+					break;
+				} else {
+					sprintf(s, "%s = %s", c->var0->name, c->var1->name);
+					fputs(s, ir_file);
+					break;
+				}
 			case IR_PLUS:
 				sprintf(s, "%s = %s + %s", c->var0->name, c->var1->name,
 						c->var2->name);
