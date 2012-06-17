@@ -327,13 +327,21 @@ stmt
      | RETURN expression SEMICOLON
 		 {
 			 ir_return(IR_RETURN,$2);
-			 if(getReturnType(tablePtr)==0){
+			 
+			if(getReturnType(tablePtr)==0){
 			 	printf("%d> Void has no return statements.\n", yylineno);
 				 errorCounter++;
 			 }
-			 else if( getReturnType(tablePtr) != $2->type ) {
+			 else if( $2->function != NULL) {
+				 if(getReturnType(tablePtr) != getReturnType($2->function)){
 				 printf("%d> Wrong return type.\n", yylineno);
-				 errorCounter++;
+				 errorCounter++;}
+
+			 }
+			 else{
+				 if(getReturnType(tablePtr) != $2->type){
+				 printf("%d> Wrong return type.\n", yylineno);
+				 errorCounter++;}			 	
 			 }
 		 }
      | RETURN SEMICOLON
