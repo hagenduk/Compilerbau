@@ -440,6 +440,10 @@ struct SymTab *get_rootptr() {
 	return root;
 }
 
+int getReturnType(struct SymTab *current) {
+	return current->returntype;
+}
+
 /*************************************************************   TypSystem    ***************************************************/
 
 int checktype(int first, int second){

@@ -272,8 +272,21 @@ stmt
      | expression SEMICOLON
      | stmt_conditional
      | stmt_loop
-     | RETURN expression SEMICOLON	{ ir_return(IR_RETURN,$2);}
+     | RETURN expression SEMICOLON
+		 {
+			 ir_return(IR_RETURN,$2);
+			 if( getReturnType(tablePtr) != $2->type ) {
+				 printf("%d> Wrong return type.\n", yylineno);
+				 errorCounter++;
+			 }
+		 }
      | RETURN SEMICOLON
+		 {
+			 if( getReturnType(tablePtr) != 0) {
+				 printf("%d> Wrong return type.\n", yylineno);
+				 errorCounter++;
+    	 	}
+		 }
      | SEMICOLON /* empty statement */
      ;
 
