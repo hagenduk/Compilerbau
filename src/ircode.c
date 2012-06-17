@@ -107,9 +107,6 @@ void ir_return(enum op_codes op, struct entry *var0) {
 }
 
 struct entry *ir_assign_arr(struct entry *var0, struct entry *var1) {
-	if (var0->name == NULL) {
-		yyerror("Syntax error;");
-	}
 	struct entry *v = ir_tmp();
 	v->next = var0;
 	var0->position = var1->value;
