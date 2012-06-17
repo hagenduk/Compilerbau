@@ -194,7 +194,7 @@ function_definition
 								printf("%d> Function >>%s<< was allready declared.\n", yylineno, $1->name);
 								errorCounter++;
 							}
-							ir_func_end($1);
+//							ir_func_end($1);
 							numberOfParameters = 0;
 						 }
     | MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE
@@ -214,7 +214,7 @@ function_definition
 								errorCounter++;
 							}
 
-							ir_func_end($1);
+//							ir_func_end($1);
 							numberOfParameters = 0;
 						}
 	;
@@ -246,7 +246,7 @@ function_declaration
 								errorCounter++;
 							}
 
-							ir_func_end($1);
+//							ir_func_end($1);
 							numberOfParameters = 0;
 						}
 
@@ -269,7 +269,7 @@ function_declaration
 													errorCounter++;
 												}
 
-												ir_func_end($1);
+//												ir_func_end($1);
 												numberOfParameters = 0;
 											}
 	;
@@ -288,7 +288,7 @@ MARKER_FUNCTION_BEGIN
 							
 							functionType = $$->type;
 							returnType = getReturnType(tablePtr);
-							ir_func_begin($$);
+//							ir_func_begin($$);
 						}
 	;
 
@@ -475,12 +475,11 @@ expression
 primary
      : NUM
 		   {
-			 if( !exists_entry(tablePtr,$1) ) {
-				 $$ = new_entry(tablePtr, 1, $1, 0, 1, 0);
-				 $$->value = $1;
-			 } else {
-				 $$ = get_name(tablePtr,$1);
-			 }
+			 char *c;
+			 c=malloc(20);
+			 sprintf(c,"NUM%d",idForNumCounter);
+			 $$ = new_entry(tablePtr, 1, c, 0, 1, 0);
+			 $$->value = $1;
 			 
 			 idForNumCounter++;
 		   }
