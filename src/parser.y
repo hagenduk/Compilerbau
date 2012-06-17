@@ -272,7 +272,7 @@ stmt
      | expression SEMICOLON
      | stmt_conditional
      | stmt_loop
-     | RETURN expression SEMICOLON
+     | RETURN expression SEMICOLON	{ ir_return(IR_RETURN,$$2);}
      | RETURN SEMICOLON
      | SEMICOLON /* empty statement */
      ;
@@ -282,13 +282,13 @@ stmt_block
      ;
 	
 stmt_conditional
-     : IF PARA_OPEN expression PARA_CLOSE stmt
-     | IF PARA_OPEN expression PARA_CLOSE stmt ELSE stmt
+     : IF PARA_OPEN expression {ir_if($3);ir_goto();} PARA_CLOSE stmt {backp_if(0);}
+     | IF PARA_OPEN expression PARA_CLOSE stmt ELSE {backp_if(1);ir_goto();} stmt {backp_if(0);}
      ;
 									
 stmt_loop
-     : WHILE PARA_OPEN expression PARA_CLOSE stmt
-     | DO stmt WHILE PARA_OPEN expression PARA_CLOSE SEMICOLON
+     : WHILE{ir_while_begin();} PARA_OPEN expression {ir_while($4);ir_while_goto_begin();} PARA_CLOSE stmt {backp_while();}
+     | DO {ir_do_while_begin();} stmt WHILE PARA_OPEN expression PARA_CLOSE SEMICOLON { ir_do_while_end($5);}
      ;
 									
 expression

@@ -1,3 +1,8 @@
+/**
+ * @brief 	constructed with the help of
+ * 			http://foja.dcs.fmph.uniba.sk/kompilatory/docs/compiler.pdf
+ * 			and Philipp Götze
+ */
 #include "ircode.h"
 #include "SymbTab.h"
 #include "diag.h"
