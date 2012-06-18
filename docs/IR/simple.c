@@ -1,7 +1,11 @@
-int func (int i) {
-  return i;
+void test (int a) {
+	return;
 }
 
-int main () {
-  return func();
+void main () {
+	int a[10];
+	int b;
+
+	test(a);
 }
+

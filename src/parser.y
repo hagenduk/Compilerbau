@@ -544,14 +544,14 @@ function_call
 																	//	printf("%d> Too many parameters for function >>%s<<.\n", yylineno , $1);
 																	//	errorCounter++;
 																	//}
-																	if(fcPointer->first != NULL) {
-																					printf("%d> Function >>%s<< needs parameters.\n", yylineno , $1);
+																	if(getFirstParam(fcPointer) != NULL) {
+																					printf("%d> Function needs parameters.\n", yylineno);
 																					errorCounter++;
 																		}
 																	$$=fcPointer;
 																	numberOfParameters = 0;
 																}
-      | MARKER_BEGIN_FC function_call_parameters PARA_CLOSE		{printf("ich lebe auch");
+      | MARKER_BEGIN_FC function_call_parameters PARA_CLOSE		{
 																				 // if( get_function( tablePtr, $1)->paramCnt != numberOfParameters ) {
 																				//	  printf("%d> Number of parameters does not match to the declaration of function >>%s<<.\n", yylineno);
 																				//	  errorCounter++;
@@ -593,7 +593,7 @@ function_call_parameters
      | expression {		
      					if($1->type!=getParamType(fcPointer, numberOfParameters)){
      						printf("%d> Parameter is of wrong type or missing.\n", yylineno);
-				 			printf("Wert 1 ist: %d Wert 2 ist: %d",$1->type,getParamType(tablePtr, numberOfParameters));
+				 			printf("Wert 1 ist: %d Wert 2 ist: %d",$1->type,getParamType(fcPointer, numberOfParameters));
 				 			errorCounter++;
      					}
      					numberOfParameters++;

@@ -504,3 +504,7 @@ int getParamType(struct SymTab *current, int num) {
 		}*/
 	return (parameter->type);
 	}
+
+int getFirstParam(struct SymTab *current) {
+	return current->first;
+}
