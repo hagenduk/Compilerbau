@@ -196,7 +196,7 @@ function_definition
 									errorCounter++;
 								}
 							} else {
-								printf("%d> Function >>%s<< was allready declared.\n", yylineno, $1->name);
+								printf("%d> Function  >>%s<< was allready declared (or name is used).\n", yylineno, $1->name);
 								errorCounter++;
 							}
 //							ir_func_end($1);
