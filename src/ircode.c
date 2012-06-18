@@ -137,9 +137,6 @@ void ir_return(enum op_codes op, struct entry *var0) {
  */
 struct entry *ir_assign_arr(struct entry *var0, struct entry *var1) {
 	struct entry *v = ir_tmp();
-	//TODO Hey, ich hab unten die Anweisung auskommentiert, weil die nen "Kreis" in der Symbol-Tabelle herstellt.
-	//Das hat zu ner Endlosschleife gefuehrt.... musst mal schauen, ob du das brauchst oder iwie anders machen kannst.
-	//v->next = var0;
 	var0->position = var1->value;
 	ir_entry(IR_ASSIGN_ARR, v, var0, NULL, NULL);
 	return v;
@@ -274,7 +271,7 @@ void backp_while() {
 /****************DEBUG**************/
 void print_container(){
 	struct ir_struct *c;
-		for (int i = 0; i < ir_count; i++) {
+		for (int i = 1; i < ir_count; i++) {
 			c = &container[i];
 			printf("Entry %d:\n", i);
 			printf("%s\n", c->op);
@@ -292,7 +289,7 @@ void print_container(){
  */
 int ir_find_FuncDef(struct entry *var0) {
 	struct ir_struct *c;
-	for (int i = 0; i < ir_count; i++) {
+	for (int i = 1; i < ir_count; i++) {
 		c = &container[i];
 		if (c->var0->type == 4) {
 			return i;

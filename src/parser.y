@@ -569,7 +569,7 @@ MARKER_BEGIN_FC
 																
 																fcPointer=get_name(get_rootptr(), $1)->function;
 																if( exists_entry(get_rootptr(), $1) ) {
-																			struct entry *e = get_name(tablePtr, $1);
+																			struct entry *e = get_name(get_rootptr(), $1);
 																			if(e->type != 4) {
 																				printf("%d> Function >>%s<< was not defined.\n", yylineno , $1);
 																				errorCounter++;
