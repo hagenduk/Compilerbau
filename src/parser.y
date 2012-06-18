@@ -11,6 +11,7 @@
 	//#define YYERROR_VERBOSE
 	struct SymbTab *tablePtr;
 	int numberOfParameters = 0;
+	int numberOfParametersCall = 0;
 	int isParam = 0;
 	int functionType;
 	int idForNumCounter = 0;
@@ -559,7 +560,7 @@ function_call
 																		}
 																	$$=fcPointer;
 																	//printf("fc ergebnis %d ", getReturnType(fcPointer->function));
-																	numberOfParameters = 0;
+																	numberOfParametersCall = 0;
 																}
       | MARKER_BEGIN_FC function_call_parameters PARA_CLOSE		{printf("first");
 																				 // if( get_function( tablePtr, $1)->paramCnt != numberOfParameters ) {
@@ -569,20 +570,20 @@ function_call
 																				  
 																				 
 																				  $$=fcPointer;
-																				  numberOfParameters = 0;
+																				  numberOfParametersCall = 0;
 																				}
       ;
       
 MARKER_BEGIN_FC
 	:	ID PARA_OPEN							{
 																
-																
+																numberOfParametersCall = 0;
 																fcPointer=get_name(get_rootptr(), $1);
 																savePtr=fcPointer->function;
 																if( exists_entry(get_rootptr(), $1) ) {
 																			struct entry *e = get_name(get_rootptr(), $1);
-																			if(e->type != 4) {
-																				printf("%d> Function >>%s<< was not defined.\n", yylineno , $1);
+																			if(e->type != 4 && e->type != 3) {
+																				printf("%d> -A-Function >>%s<< was not defined. -%d-\n", yylineno , $1, e->type);
 																				errorCounter++;
 																			}																	
 																		
@@ -594,21 +595,22 @@ MARKER_BEGIN_FC
 function_call_parameters
      : function_call_parameters COMMA expression
      				{
-     					if($3->type!=getParamType(fcPointer, numberOfParameters)){
+     					if($3->type!=getParamType(savePtr, numberOfParametersCall)){
      						printf("%d> Parameter is of wrong type or missing(m).\n", yylineno);
-				 			printf("Wert 1 ist: %d Wert 2 ist: %d",$3->type,getParamType(fcPointer, numberOfParameters));
+				 			printf("Wert 1 ist: %d Wert 2 ist: %d",$3->type,getParamType(fcPointer, numberOfParametersCall));
 				 			errorCounter++;
      					}
-     					numberOfParameters++;
+     					numberOfParametersCall++;
      				}
      			
      | expression {		
-     					if($1->type!=getParamType(fcPointer, numberOfParameters)){
-     						printf("%d> Parameter is of wrong type or missing(s).\n", yylineno);
-				 			printf("Wert 1 ist: %d Wert 2 ist: %d",$1->type,getParamType(fcPointer, numberOfParameters));
+     					if($1->type!=getParamType(savePtr, numberOfParametersCall)){
+     						printf("%d> -A-Parameter is of wrong type or missing(s).\n", yylineno);
+     						printf("\nTYPE P=%d F=%d C=%d\n\n", $1->type, getParamType(fcPointer, numberOfParametersCall), numberOfParametersCall);
+				 			printf("Wert 1 ist: %d Wert 2 ist: %d",$1->type,getParamType(fcPointer, numberOfParametersCall));
 				 			errorCounter++;
      					}
-     					numberOfParameters++;
+     					numberOfParametersCall++;
      				}
      ;
 
