@@ -70,7 +70,7 @@ void ir_entry(enum op_codes op, entry *var0, entry *var1, entry *var2, int jmp) 
 	container[ir_count-1].var1 = var1;
 	container[ir_count-1].var2 = var2;
 	container[ir_count-1].jmp = jmp;
-	print_container();
+//	print_container();
 }
 
 /*

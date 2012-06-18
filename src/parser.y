@@ -16,7 +16,7 @@
 	int idForNumCounter = 0;
 //	int errorCounter = 0;
 	int returnType=0;
-	struct SymbTab *fcPointer;
+	struct entry *fcPointer;
 	
 	extern int    yylineno;
 %}
@@ -196,7 +196,7 @@ function_definition
 									errorCounter++;
 								}
 							} else {
-								printf("%d> Function >>%s<< was allready declared.\n", yylineno, $1->name);
+								printf("%d> Function  >>%s<< was allready declared (or name is used).\n", yylineno, $1->name);
 								errorCounter++;
 							}
 //							ir_func_end($1);
@@ -337,13 +337,14 @@ stmt
 			 }
 			 else if( $2->function != NULL) {
 				 if(getReturnType(tablePtr) != getReturnType($2->function)){
-				 printf("%d> Wrong return type.\n", yylineno);
+				 printf("%d> Wrong return type(fc).\n", yylineno);
 				 errorCounter++;}
 
 			 }
 			 else{
 				 if(getReturnType(tablePtr) != $2->type){
-				 printf("%d> Wrong return type.\n", yylineno);
+				 printf("%d> Wrong return type(n).\n", yylineno);
+				 printf("expected %d type was %d",getReturnType(tablePtr), $2->type);
 				 errorCounter++;}			 	
 			 }
 		 }
@@ -493,7 +494,10 @@ expression
 				$$ = $2; 
 			 }
      | function_call	
-			 { $$=$1;
+			 { 
+			 //printf("expression ergebnis %d ",getReturnType($1->function));
+			 
+			 $$=$1;
 				 
 			 }
      | primary
@@ -544,11 +548,12 @@ function_call
 																	//	printf("%d> Too many parameters for function >>%s<<.\n", yylineno , $1);
 																	//	errorCounter++;
 																	//}
-																	if(getFirstParam(fcPointer) != NULL) {
+																	if(getFirstParam(fcPointer->function) != NULL) {
 																					printf("%d> Function needs parameters.\n", yylineno);
 																					errorCounter++;
 																		}
 																	$$=fcPointer;
+																	//printf("fc ergebnis %d ", getReturnType(fcPointer->function));
 																	numberOfParameters = 0;
 																}
       | MARKER_BEGIN_FC function_call_parameters PARA_CLOSE		{
@@ -567,7 +572,7 @@ MARKER_BEGIN_FC
 	:	ID PARA_OPEN							{
 																
 																
-																fcPointer=get_name(get_rootptr(), $1)->function;
+																fcPointer=get_name(get_rootptr(), $1);
 																if( exists_entry(get_rootptr(), $1) ) {
 																			struct entry *e = get_name(get_rootptr(), $1);
 																			if(e->type != 4) {
@@ -583,17 +588,18 @@ MARKER_BEGIN_FC
 function_call_parameters
      : function_call_parameters COMMA expression
      				{
-     					/*if($3->type!=getParamType(tablePtr, numberOfParameters)){
+     					if($3->type!=getParamType(fcPointer, numberOfParameters)){
      						printf("%d> Parameter is of wrong type or missing.\n", yylineno);
+				 			//printf("Wert 1 ist: %d Wert 2 ist: %d",$1->type,getParamType(fcPointer, numberOfParameters));
 				 			errorCounter++;
      					}
-     					//numberOfParameters++;*/
+     					numberOfParameters++;
      				}
      			
      | expression {		
      					if($1->type!=getParamType(fcPointer, numberOfParameters)){
      						printf("%d> Parameter is of wrong type or missing.\n", yylineno);
-				 			printf("Wert 1 ist: %d Wert 2 ist: %d",$1->type,getParamType(fcPointer, numberOfParameters));
+				 			//printf("Wert 1 ist: %d Wert 2 ist: %d",$1->type,getParamType(fcPointer, numberOfParameters));
 				 			errorCounter++;
      					}
      					numberOfParameters++;
