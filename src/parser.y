@@ -616,7 +616,7 @@ function_call_parameters
      				{
      					if($3->type!=getParamType(savePtr, numberOfParametersCall)){
      						printf("%d> Parameter is of wrong type or missing(m).\n", yylineno);
-				 			printf("Wert 1 ist: %d Wert 2 ist: %d",$3->type,getParamType(fcPointer, numberOfParametersCall));
+				 			printf("Wert 1 ist: %d Wert 2 ist: %d",$3->type,getParamType(savePtr, numberOfParametersCall));
 				 			errorCounter++;
      					}
      					numberOfParametersCall++;
@@ -625,8 +625,8 @@ function_call_parameters
      | expression {		
      					if($1->type!=getParamType(savePtr, numberOfParametersCall)){
      						printf("%d> -A-Parameter is of wrong type or missing(s).\n", yylineno);
-     						printf("\nTYPE P=%d F=%d C=%d\n\n", $1->type, getParamType(fcPointer, numberOfParametersCall), numberOfParametersCall);
-				 			printf("Wert 1 ist: %d Wert 2 ist: %d",$1->type,getParamType(fcPointer, numberOfParametersCall));
+     						printf("\nTYPE P=%d F=%d C=%d\n\n", $1->type, getParamType(savePtr, numberOfParametersCall), numberOfParametersCall);
+				 			printf("Wert 1 ist: %d Wert 2 ist: %d",$1->type,getParamType(savePtr, numberOfParametersCall));
 				 			errorCounter++;
      					}
      					numberOfParametersCall++;
