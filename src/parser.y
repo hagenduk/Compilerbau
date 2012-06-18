@@ -476,8 +476,8 @@ expression
 			{
 			   struct param *p = exists_param(tablePtr, $1);
 			   struct entry *e;
-			   if(exists_entry(tablePtr, $1) ) {
-			   //if(get_name(tablePtr, $1) != NULL) {
+			   //if(exists_entry(tablePtr, $1) ) {
+			   if(get_name(tablePtr, $1) != NULL) {
 					e = get_name(tablePtr,$1);
 					e->position = $3;
 					$$ = ir_assign_arr(e, $3);
@@ -521,7 +521,7 @@ primary
 			 struct param *p = exists_param(tablePtr, $1);
 			 //struct param *p = NULL;
 			 //if( exists_entry(tablePtr, $1) ) {
-			 if( get_name(tablePtr, $1) != NULL ) {
+			 if( get_name(tablePtr, $1) != NULL ) {	//<- beachtet auch globale Variablen, deswegen reicht exists_entry nicht aus
 				 $$ = get_name(tablePtr, $1);
 			 } else if(p != NULL){
 				
@@ -529,8 +529,10 @@ primary
 			 } else {
 				 printf("%d> Primary >>%s<< was not declared.\n", yylineno, $1);
 				 errorCounter++;
-				 $$ = new_entry(tablePtr, 1, NULL, 0, 1, 0);
-				 sprintf($$->name,"UNKNOWN%d",idForNumCounter);
+				 char *c;
+				 c=malloc(20);
+				 sprintf(c,"UNK%d",idForNumCounter);
+				 $$ = new_entry(tablePtr, 1, c, 0, 1, 0);
 				 $$->value = 1;	//default value of unknown variables
 				 idForNumCounter++;
 			 }

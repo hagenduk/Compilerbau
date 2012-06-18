@@ -104,7 +104,6 @@ struct entry *new_entry(struct SymTab *current, int offset, char const *name, in
     		 currententry->scope,
     		 currententry->type);
 
-
      return currententry;
 }
 

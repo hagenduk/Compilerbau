@@ -141,7 +141,9 @@ void ir_return(enum op_codes op, struct entry *var0) {
  */
 struct entry *ir_assign_arr(struct entry *var0, struct entry *var1) {
 	struct entry *v = ir_tmp();
-	v->next = var0;
+	//TODO Hey, ich hab unten die Anweisung auskommentiert, weil die nen "Kreis" in der Symbol-Tabelle herstellt.
+	//Das hat zu ner Endlosschleife gefuehrt.... musst mal schauen, ob du das brauchst oder iwie anders machen kannst.
+	//v->next = var0;
 	var0->position = var1->value;
 	ir_entry(IR_ASSIGN_ARR, v, var0, NULL, NULL);
 	return v;
@@ -293,7 +295,8 @@ struct entry *ir_tmp() {
 	root = get_rootptr();
 	char *buffer[5];
 	sprintf(buffer, ".tmp%d", ir_tmp_counter);
-	return new_entry(root, 1, buffer, 0, 1, NULL);
+	ir_tmp_counter++;
+	return new_entry(root, 1, buffer, 0, 1, 0);
 }
 
 /**
