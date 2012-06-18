@@ -494,14 +494,27 @@ int checkexpr(struct entry *first){
 }
 
 int getParamType(struct SymTab *current, int num) {
+	printf("---HALLO\n");
+	if(current == NULL)
+		printf("NULL---------------------------------\n");
+	else
+		printf("NICH NULL---------------------------------\n");
 	struct param *parameter;
-	if(current->first==NULL) {return -1;}
+	printf("1 -----------NOCH DA\n");
+	if(current->first==NULL) {
+		printf("-----------FIRST IST NULL\n");
+		return -1;
+	}
+	printf("2 -----------NOCH DA\n");
 	parameter=current->first;
+	printf("---HALLO\n");
 	while(num>0){
+		printf("---NUM %d\n", num);
 			if(parameter->next==NULL){return -1;}
 			parameter=parameter->next;
 			num--;
 		}
+	printf("-----------PARAM TYPE %d\n",parameter->type);
 	return (parameter->type);
 	}
 

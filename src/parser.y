@@ -606,6 +606,7 @@ MARKER_BEGIN_FC
 																		printf("hi");
 																		$$ = ir_funccall(e, ir_find_FuncDef(e) );
 																		$$->type = tmpType;
+																		printf("==========TYPE %d\n", tmpType);
 																	}
 												}
 	;      
@@ -622,12 +623,22 @@ function_call_parameters
      				}
      			
      | expression {		
-     					if($1->type!=getParamType(savePtr, numberOfParametersCall)){
-     						printf("%d> -A-Parameter is of wrong type or missing(s).\n", yylineno);
-     						printf("\nTYPE P=%d F=%d C=%d\n\n", $1->type, getParamType(savePtr, numberOfParametersCall), numberOfParametersCall);
+						if($1->type == 3  || $1->type == 4)  {
+							int tmpType = $1->function->returntype;
+							
+							if(tmpType != getParamType(savePtr, numberOfParametersCall)){
+								printf("%d> -A-Parameter is of wrong type or missing(s).\n", yylineno);
+								printf("\nTYPE %s P=%d F=%d C=%d\n\n", $1->name, tmpType, getParamType(savePtr, numberOfParametersCall), numberOfParametersCall);
+								printf("Wert 1 ist: %d Wert 2 ist: %d",tmpType,getParamType(savePtr, numberOfParametersCall));
+								errorCounter++;
+							}
+						} else if($1->type!=getParamType(savePtr, numberOfParametersCall)){
+     						printf("%d> Parameter is of wrong type or missing(s).\n", yylineno);
+     						printf("\nTYPE %s P=%d F=%d C=%d\n\n", $1->name, $1->type, getParamType(savePtr, numberOfParametersCall), numberOfParametersCall);
 				 			printf("Wert 1 ist: %d Wert 2 ist: %d",$1->type,getParamType(savePtr, numberOfParametersCall));
 				 			errorCounter++;
      					}
+
      					numberOfParametersCall++;
      				}
      ;
