@@ -7,6 +7,7 @@
 	#include "diag.h"
 	#include "SymbTab.c"
 	#include "ircode.c"
+	#include "stack.c"
 	
 	//#define YYERROR_VERBOSE
 	struct SymbTab *tablePtr;
@@ -575,6 +576,7 @@ function_call
 																	$$=fcPointer;
 																	//printf("fc ergebnis %d ", getReturnType(fcPointer->function));
 																	numberOfParametersCall = 0;
+																	savePtr = stack_pop();
 																}
       | MARKER_BEGIN_FC function_call_parameters PARA_CLOSE		{
 																				 // if( get_function( tablePtr, $1)->paramCnt != numberOfParameters ) {
@@ -585,6 +587,7 @@ function_call
 																				 
 																				  $$=fcPointer;
 																				  numberOfParametersCall = 0;
+																				  savePtr = stack_pop();
 																				}
       ;
       
@@ -593,9 +596,15 @@ MARKER_BEGIN_FC
 																
 																numberOfParametersCall = 0;
 																fcPointer=get_name(get_rootptr(), $1);
-																savePtr=fcPointer->function;
+																if(savePtr!= NULL){
+																	stack_push(savePtr);
+																	savePtr=fcPointer->function;
+																}else {
+																	stack_init();
+																	savePtr=fcPointer->function;
+																}
 																int tmpType = 0;
-																if( exists_entry(get_rootptr(), $1) ) {
+																if( get_name(get_rootptr(), $1) != NULL) {
 																			struct entry *e = get_name(get_rootptr(), $1);
 																			if(e->type != 4 && e->type != 3) {
 																				printf("%d> -A-Function >>%s<< was not defined. -%d-\n", yylineno , $1, e->type);

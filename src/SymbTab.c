@@ -494,6 +494,16 @@ int checkexpr(struct entry *first){
 }
 
 int getParamType(struct SymTab *current, int num) {
+	if(current == NULL){
+		printf("CURRENT IS NULL");
+	} else {
+		if(current->first == NULL){
+			printf("FIRST IS NULL");
+		}else {
+			printf("PARA_NAME %s ",current->first->name);
+		}
+	}
+	printf("PARA_TYPE %d\n", num);
 	struct param *parameter;
 	if(current->first==NULL) {return -1;}
 	parameter=current->first;

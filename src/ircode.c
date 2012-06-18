@@ -113,7 +113,6 @@ struct entry *ir_1exp(enum op_codes op, struct entry *var0) {
 		yyerror("Operands can not be of type VOID");
 	}
 	ir_entry(op, v, var0, NULL, NULL);
-	printf("TEST 5");
 	return v;
 }
 
@@ -356,7 +355,6 @@ void generate_ir_code() {
 		char tab = '\0';
 		sprintf(s, "--------- Intermediate Code ---------\n");
 		fprintf(ir_file,"%s",s);
-		printf("start");
 		for (int i = 1; i <= ir_count; i++) {
 			c = &container[i-1];
 			if (c->op == IR_FUNC_END || c->op
@@ -544,5 +542,5 @@ void generate_ir_code() {
 				fputs(s, ir_file);
 			}
 		}
-	}
+	} printf("IR_END");
 }
