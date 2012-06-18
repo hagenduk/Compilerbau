@@ -302,7 +302,7 @@ MARKER_FUNCTION_BEGIN
 							functionType = $$->type;
 							returnType = getReturnType(tablePtr);
 							printf("\nMITTE MARKER_FUNCTION_BEGIN %d\n", returnType);
-//							ir_func_begin($$);
+							ir_func_begin($$);
 							printf("END MARKER_FUNCTION_BEGIN\n");
 						}
 	;
@@ -601,7 +601,7 @@ MARKER_BEGIN_FC
 																				errorCounter++;
 																			}																	
 																		
-																		/*$$ = */ //ir_funccall(e, ir_find_FuncDef(e) );
+																		$$ = ir_funccall(e, ir_find_FuncDef(e) );
 																	}
 												}
 	;      

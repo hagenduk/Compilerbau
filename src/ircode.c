@@ -308,9 +308,9 @@ void print_container(){
 int ir_find_FuncDef(struct entry *var0) {
 	struct ir_struct *c;
 	for (int i = 1; i <= ir_count; i++) {
-		c = &container[i];
+		c = &container[i-1];
 		if (c->var0->type == 4) {
-			return i;
+			return i-1;
 		}
 	}
 	return 0;
