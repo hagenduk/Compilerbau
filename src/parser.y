@@ -74,6 +74,7 @@
 %type <entryStruct> identifier_declaration
 %type <entryStruct> function_declaration
 %type <entryStruct> MARKER_FUNCTION_BEGIN
+%type <entryStruct> MARKER_BEGIN_FC
 %type <entryStruct> expression
 %type <entryStruct> primary
 
@@ -594,14 +595,18 @@ MARKER_BEGIN_FC
 																numberOfParametersCall = 0;
 																fcPointer=get_name(get_rootptr(), $1);
 																savePtr=fcPointer->function;
+																int tmpType = 0;
 																if( exists_entry(get_rootptr(), $1) ) {
 																			struct entry *e = get_name(get_rootptr(), $1);
 																			if(e->type != 4 && e->type != 3) {
 																				printf("%d> -A-Function >>%s<< was not defined. -%d-\n", yylineno , $1, e->type);
 																				errorCounter++;
-																			}																	
+																			} else {
+																				tmpType = e->function->returntype;
+																			}
 																		
 																		$$ = ir_funccall(e, ir_find_FuncDef(e) );
+																		$$->type = tmpType;
 																	}
 												}
 	;      
