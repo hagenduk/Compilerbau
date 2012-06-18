@@ -34,11 +34,6 @@ int jmp_count = 0;
  */
 FILE *ir_file;
 /**
- * Number of entries, used to iterate array
- */
-int code_count = 0;
-
-/**
  * char buffer
  */
 char s[200];
@@ -50,21 +45,23 @@ struct ir_struct *container = NULL;
  * Interace function to fill container containing the IR-Code
  */
 void ir_entry(enum op_codes op, entry *var0, entry *var1, entry *var2, int jmp) {
-
-	struct ir_struct *tmp = (struct ir_struct*) realloc(container, ir_count
+	ir_count++;
+	printf("ENTRY");
+	struct ir_struct *tmp = (struct ir_struct*) realloc(container, (ir_count)
 			* sizeof(struct ir_struct));
-	container = tmp;
 	if (tmp == NULL) {
 		FATAL_OS_ERROR(OUT_OF_MEMORY, 0, "tmp -> realloc");
 		errorCounter++;
 		return;
 	}
-	ir_count++;
-	container[ir_count].op = op;
-	container[ir_count].var0 = var0;
-	container[ir_count].var1 = var1;
-	container[ir_count].var2 = var2;
-	container[ir_count].jmp = jmp;
+	container = tmp;
+	int a = ir_count;
+	container[ir_count-1].op = op;
+	container[ir_count-1].var0 = var0;
+	container[ir_count-1].var1 = var1;
+	container[ir_count-1].var2 = var2;
+	container[ir_count-1].jmp = jmp;
+	print_container();
 }
 
 /*
@@ -213,7 +210,7 @@ void ir_do_while_end(struct entry *var0) {
 		cptr = &container[i];
 		if (cptr->op == IR_DO_WHILE_BEGIN) {
 			if (cptr->jmp == -2) {
-				cptr->jmp = -1;
+				cptr->jmp = NULL;
 				break;
 			}
 		}
@@ -232,7 +229,7 @@ struct entry *ir_funccall(struct entry *var0, int jmp) {
 /****************************************************BACKP*********************************************************/
 void backp_if(int new) {
 	struct ir_struct *c;
-	for (int i = code_count - 1; i >= 0; i--) {
+	for (int i = ir_count - 1; i >= 0; i--) {
 		c = &container[i];
 		if (c->op == IR_GOTO) {
 			if (c->jmp == -2) {
@@ -274,6 +271,22 @@ void backp_while() {
 	}
 }
 /**********************************************************************************************************/
+/****************DEBUG**************/
+void print_container(){
+	struct ir_struct *c;
+		for (int i = 0; i < ir_count; i++) {
+			c = &container[i];
+			printf("Entry %d:\n", i);
+			printf("%s\n", c->op);
+			printf("%s\n", c->var0->name);
+		}
+}
+
+
+/**********************************/
+
+
+
 /**
  * Used to find the Function and set the jmp to there
  */
@@ -291,11 +304,10 @@ int ir_find_FuncDef(struct entry *var0) {
  * Returns a Temp variable
  */
 struct entry *ir_tmp() {
-	root = get_rootptr();
 	char *buffer[5];
 	sprintf(buffer, ".tmp%d", ir_tmp_counter);
 	ir_tmp_counter++;
-	return new_entry(root, 1, buffer, 0, 1, 0);
+	return new_entry(get_rootptr(), 1, buffer, 0, 1, NULL);
 }
 
 /**
@@ -332,7 +344,7 @@ void generate_ir_code() {
 		sprintf(s,"%d",ir_count);
 		fputs(s, ir_file);
 		printf("start");
-		for (int i = 0; i <= ir_count; i++) {
+		for (int i = 1; i <= ir_count; i++) {
 			c = &container[i];
 			if (c->op == IR_FUNC_END || c->op == IR_PARA || c->op
 					== IR_WHILE_BEGIN || c->op == IR_DO_WHILE_BEGIN) {
@@ -509,6 +521,7 @@ void generate_ir_code() {
 			case IR_FUNC_END:
 				break;
 			default:
+				printf("DEFAULT");
 				sprintf(s, "Error at: %d", i);
 				fputs(s, ir_file);
 			}
