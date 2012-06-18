@@ -64,8 +64,7 @@ void ir_entry(enum op_codes op, entry *var0, entry *var1, entry *var2, int jmp) 
 	container[ir_count].var0 = var0;
 	container[ir_count].var1 = var1;
 	container[ir_count].var2 = var2;
-	container[ir_count].jmp = op;
-	container[ir_count].label = NULL;
+	container[ir_count].jmp = jmp;
 }
 
 /*
@@ -509,7 +508,11 @@ void generate_ir_code() {
 				break;
 			case IR_FUNC_END:
 				break;
+			default:
+				sprintf(s, "Error at: %d", i);
+				fputs(s, ir_file);
 			}
+
 			if (c->op == IR_WHILE_BEGIN || c->op == IR_DO_WHILE_BEGIN)
 				tab = '\t';
 			if (c->op != IR_PARA && c->op != IR_WHILE_BEGIN && c->op
@@ -518,5 +521,5 @@ void generate_ir_code() {
 				fputs(s, ir_file);
 			}
 		}
-	}fclose(ir_file);
+	}
 }
