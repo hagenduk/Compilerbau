@@ -270,13 +270,13 @@ void backp_while() {
 		c = &container[i];
 		if (c->op == IR_GOTO) {
 			if (c->jmp == -2) {
-				c->jmp = ir_count + 1;
+				c->jmp = ir_count + 2;
 				break;
 			}
 		} else if (c->op == IR_WHILE_BEGIN) {
 			if (c->jmp == -2) {
 				ir_entry(IR_GOTO, NULL, NULL, NULL, i);
-				c->jmp = -1;
+				c->jmp = NULL;
 				break;
 			}
 		}
