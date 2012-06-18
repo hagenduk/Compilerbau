@@ -18,10 +18,10 @@ int func (int arr[10], int len, int threshold) {
 }
 
 int main () {
-  //global = 1;
-  //return func(a,5+5,5);
+  global = 1;
+  return func(a,5+5,5);
 
-  print(scan());
+ print(scan());
 
-  exit(0);
+ exit(0);
 }

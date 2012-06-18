@@ -540,7 +540,6 @@ primary
     	printf("START ID");
 		   if(savePtr==NULL) printf("DIE POINTER");
 			 struct param *p =exists_param(tablePtr,$1); // exists_param(savePtr,$1); Problem, savePtr wird erst später in 581 gesetzt....
-			 printf("second");
 			 //struct param *p = NULL;
 			 //if( exists_entry(tablePtr, $1) ) {
 			 if( get_name(tablePtr, $1) != NULL ) {	//<- beachtet auch globale Variablen, deswegen reicht exists_entry nicht aus
@@ -577,7 +576,7 @@ function_call
 																	//printf("fc ergebnis %d ", getReturnType(fcPointer->function));
 																	numberOfParametersCall = 0;
 																}
-      | MARKER_BEGIN_FC function_call_parameters PARA_CLOSE		{printf("first");
+      | MARKER_BEGIN_FC function_call_parameters PARA_CLOSE		{
 																				 // if( get_function( tablePtr, $1)->paramCnt != numberOfParameters ) {
 																				//	  printf("%d> Number of parameters does not match to the declaration of function >>%s<<.\n", yylineno);
 																				//	  errorCounter++;
@@ -604,7 +603,7 @@ MARKER_BEGIN_FC
 																			} else {
 																				tmpType = e->function->returntype;
 																			}
-																		
+																		printf("hi");
 																		$$ = ir_funccall(e, ir_find_FuncDef(e) );
 																		$$->type = tmpType;
 																	}

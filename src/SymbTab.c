@@ -497,11 +497,11 @@ int getParamType(struct SymTab *current, int num) {
 	struct param *parameter;
 	if(current->first==NULL) {return -1;}
 	parameter=current->first;
-	/*	while(num>0){
+	while(num>0){
 			if(parameter->next==NULL){return -1;}
 			parameter=parameter->next;
 			num--;
-		}*/
+		}
 	return (parameter->type);
 	}
 
