@@ -46,15 +46,16 @@ struct ir_struct *container = NULL;
  */
 void ir_entry(enum op_codes op, entry *var0, entry *var1, entry *var2, int jmp) {
 	ir_count++;
-	printf("ENTRY %d",ir_count);
+	printf("ENTRY %d ",ir_count);
+	printf("%d\n", op);
 	if(var0 == NULL){
-		printf("var0 is null");
+		printf("var0 is null\n");
 	}
 	if(var1 == NULL){
-			printf("var1 is null");
+			printf("var1 is null\n");
 		}
 	if(var2 == NULL){
-			printf("var2 is null");
+			printf("var2 is null\n");
 		}
 	struct ir_struct *tmp = (struct ir_struct*) realloc(container, (ir_count)
 			* sizeof(struct ir_struct));
@@ -354,7 +355,7 @@ void generate_ir_code() {
 		printf("start");
 		for (int i = 1; i <= ir_count; i++) {
 			c = &container[i];
-			if (c->op == IR_FUNC_END || c->op == IR_PARA || c->op
+			if (c->op == IR_FUNC_END || c->op
 					== IR_WHILE_BEGIN || c->op == IR_DO_WHILE_BEGIN) {
 				tab = '\0';
 			}
@@ -489,9 +490,6 @@ void generate_ir_code() {
 					sprintf(s, "RETURN");
 				fputs(s, ir_file);
 				break;
-			case IR_PARA:
-				tab = '\t';
-				break;
 			case IR_CALL:
 				sprintf(s, "%s = CALL .%s(", c->var1->name, c->var0->name);
 				fputs(s, ir_file);
@@ -536,7 +534,7 @@ void generate_ir_code() {
 
 			if (c->op == IR_WHILE_BEGIN || c->op == IR_DO_WHILE_BEGIN)
 				tab = '\t';
-			if (c->op != IR_PARA && c->op != IR_WHILE_BEGIN && c->op
+			if (c->op != IR_WHILE_BEGIN && c->op
 					!= IR_DO_WHILE_BEGIN) {
 				sprintf(s, "\n");
 				fputs(s, ir_file);
