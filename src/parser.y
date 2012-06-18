@@ -521,13 +521,15 @@ expression
 primary
      : NUM
 		   {
-			 char *c;
-			 c=malloc(20);
-			 sprintf(c,"NUM%d",idForNumCounter);
-			 $$ = new_entry(tablePtr, 1, c, 0, 1, 0);
-			 $$->value = $1;
-			 
-			 idForNumCounter++;
+		  	 	char c[20];
+				sprintf(c, "%d", $1);
+		   	
+		   	 if( get_name(tablePtr, c) != NULL ) {
+		   	 	$$ = get_name(tablePtr, c);
+		   	 } else {
+		   	 	$$ = new_entry(tablePtr, 1, c, 0, 1, 0);
+				$$->value = $1;
+		   	 }
 		   }
      | ID
 		   {

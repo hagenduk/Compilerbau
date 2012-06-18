@@ -47,15 +47,21 @@ struct ir_struct *container = NULL;
 void ir_entry(enum op_codes op, entry *var0, entry *var1, entry *var2, int jmp) {
 	ir_count++;
 	printf("ENTRY %d ",ir_count);
-	printf("%d\n", op);
+	printf("op= '%d'\n", op);
 	if(var0 == NULL){
-		printf("var0 is null\n");
+		printf("var0 is null ");
+	} else {
+		printf("var0= '%s'",var0->name);
 	}
 	if(var1 == NULL){
-			printf("var1 is null\n");
+			printf("var1 is null ");
+		} else {
+			printf("var1= '%s'",var1->name);
 		}
 	if(var2 == NULL){
 			printf("var2 is null\n");
+		} else {
+			printf("var2= '%s'\n",var2->name);
 		}
 	struct ir_struct *tmp = (struct ir_struct*) realloc(container, (ir_count)
 			* sizeof(struct ir_struct));
@@ -65,13 +71,12 @@ void ir_entry(enum op_codes op, entry *var0, entry *var1, entry *var2, int jmp) 
 		return;
 	}
 	container = tmp;
-	int a = ir_count;
 	container[ir_count-1].op = op;
 	container[ir_count-1].var0 = var0;
 	container[ir_count-1].var1 = var1;
 	container[ir_count-1].var2 = var2;
 	container[ir_count-1].jmp = jmp;
-//	print_container();
+	//print_container();
 }
 
 /*
@@ -282,8 +287,9 @@ void backp_while() {
 void print_container(){
 	struct ir_struct *c;
 		for (int i = 1; i <= ir_count; i++) {
-			c = &container[i+1];
+			c = &container[i-1];
 			printf("Entry %d:\n", i);
+			printf("ir_count %d:\n", ir_count-1);
 			printf("%d\n", c->op);
 			if(c->var0 != NULL){
 			printf("%s\n", c->var0->name);
@@ -350,11 +356,9 @@ void generate_ir_code() {
 		char tab = '\0';
 		sprintf(s, "--------- Intermediate Code ---------\n");
 		fprintf(ir_file,"%s",s);
-		sprintf(s,"%d",ir_count);
-		fputs(s, ir_file);
 		printf("start");
 		for (int i = 1; i <= ir_count; i++) {
-			c = &container[i];
+			c = &container[i-1];
 			if (c->op == IR_FUNC_END || c->op
 					== IR_WHILE_BEGIN || c->op == IR_DO_WHILE_BEGIN) {
 				tab = '\0';
