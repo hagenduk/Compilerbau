@@ -388,7 +388,7 @@ struct SymTab *get_function(struct SymTab *current, char const *name){
 				current_entry=current_entry->next;       						//current entry is current_entry->next (next entry in same SymTab)
 			}//end loop 2
 
-	if(found_entry!=NULL) return NULL;
+	if(found_entry==NULL) return NULL;
 	return found_entry->function;												//return function
 }
 
@@ -491,6 +491,15 @@ int checkexpr(struct entry *first){
 		}
 	 }
 	return 1;
-
 }
 
+int getParamType(struct SymTab *current, int num) {
+	struct param *parameter;
+	parameter=current->first;
+		while(num>0){
+			if(parameter->next==NULL){return -1;}
+			parameter=parameter->next;
+			num--;
+		}
+	return parameter->type;
+	}

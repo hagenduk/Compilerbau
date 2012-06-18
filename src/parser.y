@@ -203,7 +203,6 @@ function_definition
 						 }
     | MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE
 						{
-    	
 							if( $1->type == 5 || $1->type == 3 ) {
 								if(returnType==getReturnType(tablePtr)){
 									tablePtr = end_function( tablePtr, numberOfParameters );
@@ -255,7 +254,7 @@ function_declaration
 						}
 
 	| MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE
-											{
+											{ 
 												if($1->type==5) {
 													if(returnType==getReturnType(tablePtr)){
 														tablePtr = end_function( tablePtr, numberOfParameters );
@@ -280,7 +279,6 @@ function_declaration
 
 MARKER_FUNCTION_BEGIN
 	: type ID PARA_OPEN	{ //TODO Wenn Prototyp dann überschreiben erlauben, Typ und Parametervergleich
-							printf("hi");
 							if( exists_entry(tablePtr,$2) ) {
 								if(get_name(tablePtr, $2)->function != NULL) {
 									$$ = get_name(tablePtr, $2);
@@ -540,29 +538,34 @@ primary
      ;
 
 function_call
-      : ID MARKER_BEGIN_FC PARA_OPEN PARA_CLOSE					{//
-																	//if( (get_function( tablePtr, $1))->paramCnt != numberOfParameters ) {
+      : ID MARKER_BEGIN_FC PARA_OPEN PARA_CLOSE					{
+																	//if( (getParamCnt(get_function( tablePtr, $1))) != numberOfParameters ) {
 																	//	printf("%d> Too many parameters for function >>%s<<.\n", yylineno , $1);
 																	//	errorCounter++;
-																//	}
-																	
-																	if( exists_entry(tablePtr, $1) ) {
-																		struct entry *e = get_name(tablePtr, $1);
-																		if(e->type != 4) {
-																			printf("%d> Function >>%s<< was not defined.\n", yylineno , $1);
-																		}
-																		/*$$ = */ ir_funccall(e, ir_find_FuncDef(e) );
+																	//}
+																	if( exists_entry(get_rootptr(), $1) ) {
+																			struct entry *e = get_name(tablePtr, $1);
+																				if(e->function->first != NULL) {
+																					printf("%d> Function >>%s<< needs parameters.\n", yylineno , $1);
+																					errorCounter++;
+																				}
+																			if(e->type != 4) {
+																				printf("%d> Function >>%s<< was not defined.\n", yylineno , $1);
+																				errorCounter++;
+																			}																	
+																		
+																		/*$$ = */ //ir_funccall(e, ir_find_FuncDef(e) );
 																	}
 																	$$=get_name(tablePtr, $1);
 																	numberOfParameters = 0;
 																}
-      | ID MARKER_BEGIN_FC PARA_OPEN function_call_parameters PARA_CLOSE		{//
+      | ID MARKER_BEGIN_FC PARA_OPEN function_call_parameters PARA_CLOSE		{printf("ich lebe auch");
 																				 // if( get_function( tablePtr, $1)->paramCnt != numberOfParameters ) {
 																				//	  printf("%d> Number of parameters does not match to the declaration of function >>%s<<.\n", yylineno);
 																				//	  errorCounter++;
 																				//  }
 																				  
-																				  if( exists_entry(tablePtr, $1) ) {
+																				  if( exists_entry(get_rootptr(), $1) ) {
 																					  struct entry *e = get_name(tablePtr, $1);
 																					  if(e->type != 4) {
 																						  printf("%d> Function >>%s<< was not defined.\n", yylineno , $1);
@@ -575,14 +578,28 @@ function_call
       ;
       
 MARKER_BEGIN_FC
-	:															{// Epsilon TODO: $1 = ID
+	:															{printf("function call beginn");// Epsilon TODO: $1 = ID
 																//get_function(tablePtr, $1)
 																}
 	;      
 
 function_call_parameters
      : function_call_parameters COMMA expression
-     | expression
+     				{
+     					/*if($3->type!=getParamType(tablePtr, numberOfParameters)){
+     						printf("%d> Parameter is of wrong type or missing.\n", yylineno);
+				 			errorCounter++;
+     					}
+     					numberOfParameters++;*/
+     				}
+     			
+     | expression {		printf("Wert 1 ist: %d, Wert 2 ist: %d",$1->type, getParamType(tablePtr, numberOfParameters));
+     					/*if($1->type!=getParamType(tablePtr, numberOfParameters)){
+     						printf("%d> Parameter is of wrong type or missing.\n", yylineno);
+				 			errorCounter++;
+     					}*/
+     					numberOfParameters++;
+     				}
      ;
 
 %%
