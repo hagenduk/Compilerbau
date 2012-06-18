@@ -113,12 +113,12 @@ variable_declaration
 identifier_declaration
 	: ID BRACKET_OPEN NUM BRACKET_CLOSE		{ // Array Entry erstellen:
 												if( !isParam ) {
-													//if( get_name(tablePtr, $1) ) {
 													if( exists_entry(tablePtr, $1) ) {
 														printf("%d> Array >>%s<< allready declared.\n", yylineno, $1);
 														errorCounter++;
 													} else {
-														$$ = new_entry(tablePtr, $3, $1, 0, 2, 0);
+														if( get_name(tablePtr, $1) == NULL )
+															$$ = new_entry(tablePtr, $3, $1, 0, 2, 0);
 													}
 												} else {	//Parameter
 													if(functionType == 5)  {//erstmalige function definition/declaration
@@ -143,12 +143,12 @@ identifier_declaration
 											}
 	| ID									{ // INT Entry erstellen:
 												if( !isParam ) {
-//													if( get_name(tablePtr, $1) ) {
 													if( exists_entry(tablePtr, $1) ) {
 														printf("%d> Variable >>%s<< allready declared.\n", yylineno, $1);
 														errorCounter++;
 													} else {
-														$$ = new_entry(tablePtr, 1, $1, 0, 1, 0);
+														if( get_name(tablePtr, $1) == NULL)
+															$$ = new_entry(tablePtr, 1, $1, 0, 1, 0);
 													}
 												} else {	//Parameter
 													if(functionType == 5)  {//erstmalige function definition/declaration
@@ -375,7 +375,7 @@ MARKER_STMT_CONDITIONAL
      ;
 									
 stmt_loop
-     : WHILE{ir_while_begin();} PARA_OPEN expression {ir_while($4);ir_while_goto_begin();} PARA_CLOSE stmt {backp_while();}
+     : WHILE{ir_while_begin();} PARA_OPEN expression PARA_CLOSE {ir_while($4);ir_while_goto_begin();} stmt {backp_while();}
      | DO {ir_do_while_begin();} stmt WHILE PARA_OPEN expression PARA_CLOSE SEMICOLON { ir_do_while_end($6);}
      ;
 									
@@ -476,8 +476,8 @@ expression
 			{
 			   struct param *p = exists_param(tablePtr, $1);
 			   struct entry *e;
-			   
 			   if(exists_entry(tablePtr, $1) ) {
+			   //if(get_name(tablePtr, $1) != NULL) {
 					e = get_name(tablePtr,$1);
 					e->position = $3;
 					$$ = ir_assign_arr(e, $3);
@@ -501,6 +501,8 @@ expression
 			 {
 				$$ = $1; 
 			 }
+     | expression SHIFT_LEFT expression
+     | expression SHIFT_RIGHT expression
      ;
 
 primary
