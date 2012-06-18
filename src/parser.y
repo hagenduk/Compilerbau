@@ -203,9 +203,11 @@ function_definition
 							}
 //							ir_func_end($1);
 							numberOfParameters = 0;
+			printf("END function_definition");
 						 }
     | MARKER_FUNCTION_BEGIN function_parameter_list PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE
 						{
+    	printf("START function_definition");
 							if( $1->type == 5 || $1->type == 3 ) {
 								if(returnType==getReturnType(tablePtr)){
 									tablePtr = end_function( tablePtr, numberOfParameters );
@@ -282,6 +284,7 @@ function_declaration
 
 MARKER_FUNCTION_BEGIN
 	: type ID PARA_OPEN	{ //TODO Wenn Prototyp dann überschreiben erlauben, Typ und Parametervergleich
+		printf("START MARKER_FUNCTION_BEGIN");
 							if( exists_entry(tablePtr,$2) ) {
 								if(get_name(tablePtr, $2)->function != NULL) {
 									$$ = get_name(tablePtr, $2);
@@ -297,7 +300,9 @@ MARKER_FUNCTION_BEGIN
 							
 							functionType = $$->type;
 							returnType = getReturnType(tablePtr);
+							printf("\nMITTE MARKER_FUNCTION_BEGIN\n");
 //							ir_func_begin($$);
+							printf("END MARKER_FUNCTION_BEGIN\n");
 						}
 	;
 
@@ -384,6 +389,7 @@ stmt_loop
 expression
      : expression ASSIGN expression
 			{
+    	 printf("START ASSIGN\n");
 				 ir_assign($1, $3);
 				 $$ = $3;
 				 if(checktype($1->type,$3->type)==0){
@@ -398,6 +404,7 @@ expression
     	 			 		    	printf("%d> cannot calc with void.\n", yylineno);
 									errorCounter++;
 					}
+		printf("END ASSIGN\n");
 			}
      | expression LOGICAL_OR expression
 			 {
