@@ -46,7 +46,16 @@ struct ir_struct *container = NULL;
  */
 void ir_entry(enum op_codes op, entry *var0, entry *var1, entry *var2, int jmp) {
 	ir_count++;
-	printf("ENTRY");
+	printf("ENTRY %d",ir_count);
+	if(var0 == NULL){
+		printf("var0 is null");
+	}
+	if(var1 == NULL){
+			printf("var1 is null");
+		}
+	if(var2 == NULL){
+			printf("var2 is null");
+		}
 	struct ir_struct *tmp = (struct ir_struct*) realloc(container, (ir_count)
 			* sizeof(struct ir_struct));
 	if (tmp == NULL) {
@@ -271,11 +280,13 @@ void backp_while() {
 /****************DEBUG**************/
 void print_container(){
 	struct ir_struct *c;
-		for (int i = 1; i < ir_count; i++) {
-			c = &container[i];
+		for (int i = 1; i <= ir_count; i++) {
+			c = &container[i+1];
 			printf("Entry %d:\n", i);
-			printf("%s\n", c->op);
+			printf("%d\n", c->op);
+			if(c->var0 != NULL){
 			printf("%s\n", c->var0->name);
+			}
 		}
 }
 
@@ -289,7 +300,7 @@ void print_container(){
  */
 int ir_find_FuncDef(struct entry *var0) {
 	struct ir_struct *c;
-	for (int i = 1; i < ir_count; i++) {
+	for (int i = 1; i <= ir_count; i++) {
 		c = &container[i];
 		if (c->var0->type == 4) {
 			return i;
