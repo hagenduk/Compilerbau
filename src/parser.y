@@ -11,12 +11,14 @@
 	//#define YYERROR_VERBOSE
 	struct SymbTab *tablePtr;
 	int numberOfParameters = 0;
+	int numberOfParametersCall = 0;
 	int isParam = 0;
 	int functionType;
 	int idForNumCounter = 0;
 //	int errorCounter = 0;
 	int returnType=0;
 	struct entry *fcPointer;
+	struct SymbTab *savePtr;
 	
 	extern int    yylineno;
 %}
@@ -435,6 +437,7 @@ expression
 			 }
      | expression PLUS expression
 			 {
+			 	printf("%d Plus %d", $1->type, $3->type);
 				 $$ = ir_2exp(IR_PLUS, $1, $3);
 				 	if(checktype($1->type,$3->type)==0 && $3->type!=1){
 				 	 	printf("%d> type mismatch or cannot calc with void.\n", yylineno);
@@ -521,13 +524,16 @@ primary
 		   }
      | ID
 		   {
-			 struct param *p = exists_param(tablePtr, $1);
+		   if(savePtr==NULL) printf("DIE POINTER");
+			 struct param *p =exists_param(tablePtr,$1); // exists_param(savePtr,$1); Problem, savePtr wird erst später in 581 gesetzt....
+			 printf("second");
 			 //struct param *p = NULL;
 			 //if( exists_entry(tablePtr, $1) ) {
 			 if( get_name(tablePtr, $1) != NULL ) {	//<- beachtet auch globale Variablen, deswegen reicht exists_entry nicht aus
 				 $$ = get_name(tablePtr, $1);
+				 printf("da");
 			 } else if(p != NULL){
-				
+				printf("bla");
 				 $$ = getParamAsEntry(tablePtr,p);
 			 } else {
 				 printf("%d> Primary >>%s<< was not declared.\n", yylineno, $1);
@@ -554,9 +560,9 @@ function_call
 																		}
 																	$$=fcPointer;
 																	//printf("fc ergebnis %d ", getReturnType(fcPointer->function));
-																	numberOfParameters = 0;
+																	numberOfParametersCall = 0;
 																}
-      | MARKER_BEGIN_FC function_call_parameters PARA_CLOSE		{
+      | MARKER_BEGIN_FC function_call_parameters PARA_CLOSE		{printf("first");
 																				 // if( get_function( tablePtr, $1)->paramCnt != numberOfParameters ) {
 																				//	  printf("%d> Number of parameters does not match to the declaration of function >>%s<<.\n", yylineno);
 																				//	  errorCounter++;
@@ -564,19 +570,20 @@ function_call
 																				  
 																				 
 																				  $$=fcPointer;
-																				  numberOfParameters = 0;
+																				  numberOfParametersCall = 0;
 																				}
       ;
       
 MARKER_BEGIN_FC
 	:	ID PARA_OPEN							{
 																
-																
+																numberOfParametersCall = 0;
 																fcPointer=get_name(get_rootptr(), $1);
+																savePtr=fcPointer->function;
 																if( exists_entry(get_rootptr(), $1) ) {
 																			struct entry *e = get_name(get_rootptr(), $1);
-																			if(e->type != 4) {
-																				printf("%d> Function >>%s<< was not defined.\n", yylineno , $1);
+																			if(e->type != 4 && e->type != 3) {
+																				printf("%d> -A-Function >>%s<< was not defined. -%d-\n", yylineno , $1, e->type);
 																				errorCounter++;
 																			}																	
 																		
@@ -588,21 +595,22 @@ MARKER_BEGIN_FC
 function_call_parameters
      : function_call_parameters COMMA expression
      				{
-     					if($3->type!=getParamType(fcPointer, numberOfParameters)){
-     						printf("%d> Parameter is of wrong type or missing.\n", yylineno);
-				 			//printf("Wert 1 ist: %d Wert 2 ist: %d",$1->type,getParamType(fcPointer, numberOfParameters));
+     					if($3->type!=getParamType(savePtr, numberOfParametersCall)){
+     						printf("%d> Parameter is of wrong type or missing(m).\n", yylineno);
+				 			printf("Wert 1 ist: %d Wert 2 ist: %d",$3->type,getParamType(fcPointer, numberOfParametersCall));
 				 			errorCounter++;
      					}
-     					numberOfParameters++;
+     					numberOfParametersCall++;
      				}
      			
      | expression {		
-     					if($1->type!=getParamType(fcPointer, numberOfParameters)){
-     						printf("%d> Parameter is of wrong type or missing.\n", yylineno);
-				 			//printf("Wert 1 ist: %d Wert 2 ist: %d",$1->type,getParamType(fcPointer, numberOfParameters));
+     					if($1->type!=getParamType(savePtr, numberOfParametersCall)){
+     						printf("%d> -A-Parameter is of wrong type or missing(s).\n", yylineno);
+     						printf("\nTYPE P=%d F=%d C=%d\n\n", $1->type, getParamType(fcPointer, numberOfParametersCall), numberOfParametersCall);
+				 			printf("Wert 1 ist: %d Wert 2 ist: %d",$1->type,getParamType(fcPointer, numberOfParametersCall));
 				 			errorCounter++;
      					}
-     					numberOfParameters++;
+     					numberOfParametersCall++;
      				}
      ;
 
