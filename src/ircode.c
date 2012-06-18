@@ -47,7 +47,7 @@ struct ir_struct *container = NULL;
 void ir_entry(enum op_codes op, entry *var0, entry *var1, entry *var2, int jmp) {
 	ir_count++;
 	printf("ENTRY %d ",ir_count);
-	printf("op= '%d'\n", op);
+	printf("op= '%d' ", op);
 	if(var0 == NULL){
 		printf("var0 is null ");
 	} else {
