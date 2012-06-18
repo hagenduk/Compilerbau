@@ -180,6 +180,7 @@ identifier_declaration
 function_definition
     : MARKER_FUNCTION_BEGIN PARA_CLOSE BRACE_OPEN stmt_list BRACE_CLOSE
 						 {
+    	printf("START function_definition");
 							if( $1->type == 5 ) {
 								$1->type = 4;
 								tablePtr = end_function( tablePtr, numberOfParameters );
@@ -300,7 +301,7 @@ MARKER_FUNCTION_BEGIN
 							
 							functionType = $$->type;
 							returnType = getReturnType(tablePtr);
-							printf("\nMITTE MARKER_FUNCTION_BEGIN\n");
+							printf("\nMITTE MARKER_FUNCTION_BEGIN %d\n", returnType);
 //							ir_func_begin($$);
 							printf("END MARKER_FUNCTION_BEGIN\n");
 						}
@@ -331,7 +332,7 @@ stmt_list
 stmt
      : stmt_block
      | variable_declaration SEMICOLON
-     | expression SEMICOLON
+     | {printf("GEH IN expression\n");} expression {printf("GEH AUS expression\n");} SEMICOLON
      | stmt_conditional
      | stmt_loop
      | RETURN expression SEMICOLON
@@ -521,6 +522,7 @@ expression
 primary
      : NUM
 		   {
+    	 printf("START NUM");
 			 char *c;
 			 c=malloc(20);
 			 sprintf(c,"NUM%d",idForNumCounter);
@@ -531,6 +533,7 @@ primary
 		   }
      | ID
 		   {
+    	printf("START ID");
 		   if(savePtr==NULL) printf("DIE POINTER");
 			 struct param *p =exists_param(tablePtr,$1); // exists_param(savePtr,$1); Problem, savePtr wird erst später in 581 gesetzt....
 			 printf("second");
@@ -552,6 +555,7 @@ primary
 				 $$->value = 1;	//default value of unknown variables
 				 idForNumCounter++;
 			 }
+		printf("END ID\n");
 		   }
      ;
 
