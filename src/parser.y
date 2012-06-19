@@ -7,7 +7,7 @@
 	#include "diag.h"
 	#include "SymbTab.c"
 	#include "ircode.c"
-	#include "stack.c"
+	//#include "stack.c"
 	
 	//#define YYERROR_VERBOSE
 	struct SymbTab *tablePtr;
@@ -576,7 +576,7 @@ function_call
 																	$$=fcPointer;
 																	//printf("fc ergebnis %d ", getReturnType(fcPointer->function));
 																	numberOfParametersCall = 0;
-																	savePtr = stack_pop();
+																	//savePtr = stack_pop();
 																}
       | MARKER_BEGIN_FC function_call_parameters PARA_CLOSE		{
 																				 // if( get_function( tablePtr, $1)->paramCnt != numberOfParameters ) {
@@ -587,7 +587,7 @@ function_call
 																				 
 																				  $$=fcPointer;
 																				  numberOfParametersCall = 0;
-																				  savePtr = stack_pop();
+																				 // savePtr = stack_pop();
 																				}
       ;
       
@@ -597,10 +597,10 @@ MARKER_BEGIN_FC
 																numberOfParametersCall = 0;
 																fcPointer=get_name(get_rootptr(), $1);
 																if(savePtr!= NULL){
-																	stack_push(savePtr);
+																	//stack_push(savePtr);
 																	savePtr=fcPointer->function;
 																}else {
-																	stack_init();
+																	//stack_init();
 																	savePtr=fcPointer->function;
 																}
 																int tmpType = 0;
